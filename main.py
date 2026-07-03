@@ -378,8 +378,9 @@ try:
     if current_dir not in sys.path:
         sys.path.insert(0, current_dir)
         
-    import silpo_products
     for idx, item in enumerate(silpo_products.products):
+        if item["category"] in ["sport", "vegetables"]:
+            continue
         key_name = item["names"]["en"]
         
         # Робимо назви товарів строго українською мовою
@@ -783,29 +784,27 @@ class CatalogPanel(ctk.CTkFrame):
         cats_frame.pack(fill="x", padx=5, pady=5)
         
         categories_data = [
-            ("Bakeries", "bakeries", "#C2D6EE", "cat_bakeries.png"),
-            ("Drinks", "drinks", "#BCE6EB", "cat_drinks.png"),
-            ("Vegetables", "vegetables", "#ECC4EC", "cat_vegetables.png"),
-            ("Fruits", "fruits", "#D3EEC2", "cat_fruits.png"),
-            ("Snacks", "snacks", "#DCD2EE", "cat_snacks.png"),
-            ("Sport Tech", "sport", "#ECCFC4", "cat_sport.png")
+            ("Випічка", "bakeries", "#C2D6EE", "cat_bakeries.png"),
+            ("Напої", "drinks", "#BCE6EB", "cat_drinks.png"),
+            ("Фрукти", "fruits", "#D3EEC2", "cat_fruits.png"),
+            ("Снеки", "snacks", "#DCD2EE", "cat_snacks.png")
         ]
         
         for name, key, bg_col, img_name in categories_data:
-            cat_card = ctk.CTkFrame(cats_frame, width=110, height=100, fg_color=bg_col, corner_radius=12)
-            cat_card.pack(side="left", padx=5, expand=True, fill="both")
+            cat_card = ctk.CTkFrame(cats_frame, width=130, height=110, fg_color=bg_col, corner_radius=12)
+            cat_card.pack(side="left", padx=6, expand=True, fill="both")
             cat_card.pack_propagate(False)
             
             def select_cat(e, k=key):
                 self.set_category(k)
             cat_card.bind("<Button-1>", select_cat)
             
-            photo = get_product_image_local(img_name, (50, 50))
+            photo = get_product_image_local(img_name, (65, 65))
             img_lbl = ctk.CTkLabel(cat_card, image=photo, text="")
-            img_lbl.pack(pady=(10, 2))
+            img_lbl.pack(pady=(8, 2))
             img_lbl.bind("<Button-1>", select_cat)
             
-            lbl_cat_name = ctk.CTkLabel(cat_card, text=name, font=("Georgia", 11, "italic"), text_color="black")
+            lbl_cat_name = ctk.CTkLabel(cat_card, text=name, font=("Arial", 11, "bold"), text_color="black")
             lbl_cat_name.pack()
             lbl_cat_name.bind("<Button-1>", select_cat)
 
