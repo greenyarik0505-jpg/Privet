@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import io
 import os
 import urllib.request
+import urllib.parse
 import datetime
 import random
 import math
@@ -44,37 +45,51 @@ except ImportError:
 import market_db
 market_db.init_db()
 
-# Посилання на 3D стікери (прозорі PNG)
-STICKER_URLS = {
-    "tech": "https://cdn-icons-png.flaticon.com/512/3063/3063822.png",      # 3D Ноутбук
-    "fruits": "https://cdn-icons-png.flaticon.com/512/415/415733.png",        # 3D Червоне Яблуко
-    "home": "https://cdn-icons-png.flaticon.com/512/10437/10437090.png",     # 3D Настільна лампа
-    "sport": "https://cdn-icons-png.flaticon.com/512/3076/3076840.png",      # 3D Футбольний м'яч
-    "clothing": "https://cdn-icons-png.flaticon.com/512/863/863684.png"      # 3D Синя футболка
-}
+# Список файлів зображень з репозиторію SecureAuditX/convenientshop
+CONVENIENT_IMAGES = [
+    "Apple.png", "Avocado.png", "SLiced_White_Bread.png", "Cheese.png", 
+    "Chocolate Bar.png", "Diet_Cola.png", "Energy Drink - Red.png", 
+    "Orange Juice.png", "Potato_Chips.png", "Salad.png", "Strawberries.png", 
+    "Water.png", "Orange.png", "Single Banana.png", "English_Muffins.png", 
+    "Honey Wheat Sliced Bread.png", "Flour_Tortillas.png", "Single Plain Bagel.png", 
+    "Shake.png", "Oatemeal_Cip.png", "Gum.png", "Salted Peanuts.png", 
+    "Sparkling Water.png", "default.png"
+]
 
-# Завантажуємо круті 3D стікери локально у ФОНОВОМУ ПОТОЦІ, щоб запуск був миттєвим!
+# Завантаження зображень з обраного репозиторію у фоновому потоці
 def download_assets_worker():
-    for cat, url in STICKER_URLS.items():
-        dest = os.path.join(ASSETS_DIR, f"{cat}.png")
+    base_url = "https://raw.githubusercontent.com/SecureAuditX/convenientshop/main/images/"
+    for name in CONVENIENT_IMAGES:
+        dest = os.path.join(ASSETS_DIR, name)
         if not os.path.exists(dest):
             try:
+                # Кодуємо URL для обробки пробілів
+                encoded_name = urllib.parse.quote(name)
+                url = f"{base_url}{encoded_name}"
                 req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
                 with urllib.request.urlopen(req, timeout=5) as response:
                     with open(dest, 'wb') as f:
                         f.write(response.read())
             except Exception:
-                img = Image.new("RGBA", (128, 128), (52, 152, 219, 255))
+                # Резервна кольорова плашка
+                img = Image.new("RGBA", (128, 128), (46, 204, 113, 255))
                 img.save(dest)
 
-# Запуск фонового завантаження без блокування основного вікна
 threading.Thread(target=download_assets_worker, daemon=True).start()
 
-def get_local_sticker_image(category, size):
-    dest = os.path.join(ASSETS_DIR, f"{category}.png")
+def get_product_image_local(filename, size):
+    dest = os.path.join(ASSETS_DIR, filename)
     if os.path.exists(dest):
         try:
             img = Image.open(dest)
+            return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+        except Exception:
+            pass
+    # Якщо зображення ще не завантажилось
+    fallback_dest = os.path.join(ASSETS_DIR, "default.png")
+    if os.path.exists(fallback_dest):
+        try:
+            img = Image.open(fallback_dest)
             return ctk.CTkImage(light_image=img, dark_image=img, size=size)
         except Exception:
             pass
@@ -83,239 +98,54 @@ def get_local_sticker_image(category, size):
 
 fruits_data = {}
 
-# Списки брендів та товарів
-tech_brands = ["ASUS", "Lenovo", "Dell", "HP", "Acer", "MSI", "Apple MacBook", "Xiaomi", "Huawei", "Gigabyte"]
-tech_models = ["ZenBook", "IdeaPad", "Inspiron", "Pavilion", "Swift", "Cyborg", "Air M2", "RedmiBook Pro", "MateBook D", "Aorus"]
-tech_specs = ["Core i5 16GB", "Core i7 32GB", "Ryzen 5 8GB", "Ryzen 7 16GB", "M2 8GB", "M3 16GB", "Core i9 64GB", "Ryzen 9 32GB", "Intel Ultra 7", "Ryzen 3 8GB"]
+# Реорганізовані товари та категорії за образом SecureAuditX/convenientshop
+# Категорії: fruits (Фрукти), bakeries (Випічка), dairy (Молочне), drinks (Напої), snacks (Снеки)
+groceries = [
+    # Фрукти (fruits)
+    ("Яблука Гала", 45, "Свіжі хрусткі яблука сорту Гала.", "fruits", "Apple.png", [("Червоні", "#e74c3c"), ("Зелені", "#2ecc71")]),
+    ("Авокадо Хасс", 120, "Стиглі плоди авокадо Хасс преміум якості.", "fruits", "Avocado.png", [("Стиглий", "#27ae60")]),
+    ("Полуниця свіжа", 180, "Ароматна літня полуниця з фермерського господарства.", "fruits", "Strawberries.png", [("Червона", "#e74c3c")]),
+    ("Апельсини соковиті", 65, "Солодкі добірні апельсини з Іспанії.", "fruits", "Orange.png", [("Помаранчевий", "#e67e22")]),
+    ("Банан еквадорський", 55, "Добірні банани, багаті на калій.", "fruits", "Single Banana.png", [("Жовтий", "#f1c40f")]),
+    
+    # Випічка (bakeries)
+    ("Свіжий білий хліб", 22, "М'який нарізний хліб на кожен день.", "bakeries", "SLiced_White_Bread.png", [("Класичний", "#f39c12")]),
+    ("Мафіни англійські", 48, "Традиційні пишні англійські мафіни.", "bakeries", "English_Muffins.png", [("Ваніль", "#f1c40f"), ("Шоколад", "#34495e")]),
+    ("Пшеничний хліб", 26, "Ароматний корисний хліб з цільного зерна.", "bakeries", "Honey Wheat Sliced Bread.png", [("Медовий", "#d35400")]),
+    ("Пшенична тортилья", 35, "М'які тонкі коржі для мексиканських тако та буріто.", "bakeries", "Flour_Tortillas.png", [("Класична", "#f1c40f")]),
+    ("Бублик класичний", 18, "Смачний бублик, ідеальний для сніданку.", "bakeries", "Single Plain Bagel.png", [("Звичайний", "#f5b041")]),
+    
+    # Молочне (dairy)
+    ("Сир Чеддер", 110, "Натуральний сир Чеддер середньої витримки.", "dairy", "Cheese.png", [("Твердий", "#f1c40f")]),
+    ("Молочний коктейль", 45, "Густий молочний коктейль із полуничним смаком.", "dairy", "Shake.png", [("Полуничний", "#ff7979"), ("Шоколадний", "#8d6e63")]),
+    
+    # Напої (drinks)
+    ("Кола Дієтична", 28, "Освіжаючий напій без цукру.", "drinks", "Diet_Cola.png", [("Класична", "#2c3e50")]),
+    ("Енергетик Red Bull", 55, "Напій для підвищення енергії та концентрації.", "drinks", "Energy Drink - Red.png", [("Червоний", "#e74c3c"), ("Синій", "#3498db")]),
+    ("Сік апельсиновий", 42, "Свіжовичавлений апельсиновий сік без консервантів.", "drinks", "Orange Juice.png", [("Натуральний", "#e67e22")]),
+    ("Мінеральна вода", 15, "Очищена питна мінеральна вода негазована.", "drinks", "Water.png", [("Негазована", "#3498db")]),
+    ("Вода газована", 18, "Освіжаюча газована вода з мікроелементами.", "drinks", "Sparkling Water.png", [("Газована", "#85c1e9")]),
+    
+    # Снеки (snacks)
+    ("Шоколадний батончик", 25, "Поживний батончик з молочного шоколаду з горіхами.", "snacks", "Chocolate Bar.png", [("Молочний", "#8d6e63")]),
+    ("Картопляні чіпси", 48, "Хрусткі золотисті чіпси зі смаком паприки.", "snacks", "Potato_Chips.png", [("Паприка", "#e74c3c"), ("Сіль", "#f1c40f")]),
+    ("Вівсяне печиво", 38, "Ніжне вівсяне печиво з шматочками шоколаду.", "snacks", "Oatemeal_Cip.png", [("Шоколад", "#34495e")]),
+    ("Жувальна гумка", 15, "Жувальна гумка з освіжаючим смаком м'яти.", "snacks", "Gum.png", [("М'ята", "#2ecc71")]),
+    ("Солоний арахіс", 30, "Смажений солоний арахіс до напоїв.", "snacks", "Salted Peanuts.png", [("Солоний", "#f39c12")])
+]
 
-fruit_varieties = ["Голден Делішес", "Ред Чіф", "Гренні Сміт", "Гала", "Фуджі", "Пінк Леді", "Чемпіон", "Айдаред", "Джонаголд", "Муцу"]
-fruit_origins = ["Поділля", "Закарпаття", "Буковина", "імпорт Італія", "екологічні", "садові", "преміум", "відбірні", "фермерські", "соковиті"]
-fruit_sizes = ["великі", "середні", "добірні", "солодкі", "кислі", "хрусткі", "ранні", "зимові", "домашні", "свіжі"]
-
-lamp_styles = ["Loft", "Modern", "Hi-Tech", "Classic", "Minimalism", "Retro", "Scandinavian", "Industrial", "Art Deco", "Vintage"]
-lamp_types = ["настільна лампа", "торшер", "бра", "підвісний світильник", "нічник", "офісна лампа", "діодна лампа", "смарт-лампа", "декоративна лампа", "світлодіодна панель"]
-lamp_colors = ["чорний матовий", "білий глянець", "бронза", "дерево", "хром", "золото", "латунь", "сірий графіт", "мідь", "антрацит"]
-
-sport_brands = ["Adidas", "Nike", "Puma", "Select", "Molten", "Wilson", "Jogel", "Mikasa", "Derbystar", "Umbro"]
-sport_editions = ["Al Rihla Match", "Flight Pro", "Orbita Serie A", "Brillant Super", "Europa League", "Champions League", "Premier League", "World Cup", "Street Graff", "Indoor Felt"]
-sport_types = ["професійний", "тренувальний", "ігровий", "класичний", "матчевий", "полегшений", "дитячий", "шкіряний", "поліуретановий", "всепогодний"]
-
-cloth_brands = ["Zara", "H&M", "Nike", "Adidas", "Levi's", "Puma", "Uniqlo", "Tommy Hilfiger", "Calvin Klein", "Lacoste"]
-cloth_types = ["Футболка", "Поло", "Теніска", "Лонгслів", "Майка", "Спортивна футболка", "Футболка оверсайз", "Класична футболка", "Базова футболка", "Футболка з принтом"]
-cloth_materials = ["бавовна 100%", "органічний котон", "еластан", "поліестер Dry-Fit", "льон", "трикотаж", "сумішова тканина", "віскоза", "бамбук", "стрейч"]
-
-for i in range(100):
-    b = tech_brands[i % 10]
-    m = tech_models[(i // 10) % 10]
-    s = tech_specs[(i * 3) % 10]
-    name = f"{b} {m} ({s})"
-    fruits_data[name] = {
-        "price": 15000 + i * 220,
-        "desc": f"Сучасний ноутбук {b} серії {m}. Специфікація: {s}.",
-        "category": "tech",
-        "colors": [("Сріблястий", "#bdc3c7"), ("Чорний", "#2c3e50")]
-    }
-
-for i in range(100):
-    v = fruit_varieties[i % 10]
-    o = fruit_origins[(i // 10) % 10]
-    sz = fruit_sizes[(i * 3) % 10]
-    name = f"Яблука {v} ({o}, {sz})"
-    fruits_data[name] = {
-        "price": 20 + (i % 15),
-        "desc": f"Свіжі натуральні яблука сорту {v}, вирощені в регіоні {o}.",
-        "category": "fruits",
-        "colors": [("Жовте", "#f1c40f"), ("Червоне", "#e74c3c")]
-    }
-
-for i in range(100):
-    s = lamp_styles[i % 10]
-    t = lamp_types[(i // 10) % 10]
-    c = lamp_colors[(i * 3) % 10]
-    name = f"Лампа {s} {t} ({c})"
-    fruits_data[name] = {
-        "price": 300 + i * 18,
-        "desc": f"Оригінальна лампа в стилі {s}. Тип пристрою: {t}.",
-        "category": "home",
-        "colors": [("Чорний", "#2c3e50"), ("Білий", "#ffffff")]
-    }
-
-for i in range(100):
-    b = sport_brands[i % 10]
-    e = sport_editions[(i // 10) % 10]
-    t = sport_types[(i * 3) % 10]
-    name = f"М'яч {b} {e} ({t})"
-    fruits_data[name] = {
-        "price": 400 + i * 12,
-        "desc": f"Футбольний м'яч бренду {b}, лінійка {e}.",
-        "category": "sport",
-        "colors": [("Біло-чорний", "#ffffff"), ("Червоний", "#e74c3c")]
-    }
-
-for i in range(100):
-    b = cloth_brands[i % 10]
-    t = cloth_types[(i // 10) % 10]
-    m = cloth_materials[(i * 3) % 10]
-    name = f"{t} {b} ({m})"
-    fruits_data[name] = {
-        "price": 250 + i * 8,
-        "desc": f"Брендовий одяг {b}. Тип виробу: {t}.",
-        "category": "clothing",
-        "colors": [("Синій", "#3498db"), ("Чорний", "#2c3e50")]
-    }
-
-LANGS = {
-    "ua": {
-        "title": "Мегамаркет Все-в-Одному",
-        "search_label": "Пошук:",
-        "balance_label": "Баланс:",
-        "topup_btn": "+ Поповнити",
-        "history_btn": "Історія",
-        "cart_btn": "Кошик",
-        "details_btn": "Детальніше",
-        "all_cat": "Усі",
-        "tech_cat": "Техніка",
-        "fruits_cat": "Фрукти",
-        "home_cat": "Для дому",
-        "sport_cat": "Спорт",
-        "clothing_cat": "Одяг",
-        "sort_cheap": "Спочатку дешевші",
-        "sort_expensive": "Спочатку дорожчі",
-        "auth_title": "Авторизація",
-        "login_btn": "Увійти",
-        "register_btn": "Реєстрація",
-        "username_lbl": "Логін:",
-        "password_lbl": "Пароль:",
-        "logout_btn": "Вийти",
-        "details_title": "Деталі товару",
-        "color_lbl": "Виберіть сорт/колір:",
-        "qty_lbl": "Кількість:",
-        "add_to_cart_btn": "Додати в кошик",
-        "reviews_lbl": "Відгуки та оцінки:",
-        "add_review_lbl": "Додати відгук:",
-        "submit_review_btn": "Надіслати",
-        "cart_title": "Ваш кошик",
-        "cart_empty": "Кошик порожній",
-        "subtotal_lbl": "Сума:",
-        "discount_lbl": "Знижка:",
-        "total_lbl": "Разом до сплати:",
-        "checkout_btn": "Оформити",
-        "clear_cart_btn": "Очистити кошик",
-        "history_title": "Історія замовлень",
-        "no_orders": "Замовлень ще не було",
-        "order_str": "Замовлення",
-        "items_count_str": "Товарів",
-        "insufficient_balance": "Недостатньо коштів на балансі!",
-        "success_purchase": "Дякуємо за замовлення! Чек збережено",
-        "settings_btn": "Налаштування",
-        "settings_title": "Настройки программы",
-        "lang_lbl": "Язык интерфейса:",
-        "theme_lbl": "Тема оформления:",
-        "theme_light": "Светлая",
-        "theme_dark": "Темная",
-        "sound_chk": "Звуковые эффекты"
-    },
-    "en": {
-        "title": "Megamarket All-in-One",
-        "search_label": "Search:",
-        "balance_label": "Balance:",
-        "topup_btn": "+ Top Up",
-        "history_btn": "History",
-        "cart_btn": "Cart",
-        "details_btn": "Details",
-        "all_cat": "All",
-        "tech_cat": "Tech",
-        "fruits_cat": "Fruits",
-        "home_cat": "Home",
-        "sport_cat": "Sports",
-        "clothing_cat": "Clothing",
-        "sort_cheap": "Price: Low to High",
-        "sort_expensive": "Price: High to Low",
-        "auth_title": "Authentication",
-        "login_btn": "Login",
-        "register_btn": "Register",
-        "username_lbl": "Username:",
-        "password_lbl": "Password:",
-        "logout_btn": "Logout",
-        "details_title": "Product Details",
-        "color_lbl": "Select variety/color:",
-        "qty_lbl": "Quantity:",
-        "add_to_cart_btn": "Add to Cart",
-        "reviews_lbl": "Reviews & Ratings:",
-        "add_review_lbl": "Add a Review:",
-        "submit_review_btn": "Submit",
-        "cart_title": "Your Cart",
-        "cart_empty": "Cart is empty",
-        "subtotal_lbl": "Subtotal:",
-        "discount_lbl": "Discount:",
-        "total_lbl": "Total to pay:",
-        "checkout_btn": "Checkout",
-        "clear_cart_btn": "Clear Cart",
-        "history_title": "Order History",
-        "no_orders": "No orders yet",
-        "order_str": "Order",
-        "items_count_str": "Items",
-        "insufficient_balance": "Insufficient balance! Please top up.",
-        "success_purchase": "Thank you! Receipt saved",
-        "settings_btn": "Settings",
-        "settings_title": "Application Settings",
-        "lang_lbl": "Interface Language:",
-        "theme_lbl": "Color Theme:",
-        "theme_light": "Light",
-        "theme_dark": "Dark",
-        "sound_chk": "Sound Effects"
-    },
-    "ru": {
-        "title": "Мегамаркет Все-в-Одном",
-        "search_label": "Поиск:",
-        "balance_label": "Баланс:",
-        "topup_btn": "+ Пополнить",
-        "history_btn": "История",
-        "cart_btn": "Корзина",
-        "details_btn": "Подробнее",
-        "all_cat": "Все",
-        "tech_cat": "Техника",
-        "fruits_cat": "Фрукты",
-        "home_cat": "Для дома",
-        "sport_cat": "Спорт",
-        "clothing_cat": "Одежда",
-        "sort_cheap": "Сначала дешевые",
-        "sort_expensive": "Сначала дорогие",
-        "auth_title": "Авторизация",
-        "login_btn": "Войти",
-        "register_btn": "Регистрация",
-        "username_lbl": "Логин:",
-        "password_lbl": "Пароль:",
-        "logout_btn": "Выйти",
-        "details_title": "Детали товара",
-        "color_lbl": "Выберите сорт/цвет:",
-        "qty_lbl": "Количество:",
-        "add_to_cart_btn": "Добавить в корзину",
-        "reviews_lbl": "Отзывы и оценки:",
-        "add_review_lbl": "Добавить отзыв:",
-        "submit_review_btn": "Отправить",
-        "cart_title": "Ваша корзина",
-        "cart_empty": "Корзина пуста",
-        "subtotal_lbl": "Сумма:",
-        "discount_lbl": "Скидка:",
-        "total_lbl": "Итого к оплате:",
-        "checkout_btn": "Оформить",
-        "clear_cart_btn": "Очистить корзину",
-        "history_title": "История заказов",
-        "no_orders": "Заказов еще не было",
-        "order_str": "Заказ",
-        "items_count_str": "Товаров",
-        "insufficient_balance": "Недостаточно средств на балансе!",
-        "success_purchase": "Спасибо за покупку! Чек сохранен",
-        "settings_btn": "Настройки",
-        "settings_title": "Настройки программы",
-        "lang_lbl": "Язык интерфейса:",
-        "theme_lbl": "Тема оформления:",
-        "theme_light": "Светлая",
-        "theme_dark": "Темная",
-        "sound_chk": "Звуковые эффекты"
-    }
-}
+# Генеруємо 100+ товарів для наповнення каталогу
+for idx, (base_name, price, desc, cat, img_name, colors) in enumerate(groceries):
+    # Додаємо унікальні бренди чи партії, щоб зробити 100+ унікальних товарів
+    for sub in range(5):
+        unique_name = f"{base_name} ({sub + 1} партія)" if sub > 0 else base_name
+        fruits_data[unique_name] = {
+            "price": price + (sub * 3),
+            "desc": desc,
+            "category": cat,
+            "image": img_name,
+            "colors": colors
+        }
 
 class App(ctk.CTk):
     def __init__(self):
@@ -681,7 +511,7 @@ class CatalogPanel(ctk.CTkFrame):
         self.active_cat = "all"
         self.cat_buttons = {}
         
-        cats = [("Усі", "all"), ("Техніка", "tech"), ("Фрукти", "fruits"), ("Для дому", "home"), ("Спорт", "sport"), ("Одяг", "clothing")]
+        cats = [("Усі", "all"), ("Випічка", "bakeries"), ("Молочне", "dairy"), ("Фрукти", "fruits"), ("Напої", "drinks"), ("Снеки", "snacks")]
         for text, key in cats:
             btn = ctk.CTkButton(top_bar, text=text, command=lambda k=key: self.set_category(k), width=70, height=28, font=("Segoe UI", 10))
             btn.pack(side="left", padx=3)
@@ -739,9 +569,7 @@ class CatalogPanel(ctk.CTkFrame):
             
         filtered.sort(key=sort_key)
         
-        # Використовуємо стабільну кількість колонок для запобігання рекурсивних лагів компонування
         cols = 4
-        
         col = 0
         row = 0
         for name, data in filtered[:36]:
@@ -762,7 +590,8 @@ class CatalogPanel(ctk.CTkFrame):
             heart_btn = ctk.CTkButton(card, text=heart_text, text_color=heart_color, width=38, height=18, fg_color="transparent", hover_color=None, font=("Segoe UI", 9), command=lambda n=name: self.toggle_favorite(n))
             heart_btn.place(relx=0.82, rely=0.08, anchor="center")
             
-            photo = get_local_sticker_image(data["category"], (100, 70))
+            # Завантаження реалістичних стікерів з репозиторію SecureAuditX/convenientshop
+            photo = get_product_image_local(data["image"], (80, 80))
             img_lbl = ctk.CTkLabel(card, image=photo, text="")
             img_lbl.pack(pady=(12, 2))
             
@@ -799,7 +628,7 @@ class DetailsPanel(ctk.CTkFrame):
         left_box = ctk.CTkFrame(self, corner_radius=12)
         left_box.pack(side="left", fill="both", expand=True, padx=10, pady=10)
         
-        photo = get_local_sticker_image(self.data["category"], (150, 110))
+        photo = get_product_image_local(self.data["image"], (140, 140))
         self.img_lbl = ctk.CTkLabel(left_box, image=photo, text="")
         self.img_lbl.pack(pady=20)
         
@@ -1118,7 +947,7 @@ class CartPanel(ctk.CTkFrame):
         self.refresh_cart_list()
         self.main_screen.update_profile_info()
 
-# --- ПАНЕЛЬ АНАЛІТИКИ З ГРАФІКОМ ---
+# --- ПАНЕЛЬ АНАЛІТИКИ ---
 class AnalyticsPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
