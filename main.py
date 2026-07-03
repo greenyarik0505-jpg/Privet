@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk, ImageOps, ImageDraw as PILImageDraw
+from PIL import Image, ImageTk
 import io
 import urllib.request
 import datetime
@@ -399,10 +399,12 @@ class App(ctk.CTk):
 def tr(key):
     return LANGS[active_lang].get(key, key)
 
-# --- ЕКРАН АВТОРИЗАЦІЇ (З КРАСИВИМ ДИНАМІЧНИМ ГРАДІЄНТОМ І ТЕМАМИ ЯК НА МАКЕТІ) ---
+# --- ЕКРАН АВТОРИЗАЦІЇ (БЕЗ БІЛИХ КУТІВ І З ДЕКОРАТИВНИМ ЛІВИМ СКЛАДОМ) ---
 class AuthScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
-        super().__init__(parent)
+        # Нам важливо, щоб bg_color відповідав темі, тому оминаємо білі артефакти
+        bg_col = "#1e1e2e" if ctk.get_appearance_mode() == "Dark" else "#f3f3f3"
+        super().__init__(parent, fg_color=bg_col)
         self.controller = app_controller
         
         # Повноекранне полотно для малювання градієнта
@@ -410,64 +412,71 @@ class AuthScreen(ctk.CTkFrame):
         self.canvas.pack(fill="both", expand=True)
         self.canvas.bind("<Configure>", self.draw_gradient)
         
-        # Основна картка (дизайн як на макеті: горизонтальний спліт)
-        self.card = ctk.CTkFrame(self.canvas, corner_radius=15, width=640, height=390)
-        self.card_win_id = self.canvas.create_window(0, 0, window=self.card, anchor="center")
-        self.canvas.bind("<Configure>", self.center_card, add="+")
+        # Використовуємо .place() прямо на Canvas, що дозволяє уникнути білих кутів!
+        card_bg = "#252538" if ctk.get_appearance_mode() == "Dark" else "#ffffff"
+        self.card = ctk.CTkFrame(self.canvas, corner_radius=16, width=640, height=390, fg_color=card_bg, border_width=1, border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0")
+        self.card.place(relx=0.5, rely=0.5, anchor="center")
         
-        # Ліва сторона: Картинка та декоративні елементи
-        self.left_frame = ctk.CTkFrame(self.card, width=280, height=390, fg_color="transparent")
+        # Ліва сторона: Круглий логотип ноутбука з декоративними фігурами навколо (як на макеті)
+        self.left_frame = ctk.CTkFrame(self.card, width=280, height=350, fg_color="transparent")
         self.left_frame.pack(side="left", fill="both", expand=True, padx=20, pady=20)
         
-        # Кругла рамка для логотипу ноутбука
-        self.round_frame = ctk.CTkFrame(self.left_frame, width=150, height=150, corner_radius=75, fg_color="#f3f3f3" if ctk.get_appearance_mode() == "Light" else "#2c2c3d")
-        self.round_frame.place(relx=0.5, rely=0.45, anchor="center")
-        self.round_frame.pack_propagate(False)
+        # Холст для малювання графіки
+        self.left_canvas = tk.Canvas(self.left_frame, width=240, height=340, bg=card_bg, bd=0, highlightthickness=0)
+        self.left_canvas.pack(fill="both", expand=True)
         
-        self.img_lbl = ctk.CTkLabel(self.round_frame, text="💻", font=("Segoe UI", 48))
-        self.img_lbl.pack(expand=True)
+        # Малюємо біле коло по центру для іконки
+        circle_color = "#2c2c3d" if ctk.get_appearance_mode() == "Dark" else "#f3f3f3"
+        self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
         
-        # Завантажуємо реальну картинку ноутбука та вирізаємо по колу
+        # Декоративні плаваючі елементи (кола, трикутники, квадрати як на макеті)
+        self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
+        self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
+        self.left_canvas.create_polygon(25, 230, 35, 245, 15, 245, outline="#e74c3c", fill="", width=2)
+        self.left_canvas.create_oval(215, 240, 225, 250, outline="#3498db", width=2)
+        self.left_canvas.create_rectangle(190, 40, 198, 48, outline="#cccccc", fill="")
+        self.left_canvas.create_rectangle(70, 280, 78, 288, outline="#cccccc", fill="")
+        
+        # Іконка всередині кола
+        self.img_lbl = ctk.CTkLabel(self.left_frame, text="💻", font=("Segoe UI", 48), fg_color=circle_color)
+        self.img_lbl.place(x=120, y=160, anchor="center")
+        
         def round_logo_callback(photo):
             if self.img_lbl.winfo_exists():
-                self.img_lbl.configure(image=photo, text="")
+                self.img_lbl.configure(image=photo, text="", fg_color=circle_color)
                 self.img_lbl.image = photo
-        get_image_from_url_memory(PRODUCT_URLS["tech"][0], (100, 100), round_logo_callback)
+        get_image_from_url_memory(PRODUCT_URLS["tech"][0], (80, 80), round_logo_callback)
         
-        # Права сторона: Форма входу / реєстрації
-        self.right_frame = ctk.CTkFrame(self.card, width=320, height=390, fg_color="transparent")
+        # Права сторона: Форма
+        self.right_frame = ctk.CTkFrame(self.card, width=320, height=350, fg_color="transparent")
         self.right_frame.pack(side="right", fill="both", expand=True, padx=20, pady=20)
         
         self.is_register_mode = False
         
-        self.lbl_title = ctk.CTkLabel(self.right_frame, text="Вхід", font=("Segoe UI", 22, "bold"))
+        self.lbl_title = ctk.CTkLabel(self.right_frame, text="Вхід", font=("Segoe UI", 24, "bold"))
         self.lbl_title.pack(pady=(20, 15))
         
-        self.user_entry = ctk.CTkEntry(self.right_frame, placeholder_text="Логін", width=250, height=40)
+        self.user_entry = ctk.CTkEntry(self.right_frame, placeholder_text="Логін", width=250, height=42)
         self.user_entry.pack(pady=8)
         
-        self.pass_entry = ctk.CTkEntry(self.right_frame, placeholder_text="Пароль", show="*", width=250, height=40)
+        self.pass_entry = ctk.CTkEntry(self.right_frame, placeholder_text="Пароль", show="*", width=250, height=42)
         self.pass_entry.pack(pady=8)
         
-        # Додаткове поле підтвердження пароля (приховане при вході)
-        self.confirm_pass_entry = ctk.CTkEntry(self.right_frame, placeholder_text="Повторіть пароль", show="*", width=250, height=40)
+        self.confirm_pass_entry = ctk.CTkEntry(self.right_frame, placeholder_text="Повторіть пароль", show="*", width=250, height=42)
         
-        # Зелена кнопка дії
-        self.btn_action = ctk.CTkButton(self.right_frame, text="УВІЙТИ", command=self.handle_action, width=250, height=40, font=("Segoe UI", 11, "bold"), fg_color="#2ecc71", hover_color="#27ae60")
+        self.btn_action = ctk.CTkButton(self.right_frame, text="УВІЙТИ", command=self.handle_action, width=250, height=42, font=("Segoe UI", 12, "bold"), fg_color="#2ecc71", hover_color="#27ae60")
         self.btn_action.pack(pady=12)
         
-        # Посилання на перемикання режиму
-        self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", width=200, height=20, font=("Segoe UI", 10, "underline"))
+        self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", hover_color=card_bg, width=200, height=20, font=("Segoe UI", 10, "underline"))
         self.btn_toggle.pack(pady=5)
         
-        # Кнопка швидкого вибору теми вгорі праворуч
+        # Кнопка зміни теми
         self.btn_theme = ctk.CTkButton(self.canvas, text="Theme", command=self.switch_theme, width=70, height=28, fg_color="#252538", text_color="#ffffff", font=("Segoe UI", 9, "bold"))
         self.btn_theme_id = self.canvas.create_window(0, 0, window=self.btn_theme, anchor="ne")
+        self.canvas.bind("<Configure>", self.center_theme_btn, add="+")
 
-    def center_card(self, event):
+    def center_theme_btn(self, event):
         w = event.width
-        h = event.height
-        self.canvas.coords(self.card_win_id, w // 2, h // 2)
         self.canvas.coords(self.btn_theme_id, w - 15, 15)
 
     def draw_gradient(self, event):
@@ -475,15 +484,15 @@ class AuthScreen(ctk.CTkFrame):
         h = event.height
         self.canvas.delete("gradient")
         
-        # Визначаємо градієнт за макетом для Light/Dark
+        # Яскравий і плавний градієнт за макетом
         if ctk.get_appearance_mode() == "Light":
-            # Рожево-фіолетово-синій градієнт
-            c1_r, c1_g, c1_b = 218, 112, 214   # Orchid
-            c2_r, c2_g, c2_b = 65, 105, 225    # RoyalBlue
+            # Рожево-синій градієнт
+            c1_r, c1_g, c1_b = 224, 86, 253
+            c2_r, c2_g, c2_b = 48, 144, 253
         else:
-            # Глибокий темно-фіолетовий
-            c1_r, c1_g, c1_b = 30, 20, 50
-            c2_r, c2_g, c2_b = 10, 8, 20
+            # Космічний темний фіолетово-синій
+            c1_r, c1_g, c1_b = 36, 16, 85
+            c2_r, c2_g, c2_b = 15, 10, 32
             
         for y in range(0, h, 2):
             r = c1_r + (c2_r - c1_r) * y // h
@@ -496,12 +505,12 @@ class AuthScreen(ctk.CTkFrame):
     def toggle_mode(self):
         play_sound("click")
         self.is_register_mode = not self.is_register_mode
+        card_bg = "#252538" if ctk.get_appearance_mode() == "Dark" else "#ffffff"
         
         if self.is_register_mode:
             self.lbl_title.configure(text="Реєстрація")
             self.btn_action.configure(text="ЗАРЕЄСТРУВАТИСЯ", fg_color="#3498db", hover_color="#2980b9")
             self.btn_toggle.configure(text="← Вхід")
-            # Показуємо поле підтвердження пароля
             self.btn_action.pack_forget()
             self.btn_toggle.pack_forget()
             self.confirm_pass_entry.pack(pady=8)
@@ -511,7 +520,6 @@ class AuthScreen(ctk.CTkFrame):
             self.lbl_title.configure(text="Вхід")
             self.btn_action.configure(text="УВІЙТИ", fg_color="#2ecc71", hover_color="#27ae60")
             self.btn_toggle.configure(text="Створити акаунт →")
-            # Приховуємо поле підтвердження пароля
             self.confirm_pass_entry.pack_forget()
 
     def handle_action(self):
@@ -564,14 +572,33 @@ class AuthScreen(ctk.CTkFrame):
         play_sound("click")
         if ctk.get_appearance_mode() == "Dark":
             ctk.set_appearance_mode("light")
+            self.configure(fg_color="#f3f3f3")
             self.btn_theme.configure(fg_color="#cccccc", text_color="#000000")
-            self.round_frame.configure(fg_color="#f3f3f3")
+            card_bg = "#ffffff"
         else:
             ctk.set_appearance_mode("dark")
+            self.configure(fg_color="#1e1e2e")
             self.btn_theme.configure(fg_color="#252538", text_color="#ffffff")
-            self.round_frame.configure(fg_color="#2c2c3d")
+            card_bg = "#252538"
+            
+        self.card.configure(fg_color=card_bg, border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0")
+        self.left_canvas.configure(bg=card_bg)
         
-        # Перемалювати градієнт
+        # Перемалювати коло та геометричні фігури
+        self.left_canvas.delete("all")
+        circle_color = "#2c2c3d" if ctk.get_appearance_mode() == "Dark" else "#f3f3f3"
+        self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
+        self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
+        self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
+        self.left_canvas.create_polygon(25, 230, 35, 245, 15, 245, outline="#e74c3c", fill="", width=2)
+        self.left_canvas.create_oval(215, 240, 225, 250, outline="#3498db", width=2)
+        self.left_canvas.create_rectangle(190, 40, 198, 48, outline="#cccccc", fill="")
+        self.left_canvas.create_rectangle(70, 280, 78, 288, outline="#cccccc", fill="")
+        
+        self.img_lbl.configure(fg_color=circle_color)
+        self.btn_toggle.configure(hover_color=card_bg)
+        
+        # Перемалювати фоновий градієнт
         self.draw_gradient(Struct(width=self.canvas.winfo_width(), height=self.canvas.winfo_height()))
 
 class Struct:
