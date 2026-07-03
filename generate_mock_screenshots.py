@@ -72,11 +72,11 @@ def draw_custom_sidebar(draw, active_nav, user="Yarik", balance="1500 грн"):
     draw.text((90, 132), "+ Поповнити", fill="#ffffff", anchor="mm", font=get_font(9, True))
     
     # Навігаційні кнопки
-    navs = ["Каталог", "Кошик", "Колесо Фортуни", "Історія", "Налаштування"]
+    navs = ["Каталог", "Кошик", "Історія", "Налаштування"]
     for i, nav in enumerate(navs):
         y = 180 + i * 40
         is_active = (nav == active_nav)
-        bg = "#34495e" if is_active else "#252538"
+        bg = "#3498db" if is_active else "#252538"
         draw.rounded_rectangle([15, y, 165, y + 30], 4, fill=bg)
         draw.text((25, y + 15), nav, fill="#ffffff", anchor="lm", font=get_font(10))
         
