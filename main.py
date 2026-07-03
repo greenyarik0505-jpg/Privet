@@ -870,13 +870,13 @@ class MainScreen(ctk.CTkFrame):
         for key, display_name, cmd in navs:
             btn = ctk.CTkButton(
                 self.sidebar, text=display_name, anchor="w", fg_color="transparent", 
-                text_color="black", hover_color=HOVER_COLOR, command=cmd, 
+                text_color=THEMES[current_theme]["text"], hover_color=HOVER_COLOR, command=cmd, 
                 font=("Arial", 14), height=42, corner_radius=6
             )
             btn.pack(fill="x", padx=15, pady=4)
             self.nav_buttons[key] = btn
             
-        self.btn_logout = ctk.CTkButton(self.sidebar, text=t("logout_btn"), anchor="w", fg_color="transparent", text_color="black", hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
+        self.btn_logout = ctk.CTkButton(self.sidebar, text=t("logout_btn"), anchor="w", fg_color="transparent", text_color=THEMES[current_theme]["text"], hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
         self.btn_logout.pack(side="bottom", fill="x", padx=15, pady=(5, 20))
         
         self.btn_delete_acc = ctk.CTkButton(self.sidebar, text="Видалити акаунт", anchor="w", fg_color="transparent", text_color="#ff4d4d", hover_color="#ffe5e5", command=self.delete_account, font=("Arial", 14), height=42)
@@ -888,6 +888,7 @@ class MainScreen(ctk.CTkFrame):
         if os.path.exists(logo_path):
             try:
                 img = Image.open(logo_path)
+                img = remove_white_bg(img, threshold=240)
                 img = img.resize((80, 80), Image.Resampling.LANCZOS)
                 self.avatar_img = ImageTk.PhotoImage(img)
                 self.avatar_canvas.create_image(50, 50, image=self.avatar_img)
@@ -903,14 +904,20 @@ class MainScreen(ctk.CTkFrame):
         cart_count = sum(item["qty"] for item in cart)
         cart_text = f"Кошик ({cart_count})" if cart_count > 0 else "Кошик"
         
+        # Активна кнопка — акцентний колір залежно від теми
+        active_fg = "#3A3A5C" if current_theme == "dark" else "white"
+        active_text = "white" if current_theme == "dark" else "black"
+        
         for name, btn in self.nav_buttons.items():
             if name == "Checkout":
                 btn.configure(text=cart_text)
             
             if name == active_name:
-                btn.configure(fg_color="white", font=("Arial", 14, "bold"))
+                btn.configure(fg_color=active_fg, font=("Arial", 14, "bold"),
+                              text_color=active_text)
             else:
-                btn.configure(fg_color="transparent", font=("Arial", 14))
+                btn.configure(fg_color="transparent", font=("Arial", 14),
+                              text_color=THEMES[current_theme]["text"])
 
     def update_profile_info(self):
         balance = market_db.get_balance(logged_in_user)
