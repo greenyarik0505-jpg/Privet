@@ -223,7 +223,6 @@ def download_assets_worker():
         "Shake.png": "https://images.prom.ua/2202685717_w640_h640_yogurt-galichina-klubnika.jpg",
         "Cheese.png": "https://images.prom.ua/4214647321_w640_h640_syr-pyryatin-korol.jpg",
         "Water.png": "https://images.prom.ua/3522253303_w640_h640_voda-morshinskaya-negazirovannaya.jpg",
-        "default.png": "https://content1.rozetka.com.ua/goods/images/big/171545632.jpg",
         "Chocolate Bar.png": "https://images.prom.ua/4106511210_w640_h640_shokolad-roshen-molochnyj.jpg",
         "Salted Peanuts.png": "https://content2.rozetka.com.ua/goods/images/big/284988456.jpg"
     }
