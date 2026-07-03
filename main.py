@@ -654,8 +654,7 @@ class MainScreen(ctk.CTkFrame):
             ("DashBoard", "Каталог", self.show_catalog),
             ("Checkout", "Кошик", self.show_cart),
             ("Categories", "Аналітика", self.show_analytics),
-            ("History", "Історія", self.show_history),
-            ("Setting", "Налаштування", self.show_settings)
+            ("History", "Історія", self.show_history)
         ]
         for key, display_name, cmd in navs:
             btn = ctk.CTkButton(
@@ -695,7 +694,6 @@ class MainScreen(ctk.CTkFrame):
             if isinstance(self.active_panel, CartPanel): panel_name = "Checkout"
             elif isinstance(self.active_panel, AnalyticsPanel): panel_name = "Categories"
             elif isinstance(self.active_panel, HistoryPanel): panel_name = "History"
-            elif isinstance(self.active_panel, SettingsPanel): panel_name = "Setting"
             self.update_sidebar_state(panel_name)
 
     def topup_balance(self):
@@ -1153,10 +1151,10 @@ class CartPanel(ctk.CTkFrame):
         self.address_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("address_lbl"), fg_color="white", text_color="black")
         self.address_entry.pack(pady=6, padx=20, fill="x")
         
-        self.deliv_combo = ctk.CTkOptionMenu(self.right_box, values=["Courier", "Nova Poshta", "Self-pickup"], fg_color=PRIMARY_COLOR, button_color=PRIMARY_COLOR)
+        self.deliv_combo = ctk.CTkOptionMenu(self.right_box, values=["Кур'єр", "Нова Пошта", "Самовивіз"], fg_color=PRIMARY_COLOR, button_color=PRIMARY_COLOR)
         self.deliv_combo.pack(pady=6, padx=20, fill="x")
         
-        self.pay_combo = ctk.CTkOptionMenu(self.right_box, values=["Balance", "Card on delivery", "Cash"], fg_color=PRIMARY_COLOR, button_color=PRIMARY_COLOR)
+        self.pay_combo = ctk.CTkOptionMenu(self.right_box, values=["Балансом акаунту", "Карткою при отриманні", "Готівкою при отриманні"], fg_color=PRIMARY_COLOR, button_color=PRIMARY_COLOR)
         self.pay_combo.pack(pady=6, padx=20, fill="x")
         
         btn_order = ctk.CTkButton(self.right_box, text=t("checkout_btn"), command=self.checkout, fg_color="#2ecc71", hover_color="#27ae60", font=("Arial", 13, "bold"), corner_radius=50)
