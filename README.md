@@ -11,13 +11,13 @@
 Нижче наведені реальні знімки екрану працюючого додатка. Ви можете згенерувати ці файли локально у своїй системі за допомогою спеціального скрипта автоматизації:
 
 ### 1. Головне вікно програми (Каталог та пошук)
-![Головне вікно](screenshot_main.png)
+![Головне вікно](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_main.png)
 
 ### 2. Вікно деталей товару (Сорт та кількість)
-![Вікно деталей](screenshot_details.png)
+![Вікно деталей](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_details.png)
 
 ### 3. Перегляд кошика (Промокоди та чек)
-![Вікно кошика](screenshot_cart.png)
+![Вікно кошика](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_cart.png)
 
 ---
 
