@@ -47,7 +47,7 @@ for cat, url in CATEGORY_URLS.items():
             print(f"Error fetching {cat}: {e}")
 
 def get_product_image(cat, size):
-    path = os.path.join(CACHE_DIR, f"{cat}.png")
+    path = os.path.join(os.path.dirname(__file__), "assets", f"{cat}.png")
     if os.path.exists(path):
         try:
             return Image.open(path).resize(size, Image.Resampling.LANCZOS)
