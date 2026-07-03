@@ -72,7 +72,7 @@ def draw_custom_sidebar(draw, active_nav, user="Yarik", balance="1500 грн"):
     draw.text((90, 132), "+ Поповнити", fill="#ffffff", anchor="mm", font=get_font(9, True))
     
     # Навігаційні кнопки
-    navs = ["Каталог", "Кошик", "Історія", "Налаштування"]
+    navs = ["Каталог", "Кошик", "Аналітика", "Історія", "Налаштування"]
     for i, nav in enumerate(navs):
         y = 180 + i * 40
         is_active = (nav == active_nav)
