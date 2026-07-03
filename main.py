@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 from PIL import Image, ImageTk
-import os
+import io
 import urllib.request
 import datetime
 import random
@@ -60,70 +60,90 @@ THEMES = {
     }
 }
 
-CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
-os.makedirs(CACHE_DIR, exist_ok=True)
-
-# РЕАЛЬНІ ФОТОГРАФІЇ З РЕАЛЬНОГО ЖИТТЯ (Lifestyle & Real World Photos)
-CATEGORY_URLS = {
-    "tech": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300",      # Laptop on a real desk
-    "fruits": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300",    # Apple on orchard branch
-    "home": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300",      # Lamp in a cozy room
-    "sport": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300",     # Soccer ball on green grass
-    "clothing": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300"   # T-shirt worn by a person
+# МАСИВИ РЕАЛЬНИХ ФОТОГРАФІЙ З ІНТЕРНЕТУ ДЛЯ КОЖНОГО ТОВАРУ (завантаження в пам'ять)
+PRODUCT_URLS = {
+    "tech": [
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150",
+        "https://images.unsplash.com/photo-1496181130204-755241544e35?w=150",
+        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=150",
+        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=150",
+        "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=150"
+    ],
+    "fruits": [
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150",
+        "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=150",
+        "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=150",
+        "https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?w=150",
+        "https://images.unsplash.com/photo-1610397613000-f0d2db5632a4?w=150"
+    ],
+    "home": [
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=150",
+        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=150",
+        "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=150",
+        "https://images.unsplash.com/photo-1542728929-14ab1c6880f9?w=150",
+        "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=150"
+    ],
+    "sport": [
+        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=150",
+        "https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=150",
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=150",
+        "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=150",
+        "https://images.unsplash.com/photo-1516567727145-ab3c1a390044?w=150"
+    ],
+    "clothing": [
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=150",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=150",
+        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=150",
+        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150",
+        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150"
+    ]
 }
-
-# Завантаження зображень з інтернету
-def download_image(cat, url):
-    dest = os.path.join(CACHE_DIR, f"{cat}.png")
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req) as response:
-            with open(dest, 'wb') as f:
-                f.write(response.read())
-        print(f"Оновлено реальне фото з життя для {cat}")
-    except Exception as e:
-        print(f"Помилка завантаження зображення для {cat}: {e}")
-
-for cat, url in CATEGORY_URLS.items():
-    t = threading.Thread(target=download_image, args=(cat, url))
-    t.daemon = True
-    t.start()
 
 # Генерація 500+ товарів
 fruits_data = {}
 for i in range(1, 101):
-    fruits_data[f"Ноутбук Pro-{i} 💻"] = {
+    name = f"Ноутбук Pro-{i} 💻"
+    fruits_data[name] = {
         "price": 15000 + i * 200,
         "desc": f"Високопродуктивний ноутбук Pro версії {i} для роботи та ігор.",
         "category": "tech",
+        "url": PRODUCT_URLS["tech"][(i - 1) % 5],
         "colors": [("Сріблястий 💿", "#bdc3c7"), ("Чорний 🌑", "#2c3e50")]
     }
 for i in range(1, 101):
-    fruits_data[f"Яблуко Голден-{i} 🍎"] = {
+    name = f"Яблуко Голден-{i} 🍎"
+    fruits_data[name] = {
         "price": 20 + (i % 15),
         "desc": f"Свіжі соковиті добірні яблука Голден, партія #{i}.",
         "category": "fruits",
+        "url": PRODUCT_URLS["fruits"][(i - 1) % 5],
         "colors": [("Жовте 🟡", "#f1c40f"), ("Червоне 🔴", "#e74c3c")]
     }
 for i in range(1, 101):
-    fruits_data[f"Лампа Loft-{i} 💡"] = {
+    name = f"Лампа Loft-{i} 💡"
+    fruits_data[name] = {
         "price": 300 + i * 15,
         "desc": f"Стильна дизайнерська настільна лампа в стилі Loft #{i}.",
         "category": "home",
+        "url": PRODUCT_URLS["home"][(i - 1) % 5],
         "colors": [("Чорний 🌑", "#2c3e50"), ("Білий ⚪", "#ffffff")]
     }
 for i in range(1, 101):
-    fruits_data[f"Футбольний М'яч-{i} ⚽"] = {
+    name = f"Футбольний М'яч-{i} ⚽"
+    fruits_data[name] = {
         "price": 400 + i * 10,
         "desc": f"Міцний професійний м'яч для гри на будь-якому покритті #{i}.",
         "category": "sport",
+        "url": PRODUCT_URLS["sport"][(i - 1) % 5],
         "colors": [("Біло-чорний ⚽", "#ffffff"), ("Червоний 🔴", "#e74c3c")]
     }
 for i in range(1, 101):
-    fruits_data[f"Футболка Класик-{i} 👕"] = {
+    name = f"Футболка Класик-{i} 👕"
+    fruits_data[name] = {
         "price": 250 + i * 5,
         "desc": f"Зручна бавовняна футболка класичного крою #{i}.",
         "category": "clothing",
+        "url": PRODUCT_URLS["clothing"][(i - 1) % 5],
         "colors": [("Синій 🔵", "#3498db"), ("Чорний 🌑", "#2c3e50")]
     }
 
@@ -304,26 +324,31 @@ market_db.init_db()
 main_app = tk.Tk()
 main_app.geometry("700x820")
 
-# Завантажуємо зображення
-loaded_images = {}
-def load_cached_images():
-    for cat in CATEGORY_URLS.keys():
-        path = os.path.join(CACHE_DIR, f"{cat}.png")
-        if os.path.exists(path):
-            try:
-                detail_img = Image.open(path).resize((80, 80), Image.Resampling.LANCZOS)
-                btn_img = Image.open(path).resize((40, 40), Image.Resampling.LANCZOS)
-                loaded_images[cat] = {
-                    "detail": ImageTk.PhotoImage(detail_img),
-                    "btn": ImageTk.PhotoImage(btn_img)
-                }
-            except Exception:
-                loaded_images[cat] = {"detail": None, "btn": None}
-        else:
-            loaded_images[cat] = {"detail": None, "btn": None}
+# Кеш зображень У ПАМ'ЯТІ (динамічне завантаження з інтернету без збереження на диск)
+memory_images_cache = {}
 
-load_cached_images()
-main_app.after(1500, load_cached_images)
+def get_image_from_url_memory(url, size):
+    cache_key = (url, size)
+    if cache_key in memory_images_cache:
+        return memory_images_cache[cache_key]
+    
+    # Завантажуємо зображення у фоновому режимі
+    def worker():
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=5) as response:
+                img_data = response.read()
+            img = Image.open(io.BytesIO(img_data)).resize(size, Image.Resampling.LANCZOS)
+            photo = ImageTk.PhotoImage(img)
+            memory_images_cache[cache_key] = photo
+        except Exception as e:
+            print(f"Error fetching URL {url}: {e}")
+            memory_images_cache[cache_key] = None
+            
+    t = threading.Thread(target=worker)
+    t.daemon = True
+    t.start()
+    return None
 
 def tr(key):
     return LANGS[active_lang].get(key, key)
@@ -623,10 +648,19 @@ def open_details(name):
     dialog.grab_set()
     dialog.transient(main_app)
     
-    cat_img = loaded_images.get(data["category"], {}).get("detail")
-    if cat_img:
-        img_label = tk.Label(dialog, image=cat_img, bg="#ffffff")
-        img_label.pack(pady=10)
+    # Динамічне завантаження в пам'ять більшого фото для деталей
+    detail_lbl = tk.Label(dialog, text="Завантаження фото з інтернету... 🔄", bg="#ffffff", font=("Segoe UI", 9, "italic"))
+    detail_lbl.pack(pady=15)
+    
+    def update_detail_photo():
+        photo = get_image_from_url_memory(data["url"], (120, 120))
+        if photo:
+            detail_lbl.configure(image=photo, text="")
+            detail_lbl.image = photo
+        else:
+            dialog.after(400, update_detail_photo)
+            
+    update_detail_photo()
     
     tk.Label(dialog, text=name, font=("Segoe UI", 15, "bold"), bg="#ffffff", fg="#212529").pack()
     tk.Label(dialog, text=data["desc"], font=("Segoe UI", 10, "italic"), bg="#ffffff", fg="#6c757d").pack(pady=3)
@@ -1087,16 +1121,17 @@ for name, data in fruits_data.items():
     heart_b.pack(side="right")
     heart_buttons[name] = heart_b
     
-    img_lbl = tk.Label(card, text="📸", font=("Segoe UI", 18))
-    img_lbl.pack(pady=3)
+    img_lbl = tk.Label(card, text="Завантаження... 🔄", font=("Segoe UI", 9, "italic"))
+    img_lbl.pack(pady=10)
     
-    def update_photo(n=name, lbl=img_lbl, c=data["category"]):
-        photo = loaded_images.get(c, {}).get("btn")
+    # Динамічне завантаження в пам'ять без збереження на диск
+    def update_photo(n=name, lbl=img_lbl, u=data["url"]):
+        photo = get_image_from_url_memory(u, (40, 40))
         if photo:
             lbl.configure(image=photo, text="")
             lbl.image = photo
         else:
-            main_app.after(500, lambda: update_photo(n, lbl, c))
+            main_app.after(400, lambda: update_photo(n, lbl, u))
             
     update_photo()
     
