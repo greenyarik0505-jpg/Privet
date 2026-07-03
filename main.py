@@ -63,28 +63,26 @@ THEMES = {
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
-# РЕАЛЬНІ ФОТОГРАФІЇ З ІНТЕРНЕТУ (Unsplash Direct Source URLs)
+# РЕАЛЬНІ ФОТОГРАФІЇ З РЕАЛЬНОГО ЖИТТЯ (Lifestyle & Real World Photos)
 CATEGORY_URLS = {
-    "tech": "https://images.unsplash.com/photo-1496181130204-755241544e35?w=300&q=80",      # Laptop
-    "fruits": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&q=80",    # Red Apple
-    "home": "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=300&q=80",      # Lamp Loft
-    "sport": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=300&q=80",     # Soccer ball
-    "clothing": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300&q=80"   # T-shirt
+    "tech": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300",      # Laptop on a real desk
+    "fruits": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300",    # Apple on orchard branch
+    "home": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300",      # Lamp in a cozy room
+    "sport": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300",     # Soccer ball on green grass
+    "clothing": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300"   # T-shirt worn by a person
 }
 
 # Завантаження зображень з інтернету
 def download_image(cat, url):
     dest = os.path.join(CACHE_DIR, f"{cat}.png")
-    if not os.path.exists(dest):
-        try:
-            # Використовуємо User-Agent, щоб Unsplash не блокував запити
-            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req) as response:
-                with open(dest, 'wb') as f:
-                    f.write(response.read())
-            print(f"Завантажено реальне фото для {cat}")
-        except Exception as e:
-            print(f"Помилка завантаження зображення для {cat}: {e}")
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req) as response:
+            with open(dest, 'wb') as f:
+                f.write(response.read())
+        print(f"Оновлено реальне фото з життя для {cat}")
+    except Exception as e:
+        print(f"Помилка завантаження зображення для {cat}: {e}")
 
 for cat, url in CATEGORY_URLS.items():
     t = threading.Thread(target=download_image, args=(cat, url))

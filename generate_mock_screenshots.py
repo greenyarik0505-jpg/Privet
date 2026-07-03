@@ -22,16 +22,16 @@ def get_font(size, bold=False):
     except:
         return ImageFont.load_default()
 
-# Спробуємо завантажити реальні фотографії з інтернету, якщо вони не завантажені
+# Завантажуємо реальні фотографії з інтернету
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 CATEGORY_URLS = {
-    "tech": "https://images.unsplash.com/photo-1496181130204-755241544e35?w=300&q=80",
-    "fruits": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&q=80",
-    "home": "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=300&q=80",
-    "sport": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=300&q=80",
-    "clothing": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300&q=80"
+    "tech": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300",
+    "fruits": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300",
+    "home": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300",
+    "sport": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300",
+    "clothing": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300"
 }
 
 for cat, url in CATEGORY_URLS.items():
@@ -42,6 +42,7 @@ for cat, url in CATEGORY_URLS.items():
             with urllib.request.urlopen(req) as response:
                 with open(dest, 'wb') as f:
                     f.write(response.read())
+            print(f"Downloaded real photo for {cat}")
         except Exception as e:
             print(f"Error fetching {cat}: {e}")
 
@@ -52,7 +53,6 @@ def get_product_image(cat, size):
             return Image.open(path).resize(size, Image.Resampling.LANCZOS)
         except Exception:
             pass
-    # Заглушка
     img = Image.new("RGB", size, "#e2e2e2")
     return img
 
