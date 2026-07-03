@@ -258,84 +258,77 @@ def download_assets_worker():
 
 threading.Thread(target=download_assets_worker, daemon=True).start()
 
-def get_product_image_local(filename, size):
-    dest = os.path.join(ASSETS_DIR, filename)
-    if os.path.exists(dest):
-        try:
-            img = Image.open(dest)
-            return ctk.CTkImage(light_image=img, dark_image=img, size=size)
-        except Exception:
-            pass
-    fallback_dest = os.path.join(ASSETS_DIR, "default.png")
-    if os.path.exists(fallback_dest):
-        try:
-            img = Image.open(fallback_dest)
-            return ctk.CTkImage(light_image=img, dark_image=img, size=size)
-        except Exception:
-            pass
-    img = Image.new("RGBA", size, (149, 165, 166, 255))
-    return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
+os.makedirs(CACHE_DIR, exist_ok=True)
 
-# Продукти: Лише українські товари або великі міжнародні бренди
-# Продукти: Лише українські товари або великі міжнародні бренди (30 повністю унікальних товарів)
-groceries_raw = [
-    # Випічка (bakeries)
-    {"ua": "Хліб Київхліб", "en": "Kyivkhlib Bread", "ru": "Хлеб Киевхлеб", "price": 22, "desc": "Свіжий нарізний хліб.", "cat": "bakeries", "img": "Bread.png", "w": "0.6 кг", "unit": "pcs"},
-    {"ua": "Бублики Київські", "en": "Kyiv Bagels", "ru": "Бублики Киевские", "price": 18, "desc": "Традиційні солодкі бублики.", "cat": "bakeries", "img": "Single Plain Bagel.png", "w": "0.3 кг", "unit": "pcs"},
-    {"ua": "Булочка з корицею", "en": "Cinnamon Bun", "ru": "Булочка с корицей", "price": 16, "desc": "Ароматна булочка з корицею.", "cat": "bakeries", "img": "English_Muffins.png", "w": "0.15 кг", "unit": "pcs"},
-    {"ua": "Лаваш Київхліб", "en": "Kyivkhlib Pita", "ru": "Лаваш Киевхлеб", "price": 20, "desc": "Тонкий вірменський лаваш.", "cat": "bakeries", "img": "Flour_Tortillas.png", "w": "0.2 кг", "unit": "pcs"},
-    {"ua": "Батон Київський", "en": "Kyiv Baton", "ru": "Батон Киевский", "price": 19, "desc": "Класичний пшеничний батон.", "cat": "bakeries", "img": "SLiced_White_Bread.png", "w": "0.5 кг", "unit": "pcs"},
+def get_product_image_local(img_src, size):
+    # Якщо це віддалена URL-адреса з CDN Сільпо
+    if img_src.startswith("http://") or img_src.startswith("https://"):
+        filename = img_src.split("/")[-1].split("?")[0]
+        dest = os.path.join(CACHE_DIR, filename)
+        if os.path.exists(dest):
+            try:
+                img = Image.open(dest)
+                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+            except Exception:
+                pass
+        
+        # Завантажуємо зображення у фоновому потоці, щоб інтерфейс не зависав
+        def download_img(url=img_src, dst=dest):
+            try:
+                headers = {"User-Agent": "Mozilla/5.0"}
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    with open(dst, "wb") as f:
+                        f.write(response.read())
+            except Exception:
+                pass
+        threading.Thread(target=download_img, daemon=True).start()
+        
+        # Тимчасово повертаємо стандартне зображення-заглушку, поки йде завантаження
+        fallback_dest = os.path.join(ASSETS_DIR, "default.png")
+        if os.path.exists(fallback_dest):
+            try:
+                img = Image.open(fallback_dest)
+                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+            except Exception:
+                pass
+        img = Image.new("RGBA", size, (149, 165, 166, 255))
+        return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+    else:
+        # Стандартний пошук у локальних асетах
+        dest = os.path.join(ASSETS_DIR, img_src)
+        if os.path.exists(dest):
+            try:
+                img = Image.open(dest)
+                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+            except Exception:
+                pass
+        fallback_dest = os.path.join(ASSETS_DIR, "default.png")
+        if os.path.exists(fallback_dest):
+            try:
+                img = Image.open(fallback_dest)
+                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+            except Exception:
+                pass
+        img = Image.new("RGBA", size, (149, 165, 166, 255))
+        return ctk.CTkImage(light_image=img, dark_image=img, size=size)
 
-    # Напої (drinks)
-    {"ua": "Кока-Кола", "en": "Coca-Cola", "ru": "Кока-Кола", "price": 28, "desc": "Оригінальна Coca-Cola.", "cat": "drinks", "img": "Diet_Cola.png", "w": "0.5 л", "unit": "pcs"},
-    {"ua": "Фанта", "en": "Fanta", "ru": "Фанта", "price": 28, "desc": "Освіжаюча Fanta.", "cat": "drinks", "img": "Orange.png", "w": "0.5 л", "unit": "pcs"},
-    {"ua": "Вода Моршинська", "en": "Morshynska Water", "ru": "Вода Моршинская", "price": 15, "desc": "Мінеральна негазована вода Карпат.", "cat": "drinks", "img": "Water.png", "w": "1.5 л", "unit": "pcs"},
-    {"ua": "Квас Тарас Білий", "en": "Kvas Taras White", "ru": "Квас Тарас Белый", "price": 25, "desc": "Хлібний невільтрований квас.", "cat": "drinks", "img": "default.png", "w": "1.0 л", "unit": "pcs"},
-    {"ua": "Енергетик Monster", "en": "Monster Energy", "ru": "Энергетик Monster", "price": 45, "desc": "Енергетичний напій.", "cat": "drinks", "img": "Energy Drink - Red.png", "w": "0.5 л", "unit": "pcs"},
-    {"ua": "Сік Сандора", "en": "Sandora Juice", "ru": "Сок Сандора", "price": 55, "desc": "Натуральний апельсиновий сік.", "cat": "drinks", "img": "Orange Juice.png", "w": "0.95 л", "unit": "pcs"},
-    {"ua": "Боржомі", "en": "Borjomi Mineral", "ru": "Боржоми", "price": 38, "desc": "Вулканічна лікувальна мінеральна вода.", "cat": "drinks", "img": "Sparkling Water.png", "w": "0.5 л", "unit": "pcs"},
-
-    # Молочне (dairy)
-    {"ua": "Йогурт Галичина", "en": "Galychyna Yogurt", "ru": "Йогурт Галычина", "price": 45, "desc": "Натуральний питний полуничний йогурт.", "cat": "dairy", "img": "Shake.png", "w": "0.4 кг", "unit": "pcs"},
-    {"ua": "Сир Пирятин", "en": "Pyryatyn Cheese", "ru": "Сыр Пирятин", "price": 110, "desc": "Український твердий сир Король Артур.", "cat": "dairy", "img": "Cheese.png", "w": "1 кг", "unit": "kg"},
-
-    # Снеки (snacks)
-    {"ua": "Чіпси Lay's", "en": "Lay's Chips", "ru": "Чипсы Lay's", "price": 48, "desc": "Хрусткі картопляні чіпси.", "cat": "snacks", "img": "Potato_Chips.png", "w": "0.1 кг", "unit": "pcs"},
-    {"ua": "Шоколад Roshen", "en": "Roshen Chocolate", "ru": "Шоколад Roshen", "price": 35, "desc": "Молочний шоколад Roshen.", "cat": "snacks", "img": "Chocolate Bar.png", "w": "0.09 кг", "unit": "pcs"},
-    {"ua": "Арахіс Козацька розвага", "en": "Rozvaha Peanuts", "ru": "Арахис Козацька розвага", "price": 30, "desc": "Солоний смажений арахіс.", "cat": "snacks", "img": "Salted Peanuts.png", "w": "0.08 кг", "unit": "pcs"},
-    {"ua": "Жуйка Orbit", "en": "Orbit Gum", "ru": "Жвачка Orbit", "price": 15, "desc": "Освіжаюча жувальна гумка.", "cat": "snacks", "img": "Gum.png", "w": "1 шт", "unit": "pcs"},
-    {"ua": "Вівсяне печиво", "en": "Oatmeal Cookies", "ru": "Овсяное печенье", "price": 28, "desc": "Класичне вівсяне печиво з родзинками.", "cat": "snacks", "img": "Oatemeal_Cip.png", "w": "0.3 кг", "unit": "pcs"},
-
-    # Фрукти (fruits)
-    {"ua": "Яблука Гала", "en": "Gala Apples", "ru": "Яблоки Гала", "price": 45, "desc": "Свіжі українські яблука.", "cat": "fruits", "img": "Apple.png", "w": "1 кг", "unit": "kg"},
-    {"ua": "Полуниця свіжа", "en": "Fresh Strawberries", "ru": "Клубника свежая", "price": 180, "desc": "Фермерська солодка полуниця.", "cat": "fruits", "img": "Strawberries.png", "w": "1 кг", "unit": "kg"},
-    {"ua": "Банан свіжий", "en": "Fresh Banana", "ru": "Банан свежий", "price": 55, "desc": "Спілі банани з Еквадору.", "cat": "fruits", "img": "Single Banana.png", "w": "1 кг", "unit": "kg"},
-    {"ua": "Авокадо Хасс", "en": "Hass Avocado", "ru": "Авокадо Хасс", "price": 40, "desc": "Стигле авокадо Хасс.", "cat": "fruits", "img": "Avocado.png", "w": "1 шт", "unit": "pcs"},
-
-    # Овочі (vegetables)
-    {"ua": "Салат свіжий", "en": "Fresh Salad", "ru": "Салат свежий", "price": 32, "desc": "Зелений хрусткий салат.", "cat": "vegetables", "img": "Salad.png", "w": "1 кг", "unit": "kg"},
-
-    # Спорт техніка (sport)
-    {"ua": "Смарт-годинник", "en": "Smart Watch", "ru": "Смарт-часы", "price": 1200, "desc": "Спортивний розумний годинник.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
-    {"ua": "Фітнес-браслет", "en": "Fitness Band", "ru": "Fитнес-браслет", "price": 650, "desc": "Трекер активності крокомір.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
-    {"ua": "Розумна скакалка", "en": "Smart Skipping Rope", "ru": "Умная скакалка", "price": 350, "desc": "Скакалка з лічильником обертів.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
-    {"ua": "Навушники бездротові", "en": "Wireless Earbuds", "ru": "Наушники беспроводные", "price": 950, "desc": "Вологозахищені спортивні навушники.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
-    {"ua": "Електронні ваги", "en": "Smart Scales", "ru": "Электронные весы", "price": 450, "desc": "Розумні ваги з вимірюванням жиру.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
-    {"ua": "Пульсометр", "en": "Heart Rate Monitor", "ru": "Пульсометр", "price": 380, "desc": "Нагрудний датчик пульсу.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
-]
-
+# Продукти: Завантажуємо 250+ повністю унікальних товарів прямо з Сільпо
 fruits_data = {}
-for idx, item in enumerate(groceries_raw):
-    fruits_data[item["en"]] = {
-        "names": {"ua": item["ua"], "en": item["en"], "ru": item["ru"]},
-        "price": item["price"],
-        "desc": item["desc"],
-        "category": item["cat"],
-        "image": item["img"],
-        "weight": item["w"],
-        "unit": item["unit"],
-        "section": "popular" if idx % 2 == 0 else "new",
-        "colors": [("Стандарт", "#4F46E5")]
+try:
+    import silpo_products
+    for idx, item in enumerate(silpo_products.products):
+        key_name = item["names"]["en"]
+        fruits_data[key_name] = item
+except Exception as e:
+    # Запасний варіант, якщо імпорт не вдався
+    fruits_data = {
+        "Gala Apples": {
+            "names": {"ua": "Яблука Гала", "en": "Gala Apples", "ru": "Яблоки Гала"},
+            "price": 45, "desc": "Свіжі яблука.", "category": "fruits", "image": "Apple.png",
+            "weight": "1 кг", "unit": "kg", "section": "popular", "colors": [("Стандарт", "#4F46E5")]
+        }
     }
 
 class App(ctk.CTk):
