@@ -18,6 +18,7 @@ ctk.set_default_color_theme("blue")
 # Глобальні налаштування
 sound_enabled = True
 active_lang = "ua"
+current_theme = "light"  # "light" або "dark"
 logged_in_user = None
 session_discount = 0.0
 cart = []
@@ -741,6 +742,19 @@ class MainScreen(ctk.CTkFrame):
         self.balance_lbl = ctk.CTkLabel(self.sidebar, text="0 грн", font=("Arial", 11, "bold"), text_color="#2ecc71")
         self.balance_lbl.pack(pady=2)
         
+        # ── Перемикач теми ──
+        self.theme_btn = ctk.CTkButton(
+            self.sidebar,
+            text="🌙 Темна тема",
+            command=self.toggle_theme,
+            width=140, height=28,
+            font=("Arial", 10, "bold"),
+            fg_color="#6C63FF",
+            hover_color="#5A52D5",
+            corner_radius=14
+        )
+        self.theme_btn.pack(pady=(4, 2))
+
         self.btn_topup = ctk.CTkButton(self.sidebar, text=t("topup_btn"), command=self.topup_balance, width=110, height=24, font=("Arial", 9, "bold"), fg_color=PRIMARY_COLOR, hover_color="#4338CA")
         self.btn_topup.pack(pady=5)
         
@@ -753,6 +767,17 @@ class MainScreen(ctk.CTkFrame):
         self.active_panel = None
         self.show_catalog()
         self.update_profile_info()
+
+    def toggle_theme(self):
+        global current_theme
+        if current_theme == "light":
+            current_theme = "dark"
+            ctk.set_appearance_mode("dark")
+            self.theme_btn.configure(text="☀️ Світла тема")
+        else:
+            current_theme = "light"
+            ctk.set_appearance_mode("light")
+            self.theme_btn.configure(text="🌙 Темна тема")
 
     def draw_navigation(self):
         for btn in self.nav_buttons.values():
