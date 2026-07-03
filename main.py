@@ -781,9 +781,10 @@ class MainScreen(ctk.CTkFrame):
         self.btn_delete_acc.pack(side="bottom", fill="x", padx=15, pady=5)
 
     def draw_profile_avatar(self):
-        self.avatar_canvas.create_oval(10, 10, 90, 90, fill="#EBE8F9", outline="")
-        self.avatar_canvas.create_oval(40, 28, 60, 48, outline="#4F46E5", width=3)
-        self.avatar_canvas.create_arc(26, 54, 74, 95, start=0, extent=180, style="arc", outline="#4F46E5", width=3)
+        # Малюємо фірмовий логотип Сільпо (помаранчеве коло з літерою С)
+        self.avatar_canvas.create_oval(10, 10, 90, 90, fill="#FF5E00", outline="")
+        self.avatar_canvas.create_text(50, 45, text="С", fill="white", font=("Arial", 46, "bold"))
+        self.avatar_canvas.create_text(50, 75, text="сільпо", fill="white", font=("Arial", 11, "bold"))
 
     def update_sidebar_state(self, active_name):
         cart_count = sum(item["qty"] for item in cart)
@@ -1383,7 +1384,7 @@ class CartPanel(ctk.CTkFrame):
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Чек Мегамаркету</title>
+    <title>Чек Сільпо</title>
     <style>
         body {{ font-family: 'Segoe UI', Arial, sans-serif; background-color: #f3f3f3; padding: 20px; }}
         .receipt {{ background: white; max-width: 450px; margin: 0 auto; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-top: 10px solid #4a90e2; }}
@@ -1399,7 +1400,7 @@ class CartPanel(ctk.CTkFrame):
 </head>
 <body>
     <div class="receipt">
-        <h2>МЕГАМАРКЕТ ЧЕК</h2>
+        <h2>СІЛЬПО ЧЕК</h2>
         <div class="meta">
             <b>Покупець:</b> {logged_in_user}<br>
             <b>Телефон:</b> {phone}<br>
@@ -1436,7 +1437,7 @@ class CartPanel(ctk.CTkFrame):
     <div class="total-row" style="text-align:right; padding-top:10px; border-top: 2px solid #4a90e2;">
         РАЗОМ ДО СПЛАТИ: {discounted_price} грн
     </div>
-    <div class="footer">Дякуємо за покупку в нашому Мегамаркеті! 🚚</div>
+    <div class="footer">Дякуємо за покупку в нашому Сільпо! 🚚</div>
 </div>
 </body>
 </html>"""
