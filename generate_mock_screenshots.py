@@ -29,9 +29,9 @@ def get_product_image_by_filename(filename, size):
     img = Image.new("RGBA", size, "#e2e2e2")
     return img
 
-def draw_custom_sidebar(draw, active_nav):
+def draw_custom_sidebar(draw, active_nav, height=750):
     # Прямоугольный сайдбар без скругления слева
-    draw.rectangle([0, 0, 180, 550], fill=SIDEBAR_COLOR)
+    draw.rectangle([0, 0, 180, height], fill=SIDEBAR_COLOR)
     
     # Круглый аватар пользователя
     draw.ellipse([50, 25, 130, 105], fill="#EBE8F9")
@@ -54,23 +54,25 @@ def draw_custom_sidebar(draw, active_nav):
         draw.text((25, y + 16), name, fill="black", anchor="lm", font=get_font(11, is_active))
         
     # Logout кнопка внизу
-    draw.text((25, 510), "Logout", fill="black", anchor="lm", font=get_font(11))
+    draw.text((25, height - 40), "Logout", fill="black", anchor="lm", font=get_font(11))
 
 def create_main_screenshot():
-    w, h = 850, 580
+    # Масштабовані розміри під реальний інтерфейс 1240х820 додатку
+    w, h = 1320, 780
     img = Image.new("RGB", (w, h), BG_COLOR)
     draw = ImageDraw.Draw(img)
     
     # Сайдбар
-    draw_custom_sidebar(draw, "Каталог")
+    draw_custom_sidebar(draw, "Каталог", height=h)
     
     # Поле поиска
-    draw.rounded_rectangle([200, 15, 835, 45], 15, fill=SEARCH_BAR_COLOR)
-    draw.text((517, 30), "Search", fill="white", anchor="mm", font=get_font(11))
+    draw.rounded_rectangle([200, 15, 1300, 45], 15, fill=SEARCH_BAR_COLOR)
+    draw.text((750, 30), "Search", fill="white", anchor="mm", font=get_font(11))
     
     # Категорії
     draw.text((200, 65), "Categories", fill="black", font=get_font(12, True))
     
+    # Збільшені іконки категорій (150x150)
     categories = [
         ("Випічка", "#C2D6EE", "cat_bakeries.png"),
         ("Напої", "#BCE6EB", "cat_drinks.png"),
@@ -78,16 +80,16 @@ def create_main_screenshot():
         ("Снеки", "#DCD2EE", "cat_snacks.png")
     ]
     for i, (cat, bg, img_file) in enumerate(categories):
-        x = 200 + i * 156
-        draw.rounded_rectangle([x, 85, x + 130, 165], 12, fill=bg)
-        prod_img = get_product_image_by_filename(img_file, (50, 50))
-        img.paste(prod_img, (x + 40, 93), prod_img if prod_img.mode == "RGBA" else None)
-        draw.text((x + 65, 150), cat, fill="black", anchor="mm", font=get_font(10, True))
+        x = 200 + i * 260
+        draw.rounded_rectangle([x, 85, x + 240, 255], 12, fill=bg)
+        prod_img = get_product_image_by_filename(img_file, (150, 150))
+        img.paste(prod_img, (x + 45, 93), prod_img if prod_img.mode == "RGBA" else None)
+        draw.text((x + 120, 240), cat, fill="black", anchor="mm", font=get_font(11, True))
         
-    # Заголовок "Popular Items" з пагінацією (1-15 з 210)
-    draw.text((200, 185), "Popular Items (1-15 / 210)", fill="black", font=get_font(12, True))
+    # Заголовок "Popular Items" з пагінацією (1-5 з 210)
+    draw.text((200, 275), "Popular Items (1-5 / 210)", fill="black", font=get_font(12, True))
     
-    # Карточки товарів
+    # Великі карточки товарів (220x310) з великими HD фотографіями (150x150)
     products = [
         ("Хліб Київхліб", "0.6 кг", "22 грн", "cat_bakeries.png", "1 шт"),
         ("Кока-Кола", "0.5 л", "28 грн", "cat_drinks.png", "1 шт"),
@@ -97,32 +99,34 @@ def create_main_screenshot():
     ]
     
     for i, (name, weight, price, img_file, qty_text) in enumerate(products):
-        x = 200 + i * 126
-        y = 205
-        draw.rounded_rectangle([x, y, x + 115, y + 230], 10, fill="white")
+        x = 200 + i * 224
+        y = 300
+        draw.rounded_rectangle([x, y, x + 210, y + 300], 10, fill="white")
         
-        prod_img = get_product_image_by_filename(img_file, (70, 70))
-        img.paste(prod_img, (x + 22, y + 10), prod_img if prod_img.mode == "RGBA" else None)
+        prod_img = get_product_image_by_filename(img_file, (140, 140))
+        img.paste(prod_img, (x + 35, y + 10), prod_img if prod_img.mode == "RGBA" else None)
         
-        draw.text((x + 8, y + 85), name.split()[0], fill="black", font=get_font(10, True))
-        draw.text((x + 107, y + 85), weight, fill="gray", anchor="rt", font=get_font(9))
+        draw.text((x + 12, y + 160), name, fill="black", font=get_font(10, True))
+        draw.text((x + 198, y + 160), weight, fill="gray", anchor="rt", font=get_font(9))
         
-        draw.rounded_rectangle([x + 8, y + 115, x + 107, y + 140], 5, fill="#F3F4F6")
-        draw.text((x + 18, y + 127), "-", fill="black", anchor="mm", font=get_font(12, True))
-        draw.text((x + 57, y + 127), qty_text, fill="black", anchor="mm", font=get_font(10, True))
-        draw.text((x + 97, y + 127), "+", fill="black", anchor="mm", font=get_font(12, True))
+        # Регулятор кількості
+        draw.rounded_rectangle([x + 12, y + 195, x + 198, y + 225], 5, fill="#F3F4F6")
+        draw.text((x + 25, y + 210), "-", fill="black", anchor="mm", font=get_font(12, True))
+        draw.text((x + 105, y + 210), qty_text, fill="black", anchor="mm", font=get_font(10, True))
+        draw.text((x + 185, y + 210), "+", fill="black", anchor="mm", font=get_font(12, True))
         
-        draw.text((x + 8, y + 175), price, fill="black", font=get_font(10, True))
-        draw.rounded_rectangle([x + 8, y + 195, x + 107, y + 220], 12, fill=PRIMARY_COLOR)
-        draw.text((x + 57, y + 207), "+ Додати", fill="white", anchor="mm", font=get_font(9, True))
+        # Ціна та Додати
+        draw.text((x + 12, y + 255), price, fill="black", font=get_font(11, True))
+        draw.rounded_rectangle([x + 100, y + 245, x + 198, y + 275], 15, fill=PRIMARY_COLOR)
+        draw.text((x + 149, y + 260), "+ Додати", fill="white", anchor="mm", font=get_font(9, True))
         
-    draw.rounded_rectangle([200, 520, 300, 550], 6, fill=PRIMARY_COLOR)
-    draw.text((250, 535), "← Назад", fill="white", anchor="mm", font=get_font(9, True))
+    draw.rounded_rectangle([200, 710, 300, 740], 6, fill=PRIMARY_COLOR)
+    draw.text((250, 725), "← Назад", fill="white", anchor="mm", font=get_font(9, True))
     
-    draw.rounded_rectangle([735, 520, 835, 550], 6, fill=PRIMARY_COLOR)
-    draw.text((785, 535), "Далі →", fill="white", anchor="mm", font=get_font(9, True))
+    draw.rounded_rectangle([1200, 710, 1300, 740], 6, fill=PRIMARY_COLOR)
+    draw.text((1250, 725), "Далі →", fill="white", anchor="mm", font=get_font(9, True))
     
-    draw.text((517, 535), "Page 1 of 14", fill="black", anchor="mm", font=get_font(10, True))
+    draw.text((750, 725), "Page 1 of 14", fill="black", anchor="mm", font=get_font(10, True))
         
     img.save("screenshot_main_v6.png")
     print("Created mockup: screenshot_main_v6.png")

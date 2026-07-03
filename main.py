@@ -390,6 +390,11 @@ try:
         
         fruits_data[key_name] = item
 except Exception as e:
+    import traceback
+    try:
+        messagebox.showerror("Помилка імпорту Сільпо", f"Не вдалося завантажити базу товарів silpo_products.py:\n{e}\n\nСпробуйте запустити додаток через консоль у правильній папці.\n\nTraceback:\n{traceback.format_exc()}")
+    except Exception:
+        pass
     # Запасний варіант, якщо імпорт не вдався
     fruits_data = {
         "Gala Apples": {
@@ -847,28 +852,28 @@ class CatalogPanel(ctk.CTkFrame):
         self.draw_pagination_buttons(total_items)
 
     def draw_product_card(self, parent_frame, name, data, row, col):
-        # Преміальна простора картка для розміщення селекторів кількості
-        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=180, height=235, fg_color="white")
+        # Преміальна велика картка (220x310) для HD фотографій
+        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=220, height=310, fg_color="white")
         card.grid(row=row, column=col, padx=6, pady=6)
         card.grid_propagate(False)
         
-        # Більше фото (80x80) за побажанням користувача
-        photo = get_product_image_local(data["image"], (80, 80))
+        # Велике HD фото (150x150) за побажанням користувача
+        photo = get_product_image_local(data["image"], (150, 150))
         img_lbl = ctk.CTkLabel(card, image=photo, text="")
-        img_lbl.pack(pady=(8, 2))
+        img_lbl.pack(pady=(10, 2))
         
         def open_details(e, n=name):
             self.main_screen.switch_panel(DetailsPanel, "DashBoard", n)
         img_lbl.bind("<Button-1>", open_details)
         
         name_frame = ctk.CTkFrame(card, fg_color="transparent")
-        name_frame.pack(fill="x", padx=8, pady=(2, 2))
+        name_frame.pack(fill="x", padx=12, pady=(2, 2))
         
         display_name = data["names"][active_lang].split()[0]
         if len(data["names"][active_lang].split()) > 1:
             display_name += " " + data["names"][active_lang].split()[1]
             
-        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Georgia", 11, "bold", "italic"), text_color="black", anchor="w", wraplength=110)
+        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Georgia", 11, "bold", "italic"), text_color="black", anchor="w", wraplength=140)
         lbl_name.pack(side="left")
         lbl_name.bind("<Button-1>", open_details)
         
