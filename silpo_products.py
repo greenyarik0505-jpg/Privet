@@ -422,26 +422,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Круасан 7 Days міді з кремом «Какао»",
-      "en": "Круасан 7 Days міді з кремом «Какао»",
-      "ru": "Круасан 7 Days міді з кремом «Какао»"
-    },
-    "price": 26,
-    "desc": "Свіжий продукт з магазину Сільпо (круасан).",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/66/480x480wwm/662701_480x480wwm_77abbe4f-fa36-4cb6-6933-6245a13011db.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Круасан «Рудь» на вершковому маслі",
       "en": "Круасан «Рудь» на вершковому маслі",
       "ru": "Круасан «Рудь» на вершковому маслі"
@@ -453,26 +433,6 @@ products = [
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Круасан 7 Days міді з кремом «Ваніль»",
-      "en": "Круасан 7 Days міді з кремом «Ваніль»",
-      "ru": "Круасан 7 Days міді з кремом «Ваніль»"
-    },
-    "price": 26,
-    "desc": "Свіжий продукт з магазину Сільпо (круасан).",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/66/480x480wwm/662702_480x480wwm_eba17466-09c8-8287-a9bc-7a0fdf267c6e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -573,26 +533,6 @@ products = [
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Круасан з мигдалевим кремом",
-      "en": "Круасан з мигдалевим кремом",
-      "ru": "Круасан з мигдалевим кремом"
-    },
-    "price": 51,
-    "desc": "Свіжий продукт з магазину Сільпо (круасан).",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/80/480x480wwm/800505_480x480wwm_cba477bf-47fb-9342-b9df-80d809d81296.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -2262,26 +2202,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Малосольні огірки Ніжин",
-      "en": "Малосольні огірки Ніжин",
-      "ru": "Малосольні огірки Ніжин"
-    },
-    "price": 349,
-    "desc": "Свіжий продукт з магазину Сільпо (огірок).",
-    "category": "vegetables",
-    "image": "https://content.silpo.ua/sku/ecommerce/57/480x480wwm/577619_480x480wwm_7f888371-248a-1006-a3a4-0ab9407583e6.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Огірок екстра",
       "en": "Огірок екстра",
       "ru": "Огірок екстра"
@@ -3462,26 +3382,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Йогурт Ферма Полуниця натуральний 1,5%, пляшка",
-      "en": "Йогурт Ферма Полуниця натуральний 1,5%, пляшка",
-      "ru": "Йогурт Ферма Полуниця натуральний 1,5%, пляшка"
-    },
-    "price": 85,
-    "desc": "Свіжий продукт з магазину Сільпо (полуниця).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/960333_480x480wwm_ae6f59c1-99b6-cf34-ad93-42040e10076d.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Йогурт Чудо Полуниця-чіа 2,5%, стакан",
       "en": "Йогурт Чудо Полуниця-чіа 2,5%, стакан",
       "ru": "Йогурт Чудо Полуниця-чіа 2,5%, стакан"
@@ -3762,26 +3662,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Чай холодн Fuze tea чорний зі смаком лимону та лемонграса",
-      "en": "Чай холодн Fuze tea чорний зі смаком лимону та лемонграса",
-      "ru": "Чай холодн Fuze tea чорний зі смаком лимону та лемонграса"
-    },
-    "price": 33,
-    "desc": "Свіжий продукт з магазину Сільпо (лимон).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/941598_480x480wwm_69813871-af5d-622a-c85c-322cf0fc9a46.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Рулетики «Крафтяр» з маком та лимоном в упаковці",
       "en": "Рулетики «Крафтяр» з маком та лимоном в упаковці",
       "ru": "Рулетики «Крафтяр» з маком та лимоном в упаковці"
@@ -3853,186 +3733,6 @@ products = [
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Нектар Cappy mini виноград і яблуко б/а",
-      "en": "Нектар Cappy mini виноград і яблуко б/а",
-      "ru": "Нектар Cappy mini виноград і яблуко б/а"
-    },
-    "price": 26,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979133_480x480wwm_f807c241-1174-f181-566b-c9d97a327051.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Нектар Cappy mini яблуко, ягоди, виноград б/а",
-      "en": "Нектар Cappy mini яблуко, ягоди, виноград б/а",
-      "ru": "Нектар Cappy mini яблуко, ягоди, виноград б/а"
-    },
-    "price": 26,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979136_480x480wwm_62050260-02a8-12bd-62fe-e08193d30fae.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Виноград Вікторія",
-      "en": "Виноград Вікторія",
-      "ru": "Виноград Вікторія"
-    },
-    "price": 379,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/40/480x480wwm/408011_480x480wwm_5d362fd9-f558-8349-0a42-19c75c2a2378.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Аромадифузор Гроно винограду",
-      "en": "Аромадифузор Гроно винограду",
-      "ru": "Аромадифузор Гроно винограду"
-    },
-    "price": 349,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/7_480x480.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Нектар Садочок яблуко-виноград",
-      "en": "Нектар Садочок яблуко-виноград",
-      "ru": "Нектар Садочок яблуко-виноград"
-    },
-    "price": 23,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/929200_480x480wwm_67178e26-2cc8-71bd-47b5-27cfa445ac2a.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сік Hafner червоний виноград",
-      "en": "Сік Hafner червоний виноград",
-      "ru": "Сік Hafner червоний виноград"
-    },
-    "price": 499,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/852179_480x480wwm_1776c202-2fe1-0c0b-5b40-2e3972c7a998.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сік Hafner білий виноград",
-      "en": "Сік Hafner білий виноград",
-      "ru": "Сік Hafner білий виноград"
-    },
-    "price": 359,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/852180_480x480wwm_4b66bbdd-a0f7-22ef-b0dd-6f21c2645d75.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Цукерки Amos Виноград желейні",
-      "en": "Цукерки Amos Виноград желейні",
-      "ru": "Цукерки Amos Виноград желейні"
-    },
-    "price": 79,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990170_480x480wwm_9164e84b-1148-fcb4-c6cc-ed6999829b60.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сік Sandora білий виноград",
-      "en": "Сік Sandora білий виноград",
-      "ru": "Сік Sandora білий виноград"
-    },
-    "price": 118,
-    "desc": "Свіжий продукт з магазину Сільпо (виноград).",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/71/480x480wwm/719480_480x480wwm_c62f99d0-0ee1-efad-1284-a798c3306977.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
