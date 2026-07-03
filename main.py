@@ -1262,16 +1262,16 @@ class DetailsPanel(ctk.CTkFrame):
         self.img_lbl.pack(pady=20)
         
         display_name = self.data["names"][active_lang]
-        lbl_title = ctk.CTkLabel(left_box, text=display_name, font=("Arial", 16, "bold"), text_color="black", wraplength=280)
+        lbl_title = ctk.CTkLabel(left_box, text=display_name, font=("Arial", 16, "bold"), text_color=THEMES[current_theme]["text"], wraplength=280)
         lbl_title.pack(pady=5)
         
-        lbl_desc = ctk.CTkLabel(left_box, text=self.data["desc"], font=("Arial", 12, "italic"), text_color="black", wraplength=280)
+        lbl_desc = ctk.CTkLabel(left_box, text=self.data["desc"], font=("Arial", 12, "italic"), text_color=THEMES[current_theme]["text_sec"], wraplength=280)
         lbl_desc.pack(pady=5)
         
         lbl_price = ctk.CTkLabel(left_box, text=f"{t('price_lbl')} {self.data['price']} грн", font=("Arial", 15, "bold"), text_color=PRIMARY_COLOR)
         lbl_price.pack(pady=10)
         
-        ctk.CTkLabel(left_box, text=t("color_lbl"), font=("Arial", 12, "bold"), text_color="black").pack()
+        ctk.CTkLabel(left_box, text=t("color_lbl"), font=("Arial", 12, "bold"), text_color=THEMES[current_theme]["text"]).pack()
         self.selected_color = ctk.StringVar(value=self.data["colors"][0][0])
         color_frame = ctk.CTkFrame(left_box, fg_color="transparent")
         color_frame.pack(pady=5)
@@ -1282,7 +1282,7 @@ class DetailsPanel(ctk.CTkFrame):
             
         qty_frame = ctk.CTkFrame(left_box, fg_color="transparent")
         qty_frame.pack(pady=10)
-        ctk.CTkLabel(qty_frame, text=t("qty_lbl"), text_color="black", font=("Arial", 12, "bold")).pack(side="left", padx=5)
+        ctk.CTkLabel(qty_frame, text=t("qty_lbl"), text_color=THEMES[current_theme]["text"], font=("Arial", 12, "bold")).pack(side="left", padx=5)
         self.qty_spin = ttk.Spinbox(qty_frame, from_=1, to=50, width=5, font=("Arial", 11), justify="center")
         self.qty_spin.pack(side="left", padx=5)
         self.qty_spin.set(1)
@@ -1293,9 +1293,9 @@ class DetailsPanel(ctk.CTkFrame):
         right_box = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         right_box.pack(side="right", fill="both", expand=True, padx=10, pady=10)
         
-        ctk.CTkLabel(right_box, text=t("reviews_lbl"), font=("Arial", 14, "bold"), text_color="black").pack(pady=10)
+        ctk.CTkLabel(right_box, text=t("reviews_lbl"), font=("Arial", 14, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=10)
         
-        self.reviews_frame = ctk.CTkScrollableFrame(right_box, height=220, fg_color="white")
+        self.reviews_frame = ctk.CTkScrollableFrame(right_box, height=220, fg_color=THEMES[current_theme]["bg"])
         self.reviews_frame.pack(fill="both", expand=True, padx=10)
         
         form_frame = ctk.CTkFrame(right_box, fg_color="transparent")
@@ -1305,7 +1305,7 @@ class DetailsPanel(ctk.CTkFrame):
         self.rating_spin.grid(row=0, column=0, padx=5, pady=5)
         self.rating_spin.set(5)
         
-        self.rev_entry = ctk.CTkEntry(form_frame, placeholder_text="Ваш відгук...", width=160, fg_color="white", text_color="black")
+        self.rev_entry = ctk.CTkEntry(form_frame, placeholder_text="Ваш відгук...", width=160, fg_color=THEMES[current_theme]["card_bg"], text_color=THEMES[current_theme]["text"])
         self.rev_entry.grid(row=0, column=1, padx=5, pady=5)
         
         btn_submit = ctk.CTkButton(form_frame, text=t("submit_review_btn"), command=self.submit_review, width=80, fg_color=PRIMARY_COLOR, hover_color="#4338CA")
@@ -1380,7 +1380,7 @@ class CartPanel(ctk.CTkFrame):
         ctk.CTkLabel(header_frame, text="Ціна", font=("Arial", 10, "bold"), width=70, anchor="e", text_color="white").pack(side="left", padx=10)
         ctk.CTkLabel(header_frame, text="Дія", font=("Arial", 10, "bold"), width=40, anchor="center", text_color="white").pack(side="right", padx=10)
         
-        self.items_frame = ctk.CTkScrollableFrame(left_box, fg_color="white")
+        self.items_frame = ctk.CTkScrollableFrame(left_box, fg_color=THEMES[current_theme]["bg"])
         self.items_frame.pack(fill="both", expand=True, padx=10, pady=5)
         
         self.total_lbl = ctk.CTkLabel(left_box, text="Total", font=("Arial", 14, "bold"), text_color=PRIMARY_COLOR)
@@ -1392,16 +1392,18 @@ class CartPanel(ctk.CTkFrame):
         self.right_box = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         self.right_box.pack(side="right", fill="both", expand=True, padx=10, pady=10)
         
-        ctk.CTkLabel(self.right_box, text=t("delivery_title"), font=("Arial", 14, "bold"), text_color="black").pack(pady=15)
+        ctk.CTkLabel(self.right_box, text=t("delivery_title"), font=("Arial", 14, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=15)
         
-        self.phone_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("phone_lbl"), fg_color="white", text_color="black")
+        entry_bg = THEMES[current_theme]["card_bg"]
+        entry_fg = THEMES[current_theme]["text"]
+        self.phone_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("phone_lbl"), fg_color=entry_bg, text_color=entry_fg)
         self.phone_entry.pack(pady=6, padx=20, fill="x")
         self.phone_entry.insert(0, "+380")
         
-        self.email_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("email_lbl"), fg_color="white", text_color="black")
+        self.email_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("email_lbl"), fg_color=entry_bg, text_color=entry_fg)
         self.email_entry.pack(pady=6, padx=20, fill="x")
         
-        self.address_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("address_lbl"), fg_color="white", text_color="black")
+        self.address_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("address_lbl"), fg_color=entry_bg, text_color=entry_fg)
         self.address_entry.pack(pady=6, padx=20, fill="x")
         
         self.deliv_combo = ctk.CTkOptionMenu(self.right_box, values=["Кур'єр", "Нова Пошта", "Самовивіз"], fg_color=PRIMARY_COLOR, button_color=PRIMARY_COLOR)
@@ -1602,7 +1604,7 @@ class AnalyticsPanel(ctk.CTkFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        ctk.CTkLabel(self, text="Панель аналітики та звітів", font=("Arial", 16, "bold"), text_color="black").pack(pady=10)
+        ctk.CTkLabel(self, text="Панель аналітики та звітів", font=("Arial", 16, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=10)
         
         cards_frame = ctk.CTkFrame(self, fg_color="transparent")
         cards_frame.pack(fill="x", pady=10)
@@ -1619,16 +1621,17 @@ class AnalyticsPanel(ctk.CTkFrame):
         chart_frame = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         chart_frame.pack(fill="both", expand=True, pady=10, padx=5)
         
-        ctk.CTkLabel(chart_frame, text="Динаміка замовлень", font=("Arial", 13, "bold"), text_color="black").pack(pady=5)
+        ctk.CTkLabel(chart_frame, text="Динаміка замовлень", font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=5)
         
-        self.canvas = tk.Canvas(chart_frame, bg="white", bd=0, highlightthickness=0)
+        chart_bg = THEMES[current_theme]["bg"]
+        self.canvas = tk.Canvas(chart_frame, bg=chart_bg, bd=0, highlightthickness=0)
         self.canvas.pack(fill="both", expand=True, padx=15, pady=10)
         self.canvas.bind("<Configure>", lambda e: self.draw_chart(orders))
 
     def create_kpi_card(self, parent, title, value, accent_color):
         card = ctk.CTkFrame(parent, corner_radius=10, height=80, fg_color=SIDEBAR_COLOR)
         card.pack_propagate(False)
-        ctk.CTkLabel(card, text=title, font=("Arial", 11, "bold"), text_color="gray").pack(pady=(10, 2))
+        ctk.CTkLabel(card, text=title, font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text_sec"]).pack(pady=(10, 2))
         ctk.CTkLabel(card, text=value, font=("Arial", 18, "bold"), text_color=accent_color).pack()
         return card
 
@@ -1641,7 +1644,8 @@ class AnalyticsPanel(ctk.CTkFrame):
             
         for i in range(5):
             y = 30 + i * (h - 60) // 4
-            self.canvas.create_line(40, y, w - 20, y, fill="#e2e2e2", width=1)
+            grid_color = "#3A3A5C" if current_theme == "dark" else "#e2e2e2"
+            self.canvas.create_line(40, y, w - 20, y, fill=grid_color, width=1)
             
         if not orders:
             self.canvas.create_text(w // 2, h // 2, text="Дані для аналітики відсутні", fill="gray", font=("Arial", 11, "italic"))
@@ -1671,11 +1675,11 @@ class HistoryPanel(ctk.CTkScrollableFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        ctk.CTkLabel(self, text=t("history_title"), font=("Arial", 16, "bold"), text_color="black").pack(pady=10)
+        ctk.CTkLabel(self, text=t("history_title"), font=("Arial", 16, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=10)
         
         orders = market_db.get_orders(logged_in_user)
         if not orders:
-            ctk.CTkLabel(self, text=t("no_orders"), font=("Arial", 11, "italic"), text_color="black").pack(pady=40)
+            ctk.CTkLabel(self, text=t("no_orders"), font=("Arial", 11, "italic"), text_color=THEMES[current_theme]["text"]).pack(pady=40)
             return
             
         for index, order in enumerate(orders):
@@ -1685,7 +1689,7 @@ class HistoryPanel(ctk.CTkScrollableFrame):
             info_frame = ctk.CTkFrame(row, fg_color="transparent")
             info_frame.pack(side="left", padx=15, pady=4, fill="both", expand=True)
             
-            ctk.CTkLabel(info_frame, text=f"Замовлення #{len(orders)-index} [{order['date']}]", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w")
+            ctk.CTkLabel(info_frame, text=f"Замовлення #{len(orders)-index} [{order['date']}]", font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w")
             ctk.CTkLabel(info_frame, text=f"Товарів: {order['items_count']} шт. | Сума: {order['total']} грн", font=("Arial", 10), text_color="#2e7d32").pack(anchor="w")
             
             def open_receipt(o_date=order['date']):
