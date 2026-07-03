@@ -277,58 +277,71 @@ def get_product_image_local(filename, size):
     return ctk.CTkImage(light_image=img, dark_image=img, size=size)
 
 # Продукти: Лише українські товари або великі міжнародні бренди
+# Продукти: Лише українські товари або великі міжнародні бренди (30 повністю унікальних товарів)
 groceries_raw = [
-    # Фрукти (fruits)
-    {"ua": "Яблука Гала", "en": "Gala Apples", "ru": "Яблоки Гала", "price": 45, "desc": "Свіжі українські яблука.", "cat": "fruits", "img": "Apple.png", "w": "1.2kg"},
-    {"ua": "Полуниця свіжа", "en": "Fresh Strawberries", "ru": "Клубника свежая", "price": 180, "desc": "Фермерська полуниця.", "cat": "fruits", "img": "Strawberries.png", "w": "0.5kg"},
-    
     # Випічка (bakeries)
-    {"ua": "Хліб Київхліб", "en": "Kyivkhlib Bread", "ru": "Хлеб Киевхлеб", "price": 22, "desc": "Свіжий нарізний хліб.", "cat": "bakeries", "img": "Bread.png", "w": "0.6kg"},
-    {"ua": "Бублики Київські", "en": "Kyiv Bagels", "ru": "Бублики Киевские", "price": 18, "desc": "Традиційні бублики.", "cat": "bakeries", "img": "Single Plain Bagel.png", "w": "0.3kg"},
-    
-    # Молочне (dairy)
-    {"ua": "Йогурт Галичина", "en": "Galychyna Yogurt", "ru": "Йогурт Галычина", "price": 45, "desc": "Натуральний питний йогурт.", "cat": "dairy", "img": "Shake.png", "w": "0.4kg"},
-    {"ua": "Сир Пирятин", "en": "Pyryatyn Cheese", "ru": "Сыр Пирятин", "price": 110, "desc": "Український твердий сир.", "cat": "dairy", "img": "Cheese.png", "w": "0.2kg"},
-    
+    {"ua": "Хліб Київхліб", "en": "Kyivkhlib Bread", "ru": "Хлеб Киевхлеб", "price": 22, "desc": "Свіжий нарізний хліб.", "cat": "bakeries", "img": "Bread.png", "w": "0.6 кг", "unit": "pcs"},
+    {"ua": "Бублики Київські", "en": "Kyiv Bagels", "ru": "Бублики Киевские", "price": 18, "desc": "Традиційні солодкі бублики.", "cat": "bakeries", "img": "Single Plain Bagel.png", "w": "0.3 кг", "unit": "pcs"},
+    {"ua": "Булочка з корицею", "en": "Cinnamon Bun", "ru": "Булочка с корицей", "price": 16, "desc": "Ароматна булочка з корицею.", "cat": "bakeries", "img": "English_Muffins.png", "w": "0.15 кг", "unit": "pcs"},
+    {"ua": "Лаваш Київхліб", "en": "Kyivkhlib Pita", "ru": "Лаваш Киевхлеб", "price": 20, "desc": "Тонкий вірменський лаваш.", "cat": "bakeries", "img": "Flour_Tortillas.png", "w": "0.2 кг", "unit": "pcs"},
+    {"ua": "Батон Київський", "en": "Kyiv Baton", "ru": "Батон Киевский", "price": 19, "desc": "Класичний пшеничний батон.", "cat": "bakeries", "img": "SLiced_White_Bread.png", "w": "0.5 кг", "unit": "pcs"},
+
     # Напої (drinks)
-    {"ua": "Кока-Кола", "en": "Coca-Cola", "ru": "Кока-Кола", "price": 28, "desc": "Оригінальна Coca-Cola.", "cat": "drinks", "img": "Diet_Cola.png", "w": "0.5l"},
-    {"ua": "Фанта", "en": "Fanta", "ru": "Фанта", "price": 28, "desc": "Освіжаюча Fanta.", "cat": "drinks", "img": "Orange.png", "w": "0.5l"},
-    {"ua": "Вода Моршинська", "en": "Morshynska Water", "ru": "Вода Моршинская", "price": 15, "desc": "Мінеральна вода Карпат.", "cat": "drinks", "img": "Water.png", "w": "1.5l"},
-    {"ua": "Квас Тарас", "en": "Kvas Taras", "ru": "Квас Тарас", "price": 25, "desc": "Хлібний український квас.", "cat": "drinks", "img": "default.png", "w": "1.0l"},
-    
+    {"ua": "Кока-Кола", "en": "Coca-Cola", "ru": "Кока-Кола", "price": 28, "desc": "Оригінальна Coca-Cola.", "cat": "drinks", "img": "Diet_Cola.png", "w": "0.5 л", "unit": "pcs"},
+    {"ua": "Фанта", "en": "Fanta", "ru": "Фанта", "price": 28, "desc": "Освіжаюча Fanta.", "cat": "drinks", "img": "Orange.png", "w": "0.5 л", "unit": "pcs"},
+    {"ua": "Вода Моршинська", "en": "Morshynska Water", "ru": "Вода Моршинская", "price": 15, "desc": "Мінеральна негазована вода Карпат.", "cat": "drinks", "img": "Water.png", "w": "1.5 л", "unit": "pcs"},
+    {"ua": "Квас Тарас Білий", "en": "Kvas Taras White", "ru": "Квас Тарас Белый", "price": 25, "desc": "Хлібний невільтрований квас.", "cat": "drinks", "img": "default.png", "w": "1.0 л", "unit": "pcs"},
+    {"ua": "Енергетик Monster", "en": "Monster Energy", "ru": "Энергетик Monster", "price": 45, "desc": "Енергетичний напій.", "cat": "drinks", "img": "Energy Drink - Red.png", "w": "0.5 л", "unit": "pcs"},
+    {"ua": "Сік Сандора", "en": "Sandora Juice", "ru": "Сок Сандора", "price": 55, "desc": "Натуральний апельсиновий сік.", "cat": "drinks", "img": "Orange Juice.png", "w": "0.95 л", "unit": "pcs"},
+    {"ua": "Боржомі", "en": "Borjomi Mineral", "ru": "Боржоми", "price": 38, "desc": "Вулканічна лікувальна мінеральна вода.", "cat": "drinks", "img": "Sparkling Water.png", "w": "0.5 л", "unit": "pcs"},
+
+    # Молочне (dairy)
+    {"ua": "Йогурт Галичина", "en": "Galychyna Yogurt", "ru": "Йогурт Галычина", "price": 45, "desc": "Натуральний питний полуничний йогурт.", "cat": "dairy", "img": "Shake.png", "w": "0.4 кг", "unit": "pcs"},
+    {"ua": "Сир Пирятин", "en": "Pyryatyn Cheese", "ru": "Сыр Пирятин", "price": 110, "desc": "Український твердий сир Король Артур.", "cat": "dairy", "img": "Cheese.png", "w": "1 кг", "unit": "kg"},
+
     # Снеки (snacks)
-    {"ua": "Чіпси Lay's", "en": "Lay's Chips", "ru": "Чипсы Lay's", "price": 48, "desc": "Хрусткі картопляні чіпси.", "cat": "snacks", "img": "Potato_Chips.png", "w": "0.1kg"},
-    {"ua": "Шоколад Roshen", "en": "Roshen Chocolate", "ru": "Шоколад Roshen", "price": 35, "desc": "Молочний шоколад Roshen.", "cat": "snacks", "img": "Chocolate Bar.png", "w": "0.09kg"},
-    {"ua": "Арахіс Козацька розвага", "en": "Rozvaha Peanuts", "ru": "Арахис Козацька розвага", "price": 30, "desc": "Солоний смажений арахіс.", "cat": "snacks", "img": "Salted Peanuts.png", "w": "0.08kg"},
-    
+    {"ua": "Чіпси Lay's", "en": "Lay's Chips", "ru": "Чипсы Lay's", "price": 48, "desc": "Хрусткі картопляні чіпси.", "cat": "snacks", "img": "Potato_Chips.png", "w": "0.1 кг", "unit": "pcs"},
+    {"ua": "Шоколад Roshen", "en": "Roshen Chocolate", "ru": "Шоколад Roshen", "price": 35, "desc": "Молочний шоколад Roshen.", "cat": "snacks", "img": "Chocolate Bar.png", "w": "0.09 кг", "unit": "pcs"},
+    {"ua": "Арахіс Козацька розвага", "en": "Rozvaha Peanuts", "ru": "Арахис Козацька розвага", "price": 30, "desc": "Солоний смажений арахіс.", "cat": "snacks", "img": "Salted Peanuts.png", "w": "0.08 кг", "unit": "pcs"},
+    {"ua": "Жуйка Orbit", "en": "Orbit Gum", "ru": "Жвачка Orbit", "price": 15, "desc": "Освіжаюча жувальна гумка.", "cat": "snacks", "img": "Gum.png", "w": "1 шт", "unit": "pcs"},
+    {"ua": "Вівсяне печиво", "en": "Oatmeal Cookies", "ru": "Овсяное печенье", "price": 28, "desc": "Класичне вівсяне печиво з родзинками.", "cat": "snacks", "img": "Oatemeal_Cip.png", "w": "0.3 кг", "unit": "pcs"},
+
+    # Фрукти (fruits)
+    {"ua": "Яблука Гала", "en": "Gala Apples", "ru": "Яблоки Гала", "price": 45, "desc": "Свіжі українські яблука.", "cat": "fruits", "img": "Apple.png", "w": "1 кг", "unit": "kg"},
+    {"ua": "Полуниця свіжа", "en": "Fresh Strawberries", "ru": "Клубника свежая", "price": 180, "desc": "Фермерська солодка полуниця.", "cat": "fruits", "img": "Strawberries.png", "w": "1 кг", "unit": "kg"},
+    {"ua": "Банан свіжий", "en": "Fresh Banana", "ru": "Банан свежий", "price": 55, "desc": "Спілі банани з Еквадору.", "cat": "fruits", "img": "Single Banana.png", "w": "1 кг", "unit": "kg"},
+    {"ua": "Авокадо Хасс", "en": "Hass Avocado", "ru": "Авокадо Хасс", "price": 40, "desc": "Стигле авокадо Хасс.", "cat": "fruits", "img": "Avocado.png", "w": "1 шт", "unit": "pcs"},
+
+    # Овочі (vegetables)
+    {"ua": "Салат свіжий", "en": "Fresh Salad", "ru": "Салат свежий", "price": 32, "desc": "Зелений хрусткий салат.", "cat": "vegetables", "img": "Salad.png", "w": "1 кг", "unit": "kg"},
+
     # Спорт техніка (sport)
-    {"ua": "Смарт-годинник", "en": "Smart Watch", "ru": "Смарт-часы", "price": 1200, "desc": "Спортивний розумний годинник.", "cat": "sport", "img": "sport.png", "w": "0.1kg"},
-    {"ua": "Фітнес-браслет", "en": "Fitness Band", "ru": "Фитнес-браслет", "price": 650, "desc": "Трекер активності крокомір.", "cat": "sport", "img": "sport.png", "w": "0.05kg"},
-    {"ua": "Розумна скакалка", "en": "Smart Skipping Rope", "ru": "Умная скакалка", "price": 350, "desc": "Скакалка з лічильником обертів.", "cat": "sport", "img": "sport.png", "w": "0.2kg"},
+    {"ua": "Смарт-годинник", "en": "Smart Watch", "ru": "Смарт-часы", "price": 1200, "desc": "Спортивний розумний годинник.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
+    {"ua": "Фітнес-браслет", "en": "Fitness Band", "ru": "Fитнес-браслет", "price": 650, "desc": "Трекер активності крокомір.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
+    {"ua": "Розумна скакалка", "en": "Smart Skipping Rope", "ru": "Умная скакалка", "price": 350, "desc": "Скакалка з лічильником обертів.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
+    {"ua": "Навушники бездротові", "en": "Wireless Earbuds", "ru": "Наушники беспроводные", "price": 950, "desc": "Вологозахищені спортивні навушники.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
+    {"ua": "Електронні ваги", "en": "Smart Scales", "ru": "Электронные весы", "price": 450, "desc": "Розумні ваги з вимірюванням жиру.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
+    {"ua": "Пульсометр", "en": "Heart Rate Monitor", "ru": "Пульсометр", "price": 380, "desc": "Нагрудний датчик пульсу.", "cat": "sport", "img": "sport.png", "w": "1 шт", "unit": "pcs"},
 ]
 
-# Генерація унікальних 150+ товарів для наповнення бази даних
 fruits_data = {}
 for idx, item in enumerate(groceries_raw):
-    for sub in range(12):
-        key_name = f"{item['en']} ({sub + 1})" if sub > 0 else item["en"]
-        fruits_data[key_name] = {
-            "names": {"ua": f"{item['ua']} ({sub + 1} партія)" if sub > 0 else item['ua'],
-                      "en": key_name,
-                      "ru": f"{item['ru']} ({sub + 1} партия)" if sub > 0 else item['ru']},
-            "price": item["price"] + (sub * 5),
-            "desc": item["desc"],
-            "category": item["cat"],
-            "image": item["img"],
-            "weight": item["w"],
-            "section": "popular" if idx % 2 == 0 else "new",
-            "colors": [("Стандарт", "#4F46E5")]
-        }
+    fruits_data[item["en"]] = {
+        "names": {"ua": item["ua"], "en": item["en"], "ru": item["ru"]},
+        "price": item["price"],
+        "desc": item["desc"],
+        "category": item["cat"],
+        "image": item["img"],
+        "weight": item["w"],
+        "unit": item["unit"],
+        "section": "popular" if idx % 2 == 0 else "new",
+        "colors": [("Стандарт", "#4F46E5")]
+    }
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry("1040x780")
+        self.geometry("1240x820")
         self.title("ConvenientShop")
         
         self.container = ctk.CTkFrame(self, fg_color=BG_COLOR)
@@ -659,14 +672,15 @@ class MainScreen(ctk.CTkFrame):
     def show_settings(self):
         self.switch_panel(SettingsPanel, "Setting")
 
-# --- ПАНЕЛЬ КАТАЛОГУ З ПАГІНАЦІЄЮ (5 ТОВАРІВ В РЯДУ, 10 РЯДІВ = 50 ТОВАРІВ НА СТОРІНКУ) ---
+# --- ПАНЕЛЬ КАТАЛОГУ З ПАГІНАЦІЄЮ ---
 class CatalogPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         self.current_page = 0
-        self.items_per_page = 50
+        self.items_per_page = 15  # 5 стовпців x 3 рядки = 15 унікальних товарів на сторінку
         self.active_cat = "all"
+        self.card_vars = {}  # Зберігає вибрану кількість/вагу для кожного товару прямо на картці
         
         search_frame = ctk.CTkFrame(self, fg_color="transparent")
         search_frame.pack(fill="x", pady=(0, 15))
@@ -774,50 +788,110 @@ class CatalogPanel(ctk.CTkFrame):
         self.draw_pagination_buttons(total_items)
 
     def draw_product_card(self, parent_frame, name, data, row, col):
-        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=150, height=170, fg_color="white")
+        # Преміальна простора картка для розміщення селекторів кількості
+        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=180, height=235, fg_color="white")
         card.grid(row=row, column=col, padx=6, pady=6)
         card.grid_propagate(False)
         
-        photo = get_product_image_local(data["image"], (65, 65))
+        # Більше фото (80x80) за побажанням користувача
+        photo = get_product_image_local(data["image"], (80, 80))
         img_lbl = ctk.CTkLabel(card, image=photo, text="")
-        img_lbl.pack(pady=(10, 2))
+        img_lbl.pack(pady=(8, 2))
         
         def open_details(e, n=name):
             self.main_screen.switch_panel(DetailsPanel, "DashBoard", n)
         img_lbl.bind("<Button-1>", open_details)
         
         name_frame = ctk.CTkFrame(card, fg_color="transparent")
-        name_frame.pack(fill="x", padx=8)
+        name_frame.pack(fill="x", padx=8, pady=(2, 2))
         
         display_name = data["names"][active_lang].split()[0]
-        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Georgia", 11, "italic"), text_color="black", anchor="w")
+        if len(data["names"][active_lang].split()) > 1:
+            display_name += " " + data["names"][active_lang].split()[1]
+            
+        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Georgia", 11, "bold", "italic"), text_color="black", anchor="w", wraplength=110)
         lbl_name.pack(side="left")
         lbl_name.bind("<Button-1>", open_details)
         
         lbl_weight = ctk.CTkLabel(name_frame, text=data["weight"], font=("Arial", 9), text_color="gray", anchor="e")
         lbl_weight.pack(side="right")
         
+        # Ініціалізуємо змінну вибору кількості прямо на картці
+        if name not in self.card_vars:
+            self.card_vars[name] = tk.StringVar(value="1" if data["unit"] == "pcs" else "1.0")
+            
+        # Панель регулювання кількості/ваги
+        ctrl_frame = ctk.CTkFrame(card, fg_color="transparent")
+        ctrl_frame.pack(fill="x", padx=8, pady=4)
+        
+        def dec_val(n=name, u=data["unit"]):
+            val_str = self.card_vars[n].get()
+            if u == "pcs":
+                new_v = max(1, int(val_str) - 1)
+                self.card_vars[n].set(str(new_v))
+            else:
+                new_v = max(0.5, float(val_str) - 0.5)
+                self.card_vars[n].set(f"{new_v:.1f}")
+                
+        def inc_val(n=name, u=data["unit"]):
+            val_str = self.card_vars[n].get()
+            if u == "pcs":
+                new_v = int(val_str) + 1
+                self.card_vars[n].set(str(new_v))
+            else:
+                new_v = float(val_str) + 0.5
+                self.card_vars[n].set(f"{new_v:.1f}")
+                
+        btn_dec = ctk.CTkButton(
+            ctrl_frame, text="-", command=dec_val, width=22, height=22, 
+            corner_radius=11, fg_color="black", text_color="white", 
+            font=("Arial", 10, "bold"), hover_color="#333333"
+        )
+        btn_dec.pack(side="left")
+        
+        lbl_val = ctk.CTkLabel(ctrl_frame, textvariable=self.card_vars[name], font=("Arial", 11, "bold"), text_color="black", width=40)
+        lbl_val.pack(side="left", padx=2)
+        
+        btn_inc = ctk.CTkButton(
+            ctrl_frame, text="+", command=inc_val, width=22, height=22, 
+            corner_radius=11, fg_color="black", text_color="white", 
+            font=("Arial", 10, "bold"), hover_color="#333333"
+        )
+        btn_inc.pack(side="left")
+        
+        unit_lbl_text = "шт" if data["unit"] == "pcs" else "кг"
+        lbl_unit = ctk.CTkLabel(ctrl_frame, text=unit_lbl_text, font=("Arial", 9, "bold"), text_color="gray")
+        lbl_unit.pack(side="right", padx=2)
+        
+        # Нижня лінія ціни та кнопка «Додати»
         price_frame = ctk.CTkFrame(card, fg_color="transparent")
-        price_frame.pack(side="bottom", fill="x", padx=8, pady=8)
+        price_frame.pack(side="bottom", fill="x", padx=8, pady=6)
         
         lbl_price = ctk.CTkLabel(price_frame, text=f"${data['price']}", font=("Arial", 12, "bold"), text_color="black", anchor="w")
         lbl_price.pack(side="left")
         
         btn_add = ctk.CTkButton(
-            price_frame, text="+", command=lambda n=name: self.quick_add_to_cart(n), 
-            width=24, height=24, corner_radius=12, fg_color="black", 
-            text_color="white", font=("Arial", 12, "bold"), hover_color="#333333"
+            price_frame, text="+ Додати", command=lambda n=name: self.quick_add_to_cart(n), 
+            width=65, height=24, corner_radius=12, fg_color=PRIMARY_COLOR, 
+            text_color="white", font=("Arial", 10, "bold"), hover_color="#4338CA"
         )
         btn_add.pack(side="right")
 
     def quick_add_to_cart(self, name):
         data = fruits_data[name]
+        try:
+            val_str = self.card_vars[name].get()
+            qty = int(val_str) if data["unit"] == "pcs" else float(val_str)
+            if qty <= 0: raise ValueError
+        except ValueError:
+            qty = 1
+            
         for item in cart:
             if item["name"] == name:
-                item["qty"] += 1
+                item["qty"] += qty
                 break
         else:
-            cart.append({"name": name, "price": data["price"], "qty": 1, "color": data["colors"][0][0]})
+            cart.append({"name": name, "price": data["price"], "qty": qty, "color": data["colors"][0][0]})
             
         play_sound("success")
         self.main_screen.update_profile_info()
@@ -1036,7 +1110,7 @@ class CartPanel(ctk.CTkFrame):
             
         total_price = 0
         for index, item in enumerate(cart):
-            sub = item["price"] * item["qty"]
+            sub = int(item["price"] * item["qty"])
             total_price += sub
             
             row = ctk.CTkFrame(self.items_frame, fg_color="#f8f9fa")
@@ -1045,7 +1119,12 @@ class CartPanel(ctk.CTkFrame):
             display_name = fruits_data[item["name"]]["names"][active_lang]
             ctk.CTkLabel(row, text=f"{display_name} ({item['color']})", font=("Arial", 11, "bold"), width=160, anchor="w", wraplength=150, text_color="black").pack(side="left", padx=10)
             
-            qty_spin = ttk.Spinbox(row, from_=1, to=99, width=3, justify="center")
+            unit = fruits_data[item["name"]]["unit"]
+            if unit == "kg":
+                qty_spin = ttk.Spinbox(row, from_=0.5, to=99.0, increment=0.5, width=4, justify="center")
+            else:
+                qty_spin = ttk.Spinbox(row, from_=1, to=99, increment=1, width=4, justify="center")
+                
             qty_spin.pack(side="left", padx=10)
             qty_spin.set(item["qty"])
             qty_spin.bind("<KeyRelease>", lambda e, idx=index, sp=qty_spin: self.update_qty(idx, sp))
@@ -1067,7 +1146,8 @@ class CartPanel(ctk.CTkFrame):
 
     def update_qty(self, idx, sp):
         try:
-            val = int(sp.get())
+            unit = fruits_data[cart[idx]["name"]]["unit"]
+            val = float(sp.get()) if unit == "kg" else int(sp.get())
             if val > 0:
                 cart[idx]["qty"] = val
                 self.refresh_cart_list()
