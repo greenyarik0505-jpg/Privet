@@ -163,3 +163,33 @@ def add_order(username, total, items_count, date_str):
                    (username, date_str, total, items_count))
     conn.commit()
     conn.close()
+
+def delete_user(username):
+    init_db()
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM users WHERE username = ?", (username,))
+    cursor.execute("DELETE FROM favorites WHERE username = ?", (username,))
+    cursor.execute("DELETE FROM reviews WHERE username = ?", (username,))
+    cursor.execute("DELETE FROM orders WHERE username = ?", (username,))
+    conn.commit()
+    conn.close()
+
+def delete_order(username, date_str):
+    init_db()
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM orders WHERE username = ? AND order_date = ?", (username, date_str))
+    conn.commit()
+    conn.close()
+
+def reset_password(username, new_password):
+    init_db()
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    hashed = hash_password(new_password)
+    cursor.execute("UPDATE users SET password = ? WHERE username = ?", (hashed, username))
+    conn.commit()
+    success = cursor.rowcount > 0
+    conn.close()
+    return success

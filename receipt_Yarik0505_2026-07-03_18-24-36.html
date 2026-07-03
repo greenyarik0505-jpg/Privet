@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Чек Мегамаркету</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f3f3f3; padding: 20px; }
+        .receipt { background: white; max-width: 450px; margin: 0 auto; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-top: 10px solid #4a90e2; }
+        h2 { text-align: center; color: #2c3e50; margin-bottom: 5px; }
+        .meta { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { text-align: left; color: #7f8c8d; font-size: 13px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+        td { padding: 10px 0; font-size: 14px; border-bottom: 1px dashed #eee; }
+        .price { text-align: right; }
+        .total-row { font-weight: bold; font-size: 17px; color: #2e7d32; }
+        .footer { text-align: center; font-size: 13px; color: #95a5a6; margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <h2>МЕГАМАРКЕТ ЧЕК</h2>
+        <div class="meta">
+            <b>Покупець:</b> Yarik0505<br>
+            <b>Телефон:</b> +3802313312312312<br>
+            <b>Email:</b> вфвфіфвіф<br>
+            <b>Адреса доставки:</b> фввфіфвіфв<br>
+            <b>Спосіб доставки:</b> Нова Пошта<br>
+            <b>Метод оплати:</b> Готівкою при отриманні<br>
+            <b>Дата:</b> 2026-07-03 18:24:36
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th class="price">Вартість</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Хліб Цар-Хліб Житній Ризький половинка нарізаний<br><small>1 шт. х 30 грн</small></td>
+                <td class="price">30 грн</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="total-row" style="text-align:right; padding-top:10px; border-top: 2px solid #4a90e2;">
+        РАЗОМ ДО СПЛАТИ: 30 грн
+    </div>
+    <div class="footer">Дякуємо за покупку в нашому Мегамаркеті! 🚚</div>
+</div>
+</body>
+</html>
