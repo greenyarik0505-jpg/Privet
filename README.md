@@ -1,69 +1,71 @@
-# 🏬 MEGAMARKET ALL-IN-ONE 🛒
+# 🏬 Silpo Marketplace 🛒
 
-> **A High-Performance Desktop Marketplace Application Built on Python Tkinter, Pillow, and SQLite**
+> **A Desktop Marketplace Application Built on Python CustomTkinter, Pillow, and SQLite**
 
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
-[![Tkinter](https://img.shields.io/badge/GUI-Tkinter-orange.svg)](https://docs.python.org/3/library/tkinter.html)
+[![CustomTkinter](https://img.shields.io/badge/GUI-CustomTkinter-orange.svg)](https://github.com/TomSchimansky/CustomTkinter)
 [![Database](https://img.shields.io/badge/Database-SQLite3-green.svg)](https://www.sqlite.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Welcome to **Megamarket All-in-One** — a robust, enterprise‑grade desktop marketplace client designed to showcase modern Python GUI engineering. What started as a simple fruit store has been completely refactored into a high‑performance shopping platform featuring a local SQLite database, multi‑threaded image caching, dynamic search engine, real‑time reviews, interactive mini‑games, and dynamic HTML checkout invoicing.
+Welcome to **Silpo Marketplace** — a desktop supermarket app built with Python, featuring a real product catalog of 504 items across 7 categories, threaded image loading, user authentication, reviews, and HTML checkout receipts.
 
 ---
 
-## 📷 Screenshots (Вигляд програми)
+## 📷 Screenshots
 
-### 1. Головне вікно програми (Каталог 500+ товарів та Пошук)
+### 1. Головне вікно — Каталог 504 товарів
 ![Головне вікно](screenshot_main_v6.png)
 
-### 2. Вікно деталей товару (Характеристики, Кольори, Відгуки)
+### 2. Деталі товару — Опис, сорт, відгуки
 ![Вікно деталей](screenshot_details_v6.png)
 
-### 3. Перегляд кошика та оформлення покупки
-![Вікно кошика](screenshot_cart_v6.png)
+### 3. Кошик та оформлення замовлення
+![Кошик](screenshot_cart_v6.png)
 
 ---
 
 ## 📋 Table of Contents
 
 1. [✨ Key Features](#-key-features)
-2. [📦 Product Assortment (500+ Items)](#-product-assortment-500-items)
+2. [📦 Product Categories](#-product-categories)
 3. [⚙️ System Architecture](#-system-architecture)
 4. [🛠️ Technology Stack](#-technology-stack)
 5. [🚀 Installation & Setup](#-installation--setup)
-6. [📖 Comprehensive User Guide](#-comprehensive-user-guide)
-7. [💻 Codebase & Database Schema](#-codebase--database-schema)
-8. [🤝 Contribution Guidelines](#-contribution-guidelines)
-9. [📊 Additional Tables & Metrics](#-additional-tables--metrics)
-10. [🖼️ Media Gallery](#-media-gallery)
+6. [📖 User Guide](#-user-guide)
+7. [💻 Database Schema](#-database-schema)
+8. [📊 Feature Table](#-feature-table)
+9. [🤝 Contribution Guidelines](#-contribution-guidelines)
 
 ---
 
 ## ✨ Key Features
 
-- **📦 Massive Catalog (500+ Items):** 5 distinct categories, each housing exactly 100 uniquely generated items with dynamic descriptions, pricing, and custom specifications.
-- **🌐 Async Threaded Image URL Loader:** Automatically fetches high‑definition category illustrations from remote CDNs at startup using background `threading`. Downloads are cached locally in `cache_images/` to ensure lightning‑fast subsequent launches.
-- **🔒 User Authentication & Security:** Integrated signup/login startup window. User credentials are encrypted using SHA‑256 hashes inside the local database.
-- **⚙️ Unified Settings Dashboard:** Language switch (Ukrainian 🇺🇦 / English 🇬🇧 / Russian 🇷🇺), theme toggle (Light ☀️ / Dark 🌙), audio control.
-- **🔍 Real‑Time Query & Filter Engine:** Instant search across hundreds of products, category tabs, price sorting.
-- **❤️ Smart Wishlist:** Pin favorites to the top of the grid.
-
-- **⭐ Interactive Review & Rating Module:** Live average rating updates.
-- **📄 Detailed Delivery Checkout & HTML Receipts:** Full shipping details, professional receipt generation.
+- **📦 Real Catalog (504 Items):** 7 categories of real supermarket products with images, prices, and descriptions.
+- **🌐 Threaded Image Loader:** Downloads and caches product/category images in `cache_images/` using background threads — no UI freezing.
+- **🔒 User Authentication:** Register/login window. Accounts stored in local SQLite database.
+- **🌍 Multi-Language Support:** Switch between Ukrainian 🇺🇦, English 🇬🇧, and Russian 🇷🇺 on the fly.
+- **🎨 Dark / Light Theme:** Toggle between themes dynamically from the Settings panel.
+- **🔍 Real-Time Search:** Instantly filters 504 products as you type.
+- **⭐ Reviews & Ratings:** Submit star ratings and text reviews. Average rating updates live.
+- **📄 Checkout & HTML Receipt:** Fill in delivery info (phone, email, address, courier type, payment) and get a generated HTML receipt saved locally.
+- **📊 Analytics & History:** View your order history and spending analytics.
+- **💰 Wallet Balance:** Top up your in-app balance and pay directly from it.
 
 ---
 
-## 📦 Product Assortment (500+ Items)
+## 📦 Product Categories
 
-Our catalog spans five diverse industries, containing 100 unique SKU variations each:
+The catalog contains **504 real Silpo supermarket products** across 7 categories:
 
-| Category | Icon | Sample Items |
-|----------|------|--------------|
-| **💻 Tech** (`tech`) | ![Tech Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/tech_icon.png) | Laptop Pro 1‑100, Smartwatch X, Bluetooth Headset
-| **🍎 Fresh Fruit** (`fruits`) | ![Fruit Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/fruit_icon.png) | Golden Apple 1‑100, Banana Bunch, Strawberry Pack
-| **💡 Home Decor** (`home`) | ![Home Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/home_icon.png) | Loft Lamp, Cozy Pillow, Wall Clock
-| **⚽ Sports Gear** (`sport`) | ![Sport Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/sport_icon.png) | Leather Soccer Ball, Running Shoes, Yoga Mat
-| **👕 Clothing** (`clothing`) | ![Clothing Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/clothing_icon.png) | Classic T‑Shirt, Denim Jacket, Summer Shorts |
+| # | Category | 🇺🇦 Name | Items |
+|---|----------|----------|-------|
+| 1 | 🥖 Bakeries | Випічка | Bread, bagels, pastries |
+| 2 | 🥛 Dairy | Молочні | Milk, cheese, yogurt |
+| 3 | 🥩 Meat & Fish | М'ясо & Риба | Chicken, beef, fish fillets |
+| 4 | 🍎 Fruits & Vegetables | Фрукти | Apples, bananas, tomatoes |
+| 5 | 🛒 Grocery | Бакалія | Pasta, rice, canned goods |
+| 6 | 🍫 Snacks | Снеки | Chips, nuts, chocolate |
+| 7 | 🥤 Drinks | Напої | Juice, water, energy drinks |
 
 ---
 
@@ -71,21 +73,21 @@ Our catalog spans five diverse industries, containing 100 unique SKU variations 
 
 ```mermaid
 graph TD
-    A[Tkinter Main GUI Thread] --> B[Auth Window]
+    A[CustomTkinter GUI Thread] --> B[Login / Register Window]
     B -->|Success| C[Main App Interface]
     C --> D[Settings Panel]
     C --> E[Shopping Cart]
-    C --> F[Detail View]
-    D -->|Translate UI| C
-    D -->|Toggle Colors| C
-    D -->|Toggle Sound| H[Audio Manager]
+    C --> F[Product Detail View]
+    C --> G[Analytics]
+    C --> H[Order History]
+    D -->|Switch Language| C
+    D -->|Toggle Theme| C
     F -->|Load Reviews| I[(SQLite DB)]
     F -->|Write Review| I
-    C -->|Favorites Pinning| I
-    E -->|Write Order| I
+    E -->|Save Order| I
     E -->|Deduct Balance| I
-    E -->|Generate Invoices| J[Beautiful HTML Receipt]
-    K[Background Threads] -->|URL Fetch| L[Image Caching Engine]
+    E -->|Generate| J[HTML Receipt]
+    K[Background Threads] -->|Download Images| L[Image Cache]
     L -->|Save PNGs| M[cache_images/]
     C -->|Read PNGs| M
 ```
@@ -94,99 +96,113 @@ graph TD
 
 ## 🛠️ Technology Stack
 
-- **Programming Language:** Python 3.8+
-- **GUI Engine:** Standard Library Tkinter
-- **Graphics Processing:** Pillow (PIL) 10.0+
-- **Database Engine:** SQLite3 (Local File‑based SQL)
-- **Network Operations:** `urllib` standard library
-- **Threading Module:** Standard `threading`
-- **Audio Library:** Standard `winsound`
+| Library | Purpose |
+|---------|---------|
+| **CustomTkinter** | Modern GUI framework |
+| **Pillow (PIL)** | Image loading and resizing |
+| **SQLite3** | Local database for users, orders, reviews |
+| **urllib** | Downloading product images |
+| **threading** | Background image loading |
+| **Python 3.8+** | Core language |
 
 ---
 
 ## 🚀 Installation & Setup
 
 ### Prerequisites
-Make sure Python 3.8 or newer is installed. Then install the required packages:
 
 ```bash
-pip install pillow
+pip install customtkinter pillow
 ```
 
-### Installation
-Clone the repository:
+### Clone & Run
 
 ```bash
 git clone https://github.com/greenyarik0505-jpg/Privet.git
 cd Privet
-```
-
-### Execution
-Run the main script to start the Megamarket:
-
-```bash
 python main.py
 ```
 
 ---
 
-## 📖 Comprehensive User Guide
+## 📖 User Guide
 
 ### 1. Getting Started
-* Run the application. On the startup login window, choose **Реєстрація** (Register) to create a new profile or **Увійти** (Login) to log in.
-* Upon login, your account is credited with a default wallet balance.
+- Run the app → **Реєстрація** to register a new account or **Увійти** to log in.
+- Your account starts with a default wallet balance.
 
-### 2. Customizing Your Experience
-* Click **⚙️ Налаштування** (Settings) in the top right corner.
-* Select your preferred language (Ukrainian, English, Russian).
-* Switch to **Dark Theme** if you prefer low‑light environments.
-* Click **+ Поповнити** to add UAH 500 to your virtual wallet.
+### 2. Settings
+- Click **Налаштування** in the left sidebar.
+- Switch language (Ukrainian / English / Russian).
+- Toggle **Dark** or **Light** theme.
+- Click **+ Поповнити** to top up your balance by UAH 500.
 
-### 3. Shopping and Placing Reviews
-* Scroll through the 500+ items catalog or search by typing in the search bar.
-* Filter by category tabs at the top.
-* Click **Детальніше** on any product to view description, choose a color, rate it, write a comment, or add the item to the cart.
-* Click the heart icon on a card to add it to your wishlist and pin it to the top.
+### 3. Shopping
+- Browse the catalog or use the **search bar** to find products instantly.
+- Click any category tile to filter by category.
+- Click a product card to open **details**: see description, choose a variant, set quantity, read/write reviews, and add to cart.
 
 ### 4. Checkout
-* Click **🛒 Переглянути Кошик** at the bottom to inspect cart items.
-* Press **Оформити** (Checkout), fill in your phone number, email, address, delivery type, payment method, and complete your purchase. Your receipt will be instantly generated as a stylized HTML file in the project folder.
+- Go to **Кошик** in the left sidebar to review cart items.
+- Fill in: phone number, email, delivery address, delivery type (Кур'єр / Nova Poshta / Self-pickup), payment method.
+- Click **Оформити замовлення** — an HTML receipt is saved to the project folder.
+
+### 5. Analytics & History
+- **Аналітика** — see total spending and order stats.
+- **Історія** — browse past orders.
 
 ---
 
-## 📊 Additional Tables & Metrics
+## 💻 Database Schema
 
-### Feature Comparison Table
-| Feature | Implemented | Notes |
-|---------|-------------|-------|
-| Async Image Loader | ✅ | Uses background threads, caches to `cache_images/` |
-| Multi‑Language Support | ✅ | Ukrainian, English, Russian |
-| Dark/Light Theme | ✅ | Dynamically applied via Tkinter `ttk.Style` |
-| Wishlist Pinning | ✅ | Stored in SQLite, displayed first |
-| Real‑Time Search | ✅ | Case‑insensitive, debounced input |
-| HTML Invoice Generation | ✅ | Saved as `receipt_<timestamp>.html` |
-| Unit Tests | ❌ | Test suite can be added in `tests/` |
-| CI/CD Pipeline | ❌ | Optional future work |
+```sql
+CREATE TABLE IF NOT EXISTS users (
+    username TEXT PRIMARY KEY,
+    password TEXT,
+    balance INTEGER DEFAULT 1000
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name TEXT,
+    username TEXT,
+    rating INTEGER,
+    text TEXT
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    total INTEGER,
+    items_count INTEGER,
+    date TEXT
+);
+```
 
 ---
 
-## 🖼️ Media Gallery
+## 📊 Feature Table
 
-Below are additional media assets used throughout the application (icons, screenshots, and animations). All images are stored in the repository under the `media/` folder.
-
-| Asset | Description |
-|-------|-------------|
-| ![Tech Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/tech_icon.png) | Category icon for **Tech** |
-| ![Fruit Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/fruit_icon.png) | Category icon for **Fruits** |
-| ![Home Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/home_icon.png) | Category icon for **Home** |
-| ![Sport Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/sport_icon.png) | Category icon for **Sport** |
-| ![Clothing Icon](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/clothing_icon.png) | Category icon for **Clothing** |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Real 504-item catalog | ✅ | 7 Silpo categories |
+| Threaded image loading | ✅ | Cached in `cache_images/` |
+| User authentication | ✅ | Register / Login / Logout |
+| Multi-language (UA/EN/RU) | ✅ | Instant switch |
+| Dark / Light theme | ✅ | Dynamic toggle |
+| Product search | ✅ | Real-time, case-insensitive |
+| Reviews & ratings | ✅ | Per-product, per-user |
+| Cart & checkout | ✅ | With delivery form |
+| HTML receipt | ✅ | Saved as `receipt_*.html` |
+| Wallet balance | ✅ | Top-up & pay |
+| Analytics | ✅ | Spending stats |
+| Order history | ✅ | Past orders list |
+| Unit Tests | ❌ | Planned |
 
 ---
 
 ## 🤝 Contribution Guidelines
 
-We welcome contributions to make Megamarket even better!
 1. Fork the Project.
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
@@ -195,4 +211,4 @@ We welcome contributions to make Megamarket even better!
 
 ---
 
-*Developed with ❤️ as a high‑fidelity showcase of Python GUI desktop software architecture.*
+*Developed with ❤️ as a Python GUI desktop showcase using real Silpo supermarket data.*
