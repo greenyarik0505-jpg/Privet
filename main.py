@@ -326,6 +326,22 @@ def translate_product_name(name_ua, target_lang):
         translated = translated[0].upper() + translated[1:]
     return translated
 
+def remove_white_bg(img, threshold=230):
+    """Replace near-white pixels with transparent — removes white background from product images."""
+    try:
+        img = img.convert("RGBA")
+        data = img.getdata()
+        new_data = []
+        for r, g, b, a in data:
+            if r > threshold and g > threshold and b > threshold:
+                new_data.append((r, g, b, 0))  # transparent
+            else:
+                new_data.append((r, g, b, a))
+        img.putdata(new_data)
+    except Exception:
+        pass
+    return img
+
 def get_product_image_local(img_src, size):
     # Якщо це віддалена URL-адреса з CDN Сільпо
     if img_src.startswith("http://") or img_src.startswith("https://"):
@@ -338,6 +354,7 @@ def get_product_image_local(img_src, size):
                 if img.mode not in ("RGB", "RGBA"):
                     img = img.convert("RGBA")
                 # Робимо зображення чітким, щоб текст на упаковках легко читалися
+                img = remove_white_bg(img)
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.2)
@@ -381,6 +398,7 @@ def get_product_image_local(img_src, size):
                 img = Image.open(dest)
                 if img.mode not in ("RGB", "RGBA"):
                     img = img.convert("RGBA")
+                img = remove_white_bg(img)
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
@@ -394,6 +412,7 @@ def get_product_image_local(img_src, size):
                 img = Image.open(fallback_dest)
                 if img.mode not in ("RGB", "RGBA"):
                     img = img.convert("RGBA")
+                img = remove_white_bg(img)
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
@@ -1095,11 +1114,13 @@ class CatalogPanel(ctk.CTkFrame):
         if len(data["names"][active_lang].split()) > 1:
             display_name += " " + data["names"][active_lang].split()[1]
             
-        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Arial", 12, "bold"), text_color="#1F2937", anchor="w", wraplength=140, justify="left")
+        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Arial", 12, "bold"),
+            text_color=THEMES[current_theme]["text"], anchor="w", wraplength=140, justify="left")
         lbl_name.pack(side="top", anchor="w")
         lbl_name.bind("<Button-1>", open_details)
         
-        lbl_weight = ctk.CTkLabel(name_frame, text=data["weight"], font=("Arial", 10), text_color="gray", anchor="w")
+        lbl_weight = ctk.CTkLabel(name_frame, text=data["weight"], font=("Arial", 10),
+            text_color=THEMES[current_theme]["text_sec"], anchor="w")
         lbl_weight.pack(side="top", anchor="w", pady=(2, 0))
         
         # Ініціалізуємо змінну вибору кількості прямо на картці
@@ -1135,7 +1156,8 @@ class CatalogPanel(ctk.CTkFrame):
         )
         btn_dec.pack(side="left")
         
-        lbl_val = ctk.CTkLabel(ctrl_frame, textvariable=self.card_vars[name], font=("Arial", 11, "bold"), text_color="black", width=40)
+        lbl_val = ctk.CTkLabel(ctrl_frame, textvariable=self.card_vars[name], font=("Arial", 11, "bold"),
+            text_color=THEMES[current_theme]["text"], width=40)
         lbl_val.pack(side="left", padx=2)
         
         btn_inc = ctk.CTkButton(
@@ -1153,7 +1175,8 @@ class CatalogPanel(ctk.CTkFrame):
         price_frame = ctk.CTkFrame(card, fg_color="transparent")
         price_frame.pack(side="bottom", fill="x", padx=8, pady=6)
         
-        lbl_price = ctk.CTkLabel(price_frame, text=f"{data['price']} грн", font=("Arial", 12, "bold"), text_color="black", anchor="w")
+        lbl_price = ctk.CTkLabel(price_frame, text=f"{data['price']} грн", font=("Arial", 12, "bold"),
+            text_color=THEMES[current_theme]["text"], anchor="w")
         lbl_price.pack(side="left")
         
         btn_add = ctk.CTkButton(
