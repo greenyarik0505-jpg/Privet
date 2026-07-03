@@ -479,8 +479,9 @@ class AuthScreen(ctk.CTkFrame):
         self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", hover_color=card_bg, width=200, height=20, font=("Segoe UI", 10, "underline"))
         self.btn_toggle.pack(pady=5)
         
-        # Кнопка зміни теми вгорі праворуч з іконкою Сонця/Місяця
+        # Кнопка зміни теми вгорі праворуч з кольоровою іконкою Сонця/Місяця
         theme_icon = "🌙" if ctk.get_appearance_mode() == "Dark" else "☀️"
+        theme_color = "#f1c40f" if ctk.get_appearance_mode() == "Dark" else "#e67e22"
         self.btn_theme = ctk.CTkButton(
             self, 
             text=theme_icon, 
@@ -488,11 +489,16 @@ class AuthScreen(ctk.CTkFrame):
             width=45, 
             height=28, 
             fg_color="#252538" if ctk.get_appearance_mode() == "Dark" else "#cccccc", 
-            text_color="#ffffff" if ctk.get_appearance_mode() == "Dark" else "#000000",
+            text_color=theme_color,
             bg_color=current_bg,
-            font=("Segoe UI", 12, "bold")
+            font=("Segoe UI", 13, "bold")
         )
         self.btn_theme.place(relx=0.98, rely=0.02, anchor="ne")
+        
+        # Прапорець "Показати пароль"
+        self.show_pass_var = tk.BooleanVar(value=False)
+        self.chk_show_pass = ctk.CTkCheckBox(self.right_frame, text="Показати пароль", variable=self.show_pass_var, command=self.toggle_password_visibility, font=("Segoe UI", 10))
+        self.chk_show_pass.pack(pady=4)
 
     def toggle_mode(self):
         play_sound("click")
@@ -505,7 +511,10 @@ class AuthScreen(ctk.CTkFrame):
             self.btn_toggle.configure(text="← Вхід")
             self.btn_action.pack_forget()
             self.btn_toggle.pack_forget()
+            self.chk_show_pass.pack_forget()
+            
             self.confirm_pass_entry.pack(pady=8)
+            self.chk_show_pass.pack(pady=4)
             self.btn_action.pack(pady=12)
             self.btn_toggle.pack(pady=5)
         else:
@@ -513,6 +522,13 @@ class AuthScreen(ctk.CTkFrame):
             self.btn_action.configure(text="УВІЙТИ", fg_color="#2ecc71", hover_color="#27ae60")
             self.btn_toggle.configure(text="Створити акаунт →")
             self.confirm_pass_entry.pack_forget()
+            self.chk_show_pass.pack_forget()
+            self.btn_action.pack_forget()
+            self.btn_toggle.pack_forget()
+            
+            self.chk_show_pass.pack(pady=4)
+            self.btn_action.pack(pady=12)
+            self.btn_toggle.pack(pady=5)
 
     def handle_action(self):
         if self.is_register_mode:
@@ -560,18 +576,23 @@ class AuthScreen(ctk.CTkFrame):
             play_sound("error")
             messagebox.showerror("Помилка", "Такий логін вже існує!")
 
+    def toggle_password_visibility(self):
+        show_char = "" if self.show_pass_var.get() else "*"
+        self.pass_entry.configure(show=show_char)
+        self.confirm_pass_entry.configure(show=show_char)
+
     def switch_theme(self):
         play_sound("click")
         if ctk.get_appearance_mode() == "Dark":
             ctk.set_appearance_mode("light")
             current_bg = self.bg_color_light
             card_bg = "#ffffff"
-            self.btn_theme.configure(text="☀️", fg_color="#cccccc", text_color="#000000")
+            self.btn_theme.configure(text="☀️", text_color="#e67e22", fg_color="#cccccc")
         else:
             ctk.set_appearance_mode("dark")
             current_bg = self.bg_color_dark
             card_bg = "#21222e"
-            self.btn_theme.configure(text="🌙", fg_color="#252538", text_color="#ffffff")
+            self.btn_theme.configure(text="🌙", text_color="#f1c40f", fg_color="#252538")
             
         # Оновлюємо тло батьківських фреймів для прибирання білих куточків
         self.configure(fg_color=current_bg)
@@ -750,7 +771,7 @@ class CatalogPanel(ctk.CTkFrame):
             is_fav = name in favorites
             heart_text = "Liked" if is_fav else "Like"
             heart_color = "red" if is_fav else "gray"
-            heart_btn = ctk.CTkButton(card, text=heart_text, text_color=heart_color, width=45, height=24, fg_color="transparent", hover_color="transparent", command=lambda n=name: self.toggle_favorite(n))
+            heart_btn = ctk.CTkButton(card, text=heart_text, text_color=heart_color, width=45, height=24, fg_color="transparent", hover_color=None, command=lambda n=name: self.toggle_favorite(n))
             heart_btn.place(relx=0.8, rely=0.1, anchor="center")
             
             img_lbl = ctk.CTkLabel(card, text="Завантаження... 🔄", font=("Segoe UI", 9, "italic"))
