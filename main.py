@@ -11,7 +11,7 @@ import random
 import math
 import threading
 
-# Налаштування стилю за замовчуванням (Світла тема, як у convenientshop)
+# Налаштування стилю (Світла тема, як у convenientshop)
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
@@ -25,20 +25,12 @@ SESSION_FILE = "session.txt"
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 os.makedirs(ASSETS_DIR, exist_ok=True)
 
-# Кольорова палітра дизайну SecureAuditX/convenientshop
-PRIMARY_COLOR = "#4F46E5"    # Індиго
-BG_COLOR = "#A4A4EB"         # М'який фіолетово-блакитний фон
-FRAME_COLOR = "#E0DDF0"      # Лавандово-сірий фон карток/сайдбару
-HOVER_COLOR = "#D7D2F4"      # Світлий фіолетовий для ховеру
-
-CARD_COLORS = [
-    "#7DABDE",  # Синій
-    "#87D7E0",  # Циан
-    "#EA7BBE",  # Рожевий
-    "#BCEAA5",  # Ніжно-зелений
-    "#B9A5EA",  # Пурпурний
-    "#EAA5A6"   # Ніжно-червоний
-]
+# Кольори точ-в-точ як на скріншотах convenientshop
+PRIMARY_COLOR = "#4F46E5"        # Основний індиго
+BG_COLOR = "#F0EFF9"             # Світло-сірий фон контенту
+SIDEBAR_COLOR = "#E5E4F3"        # Лавандовий фон сайдбару
+HOVER_COLOR = "#D7D2F4"          # Ховер меню
+SEARCH_BAR_COLOR = "#8A96EC"     # Колір пошукового поля
 
 # Спробуємо імпортувати winsound для звуків
 try:
@@ -60,9 +52,9 @@ except ImportError:
 import market_db
 market_db.init_db()
 
-# Список файлів зображень з репозиторію SecureAuditX/convenientshop
+# Завантажуємо оригінальні файли з convenientshop для ідентичного відображення
 CONVENIENT_IMAGES = [
-    "Apple.png", "Avocado.png", "SLiced_White_Bread.png", "Cheese.png", 
+    "Apple.png", "Avocado.png", "Bread.png", "Cheese.png", 
     "Chocolate Bar.png", "Diet_Cola.png", "Energy Drink - Red.png", 
     "Orange Juice.png", "Potato_Chips.png", "Salad.png", "Strawberries.png", 
     "Water.png", "Orange.png", "Single Banana.png", "English_Muffins.png", 
@@ -107,212 +99,54 @@ def get_product_image_local(filename, size):
     img = Image.new("RGBA", size, (149, 165, 166, 255))
     return ctk.CTkImage(light_image=img, dark_image=img, size=size)
 
-fruits_data = {}
-
-# Товари та категорії
-groceries = [
-    # Фрукти (fruits)
-    ("Яблука Гала", 45, "Свіжі хрусткі яблука сорту Гала.", "fruits", "Apple.png", [("Червоні", "#e74c3c"), ("Зелені", "#2ecc71")]),
-    ("Авокадо Хасс", 120, "Стиглі плоди авокадо Хасс преміум якості.", "fruits", "Avocado.png", [("Стиглий", "#27ae60")]),
-    ("Полуниця свіжа", 180, "Ароматна літня полуниця з фермерського господарства.", "fruits", "Strawberries.png", [("Червона", "#e74c3c")]),
-    ("Апельсини соковиті", 65, "Солодкі добірні апельсини з Іспанії.", "fruits", "Orange.png", [("Помаранчевий", "#e67e22")]),
-    ("Банан еквадорський", 55, "Добірні банани, багаті на калій.", "fruits", "Single Banana.png", [("Жовтий", "#f1c40f")]),
-    
-    # Випічка (bakeries)
-    ("Свіжий білий хліб", 22, "М'який нарізний хліб на кожен день.", "bakeries", "SLiced_White_Bread.png", [("Класичний", "#f39c12")]),
-    ("Мафіни англійські", 48, "Традиційні пишні англійські мафіни.", "bakeries", "English_Muffins.png", [("Ваніль", "#f1c40f"), ("Шоколад", "#34495e")]),
-    ("Пшеничний хліб", 26, "Ароматний корисний хліб з цільного зерна.", "bakeries", "Honey Wheat Sliced Bread.png", [("Медовий", "#d35400")]),
-    ("Пшенична тортилья", 35, "М'які тонкі коржі для мексиканських тако та буріто.", "bakeries", "Flour_Tortillas.png", [("Класична", "#f1c40f")]),
-    ("Бублик класичний", 18, "Смачний бублик, ідеальний для сніданку.", "bakeries", "Single Plain Bagel.png", [("Звичайний", "#f5b041")]),
-    
-    # Молочне (dairy)
-    ("Сир Чеддер", 110, "Натуральний сир Чеддер середньої витримки.", "dairy", "Cheese.png", [("Твердий", "#f1c40f")]),
-    ("Молочний коктейль", 45, "Густий молочний коктейль із полуничним смаком.", "dairy", "Shake.png", [("Полуничний", "#ff7979"), ("Шоколадний", "#8d6e63")]),
-    
-    # Напої (drinks)
-    ("Кола Дієтична", 28, "Освіжаючий напій без цукру.", "drinks", "Diet_Cola.png", [("Класична", "#2c3e50")]),
-    ("Енергетик Red Bull", 55, "Напій для підвищення енергії та концентрації.", "drinks", "Energy Drink - Red.png", [("Червоний", "#e74c3c"), ("Синій", "#3498db")]),
-    ("Сік апельсиновий", 42, "Свіжовичавлений апельсиновий сік без консервантів.", "drinks", "Orange Juice.png", [("Натуральний", "#e67e22")]),
-    ("Мінеральна вода", 15, "Очищена питна мінеральна вода негазована.", "drinks", "Water.png", [("Негазована", "#3498db")]),
-    ("Вода газована", 18, "Освіжаюча газована вода з мікроелементами.", "drinks", "Sparkling Water.png", [("Газована", "#85c1e9")]),
-    
-    # Снеки (snacks)
-    ("Шоколадний батончик", 25, "Поживний батончик з молочного шоколаду з горіхами.", "snacks", "Chocolate Bar.png", [("Молочний", "#8d6e63")]),
-    ("Картопляні чіпси", 48, "Хрусткі золотисті чіпси зі смаком паприки.", "snacks", "Potato_Chips.png", [("Паприка", "#e74c3c"), ("Сіль", "#f1c40f")]),
-    ("Вівсяне печиво", 38, "Ніжне вівсяне печиво з шматочками шоколаду.", "snacks", "Oatemeal_Cip.png", [("Шоколад", "#34495e")]),
-    ("Жувальна гумка", 15, "Жувальна гумка з освіжаючим смаком м'яти.", "snacks", "Gum.png", [("М'ята", "#2ecc71")]),
-    ("Солоний арахіс", 30, "Смажений солоний арахіс до напоїв.", "snacks", "Salted Peanuts.png", [("Солоний", "#f39c12")])
+# Дані продуктів з вагами та цінами точ-в-точ як на скріншоті
+popular_items = [
+    {"name": "Bread", "weight": "2.5kg", "price": 6.99, "image": "Bread.png", "category": "bakeries"},
+    {"name": "Egg", "weight": "4kg", "price": 12.99, "image": "Avocado.png", "category": "dairy"},
+    {"name": "Coke", "weight": "0.3kg", "price": 2.90, "image": "Diet_Cola.png", "category": "drinks"},
+    {"name": "Meat", "weight": "9kg", "price": 128.98, "image": "default.png", "category": "bakeries"},
+    {"name": "Oil", "weight": "12kg", "price": 94.98, "image": "default.png", "category": "bakeries"},
+    {"name": "Chips", "weight": "0.1kg", "price": 0.98, "image": "Potato_Chips.png", "category": "snacks"}
 ]
 
-# Створюємо 100+ товарів
-for idx, (base_name, price, desc, cat, img_name, colors) in enumerate(groceries):
-    for sub in range(5):
-        unique_name = f"{base_name} ({sub + 1} партія)" if sub > 0 else base_name
-        fruits_data[unique_name] = {
-            "price": price + (sub * 3),
-            "desc": desc,
-            "category": cat,
-            "image": img_name,
-            "colors": colors
-        }
+new_items = [
+    {"name": "Indomie", "weight": "0.9kg", "price": 1.56, "image": "default.png", "category": "snacks"},
+    {"name": "Monster", "weight": "1kg", "price": 3.99, "image": "Energy Drink - Red.png", "category": "drinks"},
+    {"name": "Yogourt", "weight": "6kg", "price": 39.99, "image": "Shake.png", "category": "dairy"},
+    {"name": "Bread", "weight": "2.5kg", "price": 6.99, "image": "Bread.png", "category": "bakeries"},
+    {"name": "Strawberries", "weight": "0.5kg", "price": 8.50, "image": "Strawberries.png", "category": "fruits"},
+    {"name": "Apple", "weight": "1.2kg", "price": 3.49, "image": "Apple.png", "category": "fruits"}
+]
 
-LANGS = {
-    "ua": {
-        "title": "Мегамаркет Все-в-Одному",
-        "search_label": "Пошук:",
-        "balance_label": "Баланс:",
-        "topup_btn": "+ Поповнити",
-        "history_btn": "Історія",
-        "cart_btn": "Кошик",
-        "details_btn": "Детальніше",
-        "all_cat": "Усі",
-        "tech_cat": "Випічка",
-        "fruits_cat": "Фрукти",
-        "home_cat": "Молочне",
-        "sport_cat": "Напої",
-        "clothing_cat": "Снеки",
-        "sort_cheap": "Спочатку дешевші",
-        "sort_expensive": "Спочатку дорожчі",
-        "auth_title": "Авторизація",
-        "login_btn": "Увійти",
-        "register_btn": "Реєстрація",
-        "username_lbl": "Логін:",
-        "password_lbl": "Пароль:",
-        "logout_btn": "Вийти",
-        "details_title": "Деталі товару",
-        "color_lbl": "Виберіть сорт/колір:",
-        "qty_lbl": "Кількість:",
-        "add_to_cart_btn": "Додати в кошик",
-        "reviews_lbl": "Відгуки та оцінки:",
-        "add_review_lbl": "Додати відгук:",
-        "submit_review_btn": "Надіслати",
-        "cart_title": "Ваш кошик",
-        "cart_empty": "Кошик порожній",
-        "subtotal_lbl": "Сума:",
-        "discount_lbl": "Знижка:",
-        "total_lbl": "Разом до сплати:",
-        "checkout_btn": "Оформити",
-        "clear_cart_btn": "Очистити кошик",
-        "history_title": "Історія замовлень",
-        "no_orders": "Замовлень ще не було",
-        "order_str": "Замовлення",
-        "items_count_str": "Товарів",
-        "insufficient_balance": "Недостатньо коштів на балансі!",
-        "success_purchase": "Дякуємо за замовлення! Чек збережено",
-        "settings_btn": "Налаштування",
-        "settings_title": "Настройки программы",
-        "lang_lbl": "Язык интерфейса:",
-        "theme_lbl": "Тема оформления:",
-        "theme_light": "Светлая",
-        "theme_dark": "Темная",
-        "sound_chk": "Звуковые эффекты"
-    },
-    "en": {
-        "title": "ConvenientShop",
-        "search_label": "Search:",
-        "balance_label": "Balance:",
-        "topup_btn": "+ Top Up",
-        "history_btn": "History",
-        "cart_btn": "Cart",
-        "details_btn": "Details",
-        "all_cat": "All",
-        "tech_cat": "Bakeries",
-        "fruits_cat": "Fruits",
-        "home_cat": "Dairy",
-        "sport_cat": "Drinks",
-        "clothing_cat": "Snacks",
-        "sort_cheap": "Price: Low to High",
-        "sort_expensive": "Price: High to Low",
-        "auth_title": "Authentication",
-        "login_btn": "Login",
-        "register_btn": "Register",
-        "username_lbl": "Username:",
-        "password_lbl": "Password:",
-        "logout_btn": "Logout",
-        "details_title": "Product Details",
-        "color_lbl": "Select variety/color:",
-        "qty_lbl": "Quantity:",
-        "add_to_cart_btn": "Add to Cart",
-        "reviews_lbl": "Reviews & Ratings:",
-        "add_review_lbl": "Add a Review:",
-        "submit_review_btn": "Submit",
-        "cart_title": "Your Cart",
-        "cart_empty": "Cart is empty",
-        "subtotal_lbl": "Subtotal:",
-        "discount_lbl": "Discount:",
-        "total_lbl": "Total to pay:",
-        "checkout_btn": "Checkout",
-        "clear_cart_btn": "Clear Cart",
-        "history_title": "Order History",
-        "no_orders": "No orders yet",
-        "order_str": "Order",
-        "items_count_str": "Items",
-        "insufficient_balance": "Insufficient balance! Please top up.",
-        "success_purchase": "Thank you! Receipt saved",
-        "settings_btn": "Settings",
-        "settings_title": "Application Settings",
-        "lang_lbl": "Interface Language:",
-        "theme_lbl": "Color Theme:",
-        "theme_light": "Light",
-        "theme_dark": "Dark",
-        "sound_chk": "Sound Effects"
-    },
-    "ru": {
-        "title": "Мегамаркет Все-в-Одном",
-        "search_label": "Поиск:",
-        "balance_label": "Баланс:",
-        "topup_btn": "+ Пополнить",
-        "history_btn": "История",
-        "cart_btn": "Корзина",
-        "details_btn": "Подробнее",
-        "all_cat": "Все",
-        "tech_cat": "Выпечка",
-        "fruits_cat": "Фрукты",
-        "home_cat": "Молочное",
-        "sport_cat": "Напитки",
-        "clothing_cat": "Снеки",
-        "sort_cheap": "Сначала дешевые",
-        "sort_expensive": "Сначала дорогие",
-        "auth_title": "Авторизация",
-        "login_btn": "Войти",
-        "register_btn": "Регистрация",
-        "username_lbl": "Логин:",
-        "password_lbl": "Пароль:",
-        "logout_btn": "Выйти",
-        "details_title": "Детали товара",
-        "color_lbl": "Выберите сорт/цвет:",
-        "qty_lbl": "Количество:",
-        "add_to_cart_btn": "Добавить в корзину",
-        "reviews_lbl": "Отзывы и оценки:",
-        "add_review_lbl": "Добавить отзыв:",
-        "submit_review_btn": "Отправить",
-        "cart_title": "Ваша корзина",
-        "cart_empty": "Корзина пуста",
-        "subtotal_lbl": "Сумма:",
-        "discount_lbl": "Скидка:",
-        "total_lbl": "Итого к оплате:",
-        "checkout_btn": "Оформить",
-        "clear_cart_btn": "Очистить корзину",
-        "history_title": "История заказов",
-        "no_orders": "Заказов еще не было",
-        "order_str": "Заказ",
-        "items_count_str": "Товаров",
-        "insufficient_balance": "Недостаточно средств на балансе!",
-        "success_purchase": "Спасибо за покупку! Чек сохранен",
-        "settings_btn": "Настройки",
-        "settings_title": "Настройки программы",
-        "lang_lbl": "Язык интерфейса:",
-        "theme_lbl": "Тема оформления:",
-        "theme_light": "Светлая",
-        "theme_dark": "Темная",
-        "sound_chk": "Звуковые эффекты"
+fruits_data = {}
+for idx, item in enumerate(popular_items):
+    fruits_data[item["name"]] = {
+        "price": item["price"],
+        "desc": f"Свіжий продукт {item['name']} вагою {item['weight']}.",
+        "category": item["category"],
+        "image": item["image"],
+        "weight": item["weight"],
+        "section": "popular",
+        "colors": [("Стандарт", "#4F46E5")]
     }
-}
+
+for idx, item in enumerate(new_items):
+    # Додаємо унікальне ім'я, щоб уникнути конфліктів ключів
+    key_name = f"{item['name']} (Новий)" if item["name"] in fruits_data else item["name"]
+    fruits_data[key_name] = {
+        "price": item["price"],
+        "desc": f"Новинка! {item['name']} вагою {item['weight']}.",
+        "category": item["category"],
+        "image": item["image"],
+        "weight": item["weight"],
+        "section": "new",
+        "colors": [("Стандарт", "#4F46E5")]
+    }
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry("1020x760")
+        self.geometry("1040x780")
         self.title("ConvenientShop")
         
         self.container = ctk.CTkFrame(self, fg_color=BG_COLOR)
@@ -349,37 +183,26 @@ class App(ctk.CTk):
     def show_main_screen(self):
         self.show_screen(MainScreen)
 
-# --- ЕКРАН АВТОРИЗАЦІЇ (ДИЗАЙН 100% ВІДПОВІДАЄ CONVENIENTSHOP) ---
+# --- ЕКРАН АВТОРИЗАЦІЇ ---
 class AuthScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
         super().__init__(parent, fg_color=BG_COLOR)
         self.controller = app_controller
         
-        self.card = ctk.CTkFrame(
-            self, 
-            corner_radius=16, 
-            width=800, 
-            height=660, 
-            fg_color=BG_COLOR
-        )
+        self.card = ctk.CTkFrame(self, corner_radius=16, width=800, height=660, fg_color=BG_COLOR)
         self.card.place(relx=0.5, rely=0.5, anchor="center")
         
         self.card.grid_columnconfigure(0, weight=1)
         self.card.grid_columnconfigure(1, weight=1)
-        self.card.grid_rowconfigure(0, weight=1)
         
         self.left_branding_frame = ctk.CTkFrame(self.card, fg_color=BG_COLOR)
         self.left_branding_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
-        self.left_branding_frame.grid_columnconfigure(0, weight=1)
-        self.left_branding_frame.grid_rowconfigure(0, weight=1)
         
-        # Логотип (Малюємо векторний стікер логотипу)
         self.left_canvas = tk.Canvas(self.left_branding_frame, width=240, height=340, bg=BG_COLOR, bd=0, highlightthickness=0)
         self.left_canvas.pack(fill="both", expand=True)
         self.draw_vector_graphics()
         
-        # Форма авторизації (Кольори та розміри з оригінального репозиторію!)
-        self.login_frame = ctk.CTkFrame(self.card, fg_color=FRAME_COLOR, corner_radius=20, width=380, height=520)
+        self.login_frame = ctk.CTkFrame(self.card, fg_color=SIDEBAR_COLOR, corner_radius=20, width=380, height=520)
         self.login_frame.grid(row=0, column=1, sticky="nsew", padx=30, pady=50)
         self.login_frame.pack_propagate(False)
         
@@ -388,14 +211,13 @@ class AuthScreen(ctk.CTkFrame):
         self.lbl_title = ctk.CTkLabel(self.login_frame, text="LOGIN", font=("Arial", 36, "bold"), text_color=PRIMARY_COLOR)
         self.lbl_title.pack(pady=(40, 30))
         
-        # Поля введення
         self.user_lbl = ctk.CTkLabel(self.login_frame, text="EMAIL / USERNAME", font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
         self.user_lbl.pack(fill="x", padx=45, pady=(5, 2))
         
         self.user_entry = ctk.CTkEntry(
             self.login_frame, placeholder_text="enter username", font=("Arial", 14), 
             width=290, height=45, fg_color=PRIMARY_COLOR, text_color="white", 
-            placeholder_text_color=FRAME_COLOR, border_color=PRIMARY_COLOR, 
+            placeholder_text_color=SIDEBAR_COLOR, border_color=PRIMARY_COLOR, 
             corner_radius=10, border_width=2
         )
         self.user_entry.pack(padx=40, pady=(0, 10))
@@ -406,7 +228,7 @@ class AuthScreen(ctk.CTkFrame):
         self.pass_entry = ctk.CTkEntry(
             self.login_frame, placeholder_text="enter password", show="*", font=("Arial", 14), 
             width=290, height=45, fg_color=PRIMARY_COLOR, text_color="white", 
-            placeholder_text_color=FRAME_COLOR, border_color=PRIMARY_COLOR, 
+            placeholder_text_color=SIDEBAR_COLOR, border_color=PRIMARY_COLOR, 
             corner_radius=10, border_width=2
         )
         self.pass_entry.pack(padx=40, pady=(0, 5))
@@ -415,11 +237,10 @@ class AuthScreen(ctk.CTkFrame):
         self.confirm_pass_entry = ctk.CTkEntry(
             self.login_frame, placeholder_text="confirm password", show="*", font=("Arial", 14), 
             width=290, height=45, fg_color=PRIMARY_COLOR, text_color="white", 
-            placeholder_text_color=FRAME_COLOR, border_color=PRIMARY_COLOR, 
+            placeholder_text_color=SIDEBAR_COLOR, border_color=PRIMARY_COLOR, 
             corner_radius=10, border_width=2
         )
         
-        # Кнопка входу (Кругла кнопка з радіусом 50)
         self.btn_action = ctk.CTkButton(
             self.login_frame, text="Login", command=self.handle_action, 
             width=290, height=45, font=("Arial", 20, "bold"), 
@@ -428,7 +249,6 @@ class AuthScreen(ctk.CTkFrame):
         )
         self.btn_action.pack(padx=40, pady=(15, 10))
         
-        # Перемикання режимів
         self.toggle_frame = ctk.CTkFrame(self.login_frame, fg_color="transparent")
         self.toggle_frame.pack(pady=(5, 20))
         
@@ -441,7 +261,6 @@ class AuthScreen(ctk.CTkFrame):
         )
         self.btn_toggle.pack(side="left")
         
-        # Показати пароль
         self.show_pass_var = tk.BooleanVar(value=False)
         self.chk_show_pass = ctk.CTkCheckBox(self.login_frame, text="Показати пароль", variable=self.show_pass_var, command=self.toggle_password_visibility, font=("Arial", 10), text_color=PRIMARY_COLOR, border_color=PRIMARY_COLOR)
         self.chk_show_pass.pack(pady=2)
@@ -541,69 +360,62 @@ class AuthScreen(ctk.CTkFrame):
 
     def draw_vector_graphics(self):
         self.left_canvas.delete("all")
-        circle_color = FRAME_COLOR
-        stroke_color = PRIMARY_COLOR
-        
-        # Круглий фоновий елемент
-        self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
+        self.left_canvas.create_oval(50, 90, 190, 230, fill=SIDEBAR_COLOR, outline="")
         self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
         self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
         self.left_canvas.create_polygon(25, 230, 35, 245, 15, 245, outline="#e74c3c", fill="", width=2)
         self.left_canvas.create_oval(215, 240, 225, 250, outline="#3498db", width=2)
         
-        # Стилізований 3D-ноутбук (вектор)
-        self.left_canvas.create_rectangle(90, 125, 150, 165, fill=BG_COLOR, outline=stroke_color, width=2)
-        self.left_canvas.create_polygon(80, 165, 160, 165, 165, 172, 75, 172, fill=circle_color, outline=stroke_color, width=2)
-        self.left_canvas.create_line(115, 170, 125, 170, fill=stroke_color, width=2)
-        self.left_canvas.create_oval(115, 133, 125, 143, fill="", outline=stroke_color, width=2)
-        self.left_canvas.create_arc(107, 145, 133, 165, start=0, extent=180, style="arc", outline=stroke_color, width=2)
+        self.left_canvas.create_rectangle(90, 125, 150, 165, fill=BG_COLOR, outline=PRIMARY_COLOR, width=2)
+        self.left_canvas.create_polygon(80, 165, 160, 165, 165, 172, 75, 172, fill=SIDEBAR_COLOR, outline=PRIMARY_COLOR, width=2)
+        self.left_canvas.create_line(115, 170, 125, 170, fill=PRIMARY_COLOR, width=2)
+        self.left_canvas.create_oval(115, 133, 125, 143, fill="", outline=PRIMARY_COLOR, width=2)
+        self.left_canvas.create_arc(107, 145, 133, 165, start=0, extent=180, style="arc", outline=PRIMARY_COLOR, width=2)
 
     def switch_theme(self):
-        # Оскільки в convenientshop тема фіксована (light), ми залишаємо цей метод для сумісності
         pass
 
-# --- ГОЛОВНИЙ ЕКРАН З БІЧНОЮ НАВІГАЦІЄЮ ---
+# --- ГОЛОВНИЙ ЕКРАН З БІЧНОЮ НАВІГАЦІЄЮ (ТОЧ-В-ТОЧ СТИЛЬ ЗІ СКРІНШОТУ 1) ---
 class MainScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
         super().__init__(parent, fg_color=BG_COLOR)
         self.controller = app_controller
         
-        # Сайдбар в лавандових тонах як у convenientshop
-        self.sidebar = ctk.CTkFrame(self, width=220, fg_color=FRAME_COLOR, corner_radius=10)
-        self.sidebar.pack(side="left", fill="y", padx=10, pady=10)
+        # Сайдбар точ-в-точ як на першому скріншоті
+        self.sidebar = ctk.CTkFrame(self, width=210, fg_color=SIDEBAR_COLOR, corner_radius=0)
+        self.sidebar.pack(side="left", fill="y")
         
-        self.lbl_logo = ctk.CTkLabel(self.sidebar, text="CONVENIENT SHOP", font=("Arial", 18, "bold"), text_color=PRIMARY_COLOR)
-        self.lbl_logo.pack(pady=20)
+        # Профільна аватарка (круг з фіолетовим профілем користувача)
+        self.avatar_canvas = tk.Canvas(self.sidebar, width=100, height=100, bg=SIDEBAR_COLOR, bd=0, highlightthickness=0)
+        self.avatar_canvas.pack(pady=(30, 20))
+        self.draw_profile_avatar()
         
-        # Аватар користувача
-        self.profile_lbl = ctk.CTkLabel(self.sidebar, text="👤", font=("Arial", 48), text_color=PRIMARY_COLOR)
-        self.profile_lbl.pack(pady=5)
-        
-        self.username_lbl = ctk.CTkLabel(self.sidebar, text=logged_in_user, font=("Arial", 14, "bold"), text_color="black")
-        self.username_lbl.pack(pady=2)
-        
-        self.balance_lbl = ctk.CTkLabel(self.sidebar, text="0 грн", font=("Arial", 12, "bold"), text_color="#2ecc71")
+        self.balance_lbl = ctk.CTkLabel(self.sidebar, text="0 грн", font=("Arial", 11, "bold"), text_color="#2ecc71")
         self.balance_lbl.pack(pady=2)
         
-        btn_topup = ctk.CTkButton(self.sidebar, text="+ Поповнити", command=self.topup_balance, width=120, height=28, font=("Arial", 10, "bold"), fg_color=PRIMARY_COLOR, hover_color="#4338CA")
+        btn_topup = ctk.CTkButton(self.sidebar, text="+ Поповнити", command=self.topup_balance, width=110, height=24, font=("Arial", 9, "bold"), fg_color=PRIMARY_COLOR, hover_color="#4338CA")
         btn_topup.pack(pady=5)
         
         self.nav_buttons = {}
+        # Імена кнопок точ-в-точ як на скріншоті
         navs = [
-            ("Каталог", self.show_catalog),
-            ("Кошик", self.show_cart),
-            ("Аналітика", self.show_analytics),
-            ("Історія", self.show_history),
-            ("Налаштування", self.show_settings)
+            ("DashBoard", self.show_catalog),
+            ("Checkout", self.show_cart),
+            ("Categories", self.show_analytics), # Використовуємо вкладку категорій під аналітику
+            ("History", self.show_history),
+            ("Setting", self.show_settings)
         ]
         for name, cmd in navs:
-            # Навігаційні кнопки як у convenientshop: прозорі з жирним шрифтом на ховері
-            btn = ctk.CTkButton(self.sidebar, text=name, anchor="w", fg_color="transparent", text_color="black", hover_color=HOVER_COLOR, command=cmd, font=("Arial", 14, "bold"), height=42)
-            btn.pack(fill="x", padx=10, pady=5)
+            btn = ctk.CTkButton(
+                self.sidebar, text=name, anchor="w", fg_color="transparent", 
+                text_color="black", hover_color=HOVER_COLOR, command=cmd, 
+                font=("Arial", 14), height=42, corner_radius=6
+            )
+            btn.pack(fill="x", padx=15, pady=4)
             self.nav_buttons[name] = btn
             
-        btn_logout = ctk.CTkButton(self.sidebar, text="Вийти", anchor="w", fg_color="#e74c3c", hover_color="#c0392b", command=self.logout, font=("Arial", 12, "bold"))
-        btn_logout.pack(side="bottom", fill="x", padx=10, pady=20)
+        btn_logout = ctk.CTkButton(self.sidebar, text="Logout", anchor="w", fg_color="transparent", text_color="black", hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
+        btn_logout.pack(side="bottom", fill="x", padx=15, pady=20)
         
         self.content_container = ctk.CTkFrame(self, fg_color="transparent")
         self.content_container.pack(side="right", fill="both", expand=True, padx=10, pady=10)
@@ -612,28 +424,36 @@ class MainScreen(ctk.CTkFrame):
         self.show_catalog()
         self.update_profile_info()
 
+    def draw_profile_avatar(self):
+        # Малюємо аватарку як на скріншоті: фіолетове коло, в ньому фіолетовий чоловічок
+        self.avatar_canvas.create_oval(10, 10, 90, 90, fill="#EBE8F9", outline="")
+        # Голова
+        self.avatar_canvas.create_oval(40, 28, 60, 48, outline="#4F46E5", width=3)
+        # Плечі
+        self.avatar_canvas.create_arc(26, 54, 74, 95, start=0, extent=180, style="arc", outline="#4F46E5", width=3)
+
     def update_sidebar_state(self, active_name):
         cart_count = sum(item["qty"] for item in cart)
-        cart_text = f"Кошик ({cart_count})" if cart_count > 0 else "Кошик"
+        cart_text = f"Checkout ({cart_count})" if cart_count > 0 else "Checkout"
         
         for name, btn in self.nav_buttons.items():
-            if name == "Кошик":
+            if name == "Checkout":
                 btn.configure(text=cart_text)
             
             if name == active_name:
-                btn.configure(fg_color=HOVER_COLOR, text_color="black")
+                btn.configure(fg_color="white", font=("Arial", 14, "bold"))
             else:
-                btn.configure(fg_color="transparent", text_color="black")
+                btn.configure(fg_color="transparent", font=("Arial", 14))
 
     def update_profile_info(self):
         balance = market_db.get_balance(logged_in_user)
         self.balance_lbl.configure(text=f"{balance} грн")
         if self.active_panel:
-            panel_name = "Каталог"
-            if isinstance(self.active_panel, CartPanel): panel_name = "Кошик"
-            elif isinstance(self.active_panel, AnalyticsPanel): panel_name = "Аналітика"
-            elif isinstance(self.active_panel, HistoryPanel): panel_name = "Історія"
-            elif isinstance(self.active_panel, SettingsPanel): panel_name = "Налаштування"
+            panel_name = "DashBoard"
+            if isinstance(self.active_panel, CartPanel): panel_name = "Checkout"
+            elif isinstance(self.active_panel, AnalyticsPanel): panel_name = "Categories"
+            elif isinstance(self.active_panel, HistoryPanel): panel_name = "History"
+            elif isinstance(self.active_panel, SettingsPanel): panel_name = "Setting"
             self.update_sidebar_state(panel_name)
 
     def topup_balance(self):
@@ -663,141 +483,192 @@ class MainScreen(ctk.CTkFrame):
         self.update_sidebar_state(active_name)
 
     def show_catalog(self):
-        self.switch_panel(CatalogPanel, "Каталог")
+        self.switch_panel(CatalogPanel, "DashBoard")
 
     def show_cart(self):
-        self.switch_panel(CartPanel, "Кошик")
+        self.switch_panel(CartPanel, "Checkout")
 
     def show_analytics(self):
-        self.switch_panel(AnalyticsPanel, "Аналітика")
+        self.switch_panel(AnalyticsPanel, "Categories")
 
     def show_history(self):
-        self.switch_panel(HistoryPanel, "Історія")
+        self.switch_panel(HistoryPanel, "History")
 
     def show_settings(self):
-        self.switch_panel(SettingsPanel, "Налаштування")
+        self.switch_panel(SettingsPanel, "Setting")
 
-# --- ПАНЕЛЬ КАТАЛОГУ (РІЗНОКОЛЬОРОВІ КАРТКИ З КОЛІРНОЇ ПАЛІТРИ CONVENIENTSHOP) ---
+# --- ПАНЕЛЬ КАТАЛОГУ (ТОЧ-В-ТОЧ СТИЛЬ ЗІ СКРІНШОТУ 2) ---
 class CatalogPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        top_bar = ctk.CTkFrame(self, fg_color=FRAME_COLOR, corner_radius=10)
-        top_bar.pack(fill="x", pady=(0, 10))
+        # Пошукове поле як на другому скріншоті: довге, кругле, фіолетове із білим текстом і лупою по центру
+        search_frame = ctk.CTkFrame(self, fg_color="transparent")
+        search_frame.pack(fill="x", pady=(0, 15))
         
-        self.search_entry = ctk.CTkEntry(top_bar, placeholder_text="Пошук продуктів...", width=200, fg_color="white", text_color="black", border_color=PRIMARY_COLOR)
-        self.search_entry.pack(side="left", padx=10, pady=10)
+        self.search_entry = ctk.CTkEntry(
+            search_frame, placeholder_text="Search", font=("Arial", 14), 
+            height=36, fg_color=SEARCH_BAR_COLOR, text_color="white", 
+            placeholder_text_color="white", border_width=0, corner_radius=50, justify="center"
+        )
+        self.search_entry.pack(fill="x", padx=10)
         self.search_entry.bind("<KeyRelease>", self.filter_products)
         
-        self.active_cat = "all"
-        self.cat_buttons = {}
-        
-        cats = [("Усі", "all"), ("Випічка", "bakeries"), ("Молочне", "dairy"), ("Фрукти", "fruits"), ("Напої", "drinks"), ("Снеки", "snacks")]
-        for text, key in cats:
-            btn = ctk.CTkButton(top_bar, text=text, command=lambda k=key: self.set_category(k), width=70, height=28, font=("Arial", 10, "bold"), fg_color=PRIMARY_COLOR, hover_color="#4338CA")
-            btn.pack(side="left", padx=3)
-            self.cat_buttons[key] = btn
-            
-        self.sort_menu = ctk.CTkOptionMenu(top_bar, values=["Дешевші", "Дорожчі"], command=self.set_sorting, width=110, fg_color=PRIMARY_COLOR, button_color=PRIMARY_COLOR)
-        self.sort_menu.pack(side="right", padx=10, pady=10)
-        self.active_sort = "cheap"
-        
-        self.fav_only_var = tk.BooleanVar(value=False)
-        self.fav_btn = ctk.CTkCheckBox(top_bar, text="Обране", variable=self.fav_only_var, command=self.draw_grid, font=("Arial", 10, "bold"), text_color="black", border_color=PRIMARY_COLOR)
-        self.fav_btn.pack(side="right", padx=10)
-        
+        # Скрол рамка для всього контенту
         self.scroll_frame = ctk.CTkScrollableFrame(self, fg_color="transparent")
         self.scroll_frame.pack(fill="both", expand=True)
         
-        self.draw_grid()
+        self.active_cat = "all"
+        self.draw_dashboard()
 
     def set_category(self, cat):
         self.active_cat = cat
-        self.draw_grid()
-
-    def set_sorting(self, choice):
-        self.active_sort = "cheap" if choice == "Дешевші" else "expensive"
-        self.draw_grid()
+        self.draw_dashboard()
 
     def filter_products(self, event):
-        self.draw_grid()
+        self.draw_dashboard()
 
-    def draw_grid(self):
+    def draw_dashboard(self):
         for widget in self.scroll_frame.winfo_children():
             widget.destroy()
             
-        for key, btn in self.cat_buttons.items():
-            if key == self.active_cat:
-                btn.configure(fg_color="#3498db")
-            else:
-                btn.configure(fg_color=PRIMARY_COLOR)
-                
+        # Заголовок "Categories"
+        lbl_cat_title = ctk.CTkLabel(self.scroll_frame, text="Categories", font=("Arial", 16, "bold"), text_color="black")
+        lbl_cat_title.pack(anchor="w", padx=10, pady=(5, 5))
+        
+        # Горизонтальні блоки категорій як на скріншоті
+        cats_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
+        cats_frame.pack(fill="x", padx=5, pady=5)
+        
+        categories_data = [
+            ("Bakeries", "bakeries", "#C2D6EE", "Bread.png"),
+            ("Drinks", "drinks", "#BCE6EB", "Diet_Cola.png"),
+            ("Vegetables", "vegetables", "#ECC4EC", "Salad.png"), # Використовуємо салат
+            ("Fruits", "fruits", "#D3EEC2", "Apple.png"),
+            ("Snacks", "snacks", "#DCD2EE", "Potato_Chips.png")
+        ]
+        
+        for name, key, bg_col, img_name in categories_data:
+            cat_card = ctk.CTkFrame(cats_frame, width=130, height=100, fg_color=bg_col, corner_radius=12)
+            cat_card.pack(side="left", padx=8, expand=True, fill="both")
+            cat_card.pack_propagate(False)
+            
+            # Робимо їх клікабельними для фільтрації
+            def select_cat(e, k=key):
+                self.set_category(k)
+            cat_card.bind("<Button-1>", select_cat)
+            
+            photo = get_product_image_local(img_name, (50, 50))
+            img_lbl = ctk.CTkLabel(cat_card, image=photo, text="")
+            img_lbl.pack(pady=(10, 2))
+            img_lbl.bind("<Button-1>", select_cat)
+            
+            lbl_cat_name = ctk.CTkLabel(cat_card, text=name, font=("Georgia", 11, "italic"), text_color="black")
+            lbl_cat_name.pack()
+            lbl_cat_name.bind("<Button-1>", select_cat)
+
         search_query = self.search_entry.get().strip().lower()
         favorites = market_db.get_favorites(logged_in_user)
         
-        filtered = []
-        for name, data in fruits_data.items():
-            if search_query and search_query not in name.lower(): continue
-            if self.active_cat != "all" and data["category"] != self.active_cat: continue
-            if self.fav_only_var.get() and name not in favorites: continue
-            filtered.append((name, data))
-            
-        def sort_key(item):
-            name, data = item
-            is_fav = 0 if name in favorites else 1
-            price_val = data["price"] if self.active_sort == "cheap" else -data["price"]
-            return (is_fav, price_val)
-            
-        filtered.sort(key=sort_key)
+        # Рендеримо "Popular Items"
+        lbl_pop_title = ctk.CTkLabel(self.scroll_frame, text="Popular Items", font=("Arial", 16, "bold"), text_color="black")
+        lbl_pop_title.pack(anchor="w", padx=10, pady=(15, 5))
         
-        cols = 4
+        pop_grid_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
+        pop_grid_frame.pack(fill="x", padx=5)
+        for c in range(6):
+            pop_grid_frame.grid_columnconfigure(c, weight=1)
+        
         col = 0
         row = 0
-        for idx, (name, data) in enumerate(filtered[:36]):
-            # Динамічно фарбуємо картки у пастельні кольори як у convenientshop!
-            card_bg = CARD_COLORS[idx % len(CARD_COLORS)]
+        for name, data in fruits_data.items():
+            if data["section"] != "popular": continue
+            if search_query and search_query not in name.lower(): continue
+            if self.active_cat != "all" and data["category"] != self.active_cat: continue
             
-            card = ctk.CTkFrame(self.scroll_frame, corner_radius=12, width=170, height=240, fg_color=card_bg)
-            card.grid(row=row, column=col, padx=8, pady=8)
-            card.grid_propagate(False)
-            
-            # Ефект ховеру
-            def on_enter(e, c=card):
-                c.configure(border_width=2, border_color="white")
-            def on_leave(e, c=card):
-                c.configure(border_width=0)
-            card.bind("<Enter>", on_enter)
-            card.bind("<Leave>", on_leave)
-            
-            is_fav = name in favorites
-            heart_text = "Liked" if is_fav else "Like"
-            heart_color = "red" if is_fav else "gray"
-            heart_btn = ctk.CTkButton(card, text=heart_text, text_color=heart_color, width=38, height=18, fg_color="transparent", hover_color=None, font=("Arial", 9, "bold"), command=lambda n=name: self.toggle_favorite(n))
-            heart_btn.place(relx=0.82, rely=0.08, anchor="center")
-            
-            photo = get_product_image_local(data["image"], (80, 80))
-            img_lbl = ctk.CTkLabel(card, image=photo, text="")
-            img_lbl.pack(pady=(12, 2))
-            
-            lbl_name = ctk.CTkLabel(card, text=name, font=("Arial", 12, "bold"), text_color="black", wraplength=150)
-            lbl_name.pack(pady=2, fill="x", padx=6)
-            
-            lbl_price = ctk.CTkLabel(card, text=f"{data['price']} грн", font=("Arial", 12, "bold"), text_color="#1e1e2e")
-            lbl_price.pack(pady=1)
-            
-            btn_details = ctk.CTkButton(card, text="Детальніше", command=lambda n=name: self.main_screen.switch_panel(DetailsPanel, "Каталог", n), width=130, height=28, font=("Arial", 11, "bold"), fg_color=PRIMARY_COLOR, hover_color="#4338CA", text_color="white")
-            btn_details.pack(side="bottom", pady=8)
-            
+            self.draw_product_card(pop_grid_frame, name, data, row, col)
             col += 1
-            if col >= cols:
+            if col >= 6: # 6 колонок як на скріншоті
+                col = 0
+                row += 1
+                
+        # Рендеримо "New Items"
+        lbl_new_title = ctk.CTkLabel(self.scroll_frame, text="New Items", font=("Arial", 16, "bold"), text_color="black")
+        lbl_new_title.pack(anchor="w", padx=10, pady=(20, 5))
+        
+        new_grid_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
+        new_grid_frame.pack(fill="x", padx=5)
+        for c in range(6):
+            new_grid_frame.grid_columnconfigure(c, weight=1)
+        
+        col = 0
+        row = 0
+        for name, data in fruits_data.items():
+            if data["section"] != "new": continue
+            if search_query and search_query not in name.lower(): continue
+            if self.active_cat != "all" and data["category"] != self.active_cat: continue
+            
+            self.draw_product_card(new_grid_frame, name, data, row, col)
+            col += 1
+            if col >= 6:
                 col = 0
                 row += 1
 
-    def toggle_favorite(self, name):
-        market_db.toggle_favorite(logged_in_user, name)
-        play_sound("click")
-        self.draw_grid()
+    def draw_product_card(self, parent_frame, name, data, row, col):
+        # Картки товарів точ-в-точ: Біле тло, скруглені кути
+        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=125, height=170, fg_color="white")
+        card.grid(row=row, column=col, padx=6, pady=6)
+        card.grid_propagate(False)
+        
+        photo = get_product_image_local(data["image"], (65, 65))
+        img_lbl = ctk.CTkLabel(card, image=photo, text="")
+        img_lbl.pack(pady=(10, 2))
+        
+        # Клік на товар відкриває вікно деталей
+        def open_details(e, n=name):
+            self.main_screen.switch_panel(DetailsPanel, "DashBoard", n)
+        img_lbl.bind("<Button-1>", open_details)
+        
+        # Назва продукту (зліва) та вага (справа) в один рядок
+        name_frame = ctk.CTkFrame(card, fg_color="transparent")
+        name_frame.pack(fill="x", padx=8)
+        
+        lbl_name = ctk.CTkLabel(name_frame, text=name.split()[0], font=("Georgia", 11, "italic"), text_color="black", anchor="w")
+        lbl_name.pack(side="left")
+        lbl_name.bind("<Button-1>", open_details)
+        
+        lbl_weight = ctk.CTkLabel(name_frame, text=data["weight"], font=("Arial", 9), text_color="gray", anchor="e")
+        lbl_weight.pack(side="right")
+        
+        # Ціна зліва, кругла чорна кнопка додавання (+) справа
+        price_frame = ctk.CTkFrame(card, fg_color="transparent")
+        price_frame.pack(side="bottom", fill="x", padx=8, pady=8)
+        
+        lbl_price = ctk.CTkLabel(price_frame, text=f"${data['price']}", font=("Arial", 12, "bold"), text_color="black", anchor="w")
+        lbl_price.pack(side="left")
+        
+        # Кругла чорна кнопка (+) точ-в-точ як на скріншоті
+        btn_add = ctk.CTkButton(
+            price_frame, text="+", command=lambda n=name: self.quick_add_to_cart(n), 
+            width=24, height=24, corner_radius=12, fg_color="black", 
+            text_color="white", font=("Arial", 12, "bold"), hover_color="#333333"
+        )
+        btn_add.pack(side="right")
+
+    def quick_add_to_cart(self, name):
+        # Швидке додавання без відкриття деталей (POS-механізм)
+        data = fruits_data[name]
+        for item in cart:
+            if item["name"] == name:
+                item["qty"] += 1
+                break
+        else:
+            cart.append({"name": name, "price": data["price"], "qty": 1, "color": data["colors"][0][0]})
+            
+        play_sound("success")
+        self.main_screen.update_profile_info()
+        messagebox.showinfo("Успіх", f"Додано до кошика!")
 
 # --- ПАНЕЛЬ ДЕТАЛЕЙ ТОВАРУ ---
 class DetailsPanel(ctk.CTkFrame):
@@ -810,7 +681,7 @@ class DetailsPanel(ctk.CTkFrame):
         btn_back = ctk.CTkButton(self, text="← Назад", command=lambda: self.main_screen.show_catalog(), width=80, height=28, fg_color=PRIMARY_COLOR, hover_color="#4338CA")
         btn_back.pack(anchor="w", pady=10)
         
-        left_box = ctk.CTkFrame(self, corner_radius=12, fg_color=FRAME_COLOR)
+        left_box = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         left_box.pack(side="left", fill="both", expand=True, padx=10, pady=10)
         
         photo = get_product_image_local(self.data["image"], (140, 140))
@@ -823,7 +694,7 @@ class DetailsPanel(ctk.CTkFrame):
         lbl_desc = ctk.CTkLabel(left_box, text=self.data["desc"], font=("Arial", 12, "italic"), text_color="black", wraplength=280)
         lbl_desc.pack(pady=5)
         
-        lbl_price = ctk.CTkLabel(left_box, text=f"Ціна: {self.data['price']} грн", font=("Arial", 15, "bold"), text_color=PRIMARY_COLOR)
+        lbl_price = ctk.CTkLabel(left_box, text=f"Ціна: ${self.data['price']}", font=("Arial", 15, "bold"), text_color=PRIMARY_COLOR)
         lbl_price.pack(pady=10)
         
         ctk.CTkLabel(left_box, text="Виберіть сорт/колір:", font=("Arial", 12, "bold"), text_color="black").pack()
@@ -842,10 +713,10 @@ class DetailsPanel(ctk.CTkFrame):
         self.qty_spin.pack(side="left", padx=5)
         self.qty_spin.set(1)
         
-        btn_add = ctk.CTkButton(left_box, text="Додати в кошик", command=self.add_to_cart, fg_color="#2ecc71", hover_color="#27ae60", font=("Arial", 13, "bold"))
+        btn_add = ctk.CTkButton(left_box, text="Додати в кошик", command=self.add_to_cart, fg_color="#2ecc71", hover_color="#27ae60", font=("Arial", 13, "bold"), corner_radius=50)
         btn_add.pack(pady=10)
         
-        right_box = ctk.CTkFrame(self, corner_radius=12, fg_color=FRAME_COLOR)
+        right_box = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         right_box.pack(side="right", fill="both", expand=True, padx=10, pady=10)
         
         ctk.CTkLabel(right_box, text="Відгуки та оцінки:", font=("Arial", 14, "bold"), text_color="black").pack(pady=10)
@@ -922,7 +793,7 @@ class CartPanel(ctk.CTkFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        left_box = ctk.CTkFrame(self, corner_radius=12, fg_color=FRAME_COLOR)
+        left_box = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         left_box.pack(side="left", fill="both", expand=True, padx=10, pady=10)
         
         ctk.CTkLabel(left_box, text="Кошик товарів (POS Специфікація)", font=("Arial", 16, "bold"), text_color=PRIMARY_COLOR).pack(pady=10)
@@ -944,7 +815,7 @@ class CartPanel(ctk.CTkFrame):
         btn_clear = ctk.CTkButton(left_box, text="Очистити кошик", command=self.clear_cart, fg_color="#95a5a6", hover_color="#7f8c8d")
         btn_clear.pack(pady=5)
         
-        self.right_box = ctk.CTkFrame(self, corner_radius=12, fg_color=FRAME_COLOR)
+        self.right_box = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         self.right_box.pack(side="right", fill="both", expand=True, padx=10, pady=10)
         
         ctk.CTkLabel(self.right_box, text="Дані для доставки замовлення", font=("Arial", 14, "bold"), text_color="black").pack(pady=15)
@@ -965,7 +836,7 @@ class CartPanel(ctk.CTkFrame):
         self.pay_combo = ctk.CTkOptionMenu(self.right_box, values=["Balance", "Card on delivery", "Cash"], fg_color=PRIMARY_COLOR, button_color=PRIMARY_COLOR)
         self.pay_combo.pack(pady=6, padx=20, fill="x")
         
-        btn_order = ctk.CTkButton(self.right_box, text="Оформити замовлення", command=self.checkout, fg_color="#2ecc71", hover_color="#27ae60", font=("Arial", 13, "bold"))
+        btn_order = ctk.CTkButton(self.right_box, text="Оформити замовлення", command=self.checkout, fg_color="#2ecc71", hover_color="#27ae60", font=("Arial", 13, "bold"), corner_radius=50)
         btn_order.pack(pady=20)
         
         self.refresh_cart_list()
@@ -1152,7 +1023,7 @@ class AnalyticsPanel(ctk.CTkFrame):
         self.create_kpi_card(cards_frame, "Куплено товарів", f"{total_items} шт", "#3498db").pack(side="left", fill="both", expand=True, padx=5)
         self.create_kpi_card(cards_frame, "Середній чек", f"{avg_receipt} грн", "#e67e22").pack(side="left", fill="both", expand=True, padx=5)
         
-        chart_frame = ctk.CTkFrame(self, corner_radius=12, fg_color=FRAME_COLOR)
+        chart_frame = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         chart_frame.pack(fill="both", expand=True, pady=10, padx=5)
         
         ctk.CTkLabel(chart_frame, text="Динаміка замовлень", font=("Arial", 13, "bold"), text_color="black").pack(pady=5)
@@ -1162,7 +1033,7 @@ class AnalyticsPanel(ctk.CTkFrame):
         self.canvas.bind("<Configure>", lambda e: self.draw_chart(orders))
 
     def create_kpi_card(self, parent, title, value, accent_color):
-        card = ctk.CTkFrame(parent, corner_radius=10, height=80, fg_color=FRAME_COLOR)
+        card = ctk.CTkFrame(parent, corner_radius=10, height=80, fg_color=SIDEBAR_COLOR)
         card.pack_propagate(False)
         ctk.CTkLabel(card, text=title, font=("Arial", 11, "bold"), text_color="gray").pack(pady=(10, 2))
         ctk.CTkLabel(card, text=value, font=("Arial", 18, "bold"), text_color=accent_color).pack()
@@ -1215,7 +1086,7 @@ class HistoryPanel(ctk.CTkScrollableFrame):
             return
             
         for index, order in enumerate(orders):
-            row = ctk.CTkFrame(self, fg_color=FRAME_COLOR)
+            row = ctk.CTkFrame(self, fg_color=SIDEBAR_COLOR)
             row.pack(fill="x", padx=20, pady=5)
             ctk.CTkLabel(row, text=f"Замовлення #{len(orders)-index} [{order['date']}]", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=15, pady=4)
             ctk.CTkLabel(row, text=f"Товарів: {order['items_count']} шт. | Сума: {order['total']} грн", font=("Arial", 10), text_color="#2e7d32").pack(anchor="w", padx=15, pady=2)
@@ -1228,7 +1099,7 @@ class SettingsPanel(ctk.CTkFrame):
         
         ctk.CTkLabel(self, text="Налаштування", font=("Arial", 16, "bold"), text_color="black").pack(pady=10)
         
-        card = ctk.CTkFrame(self, width=400, height=350, fg_color=FRAME_COLOR)
+        card = ctk.CTkFrame(self, width=400, height=350, fg_color=SIDEBAR_COLOR)
         card.pack(pady=15, padx=20)
         
         ctk.CTkLabel(card, text="Мова інтерфейсу:", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=30, pady=10)
@@ -1252,7 +1123,7 @@ class SettingsPanel(ctk.CTkFrame):
         active_lang = lang
         play_sound("click")
         self.main_screen.lbl_logo.configure(text="CONVENIENT SHOP")
-        nav_texts = ["Каталог", "Кошик", "Аналітика", "Історія", "Налаштування"]
+        nav_texts = ["DashBoard", "Checkout", "Categories", "History", "Setting"]
         for t in nav_texts:
             if t in self.main_screen.nav_buttons:
                 self.main_screen.nav_buttons[t].configure(text=t)
