@@ -1,5 +1,6 @@
+import customtkinter as ctk
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import io
 import urllib.request
@@ -7,17 +8,20 @@ import datetime
 import random
 import math
 import threading
+from concurrent.futures import ThreadPoolExecutor
 
-# Глобальні змінні налаштувань
+# Налаштування стилю CustomTkinter
+ctk.set_appearance_mode("dark")  # за замовчуванням темна тема
+ctk.set_default_color_theme("blue")
+
+# Глобальні налаштування
 sound_enabled = True
-current_theme = "light"
 active_lang = "ua"
 logged_in_user = None
 session_discount = 0.0
 cart = []
-order_history = []
 
-# Спробуємо імпортувати winsound для звуків на Windows
+# Спробуємо імпортувати winsound для звуків
 try:
     import winsound
     def play_sound(action):
@@ -37,80 +41,82 @@ except ImportError:
         pass
 
 import market_db
+market_db.init_db()
 
-# Кольорові палітри для тем
-THEMES = {
-    "light": {
-        "bg": "#f8f9fa",
-        "card_bg": "#ffffff",
-        "header_bg": "#ffffff",
-        "text": "#212529",
-        "text_secondary": "#6c757d",
-        "accent": "#4a90e2",
-        "border": "#e0e0e0"
-    },
-    "dark": {
-        "bg": "#1e1e2e",
-        "card_bg": "#252538",
-        "header_bg": "#252538",
-        "text": "#cdd6f4",
-        "text_secondary": "#a6adc8",
-        "accent": "#89b4fa",
-        "border": "#45475a"
-    }
+# Масив лінків на картинки
+PRODUCT_URLS = {
+    "tech": [
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150",
+        "https://images.unsplash.com/photo-1496181130204-755241544e35?w=150",
+        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=150",
+        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=150",
+        "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=150"
+    ],
+    "fruits": [
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150",
+        "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=150",
+        "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=150",
+        "https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?w=150",
+        "https://images.unsplash.com/photo-1610397613000-f0d2db5632a4?w=150"
+    ],
+    "home": [
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=150",
+        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=150",
+        "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=150",
+        "https://images.unsplash.com/photo-1542728929-14ab1c6880f9?w=150",
+        "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=150"
+    ],
+    "sport": [
+        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=150",
+        "https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=150",
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=150",
+        "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=150",
+        "https://images.unsplash.com/photo-1516567727145-ab3c1a390044?w=150"
+    ],
+    "clothing": [
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=150",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=150",
+        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=150",
+        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150",
+        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150"
+    ]
 }
 
-# Генерація 500+ товарів з УНІКАЛЬНИМИ посиланнями на фото для кожного товару (через LoremFlickr з унікальним lock)
 fruits_data = {}
-
-# Техніка (100 товарів)
 for i in range(1, 101):
-    name = f"Ноутбук Pro-{i} 💻"
-    fruits_data[name] = {
+    fruits_data[f"Ноутбук Pro-{i} 💻"] = {
         "price": 15000 + i * 200,
         "desc": f"Високопродуктивний ноутбук Pro версії {i} для роботи та ігор.",
         "category": "tech",
         "url": f"https://loremflickr.com/150/150/laptop?lock={i}",
         "colors": [("Сріблястий 💿", "#bdc3c7"), ("Чорний 🌑", "#2c3e50")]
     }
-
-# Фрукти (100 товарів)
 for i in range(1, 101):
-    name = f"Яблуко Голден-{i} 🍎"
-    fruits_data[name] = {
+    fruits_data[f"Яблуко Голден-{i} 🍎"] = {
         "price": 20 + (i % 15),
         "desc": f"Свіжі соковиті добірні яблука Голден, партія #{i}.",
         "category": "fruits",
         "url": f"https://loremflickr.com/150/150/apple?lock={i}",
         "colors": [("Жовте 🟡", "#f1c40f"), ("Червоне 🔴", "#e74c3c")]
     }
-
-# Для дому (100 товарів)
 for i in range(1, 101):
-    name = f"Лампа Loft-{i} 💡"
-    fruits_data[name] = {
+    fruits_data[f"Лампа Loft-{i} 💡"] = {
         "price": 300 + i * 15,
         "desc": f"Стильна дизайнерська настільна лампа в стилі Loft #{i}.",
         "category": "home",
         "url": f"https://loremflickr.com/150/150/lamp?lock={i}",
         "colors": [("Чорний 🌑", "#2c3e50"), ("Білий ⚪", "#ffffff")]
     }
-
-# Спорт (100 товарів)
 for i in range(1, 101):
-    name = f"Футбольний М'яч-{i} ⚽"
-    fruits_data[name] = {
+    fruits_data[f"Футбольний М'яч-{i} ⚽"] = {
         "price": 400 + i * 10,
-        "desc": f"Міцний професійний м'яч для гри на будь-коряному покритті #{i}.",
+        "desc": f"Міцний професійний м'яч для гри на будь-якому покритті #{i}.",
         "category": "sport",
         "url": f"https://loremflickr.com/150/150/soccer,ball?lock={i}",
         "colors": [("Біло-чорний ⚽", "#ffffff"), ("Червоний 🔴", "#e74c3c")]
     }
-
-# Одяг (100 товарів)
 for i in range(1, 101):
-    name = f"Футболка Класик-{i} 👕"
-    fruits_data[name] = {
+    fruits_data[f"Футболка Класик-{i} 👕"] = {
         "price": 250 + i * 5,
         "desc": f"Зручна бавовняна футболка класичного крою #{i}.",
         "category": "clothing",
@@ -285,25 +291,20 @@ LANGS = {
         "theme_lbl": "Тема оформления:",
         "theme_light": "Светлая ☀️",
         "theme_dark": "Темная 🌙",
-        "sound_chk": "Звуковые эффекты (Beep)"
+        "sound_chk": "Звуковые ефекти (Beep)"
     }
 }
 
-market_db.init_db()
-
-# Головне вікно
-main_app = tk.Tk()
-main_app.geometry("700x820")
-
-# Кеш зображень У ПАМ'ЯТІ (динамічне завантаження з інтернету без збереження на диск)
+# Пул потоків для плавного завантаження картинок
+image_pool = ThreadPoolExecutor(max_workers=3)
 memory_images_cache = {}
 
-def get_image_from_url_memory(url, size):
+def get_image_from_url_memory(url, size, callback):
     cache_key = (url, size)
     if cache_key in memory_images_cache:
         return memory_images_cache[cache_key]
     
-    def worker():
+    def load_task():
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req, timeout=5) as response:
@@ -311,162 +312,72 @@ def get_image_from_url_memory(url, size):
             img = Image.open(io.BytesIO(img_data)).resize(size, Image.Resampling.LANCZOS)
             photo = ImageTk.PhotoImage(img)
             memory_images_cache[cache_key] = photo
-        except Exception as e:
-            # У разі помилки ставимо заглушку, щоб не перевантажувати мережу запитами
+            # Передаємо картинку назад у головний потік безпечно
+            main_app.after(10, lambda: callback(photo))
+        except Exception:
             memory_images_cache[cache_key] = None
             
-    t = threading.Thread(target=worker)
-    t.daemon = True
-    t.start()
+    image_pool.submit(load_task)
     return None
+
+class App(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.geometry("980x740")
+        self.title("Мегамаркет Все-в-Одному")
+        
+        # Контейнер для екранів (SPA архітектура - одне вікно)
+        self.container = ctk.CTkFrame(self)
+        self.container.pack(fill="both", expand=True)
+        
+        self.current_screen = None
+        self.show_auth_screen()
+
+    def show_screen(self, screen_class, *args, **kwargs):
+        if self.current_screen:
+            self.current_screen.pack_forget()
+            self.current_screen.destroy()
+        
+        self.current_screen = screen_class(self.container, self, *args, **kwargs)
+        self.current_screen.pack(fill="both", expand=True)
+
+    def show_auth_screen(self):
+        self.show_screen(AuthScreen)
+
+    def show_main_screen(self):
+        self.show_screen(MainScreen)
 
 def tr(key):
     return LANGS[active_lang].get(key, key)
 
-# Оновлення кольорів інтерфейсу під тему
-def apply_theme_colors():
-    theme = THEMES[current_theme]
-    main_app.configure(bg=theme["bg"])
-    main_frame.configure(bg=theme["bg"])
-    header_frame.configure(bg=theme["header_bg"], bd=1, relief="groove")
-    profile_lbl.configure(bg=theme["header_bg"], fg=theme["text"])
-    balance_lbl.configure(bg=theme["header_bg"])
-    
-    controls_frame.configure(bg=theme["bg"])
-    search_frame.configure(bg=theme["bg"])
-    search_lbl.configure(bg=theme["bg"], fg=theme["text"])
-    cat_frame.configure(bg=theme["bg"])
-    
-    canvas_container.configure(bg=theme["bg"])
-    grid_frame.configure(bg=theme["bg"])
-    
-    for name, card in card_widgets.items():
-        card.configure(bg=theme["card_bg"], bd=1, relief="groove")
-        for child in card.winfo_children():
-            if isinstance(child, tk.Label):
-                child.configure(bg=theme["card_bg"], fg=theme["text"])
-            elif isinstance(child, tk.Frame):
-                child.configure(bg=theme["card_bg"])
-                for f_child in child.winfo_children():
-                    if isinstance(f_child, tk.Button) and f_child.cget("text") in ["🤍", "❤️"]:
-                        f_child.configure(bg=theme["card_bg"], activebackground=theme["card_bg"])
-
-# Оновлення текстів
-def translate_ui():
-    main_app.title(tr("title"))
-    search_lbl.configure(text=tr("search_label"))
-    history_btn.configure(text=tr("history_btn"))
-    wheel_btn.configure(text=tr("wheel_btn"))
-    topup_btn.configure(text=tr("topup_btn"))
-    settings_btn.configure(text=tr("settings_btn"))
-    if logged_in_user:
-        profile_lbl.configure(text=f"👤 {logged_in_user}")
-        balance_lbl.configure(text=f"{tr('balance_label')} {market_db.get_balance(logged_in_user)} грн")
-    
-    cat_all_btn.configure(text=tr("all_cat"))
-    cat_tech_btn.configure(text=tr("tech_cat"))
-    cat_fruits_btn.configure(text=tr("fruits_cat"))
-    cat_home_btn.configure(text=tr("home_cat"))
-    cat_sport_btn.configure(text=tr("sport_cat"))
-    cat_clothing_btn.configure(text=tr("clothing_cat"))
-    
-    sort_box.entryconfig(0, label=tr("sort_cheap"))
-    sort_box.entryconfig(1, label=tr("sort_expensive"))
-    
-    update_cart_button_text()
-    filter_fruits()
-
-def update_cart_button_text():
-    total_items = sum(item['qty'] for item in cart)
-    cart_btn.configure(text=f"🛒 {tr('cart_btn')} ({total_items} шт.)")
-
-# Вікно налаштувань
-def open_settings_window():
-    play_sound("click")
-    settings_win = tk.Toplevel(main_app)
-    settings_win.title(tr("settings_title"))
-    settings_win.geometry("340x300")
-    settings_win.configure(bg="#ffffff")
-    settings_win.grab_set()
-    settings_win.transient(main_app)
-    
-    tk.Label(settings_win, text=tr("settings_title"), font=("Segoe UI", 12, "bold"), bg="#ffffff").pack(pady=15)
-    
-    # Вибір мови
-    tk.Label(settings_win, text=tr("lang_lbl"), bg="#ffffff", font=("Segoe UI", 10, "bold")).pack(anchor="w", padx=25, pady=2)
-    lang_frame_set = tk.Frame(settings_win, bg="#ffffff")
-    lang_frame_set.pack(fill="x", padx=25, pady=2)
-    
-    def set_lang(lang_code):
-        global active_lang
-        active_lang = lang_code
-        play_sound("click")
-        translate_ui()
-        settings_win.title(tr("settings_title"))
-        settings_title_lbl.configure(text=tr("settings_title"))
-        lang_set_lbl.configure(text=tr("lang_lbl"))
-        theme_set_lbl.configure(text=tr("theme_lbl"))
-        sound_chk_btn.configure(text=tr("sound_chk"))
-        theme_light_btn.configure(text=tr("theme_light"))
-        theme_dark_btn.configure(text=tr("theme_dark"))
+# --- ЕКРАН АВТОРИЗАЦІЇ ---
+class AuthScreen(ctk.CTkFrame):
+    def __init__(self, parent, app_controller):
+        super().__init__(parent)
+        self.controller = app_controller
         
-    tk.Button(lang_frame_set, text="Українська 🇺🇦", font=("Segoe UI", 9), relief="groove", command=lambda: set_lang("ua")).pack(side="left", padx=5)
-    tk.Button(lang_frame_set, text="English 🇬🇧", font=("Segoe UI", 9), relief="groove", command=lambda: set_lang("en")).pack(side="left", padx=5)
-    tk.Button(lang_frame_set, text="Русский 🇷🇺", font=("Segoe UI", 9), relief="groove", command=lambda: set_lang("ru")).pack(side="left", padx=5)
-    
-    # Вибір теми
-    tk.Label(settings_win, text=tr("theme_lbl"), bg="#ffffff", font=("Segoe UI", 10, "bold")).pack(anchor="w", padx=25, pady=10)
-    theme_frame_set = tk.Frame(settings_win, bg="#ffffff")
-    theme_frame_set.pack(fill="x", padx=25, pady=2)
-    
-    def set_theme(theme_name):
-        global current_theme
-        current_theme = theme_name
-        play_sound("click")
-        apply_theme_colors()
+        # Центрований контейнер
+        card = ctk.CTkFrame(self, width=340, height=380, corner_radius=15)
+        card.place(relx=0.5, rely=0.5, anchor="center")
         
-    theme_light_btn = tk.Button(theme_frame_set, text=tr("theme_light"), font=("Segoe UI", 9), relief="groove", command=lambda: set_theme("light"))
-    theme_light_btn.pack(side="left", padx=5)
-    theme_dark_btn = tk.Button(theme_frame_set, text=tr("theme_dark"), font=("Segoe UI", 9), relief="groove", command=lambda: set_theme("dark"))
-    theme_dark_btn.pack(side="left", padx=5)
-    
-    # Звукові ефекти
-    sound_var = tk.BooleanVar(value=sound_enabled)
-    def toggle_sound():
-        global sound_enabled
-        sound_enabled = sound_var.get()
-        play_sound("click")
+        lbl_title = ctk.CTkLabel(card, text="Вхід до системи", font=("Segoe UI", 20, "bold"))
+        lbl_title.pack(pady=20)
         
-    sound_chk_btn = tk.Checkbutton(settings_win, text=tr("sound_chk"), variable=sound_var, command=toggle_sound, bg="#ffffff", font=("Segoe UI", 9))
-    sound_chk_btn.pack(anchor="w", padx=25, pady=15)
-    
-    settings_title_lbl = settings_win.winfo_children()[0]
-    lang_set_lbl = settings_win.winfo_children()[1]
-    theme_set_lbl = settings_win.winfo_children()[3]
-
-def show_auth_window():
-    auth_win = tk.Toplevel(main_app)
-    auth_win.title(tr("auth_title"))
-    auth_win.geometry("320x250")
-    auth_win.configure(bg="#ffffff")
-    auth_win.grab_set()
-    auth_win.transient(main_app)
-    
-    tk.Label(auth_win, text=tr("auth_title"), font=("Segoe UI", 14, "bold"), bg="#ffffff").pack(pady=10)
-    frame = tk.Frame(auth_win, bg="#ffffff")
-    frame.pack(pady=5)
-    
-    tk.Label(frame, text=tr("username_lbl"), bg="#ffffff").grid(row=0, column=0, padx=5, pady=5, sticky="e")
-    user_entry = tk.Entry(frame, width=20, font=("Segoe UI", 10))
-    user_entry.grid(row=0, column=1, padx=5, pady=5)
-    
-    tk.Label(frame, text=tr("password_lbl"), bg="#ffffff").grid(row=1, column=0, padx=5, pady=5, sticky="e")
-    pass_entry = tk.Entry(frame, show="*", width=20, font=("Segoe UI", 10))
-    pass_entry.grid(row=1, column=1, padx=5, pady=5)
-    
-    def try_login():
-        username = user_entry.get().strip()
-        password = pass_entry.get().strip()
+        self.user_entry = ctk.CTkEntry(card, placeholder_text="Логін", width=250, height=40)
+        self.user_entry.pack(pady=10)
+        
+        self.pass_entry = ctk.CTkEntry(card, placeholder_text="Пароль", show="*", width=250, height=40)
+        self.pass_entry.pack(pady=10)
+        
+        btn_login = ctk.CTkButton(card, text="Увійти", command=self.try_login, width=250, height=40, font=("Segoe UI", 11, "bold"))
+        btn_login.pack(pady=10)
+        
+        btn_reg = ctk.CTkButton(card, text="Реєстрація", command=self.try_register, fg_color="transparent", border_width=1, width=250, height=40, font=("Segoe UI", 11, "bold"))
+        btn_reg.pack(pady=5)
+        
+    def try_login(self):
+        username = self.user_entry.get().strip()
+        password = self.pass_entry.get().strip()
         if not username or not password:
             play_sound("error")
             messagebox.showwarning("Помилка", "Заповніть усі поля!")
@@ -476,15 +387,14 @@ def show_auth_window():
             global logged_in_user
             logged_in_user = username
             play_sound("success")
-            auth_win.destroy()
-            show_main_elements()
+            self.controller.show_main_screen()
         else:
             play_sound("error")
             messagebox.showerror("Помилка", "Невірний логін або пароль!")
 
-    def try_register():
-        username = user_entry.get().strip()
-        password = pass_entry.get().strip()
+    def try_register(self):
+        username = self.user_entry.get().strip()
+        password = self.pass_entry.get().strip()
         if not username or not password:
             play_sound("error")
             messagebox.showwarning("Помилка", "Заповніть усі поля!")
@@ -492,293 +402,429 @@ def show_auth_window():
             
         if market_db.register_user(username, password):
             play_sound("success")
-            messagebox.showinfo("Успіх", "Користувач успішно зареєстрований! Тепер ви можете увійти.")
+            messagebox.showinfo("Успіх", "Користувач зареєстрований! Тепер ви можете увійти.")
         else:
             play_sound("error")
             messagebox.showerror("Помилка", "Такий логін вже існує!")
 
-    btn_frame = tk.Frame(auth_win, bg="#ffffff")
-    btn_frame.pack(pady=15)
-    tk.Button(btn_frame, text=tr("login_btn"), bg="#4a90e2", fg="white", font=("Segoe UI", 9, "bold"), relief="flat", padx=10, command=try_login).pack(side="left", padx=5)
-    tk.Button(btn_frame, text=tr("register_btn"), bg="#2ecc71", fg="white", font=("Segoe UI", 9, "bold"), relief="flat", padx=10, command=try_register).pack(side="left", padx=5)
-    
-    def disable_close():
-        pass
-    auth_win.protocol("WM_DELETE_WINDOW", disable_close)
+# --- ГОЛОВНИЙ ЕКРАН З БІЧНОЮ НАВІГАЦІЄЮ ---
+class MainScreen(ctk.CTkFrame):
+    def __init__(self, parent, app_controller):
+        super().__init__(parent)
+        self.controller = app_controller
+        
+        # 1. Бічна панель навігації
+        self.sidebar = ctk.CTkFrame(self, width=200, corner_radius=0)
+        self.sidebar.pack(side="left", fill="y")
+        
+        self.lbl_logo = ctk.CTkLabel(self.sidebar, text="🏬 МЕГАМАРКЕТ", font=("Segoe UI", 16, "bold"))
+        self.lbl_logo.pack(pady=20)
+        
+        # Дані профілю
+        self.profile_lbl = ctk.CTkLabel(self.sidebar, text=f"👤 {logged_in_user}", font=("Segoe UI", 11, "bold"))
+        self.profile_lbl.pack(pady=5)
+        
+        self.balance_lbl = ctk.CTkLabel(self.sidebar, text=f"0 грн", font=("Segoe UI", 12), text_color="#2ecc71")
+        self.balance_lbl.pack(pady=2)
+        
+        btn_topup = ctk.CTkButton(self.sidebar, text="+ Поповнити", command=self.topup_balance, size=(120, 26), font=("Segoe UI", 10, "bold"), fg_color="#2ecc71", hover_color="#27ae60")
+        btn_topup.pack(pady=5)
+        
+        # Навігаційні кнопки
+        self.nav_buttons = {}
+        navs = [
+            ("🏬 Каталог", self.show_catalog),
+            ("🛒 Кошик", self.show_cart),
+            ("🎡 Колесо Фортуни", self.show_fortune),
+            ("📜 Історія", self.show_history),
+            ("⚙️ Налаштування", self.show_settings)
+        ]
+        for name, cmd in navs:
+            btn = ctk.CTkButton(self.sidebar, text=name, anchor="w", fg_color="transparent", hover_color="#34495e", command=cmd, font=("Segoe UI", 12))
+            btn.pack(fill="x", padx=10, pady=5)
+            self.nav_buttons[name] = btn
+            
+        btn_logout = ctk.CTkButton(self.sidebar, text="🚪 Вийти", anchor="w", fg_color="#e74c3c", hover_color="#c0392b", command=self.logout, font=("Segoe UI", 12))
+        btn_logout.pack(side="bottom", fill="x", padx=10, pady=20)
+        
+        # 2. Робоча зона (екран завантажується справа)
+        self.content_container = ctk.CTkFrame(self, fg_color="transparent")
+        self.content_container.pack(side="right", fill="both", expand=True, padx=15, pady=15)
+        
+        self.active_panel = None
+        self.show_catalog()
+        self.update_profile_info()
 
-def topup_balance():
-    if logged_in_user:
+    def update_profile_info(self):
+        balance = market_db.get_balance(logged_in_user)
+        self.balance_lbl.configure(text=f"{balance} грн")
+
+    def topup_balance(self):
         play_sound("success")
         market_db.add_balance(logged_in_user, 500)
-        balance_lbl.configure(text=f"{tr('balance_label')} {market_db.get_balance(logged_in_user)} грн")
+        self.update_profile_info()
         messagebox.showinfo("Баланс", "Баланс поповнено на 500 грн!")
 
-def open_fortune_wheel():
-    wheel_win = tk.Toplevel(main_app)
-    wheel_win.title(tr("fortune_title"))
-    wheel_win.geometry("360x420")
-    wheel_win.configure(bg="#ffffff")
-    wheel_win.grab_set()
-    
-    canvas = tk.Canvas(wheel_win, width=300, height=300, bg="#ffffff", bd=0, highlightthickness=0)
-    canvas.pack(pady=10)
-    
-    sectors = [
-        ("Спробуй ще 🍀", "white", 0.0),
-        ("Знижка 5% 🎁", "#ff8a80", 0.05),
-        ("Спробуй ще 🍀", "white", 0.0),
-        ("Знижка 10% 🎁", "#ff5252", 0.10),
-        ("Спробуй ще 🍀", "white", 0.0),
-        ("Знижка 15% 🎁", "#ff1744", 0.15)
-    ]
-    
-    def draw_wheel(rotation_angle):
-        canvas.delete("all")
-        for i, (text, color, val) in enumerate(sectors):
-            start = rotation_angle + i * 60
-            canvas.create_arc(10, 10, 290, 290, start=start, extent=60, fill=color, outline="#2c3e50")
-            rad = math.radians(start + 30)
-            tx = 150 + 80 * math.cos(rad)
-            ty = 150 - 80 * math.sin(rad)
-            canvas.create_text(tx, ty, text=text.split()[0], font=("Segoe UI", 9, "bold"), fill="#2c3e50")
-        canvas.create_polygon(150, 5, 140, 30, 160, 30, fill="#2c3e50")
-        
-    draw_wheel(0)
-    
-    def spin():
-        play_sound("click")
-        spin_btn.configure(state="disabled")
-        rotations = random.randint(18, 25)
-        
-        def animate(step, cur_angle):
-            if step > 0:
-                cur_angle = (cur_angle + step * 8) % 360
-                draw_wheel(cur_angle)
-                play_sound("spin")
-                wheel_win.after(50, lambda: animate(step - 1, cur_angle))
-            else:
-                final_angle = (90 - cur_angle) % 360
-                sector_idx = int(final_angle // 60) % len(sectors)
-                name, color, discount = sectors[sector_idx]
-                
-                if discount > 0:
-                    global session_discount
-                    session_discount = discount
-                    play_sound("success")
-                    messagebox.showinfo(tr("congrats"), f"{tr('win_discount')}: {int(discount*100)}%!")
-                else:
-                    play_sound("error")
-                    messagebox.showinfo("Результат", tr("try_again"))
-                wheel_win.destroy()
-                
-        animate(rotations, 0)
-        
-    spin_btn = tk.Button(wheel_win, text=tr("spin_btn"), font=("Segoe UI", 11, "bold"), bg="#4a90e2", fg="white", relief="flat", command=spin)
-    spin_btn.pack(pady=10)
+    def logout(self):
+        global logged_in_user, cart, session_discount
+        logged_in_user = None
+        cart = []
+        session_discount = 0.0
+        self.controller.show_auth_screen()
 
-def open_history():
-    history_win = tk.Toplevel(main_app)
-    history_win.title(tr("history_title"))
-    history_win.geometry("380x420")
-    history_win.configure(bg="#ffffff")
-    
-    tk.Label(history_win, text=tr("history_title"), font=("Segoe UI", 12, "bold"), bg="#ffffff", fg="#212529").pack(pady=15)
-    
-    orders = market_db.get_orders(logged_in_user)
-    if not orders:
-        tk.Label(history_win, text=tr("no_orders"), font=("Segoe UI", 10), bg="#ffffff", fg="#777").pack(pady=50)
-        return
-        
-    for index, order in enumerate(orders):
-        order_row = tk.Frame(history_win, bg="#f8f9fa", pady=8, bd=1, relief="ridge")
-        order_row.pack(fill="x", padx=15, pady=5)
-        tk.Label(order_row, text=f"{tr('order_str')} #{len(orders)-index} [{order['date']}]", font=("Segoe UI", 9, "bold"), bg="#f8f9fa").pack(anchor="w", padx=10)
-        tk.Label(order_row, text=f"{tr('items_count_str')}: {order['items_count']} шт. | Сума: {order['total']} грн", font=("Segoe UI", 9), bg="#f8f9fa", fg="#555").pack(anchor="w", padx=10)
+    # Перемикання панелей справа
+    def switch_panel(self, panel_class, *args, **kwargs):
+        if self.active_panel:
+            self.active_panel.pack_forget()
+            self.active_panel.destroy()
+        self.active_panel = panel_class(self.content_container, self, *args, **kwargs)
+        self.active_panel.pack(fill="both", expand=True)
 
-def submit_review(fruit_name, rating_var, text_entry, refresh_callback):
-    text = text_entry.get().strip()
-    if not text:
-        play_sound("error")
-        messagebox.showwarning("Помилка", "Введіть текст відгуку!")
-        return
-    try: rating = int(rating_var.get())
-    except: rating = 5
-        
-    market_db.add_review(fruit_name, logged_in_user, rating, text)
-    play_sound("success")
-    text_entry.delete(0, "end")
-    refresh_callback()
+    def show_catalog(self):
+        self.switch_panel(CatalogPanel)
 
-def open_details(name):
-    data = fruits_data[name]
-    dialog = tk.Toplevel(main_app)
-    dialog.title(f"{tr('details_title')}: {name}")
-    dialog.geometry("450x580")
-    dialog.configure(bg="#ffffff")
-    dialog.grab_set()
-    dialog.transient(main_app)
-    
-    # Динамічне завантаження в пам'ять більшого фото для деталей
-    detail_lbl = tk.Label(dialog, text="Завантаження фото з інтернету... 🔄", bg="#ffffff", font=("Segoe UI", 9, "italic"))
-    detail_lbl.pack(pady=15)
-    
-    def update_detail_photo():
-        photo = get_image_from_url_memory(data["url"], (120, 120))
-        if photo:
-            detail_lbl.configure(image=photo, text="")
-            detail_lbl.image = photo
-        else:
-            dialog.after(400, update_detail_photo)
+    def show_cart(self):
+        self.switch_panel(CartPanel)
+
+    def show_fortune(self):
+        self.switch_panel(FortunePanel)
+
+    def show_history(self):
+        self.switch_panel(HistoryPanel)
+
+    def show_settings(self):
+        self.switch_panel(SettingsPanel)
+
+# --- ПАНЕЛЬ КАТАЛОГУ ---
+class CatalogPanel(ctk.CTkFrame):
+    def __init__(self, parent, main_screen):
+        super().__init__(parent, fg_color="transparent")
+        self.main_screen = main_screen
+        
+        # Верхній рядок керування
+        top_bar = ctk.CTkFrame(self, fg_color="transparent")
+        top_bar.pack(fill="x", pady=10)
+        
+        self.search_entry = ctk.CTkEntry(top_bar, placeholder_text="Пошук товарів...", width=220)
+        self.search_entry.pack(side="left", padx=5)
+        self.search_entry.bind("<KeyRelease>", self.filter_products)
+        
+        # Категорії
+        self.active_cat = "all"
+        cats = [("Усі", "all"), ("Техніка", "tech"), ("Фрукти", "fruits"), ("Для дому", "home"), ("Спорт", "sport"), ("Одяг", "clothing")]
+        for text, key in cats:
+            btn = ctk.CTkButton(top_bar, text=text, command=lambda k=key: self.set_category(k), size=(70, 28), font=("Segoe UI", 10))
+            btn.pack(side="left", padx=3)
             
-    update_detail_photo()
-    
-    tk.Label(dialog, text=name, font=("Segoe UI", 15, "bold"), bg="#ffffff", fg="#212529").pack()
-    tk.Label(dialog, text=data["desc"], font=("Segoe UI", 10, "italic"), bg="#ffffff", fg="#6c757d").pack(pady=3)
-    tk.Label(dialog, text=f"Ціна: {data['price']} грн/шт", font=("Segoe UI", 12, "bold"), bg="#ffffff", fg="#2e7d32").pack(pady=3)
-    
-    tk.Label(dialog, text=tr("color_lbl"), font=("Segoe UI", 10, "bold"), bg="#ffffff").pack(pady=3)
-    color_frame = tk.Frame(dialog, bg="#ffffff")
-    color_frame.pack(pady=3)
-    
-    selected_color = tk.StringVar(value=data["colors"][0][0])
-    color_buttons = {}
-    
-    def select_color(c_name):
-        selected_color.set(c_name)
-        for name_key, btn_widget in color_buttons.items():
-            if name_key == c_name:
-                btn_widget.configure(relief="solid", bd=2, highlightthickness=1, highlightbackground="#4a90e2")
-            else:
-                btn_widget.configure(relief="flat", bd=1, highlightthickness=0)
-
-    for c_name, c_hex in data["colors"]:
-        btn_c = tk.Button(
-            color_frame, bg=c_hex, activebackground=c_hex, width=4, height=1, relief="flat", cursor="hand2",
-            command=lambda name_key=c_name: select_color(name_key)
-        )
-        btn_c.pack(side="left", padx=5)
-        color_buttons[c_name] = btn_c
+        self.sort_menu = ctk.CTkOptionMenu(top_bar, values=["Дешевші", "Дорожчі"], command=self.set_sorting, width=110)
+        self.sort_menu.pack(side="right", padx=5)
+        self.active_sort = "cheap"
         
-    select_color(data["colors"][0][0])
-    
-    qty_frame = tk.Frame(dialog, bg="#ffffff")
-    qty_frame.pack(pady=8)
-    tk.Label(qty_frame, text=tr("qty_lbl"), font=("Segoe UI", 10), bg="#ffffff").pack(side="left", padx=5)
-    qty_spin = tk.Spinbox(qty_frame, from_=1, to=50, width=5, font=("Segoe UI", 10), justify="center")
-    qty_spin.pack(side="left", padx=5)
-    
-    tk.Button(
-        dialog, text=tr("add_to_cart_btn"), font=("Segoe UI", 11, "bold"), bg="#2ecc71", fg="white", relief="flat", padx=15, pady=4,
-        command=lambda: add_to_cart(name, data['price'], qty_spin.get(), selected_color.get(), dialog), cursor="hand2"
-    ).pack(pady=8)
-    
-    tk.Label(dialog, text=tr("reviews_lbl"), font=("Segoe UI", 11, "bold"), bg="#ffffff", fg="#2c3e50").pack(pady=5)
-    reviews_container = tk.Frame(dialog, bg="#ffffff")
-    reviews_container.pack(fill="both", expand=True, padx=15)
-    
-    def refresh_reviews():
-        for w in reviews_container.winfo_children():
+        # Скрольована сітка товарів
+        self.scroll_frame = ctk.CTkScrollableFrame(self)
+        self.scroll_frame.pack(fill="both", expand=True)
+        
+        self.cards = {}
+        self.draw_grid()
+
+    def set_category(self, cat):
+        self.active_cat = cat
+        self.draw_grid()
+
+    def set_sorting(self, choice):
+        self.active_sort = "cheap" if choice == "Дешевші" else "expensive"
+        self.draw_grid()
+
+    def filter_products(self, event):
+        self.draw_grid()
+
+    def draw_grid(self):
+        for widget in self.scroll_frame.winfo_children():
+            widget.destroy()
+            
+        search_query = self.search_entry.get().strip().lower()
+        favorites = market_db.get_favorites(logged_in_user)
+        
+        filtered = []
+        for name, data in fruits_data.items():
+            if search_query and search_query not in name.lower(): continue
+            if self.active_cat != "all" and data["category"] != self.active_cat: continue
+            filtered.append((name, data))
+            
+        # Сортування: спочатку обрані, потім за ціною
+        def sort_key(item):
+            name, data = item
+            is_fav = 0 if name in favorites else 1
+            price_val = data["price"] if self.active_sort == "cheap" else -data["price"]
+            return (is_fav, price_val)
+            
+        filtered.sort(key=sort_key)
+        
+        # Виводимо перші 24 товари, щоб уникнути будь-яких підвисань
+        col = 0
+        row = 0
+        for name, data in filtered[:24]:
+            card = ctk.CTkFrame(self.scroll_frame, corner_radius=10, width=200, height=220)
+            card.grid(row=row, column=col, padx=10, pady=10)
+            
+            # Сердечко обраного
+            is_fav = name in favorites
+            heart_color = "red" if is_fav else "gray"
+            heart_btn = ctk.CTkButton(card, text="❤️" if is_fav else "🤍", text_color=heart_color, width=28, height=28, fg_color="transparent", hover_color="transparent", command=lambda n=name: self.toggle_favorite(n))
+            heart_btn.place(relx=0.85, rely=0.1, anchor="center")
+            
+            # Картинка
+            img_lbl = ctk.CTkLabel(card, text="Завантаження... 🔄", font=("Segoe UI", 9, "italic"))
+            img_lbl.pack(pady=15)
+            
+            # Завантаження картинки у фоновому режимі
+            def img_callback(photo, lbl=img_lbl):
+                if lbl.winfo_exists():
+                    lbl.configure(image=photo, text="")
+                    lbl.image = photo
+                    
+            get_image_from_url_memory(data["url"], (50, 50), img_callback)
+            
+            lbl_name = ctk.CTkLabel(card, text=name, font=("Segoe UI", 11, "bold"))
+            lbl_name.pack(pady=2)
+            
+            lbl_price = ctk.CTkLabel(card, text=f"{data['price']} грн/шт", font=("Segoe UI", 10), text_color="#2ecc71")
+            lbl_price.pack(pady=2)
+            
+            btn_details = ctk.CTkButton(card, text="Детальніше", command=lambda n=name: self.main_screen.switch_panel(DetailsPanel, n), size=(110, 26), font=("Segoe UI", 10, "bold"))
+            btn_details.pack(pady=5)
+            
+            col += 1
+            if col > 2:
+                col = 0
+                row += 1
+
+    def toggle_favorite(self, name):
+        market_db.toggle_favorite(logged_in_user, name)
+        play_sound("click")
+        self.draw_grid()
+
+# --- ПАНЕЛЬ ДЕТАЛЕЙ ТОВАРУ ---
+class DetailsPanel(ctk.CTkFrame):
+    def __init__(self, parent, main_screen, name):
+        super().__init__(parent, fg_color="transparent")
+        self.main_screen = main_screen
+        self.name = name
+        self.data = fruits_data[name]
+        
+        # Кнопка назад
+        btn_back = ctk.CTkButton(self, text="← Назад", command=lambda: self.main_screen.show_catalog(), size=(80, 28))
+        btn_back.pack(anchor="w", pady=10)
+        
+        # Ліва сторона: Зображення, опис
+        left_box = ctk.CTkFrame(self, corner_radius=12)
+        left_box.pack(side="left", fill="both", expand=True, padx=10, pady=10)
+        
+        self.img_lbl = ctk.CTkLabel(left_box, text="Завантаження реального фото... 🔄", font=("Segoe UI", 10, "italic"))
+        self.img_lbl.pack(pady=20)
+        
+        def detail_img_callback(photo):
+            if self.img_lbl.winfo_exists():
+                self.img_lbl.configure(image=photo, text="")
+                self.img_lbl.image = photo
+        get_image_from_url_memory(self.data["url"], (130, 130), detail_img_callback)
+        
+        lbl_title = ctk.CTkLabel(left_box, text=name, font=("Segoe UI", 18, "bold"))
+        lbl_title.pack(pady=5)
+        
+        lbl_desc = ctk.CTkLabel(left_box, text=self.data["desc"], font=("Segoe UI", 11, "italic"), wraplength=280)
+        lbl_desc.pack(pady=5)
+        
+        lbl_price = ctk.CTkLabel(left_box, text=f"Ціна: {self.data['price']} грн/шт", font=("Segoe UI", 14, "bold"), text_color="#2ecc71")
+        lbl_price.pack(pady=10)
+        
+        # Вибір кольору
+        ctk.CTkLabel(left_box, text="Виберіть сорт/колір:", font=("Segoe UI", 11, "bold")).pack()
+        self.selected_color = ctk.StringVar(value=self.data["colors"][0][0])
+        color_frame = ctk.CTkFrame(left_box, fg_color="transparent")
+        color_frame.pack(pady=5)
+        
+        for color_name, color_hex in self.data["colors"]:
+            btn_c = tk.Button(color_frame, bg=color_hex, width=4, height=1, relief="groove", command=lambda c=color_name: self.selected_color.set(c))
+            btn_c.pack(side="left", padx=5)
+            
+        # Кількість
+        qty_frame = ctk.CTkFrame(left_box, fg_color="transparent")
+        qty_frame.pack(pady=10)
+        ctk.CTkLabel(qty_frame, text="Кількість:").pack(side="left", padx=5)
+        self.qty_spin = ttk.Spinbox(qty_frame, from_=1, to=50, width=5, font=("Segoe UI", 10), justify="center")
+        self.qty_spin.pack(side="left", padx=5)
+        self.qty_spin.set(1)
+        
+        btn_add = ctk.CTkButton(left_box, text="Додати в кошик", command=self.add_to_cart, fg_color="#2ecc71", hover_color="#27ae60", font=("Segoe UI", 12, "bold"))
+        btn_add.pack(pady=10)
+        
+        # Права сторона: Відгуки
+        right_box = ctk.CTkFrame(self, corner_radius=12)
+        right_box.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+        
+        ctk.CTkLabel(right_box, text="Відгуки та оцінки:", font=("Segoe UI", 14, "bold")).pack(pady=10)
+        
+        self.reviews_frame = ctk.CTkScrollableFrame(right_box, height=220)
+        self.reviews_frame.pack(fill="both", expand=True, padx=10)
+        
+        # Форма додавання відгуку
+        form_frame = ctk.CTkFrame(right_box)
+        form_frame.pack(fill="x", padx=10, pady=15)
+        
+        self.rating_spin = ttk.Spinbox(form_frame, from_=1, to=5, width=3, justify="center")
+        self.rating_spin.grid(row=0, column=0, padx=5, pady=5)
+        self.rating_spin.set(5)
+        
+        self.rev_entry = ctk.CTkEntry(form_frame, placeholder_text="Ваш відгук...", width=160)
+        self.rev_entry.grid(row=0, column=1, padx=5, pady=5)
+        
+        btn_submit = ctk.CTkButton(form_frame, text="Надіслати", command=self.submit_review, width=80)
+        btn_submit.grid(row=0, column=2, padx=5, pady=5)
+        
+        self.refresh_reviews()
+
+    def refresh_reviews(self):
+        for w in self.reviews_frame.winfo_children():
             w.destroy()
-        revs = market_db.get_reviews(name)
+            
+        revs = market_db.get_reviews(self.name)
         if revs:
             avg = sum(r['rating'] for r in revs) / len(revs)
             stars = "★" * int(round(avg)) + "☆" * (5 - int(round(avg)))
-            tk.Label(reviews_container, text=f"Рейтинг: {stars} ({avg:.1f}/5)", font=("Segoe UI", 10, "bold"), bg="#ffffff", fg="#f1c40f").pack(anchor="w")
-            for r in revs[-3:]:
-                tk.Label(reviews_container, text=f"• {r['username']} ({r['rating']}★): {r['text']}", font=("Segoe UI", 9), bg="#ffffff", fg="#555", anchor="w", justify="left").pack(fill="x")
+            ctk.CTkLabel(self.reviews_frame, text=f"Рейтинг: {stars} ({avg:.1f}/5)", font=("Segoe UI", 12, "bold"), text_color="#f1c40f").pack(anchor="w")
+            for r in revs[-5:]:
+                ctk.CTkLabel(self.reviews_frame, text=f"• {r['username']} ({r['rating']}★): {r['text']}", font=("Segoe UI", 10), anchor="w", justify="left").pack(fill="x", pady=2)
         else:
-            tk.Label(reviews_container, text="Відгуків немає.", font=("Segoe UI", 9, "italic"), bg="#ffffff", fg="#888").pack(anchor="w")
+            ctk.CTkLabel(self.reviews_frame, text="Відгуків ще немає.", font=("Segoe UI", 10, "italic")).pack(anchor="w")
 
-    refresh_reviews()
-    
-    add_rev_frame = tk.Frame(dialog, bg="#ffffff")
-    add_rev_frame.pack(fill="x", padx=15, pady=10)
-    tk.Label(add_rev_frame, text=tr("add_review_lbl"), font=("Segoe UI", 9, "bold"), bg="#ffffff").grid(row=0, column=0, columnspan=2, sticky="w")
-    
-    rating_var = tk.StringVar(value="5")
-    rating_spin = tk.Spinbox(add_rev_frame, from_=1, to=5, width=3, font=("Segoe UI", 9), justify="center", textvariable=rating_var)
-    rating_spin.grid(row=1, column=0, padx=5, pady=2)
-    
-    rev_entry = tk.Entry(add_rev_frame, width=28, font=("Segoe UI", 9), bd=1, relief="solid")
-    rev_entry.grid(row=1, column=1, padx=5, pady=2)
-    tk.Button(add_rev_frame, text=tr("submit_review_btn"), font=("Segoe UI", 8, "bold"), bg="#34495e", fg="white", relief="flat", command=lambda: submit_review(name, rating_var, rev_entry, refresh_reviews)).grid(row=1, column=2, padx=5, pady=2)
-
-def add_to_cart(name, price, qty, color, dialog):
-    try:
-        qty = int(qty)
-        if qty <= 0: raise ValueError
-    except ValueError:
-        play_sound("error")
-        messagebox.showwarning("Помилка", "Будь ласка, введіть коректну кількість!")
-        return
-
-    for item in cart:
-        if item["name"] == name and item["color"] == color:
-            item["qty"] += qty
-            break
-    else:
-        cart.append({"name": name, "price": price, "qty": qty, "color": color})
+    def submit_review(self):
+        text = self.rev_entry.get().strip()
+        if not text:
+            play_sound("error")
+            messagebox.showwarning("Помилка", "Введіть відгук!")
+            return
+        try: rating = int(self.rating_spin.get())
+        except: rating = 5
         
-    play_sound("success")
-    messagebox.showinfo("Успіх", f"Додано {qty} шт. до кошика!")
-    update_cart_button_text()
-    dialog.destroy()
+        market_db.add_review(self.name, logged_in_user, rating, text)
+        play_sound("success")
+        self.rev_entry.delete(0, "end")
+        self.refresh_reviews()
 
-def view_cart():
-    cart_window = tk.Toplevel(main_app)
-    cart_window.title(tr("cart_title"))
-    cart_window.geometry("500x550")
-    cart_window.configure(bg="#ffffff")
-    cart_window.grab_set()
-    
-    tk.Label(cart_window, text=f"🛒 {tr('cart_title')}", font=("Segoe UI", 14, "bold"), bg="#ffffff", fg="#212529").pack(pady=10)
-    list_frame = tk.Frame(cart_window, bg="#ffffff")
-    list_frame.pack(fill="both", expand=True, padx=15, pady=5)
-    
-    def refresh_cart_view():
-        for widget in list_frame.winfo_children():
-            widget.destroy()
-            
-        if not cart:
-            tk.Label(list_frame, text=tr("cart_empty"), font=("Segoe UI", 11), bg="#ffffff", fg="#888").pack(pady=50)
-            price_label.config(text=f"{tr('total_lbl')} 0 грн")
+    def add_to_cart(self):
+        try:
+            qty = int(self.qty_spin.get())
+            if qty <= 0: raise ValueError
+        except ValueError:
+            play_sound("error")
+            messagebox.showwarning("Помилка", "Будь ласка, введіть коректну кількість!")
             return
 
+        for item in cart:
+            if item["name"] == self.name and item["color"] == self.selected_color.get():
+                item["qty"] += qty
+                break
+        else:
+            cart.append({"name": self.name, "price": self.data["price"], "qty": qty, "color": self.selected_color.get()})
+            
+        play_sound("success")
+        self.main_screen.update_profile_info()
+        messagebox.showinfo("Успіх", f"Додано до кошика!")
+
+# --- ПАНЕЛЬ КОШИКА ТА ОФОРМЛЕННЯ ---
+class CartPanel(ctk.CTkFrame):
+    def __init__(self, parent, main_screen):
+        super().__init__(parent, fg_color="transparent")
+        self.main_screen = main_screen
+        
+        # Ліва сторона: список товарів у кошику
+        left_box = ctk.CTkFrame(self, corner_radius=12)
+        left_box.pack(side="left", fill="both", expand=True, padx=10, pady=10)
+        
+        ctk.CTkLabel(left_box, text="Кошик товарів", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        
+        self.items_frame = ctk.CTkScrollableFrame(left_box)
+        self.items_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        
+        self.total_lbl = ctk.CTkLabel(left_box, text="Разом до сплати: 0 грн", font=("Segoe UI", 13, "bold"), text_color="#2ecc71")
+        self.total_lbl.pack(pady=10)
+        
+        btn_clear = ctk.CTkButton(left_box, text="Очистити кошик", command=self.clear_cart, fg_color="#95a5a6", hover_color="#7f8c8d")
+        btn_clear.pack(pady=5)
+        
+        # Права сторона: оформлення доставки
+        self.right_box = ctk.CTkFrame(self, corner_radius=12)
+        self.right_box.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+        
+        ctk.CTkLabel(self.right_box, text="Дані для доставки замовлення", font=("Segoe UI", 14, "bold")).pack(pady=15)
+        
+        self.phone_entry = ctk.CTkEntry(self.right_box, placeholder_text="Номер телефону (+380...)")
+        self.phone_entry.pack(pady=6, padx=20, fill="x")
+        self.phone_entry.insert(0, "+380")
+        
+        self.email_entry = ctk.CTkEntry(self.right_box, placeholder_text="Електронна пошта (Email)")
+        self.email_entry.pack(pady=6, padx=20, fill="x")
+        
+        self.address_entry = ctk.CTkEntry(self.right_box, placeholder_text="Адреса доставки")
+        self.address_entry.pack(pady=6, padx=20, fill="x")
+        
+        self.deliv_combo = ctk.CTkOptionMenu(self.right_box, values=["Кур'єр 🚚", "Нова Пошта 📦", "Самовивіз 🏪"])
+        self.deliv_combo.pack(pady=6, padx=20, fill="x")
+        
+        self.pay_combo = ctk.CTkOptionMenu(self.right_box, values=["Особистий баланс 💳", "Карткою при отриманні 💳", "Готівка 💵"])
+        self.pay_combo.pack(pady=6, padx=20, fill="x")
+        
+        btn_order = ctk.CTkButton(self.right_box, text="Оформити замовлення 🚚", command=self.checkout, fg_color="#2ecc71", hover_color="#27ae60", font=("Segoe UI", 12, "bold"))
+        btn_order.pack(pady=20)
+        
+        self.refresh_cart_list()
+
+    def refresh_cart_list(self):
+        for w in self.items_frame.winfo_children():
+            w.destroy()
+            
+        if not cart:
+            ctk.CTkLabel(self.items_frame, text="Кошик порожній 😔", font=("Segoe UI", 11)).pack(pady=30)
+            self.total_lbl.configure(text="Разом до сплати: 0 грн")
+            return
+            
         total_price = 0
         for index, item in enumerate(cart):
-            item_total = item['price'] * item['qty']
-            total_price += item_total
-            item_row = tk.Frame(list_frame, bg="#f8f9fa", pady=5)
-            item_row.pack(fill="x", pady=2)
-            tk.Label(item_row, text=f"{item['name']} ({item['color']}) x{item['qty']}", font=("Segoe UI", 9, "bold"), bg="#f8f9fa").pack(side="left", padx=10)
-            tk.Label(item_row, text=f"{item_total} грн", font=("Segoe UI", 10), bg="#f8f9fa", fg="#555").pack(side="left", padx=10)
-            del_btn = tk.Button(item_row, text="❌", font=("Segoe UI", 8), bg="#ff4d4d", fg="white", relief="flat", command=lambda idx=index: remove_item(idx), cursor="hand2")
-            del_btn.pack(side="right", padx=10)
+            sub = item["price"] * item["qty"]
+            total_price += sub
+            
+            row = ctk.CTkFrame(self.items_frame)
+            row.pack(fill="x", pady=4)
+            
+            ctk.CTkLabel(row, text=f"{item['name']} ({item['color']}) x{item['qty']}", font=("Segoe UI", 11, "bold")).pack(side="left", padx=10)
+            ctk.CTkLabel(row, text=f"{sub} грн", font=("Segoe UI", 11), text_color="#2ecc71").pack(side="left", padx=15)
+            
+            btn_del = ctk.CTkButton(row, text="❌", width=24, height=24, fg_color="#ff4d4d", hover_color="#ff3333", command=lambda idx=index: self.remove_item(idx))
+            btn_del.pack(side="right", padx=10)
 
         discounted_price = total_price * (1 - session_discount)
         if session_discount > 0:
-            price_label.config(
-                text=f"{tr('subtotal_lbl')} {total_price} грн\n{tr('discount_lbl')} ({int(session_discount*100)}%): -{int(total_price * session_discount)} грн\n{tr('total_lbl')} {int(discounted_price)} грн"
+            self.total_lbl.configure(
+                text=f"Сума: {total_price} грн\nЗнижка ({int(session_discount*100)}%): -{int(total_price*session_discount)} грн\nРазом: {int(discounted_price)} грн"
             )
         else:
-            price_label.config(text=f"{tr('total_lbl')} {total_price} грн")
+            self.total_lbl.configure(text=f"Разом до сплати: {total_price} грн")
 
-    def remove_item(index):
-        removed_item = cart.pop(index)
-        refresh_cart_view()
-        update_cart_button_text()
+    def remove_item(self, idx):
+        cart.pop(idx)
         play_sound("click")
-        messagebox.showinfo("Кошик", f"{removed_item['name']} видалено з кошика")
+        self.refresh_cart_list()
+        self.main_screen.update_profile_info()
 
-    def clear_cart():
+    def clear_cart(self):
         if cart:
             cart.clear()
-            refresh_cart_view()
-            update_cart_button_text()
             play_sound("click")
-            messagebox.showinfo("Кошик", "Кошик повністю очищено")
+            self.refresh_cart_list()
+            self.main_screen.update_profile_info()
 
-    def checkout():
+    def checkout(self):
         global session_discount
         if not cart:
             play_sound("error")
@@ -791,58 +837,26 @@ def view_cart():
         user_balance = market_db.get_balance(logged_in_user)
         if user_balance < discounted_price:
             play_sound("error")
-            messagebox.showerror("Помилка", tr("insufficient_balance"))
+            messagebox.showerror("Помилка", "Недостатньо коштів на балансі!")
             return
             
-        checkout_dialog = tk.Toplevel(cart_window)
-        checkout_dialog.title("Деталі Доставки")
-        checkout_dialog.geometry("380x380")
-        checkout_dialog.configure(bg="#ffffff")
-        checkout_dialog.grab_set()
+        phone = self.phone_entry.get().strip()
+        email = self.email_entry.get().strip()
+        address = self.address_entry.get().strip()
         
-        tk.Label(checkout_dialog, text="Дані замовлення", font=("Segoe UI", 12, "bold"), bg="#ffffff").pack(pady=10)
-        form_frame = tk.Frame(checkout_dialog, bg="#ffffff")
-        form_frame.pack(padx=15, pady=5)
-        
-        tk.Label(form_frame, text="Телефон:", bg="#ffffff").grid(row=0, column=0, sticky="e", pady=3)
-        phone_entry = tk.Entry(form_frame, width=22)
-        phone_entry.grid(row=0, column=1, pady=3, padx=5)
-        phone_entry.insert(0, "+380")
-        
-        tk.Label(form_frame, text="Email:", bg="#ffffff").grid(row=1, column=0, sticky="e", pady=3)
-        email_entry = tk.Entry(form_frame, width=22)
-        email_entry.grid(row=1, column=1, pady=3, padx=5)
-        
-        tk.Label(form_frame, text="Адреса:", bg="#ffffff").grid(row=2, column=0, sticky="e", pady=3)
-        address_entry = tk.Entry(form_frame, width=22)
-        address_entry.grid(row=2, column=1, pady=3, padx=5)
-        
-        tk.Label(form_frame, text="Доставка:", bg="#ffffff").grid(row=3, column=0, sticky="e", pady=3)
-        deliv_var = tk.StringVar(value="Кур'єр")
-        deliv_combo = ttk.Combobox(form_frame, textvariable=deliv_var, values=["Кур'єр 🚚", "Нова Пошта 📦", "Самовивіз 🏪"], state="readonly", width=19)
-        deliv_combo.grid(row=3, column=1, pady=3, padx=5)
-        
-        tk.Label(form_frame, text="Оплата:", bg="#ffffff").grid(row=4, column=0, sticky="e", pady=3)
-        pay_var = tk.StringVar(value="Особистий баланс")
-        pay_combo = ttk.Combobox(form_frame, textvariable=pay_var, values=["Особистий баланс 💳", "Карткою при отриманні 💳", "Готівка 💵"], state="readonly", width=19)
-        pay_combo.grid(row=4, column=1, pady=3, padx=5)
-        
-        def finish_order():
-            phone = phone_entry.get().strip()
-            email = email_entry.get().strip()
-            address = address_entry.get().strip()
+        if len(phone) < 9 or not email or not address:
+            play_sound("error")
+            messagebox.showwarning("Помилка", "Заповніть усі дані доставки!")
+            return
             
-            if len(phone) < 9 or not email or not address:
-                play_sound("error")
-                messagebox.showwarning("Помилка", "Будь ласка, заповніть усі поля доставки!")
-                return
-                
-            market_db.deduct_balance(logged_in_user, discounted_price)
-            date_str = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            market_db.add_order(logged_in_user, discounted_price, sum(item['qty'] for item in cart), date_str)
-            
-            receipt_filename = f"receipt_{logged_in_user}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
-            html_content = f"""<!DOCTYPE html>
+        # Здійснення оплати
+        market_db.deduct_balance(logged_in_user, discounted_price)
+        date_str = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        market_db.add_order(logged_in_user, discounted_price, sum(item['qty'] for item in cart), date_str)
+        
+        # Чек
+        receipt_filename = f"receipt_{logged_in_user}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
+        html_content = f"""<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -868,8 +882,8 @@ def view_cart():
             <b>Телефон:</b> {phone}<br>
             <b>Email:</b> {email}<br>
             <b>Адреса доставки:</b> {address}<br>
-            <b>Спосіб доставки:</b> {deliv_var.get()}<br>
-            <b>Метод оплати:</b> {pay_var.get()}<br>
+            <b>Спосіб доставки:</b> {self.deliv_combo.get()}<br>
+            <b>Метод оплати:</b> {self.pay_combo.get()}<br>
             <b>Дата:</b> {date_str}
         </div>
         <table>
@@ -880,241 +894,175 @@ def view_cart():
                 </tr>
             </thead>
             <tbody>"""
-            for item in cart:
-                subtotal = item['price'] * item['qty']
-                html_content += f"""
-                <tr>
-                    <td>{item['name']} ({item['color']})<br><small>{item['qty']} шт. х {item['price']} грн</small></td>
-                    <td class="price">{subtotal} грн</td>
-                </tr>"""
+        for item in cart:
+            subtotal = item['price'] * item['qty']
             html_content += f"""
-            </tbody>
-        </table>"""
-            if session_discount > 0:
-                html_content += f"""
-            <div style="text-align:right; font-size:14px; margin-bottom:5px;">Сума: {total_price} грн</div>
-            <div style="text-align:right; font-size:14px; color:#e74c3c; margin-bottom:5px;">Знижка ({int(session_discount*100)}%): -{int(total_price*session_discount)} грн</div>"""
+            <tr>
+                <td>{item['name']} ({item['color']})<br><small>{item['qty']} шт. х {item['price']} грн</small></td>
+                <td class="price">{subtotal} грн</td>
+            </tr>"""
+        html_content += f"""
+        </tbody>
+    </table>"""
+        if session_discount > 0:
             html_content += f"""
-        <div class="total-row" style="text-align:right; padding-top:10px; border-top: 2px solid #4a90e2;">
-            РАЗОМ ДО СПЛАТИ: {discounted_price} грн
-        </div>
-        <div class="footer">Дякуємо за покупку в нашому Мегамаркеті! 🚚</div>
+        <div style="text-align:right; font-size:14px; margin-bottom:5px;">Сума: {total_price} грн</div>
+        <div style="text-align:right; font-size:14px; color:#e74c3c; margin-bottom:5px;">Знижка ({int(session_discount*100)}%): -{int(total_price*session_discount)} грн</div>"""
+        html_content += f"""
+    <div class="total-row" style="text-align:right; padding-top:10px; border-top: 2px solid #4a90e2;">
+        РАЗОМ ДО СПЛАТИ: {discounted_price} грн
     </div>
+    <div class="footer">Дякуємо за покупку в нашому Мегамаркеті! 🚚</div>
+</div>
 </body>
 </html>"""
-            with open(receipt_filename, "w", encoding="utf-8") as f:
-                f.write(html_content)
-                
-            play_sound("success")
-            messagebox.showinfo("Успіх", f"{tr('success_purchase')}\nЧек збережено: {receipt_filename}")
-            cart.clear()
-            session_discount = 0.0
-            update_cart_button_text()
-            balance_lbl.configure(text=f"{tr('balance_label')} {market_db.get_balance(logged_in_user)} грн")
-            checkout_dialog.destroy()
-            cart_window.destroy()
-
-        tk.Button(checkout_dialog, text="Завершити замовлення 🚚", font=("Segoe UI", 10, "bold"), bg="#2ecc71", fg="white", relief="flat", padx=15, pady=5, command=finish_order).pack(pady=15)
-
-    price_label = tk.Label(cart_window, text="Разом до сплати: 0 грн", font=("Segoe UI", 11, "bold"), bg="#ffffff", fg="#2e7d32")
-    price_label.pack(pady=15)
-    
-    actions_frame = tk.Frame(cart_window, bg="#ffffff")
-    actions_frame.pack(pady=10)
-    tk.Button(actions_frame, text=tr("clear_cart_btn"), font=("Segoe UI", 10), bg="#95a5a6", fg="white", relief="flat", command=clear_cart).pack(side="left", padx=5)
-    tk.Button(actions_frame, text=tr("checkout_btn"), font=("Segoe UI", 10, "bold"), bg="#2ecc71", fg="white", relief="flat", padx=10, command=checkout).pack(side="left", padx=5)
-    
-    refresh_cart_view()
-
-def toggle_fav(fruit_name, heart_btn):
-    if not logged_in_user: return
-    is_fav = market_db.toggle_favorite(logged_in_user, fruit_name)
-    play_sound("click")
-    if is_fav: heart_btn.configure(text="❤️", fg="red")
-    else: heart_btn.configure(text="🤍", fg="#888")
-    filter_fruits()
-
-active_category = "all"
-def set_category(cat_name):
-    global active_category
-    active_category = cat_name
-    filter_fruits()
-
-active_sort = "cheap"
-def set_sort(sort_mode):
-    global active_sort
-    active_sort = sort_mode
-    filter_fruits()
-
-def filter_fruits(event=None):
-    search_query = search_entry.get().strip().lower()
-    for widget in grid_frame.winfo_children():
-        widget.grid_forget()
-        
-    favorites = market_db.get_favorites(logged_in_user) if logged_in_user else []
-    
-    filtered = []
-    for f_name, data in fruits_data.items():
-        if search_query and search_query not in f_name.lower(): continue
-        if active_category != "all" and data["category"] != active_category: continue
-        filtered.append((f_name, data))
-        
-    def sort_key(item):
-        name, data = item
-        is_fav_val = 0 if name in favorites else 1
-        price_val = data["price"] if active_sort == "cheap" else -data["price"]
-        return (is_fav_val, price_val)
-        
-    filtered.sort(key=sort_key)
-    
-    current_col = 0
-    current_row = 0
-    for f_name, data in filtered[:30]:
-        if f_name in card_widgets:
-            card_widgets[f_name].grid(row=current_row, column=current_col, padx=10, pady=10)
-            heart_btn = heart_buttons[f_name]
-            if f_name in favorites: heart_btn.configure(text="❤️", fg="red")
-            else: heart_btn.configure(text="🤍", fg="#888")
-            current_col += 1
-            if current_col > 2:
-                current_col = 0
-                current_row += 1
-
-def show_main_elements():
-    apply_theme_colors()
-    translate_ui()
-    main_frame.pack(fill="both", expand=True)
-
-# Створення віджетів
-main_frame = tk.Frame(main_app)
-
-header_frame = tk.Frame(main_frame)
-header_frame.pack(fill="x", ipady=5)
-
-profile_lbl = tk.Label(header_frame, text="👤 Користувач", font=("Segoe UI", 10, "bold"))
-profile_lbl.pack(side="left", padx=15)
-
-balance_lbl = tk.Label(header_frame, text="Баланс: 0 грн", font=("Segoe UI", 10), fg="#2e7d32")
-balance_lbl.pack(side="left", padx=10)
-
-topup_btn = tk.Button(header_frame, text="+ Поповнити", font=("Segoe UI", 9), bg="#2ecc71", fg="white", relief="flat", command=topup_balance)
-topup_btn.pack(side="left", padx=5)
-
-# Кнопка Налаштувань
-settings_btn = tk.Button(header_frame, text="⚙️ Налаштування", font=("Segoe UI", 9), bg="#34495e", fg="white", relief="flat", command=open_settings_window)
-settings_btn.pack(side="right", padx=15)
-
-def logout():
-    global logged_in_user, cart, session_discount
-    logged_in_user = None
-    cart = []
-    session_discount = 0.0
-    main_frame.pack_forget()
-    show_auth_window()
-
-logout_btn = tk.Button(header_frame, text="🚪", font=("Segoe UI", 9), bg="#ff4d4d", fg="white", relief="flat", command=logout)
-logout_btn.pack(side="right", padx=5)
-
-controls_frame = tk.Frame(main_frame)
-controls_frame.pack(fill="x", padx=15, pady=10)
-
-history_btn = tk.Button(controls_frame, text="📜 Історія", font=("Segoe UI", 9), bg="#95a5a6", fg="white", relief="flat", command=open_history)
-history_btn.pack(side="left", padx=5)
-
-wheel_btn = tk.Button(controls_frame, text="🎡 Колесо Фортуни", font=("Segoe UI", 9, "bold"), bg="#f1c40f", fg="#2c3e50", relief="flat", command=open_fortune_wheel)
-wheel_btn.pack(side="left", padx=5)
-
-search_frame = tk.Frame(main_frame)
-search_frame.pack(pady=5)
-
-search_lbl = tk.Label(search_frame, text="🔍 Пошук:", font=("Segoe UI", 10, "bold"))
-search_lbl.pack(side="left", padx=5)
-
-search_entry = tk.Entry(search_frame, width=22, font=("Segoe UI", 10), bd=1, relief="solid")
-search_entry.pack(side="left", padx=5)
-search_entry.bind("<KeyRelease>", filter_fruits)
-
-cat_frame = tk.Frame(main_frame)
-cat_frame.pack(pady=5)
-
-cat_all_btn = tk.Button(cat_frame, text="Усі", font=("Segoe UI", 9), relief="flat", bg="#e0e0e0", command=lambda: set_category("all"))
-cat_all_btn.pack(side="left", padx=3)
-cat_tech_btn = tk.Button(cat_frame, text="Техніка", font=("Segoe UI", 9), relief="flat", bg="#e0e0e0", command=lambda: set_category("tech"))
-cat_tech_btn.pack(side="left", padx=3)
-cat_fruits_btn = tk.Button(cat_frame, text="Фрукти", font=("Segoe UI", 9), relief="flat", bg="#e0e0e0", command=lambda: set_category("fruits"))
-cat_fruits_btn.pack(side="left", padx=3)
-cat_home_btn = tk.Button(cat_frame, text="Для дому", font=("Segoe UI", 9), relief="flat", bg="#e0e0e0", command=lambda: set_category("home"))
-cat_home_btn.pack(side="left", padx=3)
-cat_sport_btn = tk.Button(cat_frame, text="Спорт", font=("Segoe UI", 9), relief="flat", bg="#e0e0e0", command=lambda: set_category("sport"))
-cat_sport_btn.pack(side="left", padx=3)
-cat_clothing_btn = tk.Button(cat_frame, text="Одяг", font=("Segoe UI", 9), relief="flat", bg="#e0e0e0", command=lambda: set_category("clothing"))
-cat_clothing_btn.pack(side="left", padx=3)
-
-sort_btn = tk.Menubutton(main_frame, text="⇅ Сортування", font=("Segoe UI", 9), relief="flat", bg="#e0e0e0")
-sort_btn.pack(pady=5)
-sort_box = tk.Menu(sort_btn, tearoff=0)
-sort_box.add_command(label="Спочатку дешевші", command=lambda: set_sort("cheap"))
-sort_box.add_command(label="Спочатку дорожчі", command=lambda: set_sort("expensive"))
-sort_btn.configure(menu=sort_box)
-
-canvas_container = tk.Canvas(main_frame, bd=0, highlightthickness=0)
-canvas_container.pack(fill="both", expand=True, padx=10, pady=5)
-
-scrollbar = ttk.Scrollbar(main_frame, orient="vertical", command=canvas_container.yview)
-scrollbar.pack(side="right", fill="y")
-canvas_container.configure(yscrollcommand=scrollbar.set)
-
-grid_frame = tk.Frame(canvas_container)
-grid_frame_id = canvas_container.create_window((0, 0), window=grid_frame, anchor="nw")
-
-def on_configure(event):
-    canvas_container.configure(scrollregion=canvas_container.bbox("all"))
-grid_frame.bind("<Configure>", on_configure)
-
-def on_canvas_configure(event):
-    canvas_container.itemconfig(grid_frame_id, width=event.width)
-canvas_container.bind("<Configure>", on_canvas_configure)
-
-card_widgets = {}
-heart_buttons = {}
-
-for name, data in fruits_data.items():
-    card = tk.Frame(grid_frame)
-    card_widgets[name] = card
-    
-    top_row = tk.Frame(card)
-    top_row.pack(fill="x")
-    heart_b = tk.Button(
-        top_row, text="🤍", font=("Segoe UI", 11), bd=0, relief="flat",
-        command=lambda f=name: toggle_fav(f, heart_buttons[f])
-    )
-    heart_b.pack(side="right")
-    heart_buttons[name] = heart_b
-    
-    img_lbl = tk.Label(card, text="Завантаження... 🔄", font=("Segoe UI", 9, "italic"))
-    img_lbl.pack(pady=10)
-    
-    def update_photo(n=name, lbl=img_lbl, u=data["url"]):
-        photo = get_image_from_url_memory(u, (40, 40))
-        if photo:
-            lbl.configure(image=photo, text="")
-            lbl.image = photo
-        else:
-            main_app.after(400, lambda: update_photo(n, lbl, u))
+        with open(receipt_filename, "w", encoding="utf-8") as f:
+            f.write(html_content)
             
-    update_photo()
-    
-    tk.Label(card, text=name, font=("Segoe UI", 10, "bold")).pack()
-    tk.Label(card, text=f"{data['price']} грн/шт", font=("Segoe UI", 9)).pack(pady=2)
-    
-    btn = tk.Button(card, text="Детальніше", font=("Segoe UI", 9), bg="#4a90e2", fg="white", relief="flat", padx=10, pady=2, command=lambda f=name: open_details(f), cursor="hand2")
-    btn.pack(pady=5)
+        play_sound("success")
+        messagebox.showinfo("Успіх", f"Замовлення успішно створено! Чек збережено: {receipt_filename}")
+        cart.clear()
+        session_discount = 0.0
+        self.refresh_cart_list()
+        self.main_screen.update_profile_info()
 
-cart_btn = tk.Button(
-    main_frame, text="🛒 Переглянути Кошик (0 шт.)", font=("Segoe UI", 12, "bold"), 
-    bg="#2c3e50", fg="white", relief="flat", width=30, height=2, command=view_cart, cursor="hand2"
-)
-cart_btn.pack(pady=20)
+# --- ПАНЕЛЬ КОЛЕСА ФОРТУНИ ---
+class FortunePanel(ctk.CTkFrame):
+    def __init__(self, parent, main_screen):
+        super().__init__(parent, fg_color="transparent")
+        self.main_screen = main_screen
+        
+        ctk.CTkLabel(self, text="🎡 Колесо Фортуни", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        
+        self.canvas = tk.Canvas(self, width=280, height=280, bg="#2b2b2b", bd=0, highlightthickness=0)
+        self.canvas.pack(pady=10)
+        
+        self.sectors = [
+            ("Спробуй ще 🍀", "#ffffff", 0.0),
+            ("Знижка 5% 🎁", "#ff8a80", 0.05),
+            ("Спробуй ще 🍀", "#ffffff", 0.0),
+            ("Знижка 10% 🎁", "#ff5252", 0.10),
+            ("Спробуй ще 🍀", "#ffffff", 0.0),
+            ("Знижка 15% 🎁", "#ff1744", 0.15)
+        ]
+        self.draw_wheel(0)
+        
+        self.btn_spin = ctk.CTkButton(self, text="Крутити 🎡", command=self.spin, font=("Segoe UI", 11, "bold"), fg_color="#f1c40f", text_color="#2c3e50", hover_color="#f39c12")
+        self.btn_spin.pack(pady=15)
 
-main_app.after(100, show_auth_window)
-main_app.mainloop()
+    def draw_wheel(self, rot):
+        self.canvas.delete("all")
+        for i, (text, color, val) in enumerate(self.sectors):
+            start = rot + i * 60
+            self.canvas.create_arc(10, 10, 270, 270, start=start, extent=60, fill=color, outline="#2c3e50")
+            rad = math.radians(start + 30)
+            tx = 140 + 75 * math.cos(rad)
+            ty = 140 - 75 * math.sin(rad)
+            self.canvas.create_text(tx, ty, text=text.split()[0], font=("Segoe UI", 9, "bold"), fill="#2c3e50")
+        self.canvas.create_polygon(140, 5, 130, 25, 150, 25, fill="#e74c3c")
+
+    def spin(self):
+        play_sound("click")
+        self.btn_spin.configure(state="disabled")
+        rotations = random.randint(18, 25)
+        
+        def animate(step, cur_angle):
+            if step > 0:
+                cur_angle = (cur_angle + step * 8) % 360
+                self.draw_wheel(cur_angle)
+                play_sound("spin")
+                self.after(50, lambda: animate(step - 1, cur_angle))
+            else:
+                final_angle = (90 - cur_angle) % 360
+                sector_idx = int(final_angle // 60) % len(self.sectors)
+                name, color, discount = self.sectors[sector_idx]
+                
+                if discount > 0:
+                    global session_discount
+                    session_discount = discount
+                    play_sound("success")
+                    messagebox.showinfo("Вітаємо!", f"Ви виграли знижку: {int(discount*100)}%!")
+                else:
+                    play_sound("error")
+                    messagebox.showinfo("Результат", "Спробуйте ще раз! 🍀")
+                self.btn_spin.configure(state="normal")
+                
+        animate(rotations, 0)
+
+# --- ПАНЕЛЬ ІСТОРІЇ ---
+class HistoryPanel(ctk.CTkScrollableFrame):
+    def __init__(self, parent, main_screen):
+        super().__init__(parent, fg_color="transparent")
+        self.main_screen = main_screen
+        
+        ctk.CTkLabel(self, text="📜 Історія замовлень", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        
+        orders = market_db.get_orders(logged_in_user)
+        if not orders:
+            ctk.CTkLabel(self, text="Замовлень ще не було 🤷‍♂️", font=("Segoe UI", 11, "italic")).pack(pady=40)
+            return
+            
+        for index, order in enumerate(orders):
+            row = ctk.CTkFrame(self)
+            row.pack(fill="x", padx=20, pady=5)
+            ctk.CTkLabel(row, text=f"Замовлення #{len(orders)-index} [{order['date']}]", font=("Segoe UI", 11, "bold")).pack(anchor="w", padx=15, pady=4)
+            ctk.CTkLabel(row, text=f"Товарів: {order['items_count']} шт. | Сума: {order['total']} грн", font=("Segoe UI", 10), text_color="#2ecc71").pack(anchor="w", padx=15, pady=2)
+
+# --- ПАНЕЛЬ НАЛАШТУВАНЬ ---
+class SettingsPanel(ctk.CTkFrame):
+    def __init__(self, parent, main_screen):
+        super().__init__(parent, fg_color="transparent")
+        self.main_screen = main_screen
+        
+        ctk.CTkLabel(self, text="⚙️ Налаштування", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        
+        card = ctk.CTkFrame(self, width=400, height=350)
+        card.pack(pady=15, padx=20)
+        
+        # Мова
+        ctk.CTkLabel(card, text="Мова інтерфейсу:", font=("Segoe UI", 11, "bold")).pack(anchor="w", padx=30, pady=10)
+        lang_btn_frame = ctk.CTkFrame(card, fg_color="transparent")
+        lang_btn_frame.pack(fill="x", padx=30)
+        
+        ctk.CTkButton(lang_btn_frame, text="Українська 🇺🇦", width=90, command=lambda: self.change_lang("ua")).pack(side="left", padx=5)
+        ctk.CTkButton(lang_btn_frame, text="English 🇬🇧", width=90, command=lambda: self.change_lang("en")).pack(side="left", padx=5)
+        ctk.CTkButton(lang_btn_frame, text="Русский 🇷🇺", width=90, command=lambda: self.change_lang("ru")).pack(side="left", padx=5)
+        
+        # Тема
+        ctk.CTkLabel(card, text="Тема оформлення:", font=("Segoe UI", 11, "bold")).pack(anchor="w", padx=30, pady=10)
+        self.theme_switch = ctk.CTkSegmentedButton(card, values=["Light ☀️", "Dark 🌙"], command=self.toggle_theme)
+        self.theme_switch.pack(fill="x", padx=30)
+        self.theme_switch.set("Dark 🌙" if ctk.get_appearance_mode() == "Dark" else "Light ☀️")
+        
+        # Звук
+        self.sound_var = tk.BooleanVar(value=sound_enabled)
+        sound_chk = ctk.CTkCheckBox(card, text="Звукові ефекти (Beep)", variable=self.sound_var, command=self.toggle_sound)
+        sound_chk.pack(anchor="w", padx=30, pady=25)
+
+    def change_lang(self, lang):
+        global active_lang
+        active_lang = lang
+        play_sound("click")
+        self.main_screen.lbl_logo.configure(text="🏬 МЕГАМАРКЕТ")
+        # Оновлення текстів бічної панелі
+        nav_texts = ["🏬 Каталог", "🛒 Кошик", "🎡 Колесо Фортуни", "📜 Історія", "⚙️ Налаштування"]
+        for t in nav_texts:
+            if t in self.main_screen.nav_buttons:
+                self.main_screen.nav_buttons[t].configure(text=t)
+        self.main_screen.show_settings()
+
+    def toggle_theme(self, choice):
+        play_sound("click")
+        if "Dark" in choice:
+            ctk.set_appearance_mode("dark")
+        else:
+            ctk.set_appearance_mode("light")
+
+    def toggle_sound(self):
+        global sound_enabled
+        sound_enabled = self.sound_var.get()
+        play_sound("click")
+
+if __name__ == "__main__":
+    main_app = App()
+    main_app.mainloop()
