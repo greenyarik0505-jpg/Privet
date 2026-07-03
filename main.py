@@ -63,12 +63,13 @@ THEMES = {
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
+# РЕАЛЬНІ ФОТОГРАФІЇ З ІНТЕРНЕТУ (Unsplash Direct Source URLs)
 CATEGORY_URLS = {
-    "tech": "https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/1f4bb.png",
-    "fruits": "https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/1f34e.png",
-    "home": "https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/1f6cb.png",
-    "sport": "https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/26bd.png",
-    "clothing": "https://raw.githubusercontent.com/twitter/twemoji/master/assets/72x72/1f455.png"
+    "tech": "https://images.unsplash.com/photo-1496181130204-755241544e35?w=300&q=80",      # Laptop
+    "fruits": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&q=80",    # Red Apple
+    "home": "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=300&q=80",      # Lamp Loft
+    "sport": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=300&q=80",     # Soccer ball
+    "clothing": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300&q=80"   # T-shirt
 }
 
 # Завантаження зображень з інтернету
@@ -76,7 +77,12 @@ def download_image(cat, url):
     dest = os.path.join(CACHE_DIR, f"{cat}.png")
     if not os.path.exists(dest):
         try:
-            urllib.request.urlretrieve(url, dest)
+            # Використовуємо User-Agent, щоб Unsplash не блокував запити
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req) as response:
+                with open(dest, 'wb') as f:
+                    f.write(response.read())
+            print(f"Завантажено реальне фото для {cat}")
         except Exception as e:
             print(f"Помилка завантаження зображення для {cat}: {e}")
 
@@ -341,10 +347,8 @@ def apply_theme_colors():
     canvas_container.configure(bg=theme["bg"])
     grid_frame.configure(bg=theme["bg"])
     
-    # Кнопки товарів
     for name, card in card_widgets.items():
         card.configure(bg=theme["card_bg"], bd=1, relief="groove")
-        # Шукаємо дочірні віджети картки та перефарбовуємо їх
         for child in card.winfo_children():
             if isinstance(child, tk.Label):
                 child.configure(bg=theme["card_bg"], fg=theme["text"])
@@ -405,7 +409,6 @@ def open_settings_window():
         active_lang = lang_code
         play_sound("click")
         translate_ui()
-        # Оновлення модального вікна налаштувань
         settings_win.title(tr("settings_title"))
         settings_title_lbl.configure(text=tr("settings_title"))
         lang_set_lbl.configure(text=tr("lang_lbl"))
@@ -444,7 +447,6 @@ def open_settings_window():
     sound_chk_btn = tk.Checkbutton(settings_win, text=tr("sound_chk"), variable=sound_var, command=toggle_sound, bg="#ffffff", font=("Segoe UI", 9))
     sound_chk_btn.pack(anchor="w", padx=25, pady=15)
     
-    # Збереження посилань для динамічного оновлення при зміні мови всередині налаштувань
     settings_title_lbl = settings_win.winfo_children()[0]
     lang_set_lbl = settings_win.winfo_children()[1]
     theme_set_lbl = settings_win.winfo_children()[3]
@@ -996,7 +998,7 @@ balance_lbl.pack(side="left", padx=10)
 topup_btn = tk.Button(header_frame, text="+ Поповнити", font=("Segoe UI", 9), bg="#2ecc71", fg="white", relief="flat", command=topup_balance)
 topup_btn.pack(side="left", padx=5)
 
-# Кнопка Налаштувань замість прапорців мов у хедері
+# Кнопка Налаштувань
 settings_btn = tk.Button(header_frame, text="⚙️ Налаштування", font=("Segoe UI", 9), bg="#34495e", fg="white", relief="flat", command=open_settings_window)
 settings_btn.pack(side="right", padx=15)
 
