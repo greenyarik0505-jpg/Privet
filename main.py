@@ -457,7 +457,7 @@ class AuthScreen(ctk.CTkFrame):
         self.btn_action.pack(pady=12)
         
         # Посилання на перемикання режиму
-        self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", hover_color="transparent", width=200, height=20, font=("Segoe UI", 10, "underline"))
+        self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", width=200, height=20, font=("Segoe UI", 10, "underline"))
         self.btn_toggle.pack(pady=5)
         
         # Кнопка швидкого вибору теми вгорі праворуч
