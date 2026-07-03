@@ -57,7 +57,6 @@ def draw_custom_sidebar(draw, active_nav):
     draw.text((25, 510), "Logout", fill="black", anchor="lm", font=get_font(11))
 
 def create_main_screenshot():
-    # Новий збільшений розмір вікна для комфортного відображення карток з селекторами
     w, h = 850, 580
     img = Image.new("RGB", (w, h), BG_COLOR)
     draw = ImageDraw.Draw(img)
@@ -65,20 +64,19 @@ def create_main_screenshot():
     # Сайдбар
     draw_custom_sidebar(draw, "DashBoard")
     
-    # Длинное скругленное фиолетовое поле поиска
+    # Поле поиска
     draw.rounded_rectangle([200, 15, 835, 45], 15, fill=SEARCH_BAR_COLOR)
     draw.text((517, 30), "Search", fill="white", anchor="mm", font=get_font(11))
     
-    # Заголовок "Categories"
+    # Категорії
     draw.text((200, 65), "Categories", fill="black", font=get_font(12, True))
     
-    # Горизонтальные блоки категорий
     categories = [
-        ("Bakeries", "#C2D6EE", "Bread.png"),
-        ("Drinks", "#BCE6EB", "Diet_Cola.png"),
-        ("Vegetables", "#ECC4EC", "Salad.png"),
-        ("Fruits", "#D3EEC2", "Apple.png"),
-        ("Snacks", "#DCD2EE", "Potato_Chips.png")
+        ("Bakeries", "#C2D6EE", "cat_bakeries.png"),
+        ("Drinks", "#BCE6EB", "cat_drinks.png"),
+        ("Vegetables", "#ECC4EC", "cat_vegetables.png"),
+        ("Fruits", "#D3EEC2", "cat_fruits.png"),
+        ("Snacks", "#DCD2EE", "cat_snacks.png")
     ]
     for i, (cat, bg, img_file) in enumerate(categories):
         x = 200 + i * 126
@@ -90,41 +88,35 @@ def create_main_screenshot():
     # Заголовок "Popular Items" з пагінацією (1-15 з 253)
     draw.text((200, 175), "Popular Items (1-15 / 253)", fill="black", font=get_font(12, True))
     
-    # Карточки товаров Popular Items (Українські бренди)
+    # Карточки товарів
     products = [
-        ("Хліб Київхліб", "0.6 кг", "$22.00", "Bread.png", "1 шт"),
-        ("Кока-Кола", "0.5 л", "$28.00", "Diet_Cola.png", "1 шт"),
-        ("Сир Пирятин", "1 кг", "$110.00", "Cheese.png", "1.0 кг"),
-        ("Чіпси Lay's", "0.1 кг", "$48.00", "Potato_Chips.png", "1 шт"),
-        ("Яблука Гала", "1 кг", "$45.00", "Apple.png", "1.0 кг")
+        ("Хліб Київхліб", "0.6 кг", "22 грн", "cat_bakeries.png", "1 шт"),
+        ("Кока-Кола", "0.5 л", "28 грн", "cat_drinks.png", "1 шт"),
+        ("Сир Пирятин", "1 кг", "110 грн", "Cheese.png", "1.0 кг"),
+        ("Чіпси Lay's", "0.1 кг", "48 грн", "cat_snacks.png", "1 шт"),
+        ("Яблука Гала", "1 кг", "45 грн", "cat_fruits.png", "1.0 кг")
     ]
     
     for i, (name, weight, price, img_file, qty_text) in enumerate(products):
         x = 200 + i * 126
         y = 195
-        # Белый фон с круглыми углами, висота 235
         draw.rounded_rectangle([x, y, x + 115, y + 230], 10, fill="white")
         
-        # Більша картинка 80x80
         prod_img = get_product_image_by_filename(img_file, (70, 70))
         img.paste(prod_img, (x + 22, y + 10), prod_img if prod_img.mode == "RGBA" else None)
         
-        # Название и вес на одной строке
         draw.text((x + 8, y + 85), name.split()[0], fill="black", font=get_font(10, True))
         draw.text((x + 107, y + 85), weight, fill="gray", anchor="rt", font=get_font(9))
         
-        # Селектор кількості прямо на картці
         draw.rounded_rectangle([x + 8, y + 115, x + 107, y + 140], 5, fill="#F3F4F6")
         draw.text((x + 18, y + 127), "-", fill="black", anchor="mm", font=get_font(12, True))
         draw.text((x + 57, y + 127), qty_text, fill="black", anchor="mm", font=get_font(10, True))
         draw.text((x + 97, y + 127), "+", fill="black", anchor="mm", font=get_font(12, True))
         
-        # Цена и кнопка (+ Додати)
         draw.text((x + 8, y + 175), price, fill="black", font=get_font(10, True))
         draw.rounded_rectangle([x + 8, y + 195, x + 107, y + 220], 12, fill=PRIMARY_COLOR)
         draw.text((x + 57, y + 207), "+ Додати", fill="white", anchor="mm", font=get_font(9, True))
         
-    # Кнопки пагинации в самом низу
     draw.rounded_rectangle([200, 520, 300, 550], 6, fill=PRIMARY_COLOR)
     draw.text((250, 535), "← Назад", fill="white", anchor="mm", font=get_font(9, True))
     
@@ -148,12 +140,12 @@ def create_details_screenshot():
     
     draw.rounded_rectangle([200, 60, 500, 550], 10, fill=SIDEBAR_COLOR)
     
-    prod_img = get_product_image_by_filename("Bread.png", (120, 120))
+    prod_img = get_product_image_by_filename("cat_bakeries.png", (120, 120))
     img.paste(prod_img, (290, 80), prod_img if prod_img.mode == "RGBA" else None)
     
     draw.text((350, 220), "Хліб Київхліб", fill="black", anchor="mm", font=get_font(12, True))
     draw.text((350, 250), "Свіжий український хліб.", fill="black", anchor="mm", font=get_font(9, True))
-    draw.text((350, 275), "Ціна: $22.00", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
+    draw.text((350, 275), "Ціна: 22 грн", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
     
     draw.text((350, 310), "Виберіть сорт/колір:", fill="black", anchor="mm", font=get_font(9, True))
     draw.rectangle([320, 325, 340, 340], fill="#e74c3c", outline=PRIMARY_COLOR, width=2)
@@ -184,22 +176,22 @@ def create_cart_screenshot():
     draw_custom_sidebar(draw, "Checkout")
     
     draw.rounded_rectangle([200, 20, 500, 550], 10, fill=SIDEBAR_COLOR)
-    draw.text((350, 40), "Кошик товарів (POS)", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
+    draw.text((350, 40), "Кошик (грн)", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
     
     draw.rounded_rectangle([215, 70, 485, 120], 6, fill="white")
     draw.text((225, 95), "Хліб Київхліб x1", fill="black", anchor="lm", font=get_font(9, True))
-    draw.text((370, 95), "$22.00", fill="#2e7d32", anchor="lm", font=get_font(9, True))
+    draw.text((370, 95), "22 грн", fill="#2e7d32", anchor="lm", font=get_font(9, True))
     draw.rounded_rectangle([455, 85, 475, 105], 3, fill="#e74c3c")
     draw.text((465, 95), "X", fill="#ffffff", anchor="mm", font=get_font(8))
     
     draw.rounded_rectangle([215, 130, 485, 180], 6, fill="white")
     draw.text((225, 155), "Сир Пирятин x1.5 кг", fill="black", anchor="lm", font=get_font(9, True))
-    draw.text((370, 155), "$165.00", fill="#2e7d32", anchor="lm", font=get_font(9, True))
+    draw.text((370, 155), "165 грн", fill="#2e7d32", anchor="lm", font=get_font(9, True))
     draw.rounded_rectangle([455, 145, 475, 165], 3, fill="#e74c3c")
     draw.text((465, 155), "X", fill="#ffffff", anchor="mm", font=get_font(8))
     
-    draw.text((350, 460), "Сума: $187.00", fill="black", anchor="mm", font=get_font(9, True))
-    draw.text((350, 490), "Разом: $187.00", fill=PRIMARY_COLOR, anchor="mm", font=get_font(11, True))
+    draw.text((350, 460), "Сума: 187 грн", fill="black", anchor="mm", font=get_font(9, True))
+    draw.text((350, 490), "Разом: 187 грн", fill=PRIMARY_COLOR, anchor="mm", font=get_font(11, True))
     draw.rounded_rectangle([280, 510, 420, 535], 50, fill="#95a5a6")
     draw.text((350, 522), "Очистити кошик", fill="#ffffff", anchor="mm", font=get_font(9, True))
     
