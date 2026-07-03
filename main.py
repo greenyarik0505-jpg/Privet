@@ -26,12 +26,36 @@ SESSION_FILE = "session.txt"
 ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
 os.makedirs(ASSETS_DIR, exist_ok=True)
 
-# Кольори точ-в-точ як на скріншотах convenientshop
-PRIMARY_COLOR = "#4F46E5"        # Основний індиго
-BG_COLOR = "#F0EFF9"             # Світло-сірий фон контенту
-SIDEBAR_COLOR = "#E5E4F3"        # Лавандовий фон сайдбару
-HOVER_COLOR = "#D7D2F4"          # Ховер меню
-SEARCH_BAR_COLOR = "#8A96EC"     # Колір пошукового поля
+# ── Палітра тем ──
+THEMES = {
+    "light": {
+        "bg":        "#F0EFF9",
+        "sidebar":   "#E5E4F3",
+        "hover":     "#D7D2F4",
+        "search":    "#8A96EC",
+        "text":      "black",
+        "text_sec":  "#555",
+        "card_bg":   "#FFFFFF",
+        "btn_text":  "white",
+    },
+    "dark": {
+        "bg":        "#1E1E2E",
+        "sidebar":   "#2A2A3E",
+        "hover":     "#3A3A5C",
+        "search":    "#3D3D6B",
+        "text":      "white",
+        "text_sec":  "#AAAACC",
+        "card_bg":   "#2D2D44",
+        "btn_text":  "white",
+    },
+}
+
+# Активні кольори (ініціалізуються зі світлої теми)
+PRIMARY_COLOR    = "#4F46E5"
+BG_COLOR         = THEMES["light"]["bg"]
+SIDEBAR_COLOR    = THEMES["light"]["sidebar"]
+HOVER_COLOR      = THEMES["light"]["hover"]
+SEARCH_BAR_COLOR = THEMES["light"]["search"]
 
 CARD_COLORS = [
     "#7DABDE",  # Синій
@@ -769,15 +793,49 @@ class MainScreen(ctk.CTkFrame):
         self.update_profile_info()
 
     def toggle_theme(self):
-        global current_theme
-        if current_theme == "light":
-            current_theme = "dark"
-            ctk.set_appearance_mode("dark")
-            self.theme_btn.configure(text="☀️ Світла тема")
+        global current_theme, BG_COLOR, SIDEBAR_COLOR, HOVER_COLOR, SEARCH_BAR_COLOR
+        current_theme = "dark" if current_theme == "light" else "light"
+        th = THEMES[current_theme]
+
+        # Оновлюємо глобальні кольори
+        BG_COLOR         = th["bg"]
+        SIDEBAR_COLOR    = th["sidebar"]
+        HOVER_COLOR      = th["hover"]
+        SEARCH_BAR_COLOR = th["search"]
+
+        # Оновлюємо кнопку
+        if current_theme == "dark":
+            self.theme_btn.configure(text="☀️ Світла тема", fg_color="#5A52D5")
         else:
-            current_theme = "light"
-            ctk.set_appearance_mode("light")
-            self.theme_btn.configure(text="🌙 Темна тема")
+            self.theme_btn.configure(text="🌙 Темна тема", fg_color="#6C63FF")
+
+        # Оновлюємо основні контейнери
+        self.configure(fg_color=BG_COLOR)
+        self.sidebar.configure(fg_color=SIDEBAR_COLOR)
+
+        # Оновлюємо аватар-канвас
+        self.avatar_canvas.configure(bg=SIDEBAR_COLOR)
+        self.draw_profile_avatar()
+
+        # Оновлюємо кнопки навігації
+        for btn in self.nav_buttons.values():
+            btn.configure(
+                fg_color="transparent",
+                text_color=th["text"],
+                hover_color=HOVER_COLOR,
+            )
+
+        # Оновлюємо активну кнопку навігації
+        self.update_sidebar_state(
+            next((k for k, v in self.nav_buttons.items()), None)
+        )
+
+        # Оновлюємо тексти балансу
+        self.balance_lbl.configure(text_color="#2ecc71")
+
+        # Перемалювати поточну панель зі свіжими кольорами
+        self.show_catalog()
+
 
     def draw_navigation(self):
         for btn in self.nav_buttons.values():
@@ -937,7 +995,7 @@ class CatalogPanel(ctk.CTkFrame):
             widget.destroy()
             
         # Категорії
-        lbl_cat_title = ctk.CTkLabel(self.scroll_frame, text=t("categories"), font=("Arial", 16, "bold"), text_color="black")
+        lbl_cat_title = ctk.CTkLabel(self.scroll_frame, text=t("categories"), font=("Arial", 16, "bold"), text_color=THEMES[current_theme]["text"])
         lbl_cat_title.pack(anchor="w", padx=10, pady=(5, 5))
         
         cats_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
@@ -973,7 +1031,7 @@ class CatalogPanel(ctk.CTkFrame):
             img_lbl.pack(pady=(8, 2))
             img_lbl.bind("<Button-1>", select_cat)
             
-            lbl_cat_name = ctk.CTkLabel(cat_card, text=name, font=("Arial", 11, "bold"), text_color="black")
+            lbl_cat_name = ctk.CTkLabel(cat_card, text=name, font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text"])
             lbl_cat_name.pack()
             lbl_cat_name.bind("<Button-1>", select_cat)
 
@@ -993,7 +1051,7 @@ class CatalogPanel(ctk.CTkFrame):
         page_items = filtered[start_idx:end_idx]
         
         # Створюємо секцію товарів
-        lbl_pop_title = ctk.CTkLabel(self.scroll_frame, text=f"{t('popular_items')} ({start_idx+1}-{end_idx} / {total_items})", font=("Arial", 16, "bold"), text_color="black")
+        lbl_pop_title = ctk.CTkLabel(self.scroll_frame, text=f"{t('popular_items')} ({start_idx+1}-{end_idx} / {total_items})", font=("Arial", 16, "bold"), text_color=THEMES[current_theme]["text"])
         lbl_pop_title.pack(anchor="w", padx=10, pady=(15, 5))
         
         grid_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
@@ -1017,7 +1075,7 @@ class CatalogPanel(ctk.CTkFrame):
 
     def draw_product_card(self, parent_frame, name, data, row, col):
         # Преміальна велика картка (220x310) для HD фотографій
-        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=220, height=310, fg_color="white")
+        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=220, height=310, fg_color=THEMES[current_theme]["card_bg"])
         card.grid(row=row, column=col, padx=6, pady=6)
         card.grid_propagate(False)
         
