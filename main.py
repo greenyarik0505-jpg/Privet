@@ -399,22 +399,31 @@ class App(ctk.CTk):
 def tr(key):
     return LANGS[active_lang].get(key, key)
 
-# --- ЕКРАН АВТОРИЗАЦІЇ (БЕЗ БІЛИХ КУТІВ І З ДЕКОРАТИВНИМ ЛІВИМ СКЛАДОМ) ---
+# --- ЕКРАН АВТОРИЗАЦІЇ (ПОВНІСТЮ БЕЗ БІЛИХ КУТІВ - ВИКОРИСТОВУЄМО ОДНОРІДНЕ ГАРАНТОВАНЕ ТЛО) ---
 class AuthScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
-        # Нам важливо, щоб bg_color відповідав темі, тому оминаємо білі артефакти
-        bg_col = "#1e1e2e" if ctk.get_appearance_mode() == "Dark" else "#f3f3f3"
-        super().__init__(parent, fg_color=bg_col)
+        # Щоб CustomTkinter міг відрендерити круглі кути без білих артефактів,
+        # ми встановлюємо суцільний сучасний колір тла для всього екрану.
+        self.bg_color_dark = "#171821" # Глибокий космос-фіолетовий
+        self.bg_color_light = "#f3f4f6" # Чистий світло-сірий
+        
+        current_bg = self.bg_color_dark if ctk.get_appearance_mode() == "Dark" else self.bg_color_light
+        super().__init__(parent, fg_color=current_bg)
         self.controller = app_controller
         
-        # Повноекранне полотно для малювання градієнта
-        self.canvas = tk.Canvas(self, bd=0, highlightthickness=0)
-        self.canvas.pack(fill="both", expand=True)
-        self.canvas.bind("<Configure>", self.draw_gradient)
-        
-        # Використовуємо .place() прямо на Canvas, що дозволяє уникнути білих кутів!
-        card_bg = "#252538" if ctk.get_appearance_mode() == "Dark" else "#ffffff"
-        self.card = ctk.CTkFrame(self.canvas, corner_radius=16, width=640, height=390, fg_color=card_bg, border_width=1, border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0")
+        # Основна картка (дизайн як на макеті: горизонтальний спліт)
+        # Встановлюємо bg_color рівним тлу батьківського фрейму, це прибирає будь-які білі куточки під нею!
+        card_bg = "#21222e" if ctk.get_appearance_mode() == "Dark" else "#ffffff"
+        self.card = ctk.CTkFrame(
+            self, 
+            corner_radius=16, 
+            width=640, 
+            height=390, 
+            fg_color=card_bg,
+            bg_color=current_bg,
+            border_width=1, 
+            border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0"
+        )
         self.card.place(relx=0.5, rely=0.5, anchor="center")
         
         # Ліва сторона: Круглий логотип ноутбука з декоративними фігурами навколо (як на макеті)
@@ -426,7 +435,7 @@ class AuthScreen(ctk.CTkFrame):
         self.left_canvas.pack(fill="both", expand=True)
         
         # Малюємо біле коло по центру для іконки
-        circle_color = "#2c2c3d" if ctk.get_appearance_mode() == "Dark" else "#f3f3f3"
+        circle_color = "#2a2b3d" if ctk.get_appearance_mode() == "Dark" else "#f3f4f6"
         self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
         
         # Декоративні плаваючі елементи (кола, трикутники, квадрати як на макеті)
@@ -470,42 +479,25 @@ class AuthScreen(ctk.CTkFrame):
         self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", hover_color=card_bg, width=200, height=20, font=("Segoe UI", 10, "underline"))
         self.btn_toggle.pack(pady=5)
         
-        # Кнопка зміни теми
-        self.btn_theme = ctk.CTkButton(self.canvas, text="Theme", command=self.switch_theme, width=70, height=28, fg_color="#252538", text_color="#ffffff", font=("Segoe UI", 9, "bold"))
-        self.btn_theme_id = self.canvas.create_window(0, 0, window=self.btn_theme, anchor="ne")
-        self.canvas.bind("<Configure>", self.center_theme_btn, add="+")
-
-    def center_theme_btn(self, event):
-        w = event.width
-        self.canvas.coords(self.btn_theme_id, w - 15, 15)
-
-    def draw_gradient(self, event):
-        w = event.width
-        h = event.height
-        self.canvas.delete("gradient")
-        
-        # Яскравий і плавний градієнт за макетом
-        if ctk.get_appearance_mode() == "Light":
-            # Рожево-синій градієнт
-            c1_r, c1_g, c1_b = 224, 86, 253
-            c2_r, c2_g, c2_b = 48, 144, 253
-        else:
-            # Космічний темний фіолетово-синій
-            c1_r, c1_g, c1_b = 36, 16, 85
-            c2_r, c2_g, c2_b = 15, 10, 32
-            
-        for y in range(0, h, 2):
-            r = c1_r + (c2_r - c1_r) * y // h
-            g = c1_g + (c2_g - c1_g) * y // h
-            b = c1_b + (c2_b - c1_b) * y // h
-            color = f"#{r:02x}{g:02x}{b:02x}"
-            self.canvas.create_rectangle(0, y, w, y + 2, fill=color, outline=color, tags="gradient")
-        self.canvas.tag_lower("gradient")
+        # Кнопка зміни теми вгорі праворуч
+        # Завдяки bg_color рівному тлу вікна, білі куточки під нею також пропадуть!
+        self.btn_theme = ctk.CTkButton(
+            self, 
+            text="Theme", 
+            command=self.switch_theme, 
+            width=70, 
+            height=28, 
+            fg_color="#252538" if ctk.get_appearance_mode() == "Dark" else "#cccccc", 
+            text_color="#ffffff" if ctk.get_appearance_mode() == "Dark" else "#000000",
+            bg_color=current_bg,
+            font=("Segoe UI", 9, "bold")
+        )
+        self.btn_theme.place(relx=0.98, rely=0.02, anchor="ne")
 
     def toggle_mode(self):
         play_sound("click")
         self.is_register_mode = not self.is_register_mode
-        card_bg = "#252538" if ctk.get_appearance_mode() == "Dark" else "#ffffff"
+        card_bg = "#21222e" if ctk.get_appearance_mode() == "Dark" else "#ffffff"
         
         if self.is_register_mode:
             self.lbl_title.configure(text="Реєстрація")
@@ -572,21 +564,24 @@ class AuthScreen(ctk.CTkFrame):
         play_sound("click")
         if ctk.get_appearance_mode() == "Dark":
             ctk.set_appearance_mode("light")
-            self.configure(fg_color="#f3f3f3")
-            self.btn_theme.configure(fg_color="#cccccc", text_color="#000000")
+            current_bg = self.bg_color_light
             card_bg = "#ffffff"
+            self.btn_theme.configure(fg_color="#cccccc", text_color="#000000")
         else:
             ctk.set_appearance_mode("dark")
-            self.configure(fg_color="#1e1e2e")
+            current_bg = self.bg_color_dark
+            card_bg = "#21222e"
             self.btn_theme.configure(fg_color="#252538", text_color="#ffffff")
-            card_bg = "#252538"
             
-        self.card.configure(fg_color=card_bg, border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0")
+        # Оновлюємо тло батьківських фреймів для прибирання білих куточків
+        self.configure(fg_color=current_bg)
+        self.card.configure(fg_color=card_bg, bg_color=current_bg, border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0")
+        self.btn_theme.configure(bg_color=current_bg)
         self.left_canvas.configure(bg=card_bg)
         
-        # Перемалювати коло та геометричні фігури
+        # Перемальовуємо елементи на холсті лівої карти
         self.left_canvas.delete("all")
-        circle_color = "#2c2c3d" if ctk.get_appearance_mode() == "Dark" else "#f3f3f3"
+        circle_color = "#2a2b3d" if ctk.get_appearance_mode() == "Dark" else "#f3f4f6"
         self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
         self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
         self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
@@ -597,9 +592,6 @@ class AuthScreen(ctk.CTkFrame):
         
         self.img_lbl.configure(fg_color=circle_color)
         self.btn_toggle.configure(hover_color=card_bg)
-        
-        # Перемалювати фоновий градієнт
-        self.draw_gradient(Struct(width=self.canvas.winfo_width(), height=self.canvas.winfo_height()))
 
 class Struct:
     def __init__(self, **entries):
@@ -984,7 +976,7 @@ class CartPanel(ctk.CTkFrame):
         discounted_price = total_price * (1 - session_discount)
         if session_discount > 0:
             self.total_lbl.configure(
-                text=f"Сума: {total_price} грн\nЗнижка ({int(session_discount*100)}%): -{int(total_price*session_discount)} грн\nРазом: {int(discounted_price)} грн"
+                text=f"Сума: {total_price} stroke грн\nЗнижка ({int(session_discount*100)}%): -{int(total_price*session_discount)} грн\nРазом: {int(discounted_price)} грн"
             )
         else:
             self.total_lbl.configure(text=f"Разом до сплати: {total_price} грн")
