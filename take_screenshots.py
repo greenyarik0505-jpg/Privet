@@ -125,35 +125,34 @@ def main():
     snap(win, "screenshot_main_v7.png")
 
     # 5. Клік на перший товар у каталозі
-    #    Товари починаються приблизно з 35% ширини (після сайдбару)
-    #    і ~45% висоти
-    click_rel(win, 0.42, 0.48, "перший товар")
+    #    Перший товар — X≈20%, Y≈61% (перша картка у сітці, нижче категорій)
+    click_rel(win, 0.20, 0.61, "перший товар — Хліб подовий")
     wait_for_load(3)
     win = find_silpo_window()
 
     print("[2/4] Деталі товару")
     snap(win, "screenshot_details_v7.png")
 
-    # 6. Назад
+    # 6. Назад (кнопка у лівому верхньому куті деталей, ~30% X, 7% Y)
     click_rel(win, 0.30, 0.07, "← Назад")
     time.sleep(1.5)
     win = find_silpo_window()
 
-    # 7. Кошик — другий пункт у сайдбарі (~8% X, ~52% Y)
-    click_rel(win, 0.08, 0.52, "Кошик")
+    # 7. Кошик — другий пункт меню, Y≈41%
+    click_rel(win, 0.08, 0.41, "Кошик")
     wait_for_load(2)
     win = find_silpo_window()
 
     print("[3/4] Кошик / Оформлення")
     snap(win, "screenshot_cart_v7.png")
 
-    # 8. Каталог назад
-    click_rel(win, 0.08, 0.46, "Каталог")
+    # 8. Каталог назад — Y≈36%
+    click_rel(win, 0.08, 0.36, "Каталог")
     time.sleep(1.5)
     win = find_silpo_window()
 
-    # 9. Темна тема — кнопка ~8% X, ~39% Y (під балансом)
-    click_rel(win, 0.08, 0.39, "🌙 Темна тема")
+    # 9. Темна тема — кнопка Y≈27% (під балансом, над Поповнити)
+    click_rel(win, 0.08, 0.27, "🌙 Темна тема")
     wait_for_load(3)
     win = find_silpo_window()
 
