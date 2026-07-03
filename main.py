@@ -479,18 +479,18 @@ class AuthScreen(ctk.CTkFrame):
         self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", hover_color=card_bg, width=200, height=20, font=("Segoe UI", 10, "underline"))
         self.btn_toggle.pack(pady=5)
         
-        # Кнопка зміни теми вгорі праворуч
-        # Завдяки bg_color рівному тлу вікна, білі куточки під нею також пропадуть!
+        # Кнопка зміни теми вгорі праворуч з іконкою Сонця/Місяця
+        theme_icon = "🌙" if ctk.get_appearance_mode() == "Dark" else "☀️"
         self.btn_theme = ctk.CTkButton(
             self, 
-            text="Theme", 
+            text=theme_icon, 
             command=self.switch_theme, 
-            width=70, 
+            width=45, 
             height=28, 
             fg_color="#252538" if ctk.get_appearance_mode() == "Dark" else "#cccccc", 
             text_color="#ffffff" if ctk.get_appearance_mode() == "Dark" else "#000000",
             bg_color=current_bg,
-            font=("Segoe UI", 9, "bold")
+            font=("Segoe UI", 12, "bold")
         )
         self.btn_theme.place(relx=0.98, rely=0.02, anchor="ne")
 
@@ -566,12 +566,12 @@ class AuthScreen(ctk.CTkFrame):
             ctk.set_appearance_mode("light")
             current_bg = self.bg_color_light
             card_bg = "#ffffff"
-            self.btn_theme.configure(fg_color="#cccccc", text_color="#000000")
+            self.btn_theme.configure(text="☀️", fg_color="#cccccc", text_color="#000000")
         else:
             ctk.set_appearance_mode("dark")
             current_bg = self.bg_color_dark
             card_bg = "#21222e"
-            self.btn_theme.configure(fg_color="#252538", text_color="#ffffff")
+            self.btn_theme.configure(text="🌙", fg_color="#252538", text_color="#ffffff")
             
         # Оновлюємо тло батьківських фреймів для прибирання білих куточків
         self.configure(fg_color=current_bg)
