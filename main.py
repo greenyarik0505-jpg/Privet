@@ -261,6 +261,61 @@ threading.Thread(target=download_assets_worker, daemon=True).start()
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
+def translate_product_name(name_ua, target_lang):
+    if target_lang == "ua":
+        return name_ua
+        
+    words_map = {
+        "en": {
+            "хліб": "Bread", "батон": "Baton", "булка": "Bun", "круасан": "Croissant",
+            "багет": "Baguette", "лаваш": "Pita", "вода": "Water", "сік": "Juice",
+            "кола": "Cola", "кока-кола": "Coca-Cola", "фанта": "Fanta", "квас": "Kvas",
+            "напій": "Drink", "лимонад": "Lemonade", "енергетик": "Energy", "сир": "Cheese",
+            "йогурт": "Yogurt", "молоко": "Milk", "вершки": "Cream", "сметана": "Sour Cream",
+            "чіпси": "Chips", "шоколад": "Chocolate", "цукерки": "Candies", "арахіс": "Peanuts",
+            "печиво": "Cookies", "сухарики": "Croutons", "вафлі": "Waffles", "яблуко": "Apple",
+            "банан": "Banana", "полуниця": "Strawberry", "апельсин": "Orange", "лимон": "Lemon",
+            "виноград": "Grapes", "груша": "Pear", "помідор": "Tomato", "огірок": "Cucumber",
+            "салат": "Salad", "картопля": "Potato", "морква": "Carrot", "капуста": "Cabbage",
+            "цибуля": "Onion", "годинник": "Watch", "браслет": "Band", "скакалка": "Rope",
+            "навушники": "Earbuds", "ваги": "Scales", "пульсометр": "HR Monitor",
+            "негазована": "still", "газована": "sparkling", "слабогазована": "lightly sparkling",
+            "білий": "white", "чорний": "black", "молочний": "milk", "свіжий": "fresh",
+            "ваговий": "by weight", "королівський": "royal", "київхліб": "Kyivkhlib",
+            "тарас": "Taras", "галичина": "Galychyna", "пирятин": "Pyryatyn", "сандора": "Sandora",
+            "боржомі": "Borjomi", "рошен": "Roshen", "козацька розвага": "Kozatska Rozvaha", "орбіт": "Orbit"
+        },
+        "ru": {
+            "хліб": "Хлеб", "батон": "Батон", "булка": "Булка", "круасан": "Круассан",
+            "багет": "Багет", "лаваш": "Лаваш", "вода": "Вода", "сік": "Сок",
+            "кола": "Кола", "кока-кола": "Кока-Кола", "фанта": "Фанта", "квас": "Квас",
+            "напій": "Напиток", "лимонад": "Лимонад", "енергетик": "Энергетик", "сир": "Сыр",
+            "йогурт": "Йогурт", "молоко": "Молоко", "вершки": "Сливки", "сметана": "Сметана",
+            "чіпси": "Чипсы", "шоколад": "Шоколад", "цукерки": "Конфеты", "арахіс": "Арахис",
+            "печиво": "Печенье", "сухарики": "Сухарики", "вафлі": "Вафли", "яблуко": "Яблоко",
+            "банан": "Банан", "полуниця": "Клубника", "апельсин": "Апельсин", "лимон": "Лимон",
+            "виноград": "Виноград", "груша": "Груша", "помідор": "Помидор", "огірок": "Огурец",
+            "салат": "Салат", "картопля": "Картошка", "морква": "Морковь", "капуста": "Капуста",
+            "цибуля": "Лук", "годинник": "Часы", "браслет": "Браслет", "скакалка": "Скакалка",
+            "навушники": "Наушники", "ваги": "Весы", "пульсометр": "Пульсометр",
+            "негазована": "негазированная", "газована": "газированная", "слабогазована": "слабогазированная",
+            "білий": "белый", "чорний": "черный", "молочний": "молочный", "свіжий": "свежий",
+            "ваговий": "весовой", "королівський": "королевский", "київхліб": "Киевхлеб",
+            "тарас": "Тарас", "галичина": "Галычина", "пирятин": "Пирятин", "сандора": "Сандора",
+            "боржомі": "Боржоми", "рошен": "Рошен", "козацька розвага": "Козацька розвага", "орбіт": "Орбит"
+        }
+    }
+    
+    translated = name_ua.lower()
+    mapping = words_map.get(target_lang, {})
+    for ua_word, target_word in mapping.items():
+        translated = re.sub(r'\b' + re.escape(ua_word) + r'\b', target_word, translated)
+        translated = translated.replace(ua_word, target_word)
+        
+    if translated:
+        translated = translated[0].upper() + translated[1:]
+    return translated
+
 def get_product_image_local(img_src, size):
     # Якщо це віддалена URL-адреса з CDN Сільпо
     if img_src.startswith("http://") or img_src.startswith("https://"):
@@ -268,12 +323,13 @@ def get_product_image_local(img_src, size):
         dest = os.path.join(CACHE_DIR, filename)
         if os.path.exists(dest):
             try:
-                img = Image.open(dest)
+                # Використовуємо високоякісне масштабування LANCZOS перед передачею в CTkImage
+                img = Image.open(dest).resize(size, Image.Resampling.LANCZOS)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
         
-        # Завантажуємо зображення у фоновому потоці, щоб інтерфейс не зависав
+        # Фонове завантаження зображення
         def download_img(url=img_src, dst=dest):
             try:
                 headers = {"User-Agent": "Mozilla/5.0"}
@@ -285,29 +341,28 @@ def get_product_image_local(img_src, size):
                 pass
         threading.Thread(target=download_img, daemon=True).start()
         
-        # Тимчасово повертаємо стандартне зображення-заглушку, поки йде завантаження
         fallback_dest = os.path.join(ASSETS_DIR, "default.png")
         if os.path.exists(fallback_dest):
             try:
-                img = Image.open(fallback_dest)
+                img = Image.open(fallback_dest).resize(size, Image.Resampling.LANCZOS)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
         img = Image.new("RGBA", size, (149, 165, 166, 255))
         return ctk.CTkImage(light_image=img, dark_image=img, size=size)
     else:
-        # Стандартний пошук у локальних асетах
+        # Локальні асети
         dest = os.path.join(ASSETS_DIR, img_src)
         if os.path.exists(dest):
             try:
-                img = Image.open(dest)
+                img = Image.open(dest).resize(size, Image.Resampling.LANCZOS)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
         fallback_dest = os.path.join(ASSETS_DIR, "default.png")
         if os.path.exists(fallback_dest):
             try:
-                img = Image.open(fallback_dest)
+                img = Image.open(fallback_dest).resize(size, Image.Resampling.LANCZOS)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
@@ -320,6 +375,12 @@ try:
     import silpo_products
     for idx, item in enumerate(silpo_products.products):
         key_name = item["names"]["en"]
+        
+        # Перекладаємо назви товарів на льоту
+        ua_name = item["names"]["ua"]
+        item["names"]["en"] = translate_product_name(ua_name, "en")
+        item["names"]["ru"] = translate_product_name(ua_name, "ru")
+        
         fruits_data[key_name] = item
 except Exception as e:
     # Запасний варіант, якщо імпорт не вдався
@@ -716,12 +777,12 @@ class CatalogPanel(ctk.CTkFrame):
         cats_frame.pack(fill="x", padx=5, pady=5)
         
         categories_data = [
-            ("Bakeries", "bakeries", "#C2D6EE", "Bread.png"),
-            ("Drinks", "drinks", "#BCE6EB", "Diet_Cola.png"),
-            ("Vegetables", "vegetables", "#ECC4EC", "Salad.png"),
-            ("Fruits", "fruits", "#D3EEC2", "Apple.png"),
-            ("Snacks", "snacks", "#DCD2EE", "Potato_Chips.png"),
-            ("Sport Tech", "sport", "#ECCFC4", "sport.png")
+            ("Bakeries", "bakeries", "#C2D6EE", "cat_bakeries.png"),
+            ("Drinks", "drinks", "#BCE6EB", "cat_drinks.png"),
+            ("Vegetables", "vegetables", "#ECC4EC", "cat_vegetables.png"),
+            ("Fruits", "fruits", "#D3EEC2", "cat_fruits.png"),
+            ("Snacks", "snacks", "#DCD2EE", "cat_snacks.png"),
+            ("Sport Tech", "sport", "#ECCFC4", "cat_sport.png")
         ]
         
         for name, key, bg_col, img_name in categories_data:
@@ -860,7 +921,7 @@ class CatalogPanel(ctk.CTkFrame):
         price_frame = ctk.CTkFrame(card, fg_color="transparent")
         price_frame.pack(side="bottom", fill="x", padx=8, pady=6)
         
-        lbl_price = ctk.CTkLabel(price_frame, text=f"${data['price']}", font=("Arial", 12, "bold"), text_color="black", anchor="w")
+        lbl_price = ctk.CTkLabel(price_frame, text=f"{data['price']} грн", font=("Arial", 12, "bold"), text_color="black", anchor="w")
         lbl_price.pack(side="left")
         
         btn_add = ctk.CTkButton(
@@ -945,7 +1006,7 @@ class DetailsPanel(ctk.CTkFrame):
         lbl_desc = ctk.CTkLabel(left_box, text=self.data["desc"], font=("Arial", 12, "italic"), text_color="black", wraplength=280)
         lbl_desc.pack(pady=5)
         
-        lbl_price = ctk.CTkLabel(left_box, text=f"{t('price_lbl')} ${self.data['price']}", font=("Arial", 15, "bold"), text_color=PRIMARY_COLOR)
+        lbl_price = ctk.CTkLabel(left_box, text=f"{t('price_lbl')} {self.data['price']} грн", font=("Arial", 15, "bold"), text_color=PRIMARY_COLOR)
         lbl_price.pack(pady=10)
         
         ctk.CTkLabel(left_box, text=t("color_lbl"), font=("Arial", 12, "bold"), text_color="black").pack()
