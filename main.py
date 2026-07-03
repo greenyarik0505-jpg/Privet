@@ -1,9 +1,10 @@
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageDraw as PILImageDraw, ImageTk
+from PIL import Image, ImageTk
 import io
 import os
+import urllib.request
 import datetime
 import random
 import math
@@ -19,6 +20,8 @@ logged_in_user = None
 session_discount = 0.0
 cart = []
 SESSION_FILE = "session.txt"
+ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
+os.makedirs(ASSETS_DIR, exist_ok=True)
 
 # Спробуємо імпортувати winsound для звуків
 try:
@@ -41,6 +44,45 @@ except ImportError:
 
 import market_db
 market_db.init_db()
+
+# Високоякісні прямі посилання на 3D стікери (прозорі PNG)
+STICKER_URLS = {
+    "tech": "https://cdn-icons-png.flaticon.com/512/3063/3063822.png",      # 3D Ноутбук
+    "fruits": "https://cdn-icons-png.flaticon.com/512/415/415733.png",        # 3D Червоне Яблуко
+    "home": "https://cdn-icons-png.flaticon.com/512/10437/10437090.png",     # 3D Настільна лампа
+    "sport": "https://cdn-icons-png.flaticon.com/512/3076/3076840.png",      # 3D Футбольний м'яч
+    "clothing": "https://cdn-icons-png.flaticon.com/512/863/863684.png"      # 3D Синя футболка
+}
+
+# Завантажуємо круті 3D стікери локально при запуску, якщо їх немає
+def download_assets():
+    for cat, url in STICKER_URLS.items():
+        dest = os.path.join(ASSETS_DIR, f"{cat}.png")
+        if not os.path.exists(dest):
+            try:
+                req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                with urllib.request.urlopen(req, timeout=5) as response:
+                    with open(dest, 'wb') as f:
+                        f.write(response.read())
+            except Exception as e:
+                # Створюємо резервну заглушку, якщо інтернет недоступний
+                img = Image.new("RGBA", (128, 128), (52, 152, 219, 255))
+                img.save(dest)
+
+download_assets()
+
+# Функція швидкого завантаження локальних 3D стікерів (абсолютно без лагів)
+def get_local_sticker_image(category, size):
+    dest = os.path.join(ASSETS_DIR, f"{category}.png")
+    if os.path.exists(dest):
+        try:
+            img = Image.open(dest)
+            return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+        except Exception:
+            pass
+    # Резервна кольорова плашка
+    img = Image.new("RGBA", size, (149, 165, 166, 255))
+    return ctk.CTkImage(light_image=img, dark_image=img, size=size)
 
 fruits_data = {}
 
@@ -130,83 +172,176 @@ for i in range(100):
         "colors": [("Синій", "#3498db"), ("Чорний", "#2c3e50")]
     }
 
-# Локальна генерація векторних стікерів (абсолютно без лагів, без інтернету)
-vector_images_cache = {}
-
-def get_vector_sticker_image(category, size):
-    cache_key = (category, size)
-    if cache_key in vector_images_cache:
-        return vector_images_cache[cache_key]
-    
-    # Створюємо нову картинку з альфа-каналом
-    w, h = size
-    img = Image.new("RGBA", size, (0, 0, 0, 0))
-    draw = PILImageDraw.Draw(img)
-    
-    # Визначаємо м'яку пастельну підкладку (коло)
-    r = min(w, h) // 2 - 5
-    cx, cy = w // 2, h // 2
-    
-    if category == "tech":
-        bg_col = (110, 142, 251, 255) # Синє коло
-        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=bg_col)
-        # Екран ноутбука
-        draw.rectangle([cx - 30, cy - 20, cx + 30, cy + 10], fill=(30, 30, 46, 255), outline=(255, 255, 255, 255), width=2)
-        # База
-        draw.polygon([cx - 40, cy + 10, cx + 40, cy + 10, cx + 45, cy + 16, cx - 45, cy + 16], fill=(189, 195, 199, 255), outline=(255, 255, 255, 255))
-        # Користувач на екрані
-        draw.ellipse([cx - 5, cy - 10, cx + 5, cy], outline=(255, 255, 255, 255), width=1)
-        draw.arc([cx - 10, cy, cx + 10, cy + 16], 180, 360, fill=(255, 255, 255, 255))
-        
-    elif category == "fruits":
-        bg_col = (255, 235, 116, 255) # Жовте коло
-        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=bg_col)
-        # Яблуко
-        draw.ellipse([cx - 20, cy - 15, cx, cy + 15], fill=(231, 76, 60, 255))
-        draw.ellipse([cx, cy - 15, cx + 20, cy + 15], fill=(231, 76, 60, 255))
-        # Листочок та гілочка
-        draw.arc([cx - 10, cy - 25, cx + 5, cy - 13], 270, 90, fill=(46, 204, 113, 255), width=3)
-        draw.line([cx, cy - 14, cx + 5, cy - 22], fill=(139, 69, 19, 255), width=2)
-        
-    elif category == "home":
-        bg_col = (168, 230, 207, 255) # Ніжно-зелене коло
-        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=bg_col)
-        # Лампа
-        draw.ellipse([cx - 15, cy - 25, cx + 15, cy - 5], fill=(241, 196, 15, 255)) # Світло
-        draw.chord([cx - 18, cy - 28, cx + 18, cy - 10], 180, 360, fill=(44, 62, 80, 255)) # Абажур
-        draw.line([cx, cy - 10, cx, cy + 15], fill=(44, 62, 80, 255), width=3) # Ніжка
-        draw.rectangle([cx - 12, cy + 15, cx + 12, cy + 20], fill=(44, 62, 80, 255)) # Основа
-        
-    elif category == "sport":
-        bg_col = (255, 170, 165, 255) # Рожеве коло
-        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=bg_col)
-        # М'яч
-        draw.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=(255, 255, 255, 255), outline=(0, 0, 0, 255), width=2)
-        # Малюнок м'яча (п'ятикутники)
-        draw.polygon([cx - 6, cy - 6, cx + 6, cy - 6, cx + 10, cy + 4, cx, cy + 10, cx - 10, cy + 4], fill=(0, 0, 0, 255))
-        draw.line([cx - 6, cy - 6, cx - 14, cy - 14], fill=(0, 0, 0, 255), width=2)
-        draw.line([cx + 6, cy - 6, cx + 14, cy - 14], fill=(0, 0, 0, 255), width=2)
-        draw.line([cx - 10, cy + 4, cx - 18, cy + 12], fill=(0, 0, 0, 255), width=2)
-        draw.line([cx + 10, cy + 4, cx + 18, cy + 12], fill=(0, 0, 0, 255), width=2)
-        draw.line([cx, cy + 10, cx, cy + 22], fill=(0, 0, 0, 255), width=2)
-        
-    else: # clothing
-        bg_col = (220, 237, 244, 255) # Світло-блакитне коло
-        draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=bg_col)
-        # Футболка
-        draw.polygon([
-            cx - 15, cy - 22,  cx + 15, cy - 22,
-            cx + 25, cy - 10,  cx + 18, cy + 2,
-            cx + 15, cy - 2,   cx + 15, cy + 22,
-            cx - 15, cy + 22,  cx - 15, cy - 2,
-            cx - 18, cy + 2,   cx - 25, cy - 10
-        ], fill=(52, 152, 219, 255), outline=(255, 255, 255, 255), width=2)
-        # Комір
-        draw.arc([cx - 6, cy - 25, cx + 6, cy - 18], 0, 180, fill=(255, 255, 255, 255), width=2)
-        
-    ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=size)
-    vector_images_cache[cache_key] = ctk_img
-    return ctk_img
+LANGS = {
+    "ua": {
+        "title": "Мегамаркет Все-в-Одному",
+        "search_label": "Пошук:",
+        "balance_label": "Баланс:",
+        "topup_btn": "+ Поповнити",
+        "history_btn": "Історія",
+        "wheel_btn": "Колесо Фортуни",
+        "cart_btn": "Кошик",
+        "details_btn": "Детальніше",
+        "all_cat": "Усі",
+        "tech_cat": "Техніка",
+        "fruits_cat": "Фрукти",
+        "home_cat": "Для дому",
+        "sport_cat": "Спорт",
+        "clothing_cat": "Одяг",
+        "sort_cheap": "Спочатку дешевші",
+        "sort_expensive": "Спочатку дорожчі",
+        "auth_title": "Авторизація",
+        "login_btn": "Увійти",
+        "register_btn": "Реєстрація",
+        "username_lbl": "Логін:",
+        "password_lbl": "Пароль:",
+        "logout_btn": "Вийти",
+        "details_title": "Деталі товару",
+        "color_lbl": "Виберіть сорт/колір:",
+        "qty_lbl": "Кількість:",
+        "add_to_cart_btn": "Додати в кошик",
+        "reviews_lbl": "Відгуки та оцінки:",
+        "add_review_lbl": "Додати відгук:",
+        "submit_review_btn": "Надіслати",
+        "cart_title": "Ваш кошик",
+        "cart_empty": "Кошик порожній",
+        "subtotal_lbl": "Сума:",
+        "discount_lbl": "Знижка:",
+        "total_lbl": "Разом до сплати:",
+        "checkout_btn": "Оформити",
+        "clear_cart_btn": "Очистити кошик",
+        "history_title": "Історія замовлень",
+        "no_orders": "Замовлень ще не було",
+        "order_str": "Замовлення",
+        "items_count_str": "Товарів",
+        "fortune_title": "Колесо Фортуни",
+        "spin_btn": "Крутити",
+        "congrats": "Вітаємо!",
+        "win_discount": "Ви виграли знижку",
+        "try_again": "Спробуйте ще раз!",
+        "insufficient_balance": "Недостатньо коштів на балансі!",
+        "success_purchase": "Дякуємо за замовлення! Чек збережено",
+        "settings_btn": "Налаштування",
+        "settings_title": "Настройки программы",
+        "lang_lbl": "Язык интерфейса:",
+        "theme_lbl": "Тема оформления:",
+        "theme_light": "Светлая",
+        "theme_dark": "Темная",
+        "sound_chk": "Звуковые эффекты"
+    },
+    "en": {
+        "title": "Megamarket All-in-One",
+        "search_label": "Search:",
+        "balance_label": "Balance:",
+        "topup_btn": "+ Top Up",
+        "history_btn": "History",
+        "wheel_btn": "Fortune Wheel",
+        "cart_btn": "Cart",
+        "details_btn": "Details",
+        "all_cat": "All",
+        "tech_cat": "Tech",
+        "fruits_cat": "Fruits",
+        "home_cat": "Home",
+        "sport_cat": "Sports",
+        "clothing_cat": "Clothing",
+        "sort_cheap": "Price: Low to High",
+        "sort_expensive": "Price: High to Low",
+        "auth_title": "Authentication",
+        "login_btn": "Login",
+        "register_btn": "Register",
+        "username_lbl": "Username:",
+        "password_lbl": "Password:",
+        "logout_btn": "Logout",
+        "details_title": "Product Details",
+        "color_lbl": "Select variety/color:",
+        "qty_lbl": "Quantity:",
+        "add_to_cart_btn": "Add to Cart",
+        "reviews_lbl": "Reviews & Ratings:",
+        "add_review_lbl": "Add a Review:",
+        "submit_review_btn": "Submit",
+        "cart_title": "Your Cart",
+        "cart_empty": "Cart is empty",
+        "subtotal_lbl": "Subtotal:",
+        "discount_lbl": "Discount:",
+        "total_lbl": "Total to pay:",
+        "checkout_btn": "Checkout",
+        "clear_cart_btn": "Clear Cart",
+        "history_title": "Order History",
+        "no_orders": "No orders yet",
+        "order_str": "Order",
+        "items_count_str": "Items",
+        "fortune_title": "Wheel of Fortune",
+        "spin_btn": "Spin",
+        "congrats": "Congratulations!",
+        "win_discount": "You won a discount of",
+        "try_again": "Try again!",
+        "insufficient_balance": "Insufficient balance! Please top up.",
+        "success_purchase": "Thank you! Receipt saved",
+        "settings_btn": "Settings",
+        "settings_title": "Application Settings",
+        "lang_lbl": "Interface Language:",
+        "theme_lbl": "Color Theme:",
+        "theme_light": "Light",
+        "theme_dark": "Dark",
+        "sound_chk": "Sound Effects"
+    },
+    "ru": {
+        "title": "Мегамаркет Все-в-Одном",
+        "search_label": "Поиск:",
+        "balance_label": "Баланс:",
+        "topup_btn": "+ Пополнить",
+        "history_btn": "История",
+        "wheel_btn": "Колесо Фортуны",
+        "cart_btn": "Корзина",
+        "details_btn": "Подробнее",
+        "all_cat": "Все",
+        "tech_cat": "Техника",
+        "fruits_cat": "Фрукты",
+        "home_cat": "Для дома",
+        "sport_cat": "Спорт",
+        "clothing_cat": "Одежда",
+        "sort_cheap": "Сначала дешевые",
+        "sort_expensive": "Сначала дорогие",
+        "auth_title": "Авторизация",
+        "login_btn": "Войти",
+        "register_btn": "Регистрация",
+        "username_lbl": "Логин:",
+        "password_lbl": "Пароль:",
+        "logout_btn": "Выйти",
+        "details_title": "Детали товара",
+        "color_lbl": "Выберите сорт/цвет:",
+        "qty_lbl": "Количество:",
+        "add_to_cart_btn": "Добавить в корзину",
+        "reviews_lbl": "Отзывы и оценки:",
+        "add_review_lbl": "Добавить отзыв:",
+        "submit_review_btn": "Отправить",
+        "cart_title": "Ваша корзина",
+        "cart_empty": "Корзина пуста",
+        "subtotal_lbl": "Сумма:",
+        "discount_lbl": "Скидка:",
+        "total_lbl": "Итого к оплате:",
+        "checkout_btn": "Оформить",
+        "clear_cart_btn": "Очистить корзину",
+        "history_title": "История заказов",
+        "no_orders": "Заказов еще не было",
+        "order_str": "Заказ",
+        "items_count_str": "Товаров",
+        "fortune_title": "Колесо Фортуны",
+        "spin_btn": "Крутить",
+        "congrats": "Поздравляем!",
+        "win_discount": "Вы выиграли скидку",
+        "try_again": "Попробуйте еще раз!",
+        "insufficient_balance": "Недостаточно средств на балансе!",
+        "success_purchase": "Спасибо за покупку! Чек сохранен",
+        "settings_btn": "Настройки",
+        "settings_title": "Настройки программы",
+        "lang_lbl": "Язык интерфейса:",
+        "theme_lbl": "Тема оформления:",
+        "theme_light": "Светлая",
+        "theme_dark": "Темная",
+        "sound_chk": "Звуковые эффекты"
+    }
+}
 
 class App(ctk.CTk):
     def __init__(self):
@@ -221,7 +356,6 @@ class App(ctk.CTk):
         self.check_auto_login()
 
     def check_auto_login(self):
-        # Якщо збережено сесію, входимо автоматично
         if os.path.exists(SESSION_FILE):
             try:
                 with open(SESSION_FILE, "r", encoding="utf-8") as f:
@@ -249,7 +383,7 @@ class App(ctk.CTk):
     def show_main_screen(self):
         self.show_screen(MainScreen)
 
-# --- ЕКРАН АВТОРИЗАЦІЇ (ПОВНІСТЮ БЕЗ БІЛИХ КУТІВ - ВИКОРИСТОВУЄМО ОДНОРІДНЕ ГАРАНТОВАНЕ ТЛО) ---
+# --- ЕКРАН АВТОРИЗАЦІЇ ---
 class AuthScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
         self.bg_color_dark = "#171821" 
@@ -368,13 +502,11 @@ class AuthScreen(ctk.CTkFrame):
         if market_db.login_user(username, password):
             global logged_in_user
             logged_in_user = username
-            # Зберігаємо сесію
             try:
                 with open(SESSION_FILE, "w", encoding="utf-8") as f:
                     f.write(username)
             except Exception:
                 pass
-                
             play_sound("success")
             self.controller.show_main_screen()
         else:
@@ -439,7 +571,7 @@ class AuthScreen(ctk.CTkFrame):
         # Малюємо коло по центру
         self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
         
-        # Декоративні плаваючі елементи (кола, трикутники, квадрати)
+        # Декоративні плаваючі елементи
         self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
         self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
         self.left_canvas.create_polygon(25, 230, 35, 245, 15, 245, outline="#e74c3c", fill="", width=2)
@@ -447,7 +579,7 @@ class AuthScreen(ctk.CTkFrame):
         self.left_canvas.create_rectangle(190, 40, 198, 48, outline="#cccccc", fill="")
         self.left_canvas.create_rectangle(70, 280, 78, 288, outline="#cccccc", fill="")
         
-        # Векторний ноутбук
+        # Векторний стікер ноутбука
         self.left_canvas.create_rectangle(90, 125, 150, 165, fill=screen_fill, outline=stroke_color, width=2)
         self.left_canvas.create_polygon(80, 165, 160, 165, 165, 172, 75, 172, fill=circle_color, outline=stroke_color, width=2)
         self.left_canvas.create_line(115, 170, 125, 170, fill=stroke_color, width=2)
@@ -513,7 +645,6 @@ class MainScreen(ctk.CTkFrame):
         logged_in_user = None
         cart = []
         session_discount = 0.0
-        # Видаляємо збережену сесію
         if os.path.exists(SESSION_FILE):
             try:
                 os.remove(SESSION_FILE)
@@ -611,7 +742,6 @@ class CatalogPanel(ctk.CTkFrame):
             
         filtered.sort(key=sort_key)
         
-        # Обчислюємо динамічну кількість колонок на основі ширини вікна
         width = self.scroll_frame.winfo_width()
         if width <= 1:
             width = 740
@@ -631,8 +761,8 @@ class CatalogPanel(ctk.CTkFrame):
             heart_btn = ctk.CTkButton(card, text=heart_text, text_color=heart_color, width=45, height=24, fg_color="transparent", hover_color=None, command=lambda n=name: self.toggle_favorite(n))
             heart_btn.place(relx=0.82, rely=0.08, anchor="center")
             
-            # Локальна генерація векторних стікерів (виконується миттєво!)
-            photo = get_vector_sticker_image(data["category"], (180, 110))
+            # Швидке локальне завантаження красивих 3D стікерів
+            photo = get_local_sticker_image(data["category"], (180, 110))
             img_lbl = ctk.CTkLabel(card, image=photo, text="")
             img_lbl.pack(pady=(12, 5))
             
@@ -669,8 +799,8 @@ class DetailsPanel(ctk.CTkFrame):
         left_box = ctk.CTkFrame(self, corner_radius=12)
         left_box.pack(side="left", fill="both", expand=True, padx=10, pady=10)
         
-        # Відображення стікера високої роздільної здатності в деталях
-        photo = get_vector_sticker_image(self.data["category"], (240, 160))
+        # Стікер високої роздільної здатності
+        photo = get_local_sticker_image(self.data["category"], (240, 160))
         self.img_lbl = ctk.CTkLabel(left_box, image=photo, text="")
         self.img_lbl.pack(pady=20)
         
