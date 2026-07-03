@@ -217,8 +217,32 @@ CONVENIENT_IMAGES = [
 ]
 
 def download_assets_worker():
+    # Точні посилання на реальні українські товари (Prom.ua / Rozetka)
+    ua_urls = {
+        "Bread.png": "https://images.prom.ua/1595166416_w640_h640_baton-kievhleb.jpg",
+        "Shake.png": "https://images.prom.ua/2202685717_w640_h640_yogurt-galichina-klubnika.jpg",
+        "Cheese.png": "https://images.prom.ua/4214647321_w640_h640_syr-pyryatin-korol.jpg",
+        "Water.png": "https://images.prom.ua/3522253303_w640_h640_voda-morshinskaya-negazirovannaya.jpg",
+        "default.png": "https://content1.rozetka.com.ua/goods/images/big/171545632.jpg",
+        "Chocolate Bar.png": "https://images.prom.ua/4106511210_w640_h640_shokolad-roshen-molochnyj.jpg",
+        "Salted Peanuts.png": "https://content2.rozetka.com.ua/goods/images/big/284988456.jpg"
+    }
+    
+    # Спочатку скачуємо реальні українські бренди
+    for name, url in ua_urls.items():
+        dest = os.path.join(ASSETS_DIR, name)
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=10) as response:
+                with open(dest, 'wb') as f:
+                    f.write(response.read())
+        except Exception:
+            pass
+
+    # Решта картинок скачуються з convenientshop
     base_url = "https://raw.githubusercontent.com/SecureAuditX/convenientshop/main/images/"
     for name in CONVENIENT_IMAGES:
+        if name in ua_urls: continue
         dest = os.path.join(ASSETS_DIR, name)
         if not os.path.exists(dest):
             try:
