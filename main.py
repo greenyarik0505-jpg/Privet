@@ -451,24 +451,7 @@ class AuthScreen(ctk.CTkFrame):
         self.left_canvas = tk.Canvas(self.left_frame, width=240, height=340, bg=card_bg, bd=0, highlightthickness=0)
         self.left_canvas.pack(fill="both", expand=True)
         
-        circle_color = "#2a2b3d" if ctk.get_appearance_mode() == "Dark" else "#f3f4f6"
-        self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
-        
-        self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
-        self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
-        self.left_canvas.create_polygon(25, 230, 35, 245, 15, 245, outline="#e74c3c", fill="", width=2)
-        self.left_canvas.create_oval(215, 240, 225, 250, outline="#3498db", width=2)
-        self.left_canvas.create_rectangle(190, 40, 198, 48, outline="#cccccc", fill="")
-        self.left_canvas.create_rectangle(70, 280, 78, 288, outline="#cccccc", fill="")
-        
-        self.img_lbl = ctk.CTkLabel(self.left_frame, text="💻", font=("Segoe UI", 48), fg_color=circle_color)
-        self.img_lbl.place(x=120, y=160, anchor="center")
-        
-        def round_logo_callback(photo):
-            if self.img_lbl.winfo_exists():
-                self.img_lbl.configure(image=photo, text="", fg_color=circle_color)
-                self.img_lbl.image = photo
-        get_image_from_url_memory(PRODUCT_URLS["tech"][0], (80, 80), round_logo_callback)
+        self.draw_vector_graphics()
         
         self.right_frame = ctk.CTkFrame(self.card, width=320, height=350, fg_color="transparent")
         self.right_frame.pack(side="right", fill="both", expand=True, padx=20, pady=20)
@@ -609,10 +592,20 @@ class AuthScreen(ctk.CTkFrame):
         self.card.configure(fg_color=card_bg, bg_color=current_bg, border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0")
         self.btn_theme.configure(bg_color=current_bg)
         self.left_canvas.configure(bg=card_bg)
-        
+        self.draw_vector_graphics()
+        self.btn_toggle.configure(hover_color=card_bg)
+
+    def draw_vector_graphics(self):
         self.left_canvas.delete("all")
+        
         circle_color = "#2a2b3d" if ctk.get_appearance_mode() == "Dark" else "#f3f4f6"
+        stroke_color = "#cdd6f4" if ctk.get_appearance_mode() == "Dark" else "#333333"
+        screen_fill = "#1e1e2e" if ctk.get_appearance_mode() == "Dark" else "#e2e2e2"
+        
+        # Малюємо біле/сіре коло по центру
         self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
+        
+        # Декоративні плаваючі елементи (кола, трикутники, квадрати)
         self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
         self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
         self.left_canvas.create_polygon(25, 230, 35, 245, 15, 245, outline="#e74c3c", fill="", width=2)
@@ -620,8 +613,16 @@ class AuthScreen(ctk.CTkFrame):
         self.left_canvas.create_rectangle(190, 40, 198, 48, outline="#cccccc", fill="")
         self.left_canvas.create_rectangle(70, 280, 78, 288, outline="#cccccc", fill="")
         
-        self.img_lbl.configure(fg_color=circle_color)
-        self.btn_toggle.configure(hover_color=card_bg)
+        # Векторний стікер ноутбука (як на макеті!)
+        # Екран ноутбука
+        self.left_canvas.create_rectangle(90, 125, 150, 165, fill=screen_fill, outline=stroke_color, width=2)
+        # Клавіатурна база
+        self.left_canvas.create_polygon(80, 165, 160, 165, 165, 172, 75, 172, fill=circle_color, outline=stroke_color, width=2)
+        # Тачпад
+        self.left_canvas.create_line(115, 170, 125, 170, fill=stroke_color, width=2)
+        # Іконка профілю користувача всередині екрану
+        self.left_canvas.create_oval(115, 133, 125, 143, fill="", outline=stroke_color, width=2)
+        self.left_canvas.create_arc(107, 145, 133, 165, start=0, extent=180, style="arc", outline=stroke_color, width=2)
 
 class Struct:
     def __init__(self, **entries):
