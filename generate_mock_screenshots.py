@@ -87,8 +87,8 @@ def create_main_screenshot():
         img.paste(prod_img, (x + 37, 93), prod_img if prod_img.mode == "RGBA" else None)
         draw.text((x + 55, 142), cat, fill="black", anchor="mm", font=get_font(10, False))
         
-    # Заголовок "Popular Items" з пагінацією (1-5 з 30)
-    draw.text((200, 175), "Popular Items (1-5 / 30)", fill="black", font=get_font(12, True))
+    # Заголовок "Popular Items" з пагінацією (1-15 з 253)
+    draw.text((200, 175), "Popular Items (1-15 / 253)", fill="black", font=get_font(12, True))
     
     # Карточки товаров Popular Items (Українські бренди)
     products = [
@@ -131,7 +131,7 @@ def create_main_screenshot():
     draw.rounded_rectangle([735, 520, 835, 550], 6, fill=PRIMARY_COLOR)
     draw.text((785, 535), "Далі →", fill="white", anchor="mm", font=get_font(9, True))
     
-    draw.text((517, 535), "Page 1 of 2", fill="black", anchor="mm", font=get_font(10, True))
+    draw.text((517, 535), "Page 1 of 17", fill="black", anchor="mm", font=get_font(10, True))
         
     img.save("screenshot_main_v6.png")
     print("Created mockup: screenshot_main_v6.png")
