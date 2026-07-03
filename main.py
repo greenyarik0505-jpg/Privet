@@ -323,9 +323,12 @@ def get_product_image_local(img_src, size):
         dest = os.path.join(CACHE_DIR, filename)
         if os.path.exists(dest):
             try:
-                # НЕ зменшуємо картинку в PIL перед передачею в CTkImage. 
-                # Це дозволяє CustomTkinter правильно адаптувати високу роздільну здатність під High DPI екрани (125%, 150%+ масштабування на Windows), роблячи зображення кристально чіткими!
+                from PIL import ImageEnhance, ImageFilter
                 img = Image.open(dest)
+                # Робимо зображення чітким, щоб текст на упаковках легко читалися
+                img = img.filter(ImageFilter.SHARPEN)
+                enh = ImageEnhance.Sharpness(img)
+                img = enh.enhance(2.2)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
@@ -345,7 +348,11 @@ def get_product_image_local(img_src, size):
         fallback_dest = os.path.join(ASSETS_DIR, "default.png")
         if os.path.exists(fallback_dest):
             try:
+                from PIL import ImageEnhance, ImageFilter
                 img = Image.open(fallback_dest)
+                img = img.filter(ImageFilter.SHARPEN)
+                enh = ImageEnhance.Sharpness(img)
+                img = enh.enhance(2.0)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
@@ -356,14 +363,22 @@ def get_product_image_local(img_src, size):
         dest = os.path.join(ASSETS_DIR, img_src)
         if os.path.exists(dest):
             try:
+                from PIL import ImageEnhance, ImageFilter
                 img = Image.open(dest)
+                img = img.filter(ImageFilter.SHARPEN)
+                enh = ImageEnhance.Sharpness(img)
+                img = enh.enhance(2.0)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
         fallback_dest = os.path.join(ASSETS_DIR, "default.png")
         if os.path.exists(fallback_dest):
             try:
+                from PIL import ImageEnhance, ImageFilter
                 img = Image.open(fallback_dest)
+                img = img.filter(ImageFilter.SHARPEN)
+                enh = ImageEnhance.Sharpness(img)
+                img = enh.enhance(2.0)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
