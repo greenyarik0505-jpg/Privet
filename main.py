@@ -360,8 +360,8 @@ def get_image_from_url_memory(url, size, callback):
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req, timeout=5) as response:
                 img_data = response.read()
-            img = Image.open(io.BytesIO(img_data)).resize(size, Image.Resampling.LANCZOS)
-            photo = ImageTk.PhotoImage(img)
+            img = Image.open(io.BytesIO(img_data))
+            photo = ctk.CTkImage(light_image=img, dark_image=img, size=size)
             memory_images_cache[cache_key] = photo
             main_app.after(10, lambda: callback(photo))
         except Exception:
@@ -726,8 +726,16 @@ class CatalogPanel(ctk.CTkFrame):
         
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(fill="both", expand=True)
+        self.scroll_frame.bind("<Configure>", self.on_resize)
         
         self.cards = {}
+        self.draw_grid()
+
+    def on_resize(self, event):
+        w = event.width
+        if hasattr(self, "_last_width") and abs(self._last_width - w) < 40:
+            return
+        self._last_width = w
         self.draw_grid()
 
     def set_category(self, cat):
@@ -762,39 +770,47 @@ class CatalogPanel(ctk.CTkFrame):
             
         filtered.sort(key=sort_key)
         
+        # Обчислюємо динамічну кількість колонок на основі ширини вікна
+        width = self.scroll_frame.winfo_width()
+        if width <= 1:
+            width = 740
+        card_w = 230 # ширина картки + відступи
+        cols = max(1, width // card_w)
+        
         col = 0
         row = 0
-        for name, data in filtered[:24]:
-            card = ctk.CTkFrame(self.scroll_frame, corner_radius=10, width=200, height=220)
+        for name, data in filtered[:36]:
+            card = ctk.CTkFrame(self.scroll_frame, corner_radius=12, width=210, height=295)
             card.grid(row=row, column=col, padx=10, pady=10)
+            card.grid_propagate(False)
             
             is_fav = name in favorites
             heart_text = "Liked" if is_fav else "Like"
             heart_color = "red" if is_fav else "gray"
             heart_btn = ctk.CTkButton(card, text=heart_text, text_color=heart_color, width=45, height=24, fg_color="transparent", hover_color=None, command=lambda n=name: self.toggle_favorite(n))
-            heart_btn.place(relx=0.8, rely=0.1, anchor="center")
+            heart_btn.place(relx=0.82, rely=0.08, anchor="center")
             
             img_lbl = ctk.CTkLabel(card, text="Завантаження... 🔄", font=("Segoe UI", 9, "italic"))
-            img_lbl.pack(pady=15)
+            img_lbl.pack(pady=(12, 5))
             
             def img_callback(photo, lbl=img_lbl):
                 if lbl.winfo_exists():
                     lbl.configure(image=photo, text="")
                     lbl.image = photo
                     
-            get_image_from_url_memory(data["url"], (50, 50), img_callback)
+            get_image_from_url_memory(data["url"], (180, 110), img_callback)
             
-            lbl_name = ctk.CTkLabel(card, text=name, font=("Segoe UI", 10, "bold"), wraplength=180)
-            lbl_name.pack(pady=2)
+            lbl_name = ctk.CTkLabel(card, text=name, font=("Segoe UI", 11, "bold"), wraplength=190)
+            lbl_name.pack(pady=2, fill="x", padx=10)
             
-            lbl_price = ctk.CTkLabel(card, text=f"{data['price']} грн/шт", font=("Segoe UI", 10), text_color="#2ecc71")
-            lbl_price.pack(pady=2)
+            lbl_price = ctk.CTkLabel(card, text=f"{data['price']} грн", font=("Segoe UI", 12), text_color="#2ecc71")
+            lbl_price.pack(pady=1)
             
-            btn_details = ctk.CTkButton(card, text="Детальніше", command=lambda n=name: self.main_screen.switch_panel(DetailsPanel, n), width=110, height=26, font=("Segoe UI", 10, "bold"))
-            btn_details.pack(pady=5)
+            btn_details = ctk.CTkButton(card, text="Детальніше", command=lambda n=name: self.main_screen.switch_panel(DetailsPanel, n), width=150, height=32, font=("Segoe UI", 11, "bold"), fg_color="#3498db", hover_color="#2980b9")
+            btn_details.pack(side="bottom", pady=10)
             
             col += 1
-            if col > 2:
+            if col >= cols:
                 col = 0
                 row += 1
 
@@ -824,7 +840,7 @@ class DetailsPanel(ctk.CTkFrame):
             if self.img_lbl.winfo_exists():
                 self.img_lbl.configure(image=photo, text="")
                 self.img_lbl.image = photo
-        get_image_from_url_memory(self.data["url"], (130, 130), detail_img_callback)
+        get_image_from_url_memory(self.data["url"], (240, 160), detail_img_callback)
         
         lbl_title = ctk.CTkLabel(left_box, text=name, font=("Segoe UI", 16, "bold"), wraplength=280)
         lbl_title.pack(pady=5)
@@ -832,7 +848,7 @@ class DetailsPanel(ctk.CTkFrame):
         lbl_desc = ctk.CTkLabel(left_box, text=self.data["desc"], font=("Segoe UI", 11, "italic"), wraplength=280)
         lbl_desc.pack(pady=5)
         
-        lbl_price = ctk.CTkLabel(left_box, text=f"Ціна: {self.data['price']} грн/шт", font=("Segoe UI", 14, "bold"), text_color="#2ecc71")
+        lbl_price = ctk.CTkLabel(left_box, text=f"Ціна: {self.data['price']} грн", font=("Segoe UI", 14, "bold"), text_color="#2ecc71")
         lbl_price.pack(pady=10)
         
         ctk.CTkLabel(left_box, text="Виберіть сорт/колір:", font=("Segoe UI", 11, "bold")).pack()
