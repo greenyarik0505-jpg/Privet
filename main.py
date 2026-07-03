@@ -66,19 +66,57 @@ cloth_brands = ["Zara", "H&M", "Nike", "Adidas", "Levi's", "Puma", "Uniqlo", "To
 cloth_types = ["Футболка", "Поло", "Теніска", "Лонгслів", "Майка", "Спортивна футболка", "Футболка оверсайз", "Класична футболка", "Базова футболка", "Футболка з принтом"]
 cloth_materials = ["бавовна 100%", "органічний котон", "еластан", "поліестер Dry-Fit", "льон", "трикотаж", "сумішова тканина", "віскоза", "бамбук", "стрейч"]
 
+# Надійні URL фотографій товарів без людей
+PRODUCT_URLS = {
+    "tech": [
+        "https://images.unsplash.com/photo-1496181130204-755241544e35?w=150",
+        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=150",
+        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=150",
+        "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=150",
+        "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=150"
+    ],
+    "fruits": [
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150",
+        "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=150",
+        "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=150",
+        "https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?w=150",
+        "https://images.unsplash.com/photo-1610397613000-f0d2db5632a4?w=150"
+    ],
+    "home": [
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=150",
+        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=150",
+        "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=150",
+        "https://images.unsplash.com/photo-1542728929-14ab1c6880f9?w=150",
+        "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=150"
+    ],
+    "sport": [
+        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=150",
+        "https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=150",
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=150",
+        "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=150",
+        "https://images.unsplash.com/photo-1516567727145-ab3c1a390044?w=150"
+    ],
+    "clothing": [
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=150",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=150",
+        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=150",
+        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150",
+        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150"
+    ]
+}
+
 # Генерація 100 унікальних ноутбуків
 for i in range(100):
     b = tech_brands[i % 10]
     m = tech_models[(i // 10) % 10]
     s = tech_specs[(i * 3) % 10]
-    name = f"{b} {m} ({s}) 💻"
+    name = f"{b} {m} ({s})"
     fruits_data[name] = {
         "price": 15000 + i * 220,
-        "desc": f"Сучасний ноутбук {b} серії {m}. Специфікація: {s}. Відмінний вибір для будь-яких завдань.",
+        "desc": f"Сучасний ноутбук {b} серії {m}. Специфікація: {s}.",
         "category": "tech",
-        # Використовуємо комп'ютер/клавіатуру без людей
-        "url": f"https://loremflickr.com/150/150/laptop,keyboard?lock={i+1}",
-        "colors": [("Сріблястий 💿", "#bdc3c7"), ("Чорний 🌑", "#2c3e50")]
+        "url": PRODUCT_URLS["tech"][i % 5],
+        "colors": [("Сріблястий", "#bdc3c7"), ("Чорний", "#2c3e50")]
     }
 
 # Генерація 100 унікальних яблук
@@ -86,13 +124,13 @@ for i in range(100):
     v = fruit_varieties[i % 10]
     o = fruit_origins[(i // 10) % 10]
     sz = fruit_sizes[(i * 3) % 10]
-    name = f"Яблука {v} ({o}, {sz}) 🍎"
+    name = f"Яблука {v} ({o}, {sz})"
     fruits_data[name] = {
         "price": 20 + (i % 15),
-        "desc": f"Свіжі натуральні яблука сорту {v}, вирощені в регіоні {o}. Характеристика плоду: {sz}.",
+        "desc": f"Свіжі натуральні яблука сорту {v}, вирощені в регіоні {o}.",
         "category": "fruits",
-        "url": f"https://loremflickr.com/150/150/apple,fruit?lock={i+1}",
-        "colors": [("Жовте 🟡", "#f1c40f"), ("Червоне 🔴", "#e74c3c")]
+        "url": PRODUCT_URLS["fruits"][i % 5],
+        "colors": [("Жовте", "#f1c40f"), ("Червоне", "#e74c3c")]
     }
 
 # Генерація 100 унікальних ламп
@@ -100,13 +138,13 @@ for i in range(100):
     s = lamp_styles[i % 10]
     t = lamp_types[(i // 10) % 10]
     c = lamp_colors[(i * 3) % 10]
-    name = f"Лампа {s} {t} ({c}) 💡"
+    name = f"Лампа {s} {t} ({c})"
     fruits_data[name] = {
         "price": 300 + i * 18,
-        "desc": f"Оригінальна лампа в стилі {s}. Тип пристрою: {t}. Колір корпусу: {c}.",
+        "desc": f"Оригінальна лампа в стилі {s}. Тип пристрою: {t}.",
         "category": "home",
-        "url": f"https://loremflickr.com/150/150/table-lamp,object?lock={i+1}",
-        "colors": [("Чорний 🌑", "#2c3e50"), ("Білий ⚪", "#ffffff")]
+        "url": PRODUCT_URLS["home"][i % 5],
+        "colors": [("Чорний", "#2c3e50"), ("Білий", "#ffffff")]
     }
 
 # Генерація 100 унікальних м'ячів
@@ -114,40 +152,38 @@ for i in range(100):
     b = sport_brands[i % 10]
     e = sport_editions[(i // 10) % 10]
     t = sport_types[(i * 3) % 10]
-    name = f"М'яч {b} {e} ({t}) ⚽"
+    name = f"М'яч {b} {e} ({t})"
     fruits_data[name] = {
         "price": 400 + i * 12,
-        "desc": f"Футбольний м'яч бренду {b}, лінійка {e}. Рівень підготовки: {t}.",
+        "desc": f"Футбольний м'яч бренду {b}, лінійка {e}.",
         "category": "sport",
-        # Виключаємо людей, шукаємо сам м'яч на білому тлі або полі
-        "url": f"https://loremflickr.com/150/150/soccerball,object?lock={i+1}",
-        "colors": [("Біло-чорний ⚽", "#ffffff"), ("Червоний 🔴", "#e74c3c")]
+        "url": PRODUCT_URLS["sport"][i % 5],
+        "colors": [("Біло-чорний", "#ffffff"), ("Червоний", "#e74c3c")]
     }
 
-# Генерація 100 унікальних футболок (з ключовими словами tshirt,hanger,flatlay для виключення облич людей)
+# Генерація 100 унікальних футболок
 for i in range(100):
     b = cloth_brands[i % 10]
     t = cloth_types[(i // 10) % 10]
     m = cloth_materials[(i * 3) % 10]
-    name = f"{t} {b} ({m}) 👕"
+    name = f"{t} {b} ({m})"
     fruits_data[name] = {
         "price": 250 + i * 8,
-        "desc": f"Брендовий одяг {b}. Тип виробу: {t}. Матеріал: {m}.",
+        "desc": f"Брендовий одяг {b}. Тип виробу: {t}.",
         "category": "clothing",
-        # Ключове слово tshirt,hanger,flatlay гарантує фото самої речі без людей на знімку
-        "url": f"https://loremflickr.com/150/150/tshirt,hanger,flatlay?lock={i+1}",
-        "colors": [("Синій 🔵", "#3498db"), ("Чорний 🌑", "#2c3e50")]
+        "url": PRODUCT_URLS["clothing"][i % 5],
+        "colors": [("Синій", "#3498db"), ("Чорний", "#2c3e50")]
     }
 
 LANGS = {
     "ua": {
-        "title": "Мегамаркет Все-в-Одному 🛒",
-        "search_label": "🔍 Пошук:",
+        "title": "Мегамаркет Все-в-Одному",
+        "search_label": "Пошук:",
         "balance_label": "Баланс:",
         "topup_btn": "+ Поповнити",
-        "history_btn": "📜 Історія",
-        "wheel_btn": "🎡 Колесо Фортуни",
-        "cart_btn": "🛒 Кошик",
+        "history_btn": "Історія",
+        "wheel_btn": "Колесо Фортуни",
+        "cart_btn": "Кошик",
         "details_btn": "Детальніше",
         "all_cat": "Усі",
         "tech_cat": "Техніка",
@@ -171,39 +207,39 @@ LANGS = {
         "add_review_lbl": "Додати відгук:",
         "submit_review_btn": "Надіслати",
         "cart_title": "Ваш кошик",
-        "cart_empty": "Кошик порожній 😔",
+        "cart_empty": "Кошик порожній",
         "subtotal_lbl": "Сума:",
         "discount_lbl": "Знижка:",
         "total_lbl": "Разом до сплати:",
         "checkout_btn": "Оформити",
         "clear_cart_btn": "Очистити кошик",
         "history_title": "Історія замовлень",
-        "no_orders": "Замовлень ще не було 🤷‍♂️",
+        "no_orders": "Замовлень ще не було",
         "order_str": "Замовлення",
         "items_count_str": "Товарів",
-        "fortune_title": "🎡 Колесо Фортуни",
-        "spin_btn": "Крутити 🎡",
+        "fortune_title": "Колесо Фортуни",
+        "spin_btn": "Крутити",
         "congrats": "Вітаємо!",
         "win_discount": "Ви виграли знижку",
-        "try_again": "Спробуйте ще раз! 🍀",
-        "insufficient_balance": "Недостатньо коштів на балансі! Поповніть його.",
-        "success_purchase": "Дякуємо за замовлення! Чек збережено 📄",
-        "settings_btn": "⚙️ Налаштування",
+        "try_again": "Спробуйте ще раз!",
+        "insufficient_balance": "Недостатньо коштів на балансі!",
+        "success_purchase": "Дякуємо за замовлення! Чек збережено",
+        "settings_btn": "Налаштування",
         "settings_title": "Налаштування програми",
         "lang_lbl": "Мова інтерфейсу:",
         "theme_lbl": "Тема оформлення:",
-        "theme_light": "Світла ☀️",
-        "theme_dark": "Темна 🌙",
-        "sound_chk": "Звукові ефекти (Beep)"
+        "theme_light": "Світла",
+        "theme_dark": "Темна",
+        "sound_chk": "Звукові ефекти"
     },
     "en": {
-        "title": "Megamarket All-in-One 🛒",
-        "search_label": "🔍 Search:",
+        "title": "Megamarket All-in-One",
+        "search_label": "Search:",
         "balance_label": "Balance:",
         "topup_btn": "+ Top Up",
-        "history_btn": "📜 History",
-        "wheel_btn": "🎡 Fortune Wheel",
-        "cart_btn": "🛒 Cart",
+        "history_btn": "History",
+        "wheel_btn": "Fortune Wheel",
+        "cart_btn": "Cart",
         "details_btn": "Details",
         "all_cat": "All",
         "tech_cat": "Tech",
@@ -227,39 +263,39 @@ LANGS = {
         "add_review_lbl": "Add a Review:",
         "submit_review_btn": "Submit",
         "cart_title": "Your Cart",
-        "cart_empty": "Cart is empty 😔",
+        "cart_empty": "Cart is empty",
         "subtotal_lbl": "Subtotal:",
         "discount_lbl": "Discount:",
         "total_lbl": "Total to pay:",
         "checkout_btn": "Checkout",
         "clear_cart_btn": "Clear Cart",
         "history_title": "Order History",
-        "no_orders": "No orders yet 🤷‍♂️",
+        "no_orders": "No orders yet",
         "order_str": "Order",
         "items_count_str": "Items",
-        "fortune_title": "🎡 Wheel of Fortune",
-        "spin_btn": "Spin 🎡",
+        "fortune_title": "Wheel of Fortune",
+        "spin_btn": "Spin",
         "congrats": "Congratulations!",
         "win_discount": "You won a discount of",
-        "try_again": "Try again! 🍀",
+        "try_again": "Try again!",
         "insufficient_balance": "Insufficient balance! Please top up.",
-        "success_purchase": "Thank you! Receipt saved 📄",
-        "settings_btn": "⚙️ Settings",
+        "success_purchase": "Thank you! Receipt saved",
+        "settings_btn": "Settings",
         "settings_title": "Application Settings",
         "lang_lbl": "Interface Language:",
         "theme_lbl": "Color Theme:",
-        "theme_light": "Light ☀️",
-        "theme_dark": "Dark 🌙",
-        "sound_chk": "Sound Effects (Beep)"
+        "theme_light": "Light",
+        "theme_dark": "Dark",
+        "sound_chk": "Sound Effects"
     },
     "ru": {
-        "title": "Мегамаркет Все-в-Одном 🛒",
-        "search_label": "🔍 Поиск:",
+        "title": "Мегамаркет Все-в-Одном",
+        "search_label": "Поиск:",
         "balance_label": "Баланс:",
         "topup_btn": "+ Пополнить",
-        "history_btn": "📜 История",
-        "wheel_btn": "🎡 Колесо Фортуны",
-        "cart_btn": "🛒 Корзина",
+        "history_btn": "История",
+        "wheel_btn": "Колесо Фортуны",
+        "cart_btn": "Корзина",
         "details_btn": "Подробнее",
         "all_cat": "Все",
         "tech_cat": "Техника",
@@ -283,30 +319,30 @@ LANGS = {
         "add_review_lbl": "Добавить отзыв:",
         "submit_review_btn": "Отправить",
         "cart_title": "Ваша корзина",
-        "cart_empty": "Корзина пуста 😔",
+        "cart_empty": "Корзина пуста",
         "subtotal_lbl": "Сумма:",
         "discount_lbl": "Скидка:",
         "total_lbl": "Итого к оплате:",
         "checkout_btn": "Оформить",
         "clear_cart_btn": "Очистить корзину",
         "history_title": "История заказов",
-        "no_orders": "Заказов еще не было 🤷‍♂️",
+        "no_orders": "Заказов еще не было",
         "order_str": "Заказ",
         "items_count_str": "Товаров",
-        "fortune_title": "🎡 Колесо Фортуны",
-        "spin_btn": "Крутить 🎡",
+        "fortune_title": "Колесо Фортуны",
+        "spin_btn": "Крутить",
         "congrats": "Поздравляем!",
         "win_discount": "Вы выиграли скидку",
-        "try_again": "Попробуйте еще раз! 🍀",
-        "insufficient_balance": "Недостаточно средств на балансе! Пожалуйста, пополните его.",
-        "success_purchase": "Спасибо за покупку! Чек сохранен 📄",
-        "settings_btn": "⚙️ Настройки",
+        "try_again": "Попробуйте еще раз!",
+        "insufficient_balance": "Недостаточно средств на балансе!",
+        "success_purchase": "Спасибо за покупку! Чек сохранен",
+        "settings_btn": "Настройки",
         "settings_title": "Настройки программы",
         "lang_lbl": "Язык интерфейса:",
         "theme_lbl": "Тема оформления:",
-        "theme_light": "Светлая ☀️",
-        "theme_dark": "Темная 🌙",
-        "sound_chk": "Звуковые эффекты (Beep)"
+        "theme_light": "Светлая",
+        "theme_dark": "Темная",
+        "sound_chk": "Звуковые эффекты"
     }
 }
 
@@ -419,7 +455,7 @@ class AuthScreen(ctk.CTkFrame):
             play_sound("error")
             messagebox.showerror("Помилка", "Такий логін вже існує!")
 
-# --- ГОЛОВНИЙ ЕКРАН З БІЧНОЮ НАВІГАЦІЄЮ ---
+# --- ГОЛОВНИЙ ЕКРАН З БІЧНОЮ НАВІГАЦІЄЮ (БЕЗ ЕМОДЗІ ДЛЯ УНИКНЕННЯ ТОФУ) ---
 class MainScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
         super().__init__(parent)
@@ -428,10 +464,10 @@ class MainScreen(ctk.CTkFrame):
         self.sidebar = ctk.CTkFrame(self, width=200, corner_radius=0)
         self.sidebar.pack(side="left", fill="y")
         
-        self.lbl_logo = ctk.CTkLabel(self.sidebar, text="🏬 МЕГАМАРКЕТ", font=("Segoe UI", 16, "bold"))
+        self.lbl_logo = ctk.CTkLabel(self.sidebar, text="МЕГАМАРКЕТ", font=("Segoe UI", 16, "bold"))
         self.lbl_logo.pack(pady=20)
         
-        self.profile_lbl = ctk.CTkLabel(self.sidebar, text=f"👤 {logged_in_user}", font=("Segoe UI", 11, "bold"))
+        self.profile_lbl = ctk.CTkLabel(self.sidebar, text=f"Користувач: {logged_in_user}", font=("Segoe UI", 11, "bold"))
         self.profile_lbl.pack(pady=5)
         
         self.balance_lbl = ctk.CTkLabel(self.sidebar, text=f"0 грн", font=("Segoe UI", 12), text_color="#2ecc71")
@@ -442,18 +478,18 @@ class MainScreen(ctk.CTkFrame):
         
         self.nav_buttons = {}
         navs = [
-            ("🏬 Каталог", self.show_catalog),
-            ("🛒 Кошик", self.show_cart),
-            ("🎡 Колесо Фортуни", self.show_fortune),
-            ("📜 Історія", self.show_history),
-            ("⚙️ Налаштування", self.show_settings)
+            ("Каталог", self.show_catalog),
+            ("Кошик", self.show_cart),
+            ("Колесо Фортуни", self.show_fortune),
+            ("Історія", self.show_history),
+            ("Налаштування", self.show_settings)
         ]
         for name, cmd in navs:
             btn = ctk.CTkButton(self.sidebar, text=name, anchor="w", fg_color="transparent", hover_color="#34495e", command=cmd, font=("Segoe UI", 12))
             btn.pack(fill="x", padx=10, pady=5)
             self.nav_buttons[name] = btn
             
-        btn_logout = ctk.CTkButton(self.sidebar, text="🚪 Вийти", anchor="w", fg_color="#e74c3c", hover_color="#c0392b", command=self.logout, font=("Segoe UI", 12))
+        btn_logout = ctk.CTkButton(self.sidebar, text="Вийти", anchor="w", fg_color="#e74c3c", hover_color="#c0392b", command=self.logout, font=("Segoe UI", 12))
         btn_logout.pack(side="bottom", fill="x", padx=10, pady=20)
         
         self.content_container = ctk.CTkFrame(self, fg_color="transparent")
@@ -570,9 +606,11 @@ class CatalogPanel(ctk.CTkFrame):
             card.grid(row=row, column=col, padx=10, pady=10)
             
             is_fav = name in favorites
+            # Без емодзі сердець для запобігання тофу на кнопці
+            heart_text = "Liked" if is_fav else "Like"
             heart_color = "red" if is_fav else "gray"
-            heart_btn = ctk.CTkButton(card, text="❤️" if is_fav else "🤍", text_color=heart_color, width=28, height=28, fg_color="transparent", hover_color="transparent", command=lambda n=name: self.toggle_favorite(n))
-            heart_btn.place(relx=0.85, rely=0.1, anchor="center")
+            heart_btn = ctk.CTkButton(card, text=heart_text, text_color=heart_color, width=45, height=24, fg_color="transparent", hover_color="transparent", command=lambda n=name: self.toggle_favorite(n))
+            heart_btn.place(relx=0.8, rely=0.1, anchor="center")
             
             img_lbl = ctk.CTkLabel(card, text="Завантаження... 🔄", font=("Segoe UI", 9, "italic"))
             img_lbl.pack(pady=15)
@@ -684,10 +722,11 @@ class DetailsPanel(ctk.CTkFrame):
         revs = market_db.get_reviews(self.name)
         if revs:
             avg = sum(r['rating'] for r in revs) / len(revs)
-            stars = "★" * int(round(avg)) + "☆" * (5 - int(round(avg)))
-            ctk.CTkLabel(self.reviews_frame, text=f"Рейтинг: {stars} ({avg:.1f}/5)", font=("Segoe UI", 12, "bold"), text_color="#f1c40f").pack(anchor="w")
+            # Без зірочок-емодзі для уникнення тофу
+            stars_text = "*" * int(round(avg)) + "." * (5 - int(round(avg)))
+            ctk.CTkLabel(self.reviews_frame, text=f"Рейтинг: {stars_text} ({avg:.1f}/5)", font=("Segoe UI", 12, "bold"), text_color="#f1c40f").pack(anchor="w")
             for r in revs[-5:]:
-                ctk.CTkLabel(self.reviews_frame, text=f"• {r['username']} ({r['rating']}★): {r['text']}", font=("Segoe UI", 10), anchor="w", justify="left").pack(fill="x", pady=2)
+                ctk.CTkLabel(self.reviews_frame, text=f"• {r['username']} ({r['rating']}/5): {r['text']}", font=("Segoe UI", 10), anchor="w", justify="left").pack(fill="x", pady=2)
         else:
             ctk.CTkLabel(self.reviews_frame, text="Відгуків ще немає.", font=("Segoe UI", 10, "italic")).pack(anchor="w")
 
@@ -711,7 +750,7 @@ class DetailsPanel(ctk.CTkFrame):
             if qty <= 0: raise ValueError
         except ValueError:
             play_sound("error")
-            messagebox.showwarning("Помилка", "Будь ласка, введіть коретну кількість!")
+            messagebox.showwarning("Помилка", "Будь ласка, введіть коректну кількість!")
             return
 
         for item in cart:
@@ -725,7 +764,7 @@ class DetailsPanel(ctk.CTkFrame):
         self.main_screen.update_profile_info()
         messagebox.showinfo("Успіх", f"Додано до кошика!")
 
-# --- ПАНЕЛЬ КОШИКА ТА ОФОРМЛЕННЯ ---
+# --- ПАНЕЛЬ КОШИКА ТА ОФОРМЛЕННЯ (БЕЗ ЕМОДЗІ В КОМБОБОКСАХ) ---
 class CartPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
@@ -760,13 +799,14 @@ class CartPanel(ctk.CTkFrame):
         self.address_entry = ctk.CTkEntry(self.right_box, placeholder_text="Адреса доставки")
         self.address_entry.pack(pady=6, padx=20, fill="x")
         
-        self.deliv_combo = ctk.CTkOptionMenu(self.right_box, values=["Кур'єр 🚚", "Нова Пошта 📦", "Самовивіз 🏪"])
+        # Видалено емодзі з випадаючих списків для запобігання тофу
+        self.deliv_combo = ctk.CTkOptionMenu(self.right_box, values=["Courier", "Nova Poshta", "Self-pickup"])
         self.deliv_combo.pack(pady=6, padx=20, fill="x")
         
-        self.pay_combo = ctk.CTkOptionMenu(self.right_box, values=["Особистий баланс 💳", "Карткою при отриманні 💳", "Готівка 💵"])
+        self.pay_combo = ctk.CTkOptionMenu(self.right_box, values=["Balance", "Card on delivery", "Cash"])
         self.pay_combo.pack(pady=6, padx=20, fill="x")
         
-        btn_order = ctk.CTkButton(self.right_box, text="Оформити замовлення 🚚", command=self.checkout, fg_color="#2ecc71", hover_color="#27ae60", font=("Segoe UI", 12, "bold"))
+        btn_order = ctk.CTkButton(self.right_box, text="Оформити замовлення", command=self.checkout, fg_color="#2ecc71", hover_color="#27ae60", font=("Segoe UI", 12, "bold"))
         btn_order.pack(pady=20)
         
         self.refresh_cart_list()
@@ -776,7 +816,7 @@ class CartPanel(ctk.CTkFrame):
             w.destroy()
             
         if not cart:
-            ctk.CTkLabel(self.items_frame, text="Кошик порожній 😔", font=("Segoe UI", 11)).pack(pady=30)
+            ctk.CTkLabel(self.items_frame, text="Кошик порожній", font=("Segoe UI", 11)).pack(pady=30)
             self.total_lbl.configure(text="Разом до сплати: 0 грн")
             return
             
@@ -791,7 +831,8 @@ class CartPanel(ctk.CTkFrame):
             ctk.CTkLabel(row, text=f"{item['name']} ({item['color']}) x{item['qty']}", font=("Segoe UI", 10, "bold"), wraplength=180).pack(side="left", padx=10)
             ctk.CTkLabel(row, text=f"{sub} грн", font=("Segoe UI", 11), text_color="#2ecc71").pack(side="left", padx=15)
             
-            btn_del = ctk.CTkButton(row, text="❌", width=24, height=24, fg_color="#ff4d4d", hover_color="#ff3333", command=lambda idx=index: self.remove_item(idx))
+            # Замість емодзі хрестика використовуємо звичайну літеру X
+            btn_del = ctk.CTkButton(row, text="X", width=24, height=24, fg_color="#ff4d4d", hover_color="#ff3333", command=lambda idx=index: self.remove_item(idx))
             btn_del.pack(side="right", padx=10)
 
         discounted_price = total_price * (1 - session_discount)
@@ -921,22 +962,22 @@ class FortunePanel(ctk.CTkFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        ctk.CTkLabel(self, text="🎡 Колесо Фортуни", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        ctk.CTkLabel(self, text="Колесо Фортуни", font=("Segoe UI", 16, "bold")).pack(pady=10)
         
         self.canvas = tk.Canvas(self, width=280, height=280, bg="#2b2b2b", bd=0, highlightthickness=0)
         self.canvas.pack(pady=10)
         
         self.sectors = [
-            ("Спробуй ще 🍀", "#ffffff", 0.0),
-            ("Знижка 5% 🎁", "#ff8a80", 0.05),
-            ("Спробуй ще 🍀", "#ffffff", 0.0),
-            ("Знижка 10% 🎁", "#ff5252", 0.10),
-            ("Спробуй ще 🍀", "#ffffff", 0.0),
-            ("Знижка 15% 🎁", "#ff1744", 0.15)
+            ("Спробуй ще", "#ffffff", 0.0),
+            ("Знижка 5%", "#ff8a80", 0.05),
+            ("Спробуй ще", "#ffffff", 0.0),
+            ("Знижка 10%", "#ff5252", 0.10),
+            ("Спробуй ще", "#ffffff", 0.0),
+            ("Знижка 15%", "#ff1744", 0.15)
         ]
         self.draw_wheel(0)
         
-        self.btn_spin = ctk.CTkButton(self, text="Крутити 🎡", command=self.spin, font=("Segoe UI", 11, "bold"), fg_color="#f1c40f", text_color="#2c3e50", hover_color="#f39c12")
+        self.btn_spin = ctk.CTkButton(self, text="Крутити", command=self.spin, font=("Segoe UI", 11, "bold"), fg_color="#f1c40f", text_color="#2c3e50", hover_color="#f39c12")
         self.btn_spin.pack(pady=15)
 
     def draw_wheel(self, rot):
@@ -973,7 +1014,7 @@ class FortunePanel(ctk.CTkFrame):
                     messagebox.showinfo("Вітаємо!", f"Ви виграли знижку: {int(discount*100)}%!")
                 else:
                     play_sound("error")
-                    messagebox.showinfo("Результат", "Спробуйте ще раз! 🍀")
+                    messagebox.showinfo("Результат", "Спробуйте ще раз!")
                 self.btn_spin.configure(state="normal")
                 
         animate(rotations, 0)
@@ -984,11 +1025,11 @@ class HistoryPanel(ctk.CTkScrollableFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        ctk.CTkLabel(self, text="📜 Історія замовлень", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        ctk.CTkLabel(self, text="Історія замовлень", font=("Segoe UI", 16, "bold")).pack(pady=10)
         
         orders = market_db.get_orders(logged_in_user)
         if not orders:
-            ctk.CTkLabel(self, text="Замовлень ще не було 🤷‍♂️", font=("Segoe UI", 11, "italic")).pack(pady=40)
+            ctk.CTkLabel(self, text="Замовлень ще не було", font=("Segoe UI", 11, "italic")).pack(pady=40)
             return
             
         for index, order in enumerate(orders):
@@ -1003,7 +1044,7 @@ class SettingsPanel(ctk.CTkFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        ctk.CTkLabel(self, text="⚙️ Налаштування", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        ctk.CTkLabel(self, text="Налаштування", font=("Segoe UI", 16, "bold")).pack(pady=10)
         
         card = ctk.CTkFrame(self, width=400, height=350)
         card.pack(pady=15, padx=20)
@@ -1012,25 +1053,25 @@ class SettingsPanel(ctk.CTkFrame):
         lang_btn_frame = ctk.CTkFrame(card, fg_color="transparent")
         lang_btn_frame.pack(fill="x", padx=30)
         
-        ctk.CTkButton(lang_btn_frame, text="Українська 🇺🇦", width=90, command=lambda: self.change_lang("ua")).pack(side="left", padx=5)
-        ctk.CTkButton(lang_btn_frame, text="English 🇬🇧", width=90, command=lambda: self.change_lang("en")).pack(side="left", padx=5)
-        ctk.CTkButton(lang_btn_frame, text="Русский 🇷🇺", width=90, command=lambda: self.change_lang("ru")).pack(side="left", padx=5)
+        ctk.CTkButton(lang_btn_frame, text="Українська", width=90, command=lambda: self.change_lang("ua")).pack(side="left", padx=5)
+        ctk.CTkButton(lang_btn_frame, text="English", width=90, command=lambda: self.change_lang("en")).pack(side="left", padx=5)
+        ctk.CTkButton(lang_btn_frame, text="Русский", width=90, command=lambda: self.change_lang("ru")).pack(side="left", padx=5)
         
         ctk.CTkLabel(card, text="Тема оформлення:", font=("Segoe UI", 11, "bold")).pack(anchor="w", padx=30, pady=10)
-        self.theme_switch = ctk.CTkSegmentedButton(card, values=["Light ☀️", "Dark 🌙"], command=self.toggle_theme)
+        self.theme_switch = ctk.CTkSegmentedButton(card, values=["Light", "Dark"], command=self.toggle_theme)
         self.theme_switch.pack(fill="x", padx=30)
-        self.theme_switch.set("Dark 🌙" if ctk.get_appearance_mode() == "Dark" else "Light ☀️")
+        self.theme_switch.set("Dark" if ctk.get_appearance_mode() == "Dark" else "Light")
         
         self.sound_var = tk.BooleanVar(value=sound_enabled)
-        sound_chk = ctk.CTkCheckBox(card, text="Звукові ефекти (Beep)", variable=self.sound_var, command=self.toggle_sound)
+        sound_chk = ctk.CTkCheckBox(card, text="Звукові ефекти", variable=self.sound_var, command=self.toggle_sound)
         sound_chk.pack(anchor="w", padx=30, pady=25)
 
     def change_lang(self, lang):
         global active_lang
         active_lang = lang
         play_sound("click")
-        self.main_screen.lbl_logo.configure(text="🏬 МЕГАМАРКЕТ")
-        nav_texts = ["🏬 Каталог", "🛒 Кошик", "🎡 Колесо Фортуни", "📜 Історія", "⚙️ Налаштування"]
+        self.main_screen.lbl_logo.configure(text="МЕГАМАРКЕТ")
+        nav_texts = ["Каталог", "Кошик", "Колесо Фортуни", "Історія", "Налаштування"]
         for t in nav_texts:
             if t in self.main_screen.nav_buttons:
                 self.main_screen.nav_buttons[t].configure(text=t)

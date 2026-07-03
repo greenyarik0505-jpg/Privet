@@ -13,13 +13,13 @@ Welcome to **Megamarket All-in-One** — a robust, enterprise-grade desktop mark
 ## 📷 Screenshots (Вигляд програми)
 
 ### 1. Головне вікно програми (Каталог 500+ товарів та Пошук)
-![Головне вікно](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_main_v5.png)
+![Головне вікно](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_main_v6.png)
 
 ### 2. Вікно деталей товару (Характеристики, Кольори, Відгуки)
-![Вікно деталей](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_details_v5.png)
+![Вікно деталей](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_details_v6.png)
 
 ### 3. Перегляд кошика та оформлення покупки
-![Вікно кошика](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_cart_v5.png)
+![Вікно кошика](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_cart_v6.png)
 
 ---
 
