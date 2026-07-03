@@ -2,176 +2,225 @@
 take_screenshots.py
 -------------------
 Запуск:  python take_screenshots.py
-Робить скріншоти тільки вікна Silpo і зберігає їх у папці проєкту.
+
+Клікає по ТЕКСТУ кнопок (не координатах) через pywinauto.
+Фоткає ТІЛЬКИ вікно Silpo.
 """
 
 import subprocess, sys, os, time
 
 # ── Залежності ─────────────────────────────────────────────────────────────────
+def install(pkg):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", pkg, "-q"])
+
 try:
-    import pyautogui
     import pygetwindow as gw
+except ImportError:
+    install("pygetwindow"); import pygetwindow as gw
+
+try:
     from PIL import ImageGrab
 except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install",
-                           "pyautogui", "pygetwindow", "pillow", "-q"])
-    import pyautogui
-    import pygetwindow as gw
-    from PIL import ImageGrab
+    install("pillow"); from PIL import ImageGrab
 
-pyautogui.FAILSAFE = True
+try:
+    import pywinauto
+    from pywinauto import Desktop
+except ImportError:
+    install("pywinauto"); from pywinauto import Desktop
+
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ── Допоміжні функції ──────────────────────────────────────────────────────────
+# ── Знайти вікно ───────────────────────────────────────────────────────────────
 
-def find_silpo_window():
-    """Шукає вікно з точним заголовком 'Silpo'."""
-    for title in gw.getAllTitles():
-        if title.strip() == "Silpo":
-            wins = gw.getWindowsWithTitle(title)
+def find_silpo_win_gw():
+    """pygetwindow: знайти вікно з точним заголовком Silpo."""
+    for t in gw.getAllTitles():
+        if t.strip() == "Silpo":
+            wins = gw.getWindowsWithTitle(t)
             if wins and wins[0].width > 200:
                 return wins[0]
     return None
 
 
 def wait_for_window(timeout=60):
-    """Чекає поки з'явиться вікно Silpo. Повертає вікно або None."""
-    print(f"⏳  Чекаю на вікно 'Silpo' (до {timeout} сек)", end="", flush=True)
+    print(f"⏳  Чекаю вікно 'Silpo' (до {timeout} сек)", end="", flush=True)
     for _ in range(timeout * 2):
         time.sleep(0.5)
         print(".", end="", flush=True)
-        win = find_silpo_window()
-        if win:
-            print(f"\n✅  Вікно знайдено: {win.width}x{win.height}")
-            return win
+        w = find_silpo_win_gw()
+        if w:
+            print(f"\n✅  Знайдено: {w.width}x{w.height}")
+            return w
     print("\n❌  Вікно не знайдено!")
     return None
 
 
-def wait_for_load(extra_seconds=8):
-    """Додаткове очікування поки інтерфейс повністю завантажиться."""
-    print(f"⌛  Чекаю завантаження UI ({extra_seconds} сек)", end="", flush=True)
-    for _ in range(extra_seconds):
+def wait_ui(n=5, label=""):
+    if label:
+        print(f"  ⌛  {label}", end="", flush=True)
+    for _ in range(n):
         time.sleep(1)
-        print(".", end="", flush=True)
-    print(" Готово!")
+        if label:
+            print(".", end="", flush=True)
+    if label:
+        print()
 
+# ── Скріншот тільки вікна ──────────────────────────────────────────────────────
 
-def snap(win, filename):
-    """Фотографує ТІЛЬКИ вікно застосунку (не весь екран)."""
+def snap(gw_win, filename):
+    """Знімок тільки bbox вікна Silpo."""
     try:
-        win.activate()
+        gw_win.activate()
     except Exception:
         pass
     time.sleep(0.4)
 
-    # Беремо точні координати вікна
-    x, y, w, h = win.left, win.top, win.width, win.height
-
-    # Захоплюємо тільки область вікна
+    x, y, w, h = gw_win.left, gw_win.top, gw_win.width, gw_win.height
     img = ImageGrab.grab(bbox=(x, y, x + w, y + h))
-
     path = os.path.join(APP_DIR, filename)
     img.save(path, "PNG")
     kb = os.path.getsize(path) // 1024
-    print(f"  📷  {filename}  ({w}x{h}, {kb} KB)")
-    return path
+    print(f"  📷  {filename}  ({w}x{h} px, {kb} KB)")
+
+# ── Клік по тексту через pywinauto ────────────────────────────────────────────
+
+_pwa_app = None
+
+def get_pwa():
+    global _pwa_app
+    try:
+        _pwa_app = Desktop(backend="uia").window(title="Silpo")
+        _pwa_app.wait("exists", timeout=5)
+        return _pwa_app
+    except Exception as e:
+        print(f"  ⚠️  pywinauto (uia) не вдалося: {e}")
+        return None
 
 
-def click_rel(win, rx, ry, label=""):
-    """Клік у відносних координатах вікна (0.0–1.0)."""
-    x = win.left + int(win.width  * rx)
-    y = win.top  + int(win.height * ry)
-    if label:
-        print(f"  🖱️   Клік: {label} ({x},{y})")
-    pyautogui.click(x, y)
-    time.sleep(1.5)
+def click_text(text, gw_win=None, timeout=5):
+    """
+    Шукає елемент з потрібним текстом у вікні Silpo і клікає на нього.
+    Якщо pywinauto не знаходить — клікає по центру вікна (fallback).
+    """
+    print(f"  🖱️   Шукаю '{text}'...", end=" ", flush=True)
+
+    # Спроба 1: pywinauto UIA
+    pwa = get_pwa()
+    if pwa:
+        try:
+            # Шукаємо будь-який елемент з таким текстом
+            el = pwa.child_window(title=text, found_index=0)
+            el.wait("exists visible", timeout=timeout)
+            el.click_input()
+            print(f"✅ (pywinauto)")
+            time.sleep(1.2)
+            return True
+        except Exception:
+            pass
+
+        # Спроба 2: шукаємо часткове співпадіння
+        try:
+            from pywinauto.findwindows import ElementNotFoundError
+            el = pwa.child_window(title_re=f".*{text}.*", found_index=0)
+            el.wait("exists visible", timeout=timeout)
+            el.click_input()
+            print(f"✅ (pywinauto regex)")
+            time.sleep(1.2)
+            return True
+        except Exception as e:
+            print(f"⚠️  не знайдено: {e}")
+
+    # Fallback: нічого не знайшли
+    print(f"❌  Не знайдено '{text}' — пропускаю")
+    return False
 
 
 # ── Головна логіка ─────────────────────────────────────────────────────────────
 
 def main():
     print("=" * 55)
-    print("  📸  Silpo Screenshot Tool")
+    print("  📸  Silpo Screenshot Tool  (text-based clicks)")
     print("=" * 55)
 
-    # 1. Запуск застосунку
+    # 1. Запускаємо застосунок
     print("\n▶️   Запускаю main.py ...")
     proc = subprocess.Popen(
         [sys.executable, os.path.join(APP_DIR, "main.py")],
         cwd=APP_DIR
     )
 
-    # 2. Чекаємо поки вікно з'явиться (до 60 сек)
-    win = wait_for_window(timeout=60)
-    if not win:
-        proc.terminate()
-        return
+    # 2. Чекаємо вікно
+    gw_win = wait_for_window(timeout=60)
+    if not gw_win:
+        proc.terminate(); return
 
-    # 3. Чекаємо поки UI повністю завантажиться (каталог + фото)
-    wait_for_load(extra_seconds=10)
+    # 3. Чекаємо завантаження UI + фото
+    wait_ui(12, "Завантаження каталогу і фото")
 
-    # Оновлюємо позицію вікна після завантаження
-    win = find_silpo_window()
-    if not win:
-        print("❌  Вікно зникло під час завантаження!")
-        proc.terminate()
-        return
+    gw_win = find_silpo_win_gw()
+    if not gw_win:
+        print("❌  Вікно зникло!"); proc.terminate(); return
 
     print("\n── Скріншоти ──────────────────────────────────────────")
 
-    # 4. Скріншот головного екрану (каталог)
-    print("\n[1/4] Головна — каталог товарів")
-    snap(win, "screenshot_main_v7.png")
+    # ── [1] Головна ──────────────────────────────────────────────────────────
+    print("\n[1/4] Головна — каталог")
+    # Спочатку переходимо на Каталог щоб переконатись
+    click_text("Каталог")
+    wait_ui(2)
+    gw_win = find_silpo_win_gw()
+    snap(gw_win, "screenshot_main_v7.png")
 
-    # 5. Клік на перший товар у каталозі
-    #    Перший товар — X≈20%, Y≈61% (перша картка у сітці, нижче категорій)
-    click_rel(win, 0.20, 0.61, "перший товар — Хліб подовий")
-    wait_for_load(3)
-    win = find_silpo_window()
+    # ── [2] Деталі товару ─────────────────────────────────────────────────────
+    print("\n[2/4] Деталі товару")
+    # Клікаємо на назву першого товару
+    click_text("Хліб подовий")
+    wait_ui(3, "Завантаження деталей")
+    gw_win = find_silpo_win_gw()
+    snap(gw_win, "screenshot_details_v7.png")
 
-    print("[2/4] Деталі товару")
-    snap(win, "screenshot_details_v7.png")
+    # Повертаємось назад
+    click_text("← Назад")
+    wait_ui(2)
+    gw_win = find_silpo_win_gw()
 
-    # 6. Назад (кнопка у лівому верхньому куті деталей, ~30% X, 7% Y)
-    click_rel(win, 0.30, 0.07, "← Назад")
-    time.sleep(1.5)
-    win = find_silpo_window()
+    # ── [3] Кошик ─────────────────────────────────────────────────────────────
+    print("\n[3/4] Кошик")
+    click_text("Кошик")
+    wait_ui(2, "Завантаження кошика")
+    gw_win = find_silpo_win_gw()
+    snap(gw_win, "screenshot_cart_v7.png")
 
-    # 7. Кошик — другий пункт меню, Y≈41%
-    click_rel(win, 0.08, 0.41, "Кошик")
-    wait_for_load(2)
-    win = find_silpo_window()
+    # ── [4] Темна тема ────────────────────────────────────────────────────────
+    print("\n[4/4] Темна тема")
+    # Повертаємось на Каталог
+    click_text("Каталог")
+    wait_ui(1)
+    gw_win = find_silpo_win_gw()
 
-    print("[3/4] Кошик / Оформлення")
-    snap(win, "screenshot_cart_v7.png")
+    # Вмикаємо темну тему
+    click_text("🌙 Темна тема")
+    wait_ui(3, "Застосування теми")
+    gw_win = find_silpo_win_gw()
+    snap(gw_win, "screenshot_dark_v7.png")
 
-    # 8. Каталог назад — Y≈36%
-    click_rel(win, 0.08, 0.36, "Каталог")
-    time.sleep(1.5)
-    win = find_silpo_window()
-
-    # 9. Темна тема — кнопка Y≈27% (під балансом, над Поповнити)
-    click_rel(win, 0.08, 0.27, "🌙 Темна тема")
-    wait_for_load(3)
-    win = find_silpo_window()
-
-    print("[4/4] Каталог (темна тема)")
-    snap(win, "screenshot_dark_v7.png")
-
-    # 10. Підсумок
+    # ── Підсумок ──────────────────────────────────────────────────────────────
     print("\n" + "=" * 55)
-    print("  ✅  Готово! Файли збережено:")
-    for name in ["screenshot_main_v7.png", "screenshot_details_v7.png",
-                 "screenshot_cart_v7.png", "screenshot_dark_v7.png"]:
+    print("  ✅  Готово! Файли:")
+    files = ["screenshot_main_v7.png", "screenshot_details_v7.png",
+             "screenshot_cart_v7.png", "screenshot_dark_v7.png"]
+    for name in files:
         path = os.path.join(APP_DIR, name)
         if os.path.exists(path):
-            print(f"     📷  {name}")
+            print(f"     📷  {name}  ({os.path.getsize(path)//1024} KB)")
+        else:
+            print(f"     ❌  {name}  — НЕ СТВОРЕНО")
 
-    print("\n👇  Запуши скріншоти:")
-    print('     git add screenshot_*_v7.png')
+    print("\n👇  Запуши:")
+    print("     git add screenshot_*_v7.png")
     print('     git commit -m "Update screenshots v7"')
-    print('     git push')
+    print("     git push")
 
     print("\nНатисни Enter щоб закрити застосунок...")
     input()
