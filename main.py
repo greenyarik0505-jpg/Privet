@@ -547,6 +547,14 @@ class AuthScreen(ctk.CTkFrame):
         self.show_pass_var = tk.BooleanVar(value=False)
         self.chk_show_pass = ctk.CTkCheckBox(self.login_frame, text=t("show_password"), variable=self.show_pass_var, command=self.toggle_password_visibility, font=("Arial", 10), text_color=PRIMARY_COLOR, border_color=PRIMARY_COLOR)
         self.chk_show_pass.pack(pady=2)
+        
+        if not self.is_register_mode:
+            self.btn_forgot = ctk.CTkButton(
+                self.login_frame, text="Забули пароль?", command=self.forgot_password,
+                fg_color="transparent", text_color="gray", hover_color=None,
+                width=100, height=20, font=("Arial", 11, "underline"), cursor="hand2"
+            )
+            self.btn_forgot.pack(pady=5)
 
     def toggle_mode(self):
         play_sound("click")
@@ -610,6 +618,24 @@ class AuthScreen(ctk.CTkFrame):
         if self.is_register_mode:
             self.confirm_pass_entry.configure(show=show_char)
 
+    def forgot_password(self):
+        username = self.user_entry.get().strip()
+        if not username:
+            messagebox.showwarning("Помилка", "Будь ласка, введіть спочатку свій логін (USERNAME) у поле вводу!")
+            return
+            
+        dialog = ctk.CTkInputDialog(text="Введіть новий пароль для акаунту:", title="Відновлення паролю")
+        new_pass = dialog.get_input()
+        if new_pass:
+            new_pass = new_pass.strip()
+            if len(new_pass) < 4:
+                messagebox.showerror("Помилка", "Пароль має бути не менше 4 символів!")
+                return
+            if market_db.reset_password(username, new_pass):
+                messagebox.showinfo("Успіх", "Пароль успішно змінено! Увійдіть з новим паролем.")
+            else:
+                messagebox.showerror("Помилка", "Користувача з таким логіном не знайдено!")
+
     def draw_vector_graphics(self):
         self.left_canvas.delete("all")
         self.left_canvas.create_oval(50, 90, 190, 230, fill=SIDEBAR_COLOR, outline="")
@@ -623,6 +649,81 @@ class AuthScreen(ctk.CTkFrame):
         self.left_canvas.create_line(115, 170, 125, 170, fill=PRIMARY_COLOR, width=2)
         self.left_canvas.create_oval(115, 133, 125, 143, fill="", outline=PRIMARY_COLOR, width=2)
         self.left_canvas.create_arc(107, 145, 133, 165, start=0, extent=180, style="arc", outline=PRIMARY_COLOR, width=2)
+
+# --- ФЕЙКОВА ПЛАТІЖНА СТОРІНКА (МОДАЛЬНЕ ВІКНО) ---
+class FakePaymentWindow(ctk.CTkToplevel):
+    def __init__(self, parent, amount, on_success_callback):
+        super().__init__(parent)
+        self.title("Банківський переказ - Безпечна оплата")
+        self.geometry("420x450")
+        self.resizable(False, False)
+        self.configure(fg_color=BG_COLOR)
+        
+        self.transient(parent)
+        self.grab_set()
+        self.focus_force()
+        
+        self.amount = amount
+        self.on_success = on_success_callback
+        
+        bank_frame = ctk.CTkFrame(self, fg_color=PRIMARY_COLOR, height=60, corner_radius=0)
+        bank_frame.pack(fill="x")
+        
+        lbl_bank = ctk.CTkLabel(bank_frame, text="🛡️ MegaBank Secure Pay", font=("Arial", 16, "bold"), text_color="white")
+        lbl_bank.pack(pady=15)
+        
+        lbl_amount_title = ctk.CTkLabel(self, text="Сума до сплати:", font=("Arial", 11), text_color="black")
+        lbl_amount_title.pack(pady=(15, 0))
+        
+        lbl_amount = ctk.CTkLabel(self, text=f"{amount} грн", font=("Arial", 22, "bold"), text_color="#2e7d32")
+        lbl_amount.pack(pady=(0, 15))
+        
+        card_frame = ctk.CTkFrame(self, fg_color="white", corner_radius=10)
+        card_frame.pack(padx=20, pady=5, fill="both", expand=True)
+        
+        ctk.CTkLabel(card_frame, text="Номер картки:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w", padx=15, pady=(10, 2))
+        self.card_entry = ctk.CTkEntry(card_frame, placeholder_text="4441  1111  2222  3333", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        self.card_entry.pack(fill="x", padx=15, pady=2)
+        
+        row_frame = ctk.CTkFrame(card_frame, fg_color="transparent")
+        row_frame.pack(fill="x", padx=15, pady=(10, 2))
+        
+        col1 = ctk.CTkFrame(row_frame, fg_color="transparent")
+        col1.pack(side="left", fill="x", expand=True)
+        ctk.CTkLabel(col1, text="Термін дії:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w")
+        self.exp_entry = ctk.CTkEntry(col1, placeholder_text="MM/YY", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        self.exp_entry.pack(fill="x", pady=2)
+        
+        col2 = ctk.CTkFrame(row_frame, fg_color="transparent")
+        col2.pack(side="right", fill="x", expand=True, padx=(10, 0))
+        ctk.CTkLabel(col2, text="CVV:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w")
+        self.cvv_entry = ctk.CTkEntry(col2, placeholder_text="•••", show="•", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        self.cvv_entry.pack(fill="x", pady=2)
+        
+        ctk.CTkLabel(card_frame, text="Власник картки:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w", padx=15, pady=(10, 2))
+        self.name_entry = ctk.CTkEntry(card_frame, placeholder_text="IVAN IVANOV", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        self.name_entry.pack(fill="x", padx=15, pady=(2, 15))
+        
+        self.btn_pay = ctk.CTkButton(self, text="Підтвердити оплату", command=self.process_payment, font=("Arial", 13, "bold"), fg_color="#2ecc71", hover_color="#27ae60", height=38, corner_radius=19)
+        self.btn_pay.pack(pady=15, padx=20, fill="x")
+        
+    def process_payment(self):
+        card = self.card_entry.get().replace(" ", "")
+        exp = self.exp_entry.get().strip()
+        cvv = self.cvv_entry.get().strip()
+        name = self.name_entry.get().strip()
+        
+        if len(card) < 16 or not exp or len(cvv) < 3 or not name:
+            messagebox.showerror("Помилка оплати", "Будь ласка, введіть коректні дані картки!")
+            return
+            
+        self.btn_pay.configure(state="disabled", text="Обробка платежу...")
+        self.update()
+        self.after(1500, self.complete_payment)
+        
+    def complete_payment(self):
+        self.destroy()
+        self.on_success()
 
 # --- ГОЛОВНИЙ ЕКРАН З БІЧНОЮ НАВІГАЦІЄЮ ---
 class MainScreen(ctk.CTkFrame):
@@ -674,7 +775,10 @@ class MainScreen(ctk.CTkFrame):
             self.nav_buttons[key] = btn
             
         self.btn_logout = ctk.CTkButton(self.sidebar, text=t("logout_btn"), anchor="w", fg_color="transparent", text_color="black", hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
-        self.btn_logout.pack(side="bottom", fill="x", padx=15, pady=20)
+        self.btn_logout.pack(side="bottom", fill="x", padx=15, pady=(5, 20))
+        
+        self.btn_delete_acc = ctk.CTkButton(self.sidebar, text="Видалити акаунт", anchor="w", fg_color="transparent", text_color="#ff4d4d", hover_color="#ffe5e5", command=self.delete_account, font=("Arial", 14), height=42)
+        self.btn_delete_acc.pack(side="bottom", fill="x", padx=15, pady=5)
 
     def draw_profile_avatar(self):
         self.avatar_canvas.create_oval(10, 10, 90, 90, fill="#EBE8F9", outline="")
@@ -705,10 +809,17 @@ class MainScreen(ctk.CTkFrame):
             self.update_sidebar_state(panel_name)
 
     def topup_balance(self):
-        play_sound("success")
-        market_db.add_balance(logged_in_user, 500)
-        self.update_profile_info()
-        messagebox.showinfo("Баланс", "Баланс поповнено на 500 грн!")
+        def on_success():
+            market_db.add_balance(logged_in_user, 500)
+            self.update_profile_info()
+            messagebox.showinfo("Успіх", "Баланс успішно поповнено на 500 грн!")
+            
+        FakePaymentWindow(self, 500, on_success)
+
+    def delete_account(self):
+        if messagebox.askyesno("Видалення акаунту", "Ви дійсно хочете видалити свій акаунт?"):
+            market_db.delete_user(logged_in_user)
+            self.logout()
 
     def logout(self):
         global logged_in_user, cart, session_discount
@@ -1264,11 +1375,10 @@ class CartPanel(ctk.CTkFrame):
             messagebox.showwarning("Помилка", "Заповніть усі дані доставки!")
             return
             
-        market_db.deduct_balance(logged_in_user, discounted_price)
         date_str = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        market_db.add_order(logged_in_user, discounted_price, sum(item['qty'] for item in cart), date_str)
         safe_date = date_str.replace(" ", "_").replace(":", "-")
         receipt_filename = f"receipt_{logged_in_user}_{safe_date}.html"
+        
         html_content = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -1330,21 +1440,27 @@ class CartPanel(ctk.CTkFrame):
 </div>
 </body>
 </html>"""
-        with open(receipt_filename, "w", encoding="utf-8") as f:
-            f.write(html_content)
-            
-        import webbrowser
-        try:
-            webbrowser.open(os.path.abspath(receipt_filename))
-        except Exception:
-            pass
-            
-        play_sound("success")
-        messagebox.showinfo("Успіх", f"Замовлення успішно створено! Чек збережено: {receipt_filename}")
-        cart.clear()
-        session_discount = 0.0
-        self.refresh_cart_list()
-        self.main_screen.update_profile_info()
+        
+        def on_pay_success():
+            market_db.deduct_balance(logged_in_user, discounted_price)
+            market_db.add_order(logged_in_user, discounted_price, sum(item['qty'] for item in cart), date_str)
+            with open(receipt_filename, "w", encoding="utf-8") as f:
+                f.write(html_content)
+                
+            import webbrowser
+            try:
+                webbrowser.open(os.path.abspath(receipt_filename))
+            except Exception:
+                pass
+                
+            play_sound("success")
+            messagebox.showinfo("Успіх", f"Замовлення успішно створено! Чек збережено: {receipt_filename}")
+            cart.clear()
+            session_discount = 0.0
+            self.refresh_cart_list()
+            self.main_screen.update_profile_info()
+
+        FakePaymentWindow(self.main_screen, discounted_price, on_pay_success)
 
 # --- ПАНЕЛЬ АНАЛІТИКИ ---
 class AnalyticsPanel(ctk.CTkFrame):
@@ -1451,7 +1567,25 @@ class HistoryPanel(ctk.CTkScrollableFrame):
                 row, text="Відкрити чек", command=open_receipt, width=110, height=28,
                 fg_color=PRIMARY_COLOR, hover_color="#3b7ad2", font=("Arial", 11, "bold")
             )
-            btn_receipt.pack(side="right", padx=15, pady=10)
+            btn_receipt.pack(side="right", padx=(0, 10), pady=10)
+            
+            def delete_order_action(o_date=order['date']):
+                if messagebox.askyesno("Видалення", "Ви дійсно хочете видалити це замовлення з історії?"):
+                    market_db.delete_order(logged_in_user, o_date)
+                    safe_date = o_date.replace(" ", "_").replace(":", "-")
+                    receipt_filename = f"receipt_{logged_in_user}_{safe_date}.html"
+                    if os.path.exists(receipt_filename):
+                        try:
+                            os.remove(receipt_filename)
+                        except:
+                            pass
+                    self.main_screen.show_history()
+                    
+            btn_delete = ctk.CTkButton(
+                row, text="Видалити", command=delete_order_action, width=80, height=28,
+                fg_color="#ff4d4d", hover_color="#ff3333", font=("Arial", 11, "bold")
+            )
+            btn_delete.pack(side="right", padx=(0, 15), pady=10)
 
 # --- ПАНЕЛЬ НАЛАШТУВАНЬ ---
 class SettingsPanel(ctk.CTkFrame):
