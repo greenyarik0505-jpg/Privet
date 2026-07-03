@@ -141,8 +141,8 @@ def create_main_screenshot():
         draw.rounded_rectangle([cx + 25, cy + 165, cx + 140, cy + 195], 5, fill="#3498db")
         draw.text((cx + 82, cy + 180), "Детальніше", fill="#ffffff", anchor="mm", font=get_font(9, True))
         
-    img.save("screenshot_main_v4.png")
-    print("Created mockup: screenshot_main_v4.png")
+    img.save("screenshot_main_v5.png")
+    print("Created mockup: screenshot_main_v5.png")
 
 def create_details_screenshot():
     w, h = 750, 550
@@ -185,8 +185,8 @@ def create_details_screenshot():
     draw.rounded_rectangle([495, 140, 715, 190], 5, fill="#1e1e2e")
     draw.text((505, 155), "• Yarik: Супер швидкий!", fill="#cdd6f4", font=get_font(9))
     
-    img.save("screenshot_details_v4.png")
-    print("Created mockup: screenshot_details_v4.png")
+    img.save("screenshot_details_v5.png")
+    print("Created mockup: screenshot_details_v5.png")
 
 def create_cart_screenshot():
     w, h = 750, 550
@@ -234,8 +234,8 @@ def create_cart_screenshot():
     draw.rounded_rectangle([510, 430, 700, 475], 6, fill="#2ecc71")
     draw.text((605, 452), "Оформити 🚚", fill="#ffffff", anchor="mm", font=get_font(12, True))
     
-    img.save("screenshot_cart_v4.png")
-    print("Created mockup: screenshot_cart_v4.png")
+    img.save("screenshot_cart_v5.png")
+    print("Created mockup: screenshot_cart_v5.png")
 
 if __name__ == "__main__":
     create_main_screenshot()
