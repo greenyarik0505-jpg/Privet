@@ -8,6 +8,7 @@ import urllib.request
 import datetime
 import random
 import math
+import threading
 
 # Налаштування стилю CustomTkinter
 ctk.set_appearance_mode("dark")
@@ -52,7 +53,8 @@ STICKER_URLS = {
     "clothing": "https://cdn-icons-png.flaticon.com/512/863/863684.png"      # 3D Синя футболка
 }
 
-def download_assets():
+# Завантажуємо круті 3D стікери локально у ФОНОВОМУ ПОТОЦІ, щоб запуск був миттєвим!
+def download_assets_worker():
     for cat, url in STICKER_URLS.items():
         dest = os.path.join(ASSETS_DIR, f"{cat}.png")
         if not os.path.exists(dest):
@@ -65,7 +67,8 @@ def download_assets():
                 img = Image.new("RGBA", (128, 128), (52, 152, 219, 255))
                 img.save(dest)
 
-download_assets()
+# Запуск фонового завантаження без блокування основного вікна
+threading.Thread(target=download_assets_worker, daemon=True).start()
 
 def get_local_sticker_image(category, size):
     dest = os.path.join(ASSETS_DIR, f"{category}.png")
@@ -80,7 +83,7 @@ def get_local_sticker_image(category, size):
 
 fruits_data = {}
 
-# Реалістичні списки брендів та описів товарів
+# Списки брендів та товарів
 tech_brands = ["ASUS", "Lenovo", "Dell", "HP", "Acer", "MSI", "Apple MacBook", "Xiaomi", "Huawei", "Gigabyte"]
 tech_models = ["ZenBook", "IdeaPad", "Inspiron", "Pavilion", "Swift", "Cyborg", "Air M2", "RedmiBook Pro", "MateBook D", "Aorus"]
 tech_specs = ["Core i5 16GB", "Core i7 32GB", "Ryzen 5 8GB", "Ryzen 7 16GB", "M2 8GB", "M3 16GB", "Core i9 64GB", "Ryzen 9 32GB", "Intel Ultra 7", "Ryzen 3 8GB"]
@@ -160,6 +163,159 @@ for i in range(100):
         "category": "clothing",
         "colors": [("Синій", "#3498db"), ("Чорний", "#2c3e50")]
     }
+
+LANGS = {
+    "ua": {
+        "title": "Мегамаркет Все-в-Одному",
+        "search_label": "Пошук:",
+        "balance_label": "Баланс:",
+        "topup_btn": "+ Поповнити",
+        "history_btn": "Історія",
+        "cart_btn": "Кошик",
+        "details_btn": "Детальніше",
+        "all_cat": "Усі",
+        "tech_cat": "Техніка",
+        "fruits_cat": "Фрукти",
+        "home_cat": "Для дому",
+        "sport_cat": "Спорт",
+        "clothing_cat": "Одяг",
+        "sort_cheap": "Спочатку дешевші",
+        "sort_expensive": "Спочатку дорожчі",
+        "auth_title": "Авторизація",
+        "login_btn": "Увійти",
+        "register_btn": "Реєстрація",
+        "username_lbl": "Логін:",
+        "password_lbl": "Пароль:",
+        "logout_btn": "Вийти",
+        "details_title": "Деталі товару",
+        "color_lbl": "Виберіть сорт/колір:",
+        "qty_lbl": "Кількість:",
+        "add_to_cart_btn": "Додати в кошик",
+        "reviews_lbl": "Відгуки та оцінки:",
+        "add_review_lbl": "Додати відгук:",
+        "submit_review_btn": "Надіслати",
+        "cart_title": "Ваш кошик",
+        "cart_empty": "Кошик порожній",
+        "subtotal_lbl": "Сума:",
+        "discount_lbl": "Знижка:",
+        "total_lbl": "Разом до сплати:",
+        "checkout_btn": "Оформити",
+        "clear_cart_btn": "Очистити кошик",
+        "history_title": "Історія замовлень",
+        "no_orders": "Замовлень ще не було",
+        "order_str": "Замовлення",
+        "items_count_str": "Товарів",
+        "insufficient_balance": "Недостатньо коштів на балансі!",
+        "success_purchase": "Дякуємо за замовлення! Чек збережено",
+        "settings_btn": "Налаштування",
+        "settings_title": "Настройки программы",
+        "lang_lbl": "Язык интерфейса:",
+        "theme_lbl": "Тема оформления:",
+        "theme_light": "Светлая",
+        "theme_dark": "Темная",
+        "sound_chk": "Звуковые эффекты"
+    },
+    "en": {
+        "title": "Megamarket All-in-One",
+        "search_label": "Search:",
+        "balance_label": "Balance:",
+        "topup_btn": "+ Top Up",
+        "history_btn": "History",
+        "cart_btn": "Cart",
+        "details_btn": "Details",
+        "all_cat": "All",
+        "tech_cat": "Tech",
+        "fruits_cat": "Fruits",
+        "home_cat": "Home",
+        "sport_cat": "Sports",
+        "clothing_cat": "Clothing",
+        "sort_cheap": "Price: Low to High",
+        "sort_expensive": "Price: High to Low",
+        "auth_title": "Authentication",
+        "login_btn": "Login",
+        "register_btn": "Register",
+        "username_lbl": "Username:",
+        "password_lbl": "Password:",
+        "logout_btn": "Logout",
+        "details_title": "Product Details",
+        "color_lbl": "Select variety/color:",
+        "qty_lbl": "Quantity:",
+        "add_to_cart_btn": "Add to Cart",
+        "reviews_lbl": "Reviews & Ratings:",
+        "add_review_lbl": "Add a Review:",
+        "submit_review_btn": "Submit",
+        "cart_title": "Your Cart",
+        "cart_empty": "Cart is empty",
+        "subtotal_lbl": "Subtotal:",
+        "discount_lbl": "Discount:",
+        "total_lbl": "Total to pay:",
+        "checkout_btn": "Checkout",
+        "clear_cart_btn": "Clear Cart",
+        "history_title": "Order History",
+        "no_orders": "No orders yet",
+        "order_str": "Order",
+        "items_count_str": "Items",
+        "insufficient_balance": "Insufficient balance! Please top up.",
+        "success_purchase": "Thank you! Receipt saved",
+        "settings_btn": "Settings",
+        "settings_title": "Application Settings",
+        "lang_lbl": "Interface Language:",
+        "theme_lbl": "Color Theme:",
+        "theme_light": "Light",
+        "theme_dark": "Dark",
+        "sound_chk": "Sound Effects"
+    },
+    "ru": {
+        "title": "Мегамаркет Все-в-Одном",
+        "search_label": "Поиск:",
+        "balance_label": "Баланс:",
+        "topup_btn": "+ Пополнить",
+        "history_btn": "История",
+        "cart_btn": "Корзина",
+        "details_btn": "Подробнее",
+        "all_cat": "Все",
+        "tech_cat": "Техника",
+        "fruits_cat": "Фрукты",
+        "home_cat": "Для дома",
+        "sport_cat": "Спорт",
+        "clothing_cat": "Одежда",
+        "sort_cheap": "Сначала дешевые",
+        "sort_expensive": "Сначала дорогие",
+        "auth_title": "Авторизация",
+        "login_btn": "Войти",
+        "register_btn": "Регистрация",
+        "username_lbl": "Логин:",
+        "password_lbl": "Пароль:",
+        "logout_btn": "Выйти",
+        "details_title": "Детали товара",
+        "color_lbl": "Выберите сорт/цвет:",
+        "qty_lbl": "Количество:",
+        "add_to_cart_btn": "Добавить в корзину",
+        "reviews_lbl": "Отзывы и оценки:",
+        "add_review_lbl": "Добавить отзыв:",
+        "submit_review_btn": "Отправить",
+        "cart_title": "Ваша корзина",
+        "cart_empty": "Корзина пуста",
+        "subtotal_lbl": "Сумма:",
+        "discount_lbl": "Скидка:",
+        "total_lbl": "Итого к оплате:",
+        "checkout_btn": "Оформить",
+        "clear_cart_btn": "Очистить корзину",
+        "history_title": "История заказов",
+        "no_orders": "Заказов еще не было",
+        "order_str": "Заказ",
+        "items_count_str": "Товаров",
+        "insufficient_balance": "Недостаточно средств на балансе!",
+        "success_purchase": "Спасибо за покупку! Чек сохранен",
+        "settings_btn": "Настройки",
+        "settings_title": "Настройки программы",
+        "lang_lbl": "Язык интерфейса:",
+        "theme_lbl": "Тема оформления:",
+        "theme_light": "Светлая",
+        "theme_dark": "Темная",
+        "sound_chk": "Звуковые эффекты"
+    }
+}
 
 class App(ctk.CTk):
     def __init__(self):
@@ -422,7 +578,6 @@ class MainScreen(ctk.CTkFrame):
         btn_topup.pack(pady=5)
         
         self.nav_buttons = {}
-        # Додано кнопку "Аналітика" замість "Колеса Фортуни"
         navs = [
             ("Каталог", self.show_catalog),
             ("Кошик", self.show_cart),
@@ -542,15 +697,7 @@ class CatalogPanel(ctk.CTkFrame):
         
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(fill="both", expand=True)
-        self.scroll_frame.bind("<Configure>", self.on_resize)
         
-        self.draw_grid()
-
-    def on_resize(self, event):
-        w = event.width
-        if hasattr(self, "_last_width") and abs(self._last_width - w) < 40:
-            return
-        self._last_width = w
         self.draw_grid()
 
     def set_category(self, cat):
@@ -592,12 +739,8 @@ class CatalogPanel(ctk.CTkFrame):
             
         filtered.sort(key=sort_key)
         
-        width = self.scroll_frame.winfo_width()
-        if width <= 1:
-            width = 740
-            
-        card_w = 175 
-        cols = max(1, width // card_w)
+        # Використовуємо стабільну кількість колонок для запобігання рекурсивних лагів компонування
+        cols = 4
         
         col = 0
         row = 0
@@ -606,7 +749,6 @@ class CatalogPanel(ctk.CTkFrame):
             card.grid(row=row, column=col, padx=8, pady=8)
             card.grid_propagate(False)
             
-            # Інтерактивна анімація наведення
             def on_enter(e, c=card):
                 c.configure(border_width=1.5, border_color="#3498db")
             def on_leave(e, c=card):
@@ -760,7 +902,7 @@ class DetailsPanel(ctk.CTkFrame):
         self.main_screen.update_profile_info()
         messagebox.showinfo("Успіх", f"Додано до кошика!")
 
-# --- ПАНЕЛЬ КОШИКА З POS-ТАБЛИЦЕЮ (Дизайн запозичено з CustomTkinter-POS) ---
+# --- ПАНЕЛЬ КОШИКА З POS-ТАБЛИЦЕЮ ---
 class CartPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
@@ -771,7 +913,6 @@ class CartPanel(ctk.CTkFrame):
         
         ctk.CTkLabel(left_box, text="Кошик товарів (POS Специфікація)", font=("Segoe UI", 16, "bold")).pack(pady=10)
         
-        # Заголовки стовпців таблиці
         header_frame = ctk.CTkFrame(left_box, height=30, fg_color="#2b2b3d")
         header_frame.pack(fill="x", padx=10, pady=(5, 0))
         
@@ -834,7 +975,6 @@ class CartPanel(ctk.CTkFrame):
             
             ctk.CTkLabel(row, text=f"{item['name']} ({item['color']})", font=("Segoe UI", 10, "bold"), width=160, anchor="w", wraplength=150).pack(side="left", padx=10)
             
-            # Поле зміни кількості прямо у списку кошика (POS-механізм)
             qty_spin = ttk.Spinbox(row, from_=1, to=99, width=3, justify="center")
             qty_spin.pack(side="left", padx=10)
             qty_spin.set(item["qty"])
@@ -978,7 +1118,7 @@ class CartPanel(ctk.CTkFrame):
         self.refresh_cart_list()
         self.main_screen.update_profile_info()
 
-# --- ПАНЕЛЬ АНАЛІТИКИ З ГРАФІКОМ (Ідея запозичена з Invento та Convenient Shop) ---
+# --- ПАНЕЛЬ АНАЛІТИКИ З ГРАФІКОМ ---
 class AnalyticsPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
@@ -986,7 +1126,6 @@ class AnalyticsPanel(ctk.CTkFrame):
         
         ctk.CTkLabel(self, text="Панель аналітики та звітів", font=("Segoe UI", 16, "bold")).pack(pady=10)
         
-        # Блок карток показників (KPI Cards)
         cards_frame = ctk.CTkFrame(self, fg_color="transparent")
         cards_frame.pack(fill="x", pady=10)
         
@@ -999,7 +1138,6 @@ class AnalyticsPanel(ctk.CTkFrame):
         self.create_kpi_card(cards_frame, "Куплено товарів", f"{total_items} шт", "#3498db").pack(side="left", fill="both", expand=True, padx=5)
         self.create_kpi_card(cards_frame, "Середній чек", f"{avg_receipt} грн", "#e67e22").pack(side="left", fill="both", expand=True, padx=5)
         
-        # Візуальний інтерактивний графік витрат на Canvas
         chart_frame = ctk.CTkFrame(self, corner_radius=12)
         chart_frame.pack(fill="both", expand=True, pady=10, padx=5)
         
@@ -1023,7 +1161,6 @@ class AnalyticsPanel(ctk.CTkFrame):
         if w <= 1 or h <= 1:
             return
             
-        # Сітка графіка
         for i in range(5):
             y = 30 + i * (h - 60) // 4
             self.canvas.create_line(40, y, w - 20, y, fill="#2c2d3d", width=1)
@@ -1032,7 +1169,6 @@ class AnalyticsPanel(ctk.CTkFrame):
             self.canvas.create_text(w // 2, h // 2, text="Дані для аналітики відсутні", fill="gray", font=("Segoe UI", 11, "italic"))
             return
             
-        # Малюємо тренд замовлень
         points = []
         max_val = max(o["total"] for o in orders) if orders else 1
         if max_val == 0: max_val = 1
@@ -1043,7 +1179,6 @@ class AnalyticsPanel(ctk.CTkFrame):
             x = 50 + idx * step_x
             y = (h - 40) - (o["total"] / max_val) * (h - 80)
             points.append((x, y))
-            # Точки на графіку
             self.canvas.create_oval(x - 4, y - 4, x + 4, y + 4, fill="#3498db", outline="#ffffff", width=1.5)
             
         if len(points) > 1:
