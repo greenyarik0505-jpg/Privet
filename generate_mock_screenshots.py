@@ -86,8 +86,8 @@ def create_main_screenshot():
         img.paste(prod_img, (x + 30, 93), prod_img if prod_img.mode == "RGBA" else None)
         draw.text((x + 48, 142), cat, fill="black", anchor="mm", font=get_font(10, False))
         
-    # Заголовок "Popular Items"
-    draw.text((200, 175), "Popular Items", fill="black", font=get_font(12, True))
+    # Заголовок "Popular Items" с пагинацией (1-5 из 105)
+    draw.text((200, 175), "Popular Items (1-5 / 105)", fill="black", font=get_font(12, True))
     
     # Карточки товаров Popular Items (Украинские и международные гиганты)
     products = [
@@ -95,7 +95,7 @@ def create_main_screenshot():
         ("Кока-Кола", "0.5l", "$28.00", "Diet_Cola.png"),
         ("Сир", "0.2kg", "$110.00", "Cheese.png"),
         ("Чіпси", "0.1kg", "$48.00", "Potato_Chips.png"),
-        ("Смарт", "0.1kg", "$1200.00", "sport.png") # Спорт техника
+        ("Смарт", "0.1kg", "$1200.00", "sport.png")
     ]
     
     for i, (name, weight, price, img_file) in enumerate(products):
@@ -117,32 +117,14 @@ def create_main_screenshot():
         draw.ellipse([x + 68, y + 98, x + 88, y + 118], fill="black")
         draw.text((x + 78, y + 108), "+", fill="white", anchor="mm", font=get_font(10, True))
         
-    # Заголовок "New Items"
-    draw.text((200, 345), "New Items", fill="black", font=get_font(12, True))
+    # Кнопки пагинации в самом низу
+    draw.rounded_rectangle([200, 480, 300, 510], 6, fill=PRIMARY_COLOR)
+    draw.text((250, 495), "← Назад", fill="white", anchor="mm", font=get_font(9, True))
     
-    # Карточки New Items
-    new_products = [
-        ("Фанта", "0.5l", "$28.00", "Orange.png"),
-        ("Йогурт", "0.4kg", "$45.00", "Shake.png"),
-        ("Полуниця", "0.5kg", "$180.00", "Strawberries.png"),
-        ("Бублики", "0.3kg", "$18.00", "Single Plain Bagel.png"),
-        ("Фітнес", "0.05kg", "$650.00", "sport.png")
-    ]
+    draw.rounded_rectangle([635, 480, 735, 510], 6, fill=PRIMARY_COLOR)
+    draw.text((685, 495), "Далі →", fill="white", anchor="mm", font=get_font(9, True))
     
-    for i, (name, weight, price, img_file) in enumerate(new_products):
-        x = 200 + i * 106
-        y = 365
-        draw.rounded_rectangle([x, y, x + 96, y + 135], 10, fill="white")
-        
-        prod_img = get_product_image_by_filename(img_file, (50, 50))
-        img.paste(prod_img, (x + 23, y + 10), prod_img if prod_img.mode == "RGBA" else None)
-        
-        draw.text((x + 8, y + 78), name, fill="black", font=get_font(9))
-        draw.text((x + 88, y + 78), weight, fill="gray", anchor="rt", font=get_font(8))
-        
-        draw.text((x + 8, y + 108), price, fill="black", font=get_font(9, True))
-        draw.ellipse([x + 68, y + 98, x + 88, y + 118], fill="black")
-        draw.text((x + 78, y + 108), "+", fill="white", anchor="mm", font=get_font(10, True))
+    draw.text((467, 495), "Page 1 of 3", fill="black", anchor="mm", font=get_font(10, True))
         
     img.save("screenshot_main_v6.png")
     print("Created mockup: screenshot_main_v6.png")
