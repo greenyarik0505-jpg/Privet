@@ -324,6 +324,8 @@ def get_product_image_local(img_src, size):
             try:
                 from PIL import ImageEnhance, ImageFilter
                 img = Image.open(dest)
+                if img.mode not in ("RGB", "RGBA"):
+                    img = img.convert("RGBA")
                 # Робимо зображення чітким, щоб текст на упаковках легко читалися
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
@@ -349,6 +351,8 @@ def get_product_image_local(img_src, size):
             try:
                 from PIL import ImageEnhance, ImageFilter
                 img = Image.open(fallback_dest)
+                if img.mode not in ("RGB", "RGBA"):
+                    img = img.convert("RGBA")
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
@@ -364,6 +368,8 @@ def get_product_image_local(img_src, size):
             try:
                 from PIL import ImageEnhance, ImageFilter
                 img = Image.open(dest)
+                if img.mode not in ("RGB", "RGBA"):
+                    img = img.convert("RGBA")
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
@@ -375,6 +381,8 @@ def get_product_image_local(img_src, size):
             try:
                 from PIL import ImageEnhance, ImageFilter
                 img = Image.open(fallback_dest)
+                if img.mode not in ("RGB", "RGBA"):
+                    img = img.convert("RGBA")
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
