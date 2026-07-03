@@ -323,8 +323,9 @@ def get_product_image_local(img_src, size):
         dest = os.path.join(CACHE_DIR, filename)
         if os.path.exists(dest):
             try:
-                # Використовуємо високоякісне масштабування LANCZOS перед передачею в CTkImage
-                img = Image.open(dest).resize(size, Image.Resampling.LANCZOS)
+                # НЕ зменшуємо картинку в PIL перед передачею в CTkImage. 
+                # Це дозволяє CustomTkinter правильно адаптувати високу роздільну здатність під High DPI екрани (125%, 150%+ масштабування на Windows), роблячи зображення кристально чіткими!
+                img = Image.open(dest)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
@@ -344,7 +345,7 @@ def get_product_image_local(img_src, size):
         fallback_dest = os.path.join(ASSETS_DIR, "default.png")
         if os.path.exists(fallback_dest):
             try:
-                img = Image.open(fallback_dest).resize(size, Image.Resampling.LANCZOS)
+                img = Image.open(fallback_dest)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
@@ -355,14 +356,14 @@ def get_product_image_local(img_src, size):
         dest = os.path.join(ASSETS_DIR, img_src)
         if os.path.exists(dest):
             try:
-                img = Image.open(dest).resize(size, Image.Resampling.LANCZOS)
+                img = Image.open(dest)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
         fallback_dest = os.path.join(ASSETS_DIR, "default.png")
         if os.path.exists(fallback_dest):
             try:
-                img = Image.open(fallback_dest).resize(size, Image.Resampling.LANCZOS)
+                img = Image.open(fallback_dest)
                 return ctk.CTkImage(light_image=img, dark_image=img, size=size)
             except Exception:
                 pass
@@ -372,6 +373,11 @@ def get_product_image_local(img_src, size):
 # Продукти: Завантажуємо 250+ повністю унікальних товарів прямо з Сільпо
 fruits_data = {}
 try:
+    import sys
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    if current_dir not in sys.path:
+        sys.path.insert(0, current_dir)
+        
     import silpo_products
     for idx, item in enumerate(silpo_products.products):
         key_name = item["names"]["en"]
