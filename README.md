@@ -1,214 +1,326 @@
-# 🏬 Silpo Marketplace 🛒
+<div align="center">
 
-> **A Desktop Marketplace Application Built on Python CustomTkinter, Pillow, and SQLite**
+<img src="assets/silpo_logo.png" alt="Silpo Logo" width="120"/>
 
-[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
-[![CustomTkinter](https://img.shields.io/badge/GUI-CustomTkinter-orange.svg)](https://github.com/TomSchimansky/CustomTkinter)
-[![Database](https://img.shields.io/badge/Database-SQLite3-green.svg)](https://www.sqlite.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+# ✦ SILPO MARKETPLACE ✦
+### *Твій персональний супермаркет прямо на робочому столі*
 
-Welcome to **Silpo Marketplace** — a desktop supermarket app built with Python, featuring a real product catalog of 504 items across 7 categories, threaded image loading, user authentication, reviews, and HTML checkout receipts.
+<br/>
 
----
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![CustomTkinter](https://img.shields.io/badge/GUI-CustomTkinter-FF6B6B?style=for-the-badge&logo=python&logoColor=white)](https://github.com/TomSchimansky/CustomTkinter)
+[![SQLite](https://img.shields.io/badge/Database-SQLite3-07405E?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
+[![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)](LICENSE)
+[![Products](https://img.shields.io/badge/Products-504_items-blueviolet?style=for-the-badge)](https://github.com/greenyarik0505-jpg/Privet)
 
-## 📷 Screenshots
+<br/>
 
-### 1. Головне вікно — Каталог 504 товарів
-![Головне вікно](screenshot_main_v6.png)
+> 🌟 **504 реальних товари Сільпо** · **7 категорій** · **Замовлення з чеком** · **Аналітика** · **Відгуки**
 
-### 2. Деталі товару — Опис, сорт, відгуки
-![Вікно деталей](screenshot_details_v6.png)
-
-### 3. Кошик та оформлення замовлення
-![Кошик](screenshot_cart_v6.png)
+</div>
 
 ---
 
-## 📋 Table of Contents
+<div align="center">
 
-1. [✨ Key Features](#-key-features)
-2. [📦 Product Categories](#-product-categories)
-3. [⚙️ System Architecture](#-system-architecture)
-4. [🛠️ Technology Stack](#-technology-stack)
-5. [🚀 Installation & Setup](#-installation--setup)
-6. [📖 User Guide](#-user-guide)
-7. [💻 Database Schema](#-database-schema)
-8. [📊 Feature Table](#-feature-table)
-9. [🤝 Contribution Guidelines](#-contribution-guidelines)
+## 📸 Вигляд програми
 
----
+</div>
 
-## ✨ Key Features
-
-- **📦 Real Catalog (504 Items):** 7 categories of real supermarket products with images, prices, and descriptions.
-- **🌐 Threaded Image Loader:** Downloads and caches product/category images in `cache_images/` using background threads — no UI freezing.
-- **🔒 User Authentication:** Register/login window. Accounts stored in local SQLite database.
-- **🌍 Multi-Language Support:** Switch between Ukrainian 🇺🇦, English 🇬🇧, and Russian 🇷🇺 on the fly.
-- **🎨 Dark / Light Theme:** Toggle between themes dynamically from the Settings panel.
-- **🔍 Real-Time Search:** Instantly filters 504 products as you type.
-- **⭐ Reviews & Ratings:** Submit star ratings and text reviews. Average rating updates live.
-- **📄 Checkout & HTML Receipt:** Fill in delivery info (phone, email, address, courier type, payment) and get a generated HTML receipt saved locally.
-- **📊 Analytics & History:** View your order history and spending analytics.
-- **💰 Wallet Balance:** Top up your in-app balance and pay directly from it.
+| 🏠 Каталог | 📄 Деталі товару | 🛒 Кошик |
+|:----------:|:----------------:|:--------:|
+| ![Main](screenshot_main_v6.png) | ![Details](screenshot_details_v6.png) | ![Cart](screenshot_cart_v6.png) |
+| *504 товари, 7 категорій, пошук в реальному часі* | *Опис, сорт/варіант, відгуки та рейтинг* | *Кошик з формою доставки та оплатою* |
 
 ---
 
-## 📦 Product Categories
+<div align="center">
 
-The catalog contains **504 real Silpo supermarket products** across 7 categories:
+## ⚡ Ключові можливості
 
-| # | Category | 🇺🇦 Name | Items |
-|---|----------|----------|-------|
-| 1 | 🥖 Bakeries | Випічка | Bread, bagels, pastries |
-| 2 | 🥛 Dairy | Молочні | Milk, cheese, yogurt |
-| 3 | 🥩 Meat & Fish | М'ясо & Риба | Chicken, beef, fish fillets |
-| 4 | 🍎 Fruits & Vegetables | Фрукти | Apples, bananas, tomatoes |
-| 5 | 🛒 Grocery | Бакалія | Pasta, rice, canned goods |
-| 6 | 🍫 Snacks | Снеки | Chips, nuts, chocolate |
-| 7 | 🥤 Drinks | Напої | Juice, water, energy drinks |
+</div>
+
+```
+╔══════════════════════════════════════════════════════════════════╗
+║  🛒  504 реальних товари Сільпо у 7 категоріях                   ║
+║  🌍  3 мови: Українська · English · Русский                      ║
+║  🎨  Темна та світла теми — перемикання в один клік              ║
+║  ⚡  Пошук в реальному часі серед сотень товарів                  ║
+║  📦  Завантаження зображень у фоні — без зависань                 ║
+║  ⭐  Відгуки та рейтинги на кожен товар                           ║
+║  🧾  HTML-чек після кожного замовлення                            ║
+║  📊  Аналітика витрат та історія замовлень                        ║
+║  💰  Гаманець з поповненням балансу                               ║
+╚══════════════════════════════════════════════════════════════════╝
+```
+
+<br/>
+
+<table>
+<tr>
+<td width="50%">
+
+### 🛍️ Каталог та Пошук
+- **504 реальних товари** з фото, цінами та описами
+- Миттєвий пошук без затримок
+- Фільтрація по 7 категоріях
+- Пагінація по 15 товарів на сторінці
+
+</td>
+<td width="50%">
+
+### 🔐 Авторизація
+- Реєстрація та вхід через логін/пароль
+- Дані зберігаються в локальній SQLite БД
+- Авто-вхід через `session.txt`
+- Видалення акаунту
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🌍 Мови та Теми
+- Перемикання між 🇺🇦 🇬🇧 🇷🇺 без перезапуску
+- Темна 🌙 та світла ☀️ теми
+- Все зберігається між сесіями
+
+</td>
+<td width="50%">
+
+### 🧾 Замовлення та Чеки
+- Форма доставки (телефон, email, адреса)
+- Вибір доставки: Кур'єр / Нова Пошта
+- Оплата балансом або карткою
+- Генерація HTML чека після оплати
+
+</td>
+</tr>
+</table>
 
 ---
 
-## ⚙️ System Architecture
+<div align="center">
+
+## 📦 Категорії товарів
+
+</div>
+
+<div align="center">
+
+| Категорія | Назва | Приклади товарів |
+|:---------:|:-----:|:-----------------|
+| 🥖 | **Випічка** | Хліб подовий, Батон, Булочки, Круасани, Лаваш |
+| 🥛 | **Молочні** | Молоко, Сир, Йогурт, Масло, Сметана |
+| 🥩 | **М'ясо & Риба** | Куряче філе, Яловичина, Форель, Ковбаса |
+| 🍎 | **Фрукти & Овочі** | Яблука, Банани, Томати, Огірки, Морква |
+| 🛒 | **Бакалія** | Крупи, Макарони, Консерви, Олія, Борошно |
+| 🍫 | **Снеки** | Чіпси, Горішки, Шоколад, Жуйка, Батончики |
+| 🥤 | **Напої** | Сік, Вода, Кола, Енергетики, Чай |
+
+</div>
+
+---
+
+<div align="center">
+
+## ⚙️ Архітектура системи
+
+</div>
 
 ```mermaid
 graph TD
-    A[CustomTkinter GUI Thread] --> B[Login / Register Window]
-    B -->|Success| C[Main App Interface]
-    C --> D[Settings Panel]
-    C --> E[Shopping Cart]
-    C --> F[Product Detail View]
-    C --> G[Analytics]
-    C --> H[Order History]
-    D -->|Switch Language| C
-    D -->|Toggle Theme| C
-    F -->|Load Reviews| I[(SQLite DB)]
-    F -->|Write Review| I
-    E -->|Save Order| I
-    E -->|Deduct Balance| I
-    E -->|Generate| J[HTML Receipt]
-    K[Background Threads] -->|Download Images| L[Image Cache]
-    L -->|Save PNGs| M[cache_images/]
-    C -->|Read PNGs| M
+    A["🖥️ CustomTkinter GUI"] --> B["🔐 Login / Register"]
+    B -->|Успіх| C["🏠 Головний екран"]
+    C --> D["⚙️ Налаштування"]
+    C --> E["🛒 Кошик"]
+    C --> F["📄 Деталі товару"]
+    C --> G["📊 Аналітика"]
+    C --> H["📜 Історія"]
+    D -->|Мова / Тема| C
+    F -->|Читати відгуки| I[("🗄️ SQLite")]
+    F -->|Писати відгуки| I
+    E -->|Зберегти замовлення| I
+    E -->|Списати баланс| I
+    E -->|Генерувати| J["🧾 HTML Чек"]
+    K["🔄 Фонові потоки"] -->|Завантажити фото| L["📥 Image Cache"]
+    L -->|PNG файли| M["📁 cache_images/"]
+    C -->|Відображати| M
 ```
 
 ---
 
-## 🛠️ Technology Stack
+<div align="center">
 
-| Library | Purpose |
-|---------|---------|
-| **CustomTkinter** | Modern GUI framework |
-| **Pillow (PIL)** | Image loading and resizing |
-| **SQLite3** | Local database for users, orders, reviews |
-| **urllib** | Downloading product images |
-| **threading** | Background image loading |
-| **Python 3.8+** | Core language |
+## 🛠️ Технологічний стек
+
+</div>
+
+<div align="center">
+
+| Бібліотека | Версія | Призначення |
+|:----------:|:------:|:-----------:|
+| ![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white) | 3.8+ | Основна мова |
+| ![CTk](https://img.shields.io/badge/-CustomTkinter-FF6B6B?logo=python&logoColor=white) | Latest | Сучасний GUI |
+| ![Pillow](https://img.shields.io/badge/-Pillow-yellow?logo=python&logoColor=black) | 10.0+ | Обробка зображень |
+| ![SQLite](https://img.shields.io/badge/-SQLite3-07405E?logo=sqlite&logoColor=white) | Built-in | База даних |
+| ![Threading](https://img.shields.io/badge/-threading-lightgrey?logo=python&logoColor=black) | Built-in | Фоновий завантажувач |
+| ![urllib](https://img.shields.io/badge/-urllib-lightblue?logo=python&logoColor=black) | Built-in | HTTP запити |
+
+</div>
 
 ---
 
-## 🚀 Installation & Setup
+<div align="center">
 
-### Prerequisites
+## 🚀 Встановлення та Запуск
 
+</div>
+
+**1. Клонуй репозиторій:**
+```bash
+git clone https://github.com/greenyarik0505-jpg/Privet.git
+cd Privet
+```
+
+**2. Встанови залежності:**
 ```bash
 pip install customtkinter pillow
 ```
 
-### Clone & Run
-
+**3. Запусти:**
 ```bash
-git clone https://github.com/greenyarik0505-jpg/Privet.git
-cd Privet
 python main.py
 ```
 
----
-
-## 📖 User Guide
-
-### 1. Getting Started
-- Run the app → **Реєстрація** to register a new account or **Увійти** to log in.
-- Your account starts with a default wallet balance.
-
-### 2. Settings
-- Click **Налаштування** in the left sidebar.
-- Switch language (Ukrainian / English / Russian).
-- Toggle **Dark** or **Light** theme.
-- Click **+ Поповнити** to top up your balance by UAH 500.
-
-### 3. Shopping
-- Browse the catalog or use the **search bar** to find products instantly.
-- Click any category tile to filter by category.
-- Click a product card to open **details**: see description, choose a variant, set quantity, read/write reviews, and add to cart.
-
-### 4. Checkout
-- Go to **Кошик** in the left sidebar to review cart items.
-- Fill in: phone number, email, delivery address, delivery type (Кур'єр / Nova Poshta / Self-pickup), payment method.
-- Click **Оформити замовлення** — an HTML receipt is saved to the project folder.
-
-### 5. Analytics & History
-- **Аналітика** — see total spending and order stats.
-- **Історія** — browse past orders.
+> ✅ При першому запуску зображення завантажаться автоматично у фоні.
 
 ---
 
-## 💻 Database Schema
+<div align="center">
+
+## 📖 Інструкція користувача
+
+</div>
+
+<details>
+<summary><b>👤 Реєстрація та вхід</b></summary>
+
+- Запусти `main.py`
+- Натисни **Реєстрація** → введи логін та пароль → **Зареєструватися**
+- Або **Увійти** якщо вже є акаунт
+- При наступному запуску вхід буде автоматичним
+
+</details>
+
+<details>
+<summary><b>🛍️ Пошук та покупки</b></summary>
+
+- Введи назву товару в поле **"Пошук продуктів..."** — результати оновлюються миттєво
+- Клікни на категорію щоб відфільтрувати товари
+- Натисни **"+"** або **"-"** щоб змінити кількість, потім **"+ Додати"**
+- Або відкрий картку товару для детального перегляду та відгуків
+
+</details>
+
+<details>
+<summary><b>🧾 Оформлення замовлення</b></summary>
+
+- Перейди в **Кошик** у лівому меню
+- Перевір товари та загальну суму
+- Заповни: телефон (+380...), email, адресу доставки
+- Вибери спосіб доставки та оплати
+- Натисни **"Оформити замовлення"** — HTML чек збережеться у папці проєкту
+
+</details>
+
+<details>
+<summary><b>⚙️ Налаштування</b></summary>
+
+- **Налаштування** → вибір мови (🇺🇦 / 🇬🇧 / 🇷🇺)
+- Перемикач теми: **Темна 🌙** або **Світла ☀️**
+- **"+ Поповнити"** → додати 500 грн до балансу
+
+</details>
+
+---
+
+<div align="center">
+
+## 💻 Схема бази даних
+
+</div>
 
 ```sql
-CREATE TABLE IF NOT EXISTS users (
+-- Користувачі
+CREATE TABLE users (
     username TEXT PRIMARY KEY,
-    password TEXT,
-    balance INTEGER DEFAULT 1000
+    password TEXT NOT NULL,
+    balance  INTEGER DEFAULT 1000
 );
 
-CREATE TABLE IF NOT EXISTS reviews (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+-- Відгуки та рейтинги
+CREATE TABLE reviews (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
     product_name TEXT,
-    username TEXT,
-    rating INTEGER,
-    text TEXT
+    username     TEXT,
+    rating       INTEGER CHECK(rating BETWEEN 1 AND 5),
+    text         TEXT
 );
 
-CREATE TABLE IF NOT EXISTS orders (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT,
-    total INTEGER,
+-- Замовлення
+CREATE TABLE orders (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    username    TEXT,
+    total       INTEGER,
     items_count INTEGER,
-    date TEXT
+    date        TEXT
 );
 ```
 
 ---
 
-## 📊 Feature Table
+<div align="center">
 
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Real 504-item catalog | ✅ | 7 Silpo categories |
-| Threaded image loading | ✅ | Cached in `cache_images/` |
-| User authentication | ✅ | Register / Login / Logout |
-| Multi-language (UA/EN/RU) | ✅ | Instant switch |
-| Dark / Light theme | ✅ | Dynamic toggle |
-| Product search | ✅ | Real-time, case-insensitive |
-| Reviews & ratings | ✅ | Per-product, per-user |
-| Cart & checkout | ✅ | With delivery form |
-| HTML receipt | ✅ | Saved as `receipt_*.html` |
-| Wallet balance | ✅ | Top-up & pay |
-| Analytics | ✅ | Spending stats |
-| Order history | ✅ | Past orders list |
-| Unit Tests | ❌ | Planned |
+## 📊 Таблиця функцій
 
----
+| Функція | Статус | Деталі |
+|:--------|:------:|:-------|
+| 504 реальних товари Сільпо | ✅ | 7 категорій |
+| Завантаження зображень у фоні | ✅ | Кеш у `cache_images/` |
+| Реєстрація та вхід | ✅ | SQLite, авто-сесія |
+| 3 мови (UA / EN / RU) | ✅ | Миттєве перемикання |
+| Темна / Світла тема | ✅ | Динамічне перемикання |
+| Пошук в реальному часі | ✅ | 504 товари, без затримок |
+| Відгуки та рейтинги | ✅ | На кожен товар окремо |
+| Кошик та оформлення | ✅ | З формою доставки |
+| HTML чек після оплати | ✅ | `receipt_*.html` |
+| Поповнення балансу | ✅ | +500 грн за клік |
+| Аналітика витрат | ✅ | Графіки і статистика |
+| Історія замовлень | ✅ | Всі минулі покупки |
 
-## 🤝 Contribution Guidelines
-
-1. Fork the Project.
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the Branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
+</div>
 
 ---
 
-*Developed with ❤️ as a Python GUI desktop showcase using real Silpo supermarket data.*
+<div align="center">
+
+## 🤝 Внесок у проєкт
+
+Будемо раді pull request-ам!
+
+1. Fork репозиторію
+2. Створи гілку: `git checkout -b feature/MyFeature`
+3. Зроби коміт: `git commit -m 'Add MyFeature'`
+4. Запуш: `git push origin feature/MyFeature`
+5. Відкрий Pull Request
+
+---
+
+<br/>
+
+*Розроблено з ❤️ на Python · Дані з реального каталогу супермаркету Сільпо*
+
+[![GitHub](https://img.shields.io/badge/GitHub-greenyarik0505--jpg-181717?style=for-the-badge&logo=github)](https://github.com/greenyarik0505-jpg/Privet)
+
+</div>
