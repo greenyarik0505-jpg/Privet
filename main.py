@@ -1,89 +1,74 @@
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+from tkinter import messagebox
+
+# Кольори та шрифти
+BG_COLOR = "#f4f4f9"
+BTN_COLOR = "#ffffff"
+BTN_HOVER = "#e0e0e0"
+ACCENT_COLOR = "#4a90e2"
+TEXT_COLOR = "#333333"
 
 root = tk.Tk()
-root.title("Фруктовый Магазин")
-root.geometry("450x400")
+root.title("Фруктовий Маркет")
+root.geometry("500x450")
+root.configure(bg=BG_COLOR)
 
 # Заголовок
-title_label = tk.Label(root, text="Выберите фрукт для доставки:", font=("Arial", 14, "bold"))
-title_label.pack(pady=10)
+tk.Label(root, text="Оберіть свій фрукт", font=("Segoe UI", 18, "bold"), bg=BG_COLOR, fg=TEXT_COLOR).pack(pady=20)
 
 # Фрейм для кнопок
-buttons_frame = tk.Frame(root)
+buttons_frame = tk.Frame(root, bg=BG_COLOR)
 buttons_frame.pack(pady=10)
 
-# Лабел для статуса доставки
-status_label = tk.Label(root, text="Ожидание выбора...", font=("Arial", 12), fg="blue")
-status_label.pack(pady=20)
+# Лабел для статуса
+status_label = tk.Label(root, text="Очікування вибору...", font=("Segoe UI", 12), bg=BG_COLOR, fg="#666")
+status_label.pack(pady=30)
 
 fruits = [
-    ("Яблоко 🍎", "Яблоко"), ("Банан 🍌", "Банан"),
-    ("Апельсин 🍊", "Апельсин"), ("Клубника 🍓", "Клубника"),
-    ("Виноград 🍇", "Виноград"), ("Арбуз 🍉", "Арбуз")
+    ("Яблуко 🍎", "Яблуко"), ("Банан 🍌", "Банан"),
+    ("Апельсин 🍊", "Апельсин"), ("Полуниця 🍓", "Полуниця"),
+    ("Виноград 🍇", "Виноград"), ("Кавун 🍉", "Кавун")
 ]
 
 def start_delivery(fruit_name):
-    # Створення модального вікна для вибору параметрів
     dialog = tk.Toplevel(root)
     dialog.title(f"Замовлення: {fruit_name}")
-    dialog.geometry("320x280")
-    dialog.grab_set()  # Робимо вікно модальним
-    dialog.transient(root)
+    dialog.geometry("350x320")
+    dialog.configure(bg="#ffffff")
+    dialog.grab_set()
+
+    tk.Label(dialog, text=f"Налаштування: {fruit_name}", font=("Segoe UI", 12, "bold"), bg="#ffffff").pack(pady=15)
     
-    tk.Label(dialog, text=f"Параметри для {fruit_name}", font=("Arial", 12, "bold")).pack(pady=10)
-    
-    # Вибір кольору
-    tk.Label(dialog, text="Виберіть колір:", font=("Arial", 10)).pack()
+    # Вибір
     color_var = tk.StringVar(value="Стандартний")
-    colors = ["Червоний 🔴", "Зелений 🟢", "Жовтий 🟡", "Оранжевий 🟠"]
-    color_menu = tk.OptionMenu(dialog, color_var, *colors)
-    color_menu.pack(pady=5)
+    tk.OptionMenu(dialog, color_var, "Червоний 🔴", "Зелений 🟢", "Жовтий 🟡").pack(pady=5)
     
-    # Вибір кількості
-    tk.Label(dialog, text="Кількість (шт):", font=("Arial", 10)).pack()
-    qty_spin = tk.Spinbox(dialog, from_=1, to=20, width=10, justify="center")
+    qty_spin = tk.Spinbox(dialog, from_=1, to=20, width=10, font=("Segoe UI", 10))
     qty_spin.pack(pady=5)
     
-    # Введення імені
-    tk.Label(dialog, text="Ім'я отримувача:", font=("Arial", 10)).pack()
-    name_entry = tk.Entry(dialog, width=25)
+    name_entry = tk.Entry(dialog, width=30, font=("Segoe UI", 10), bd=1, relief="solid")
     name_entry.pack(pady=5)
-    
-    def confirm():
-        user_name = name_entry.get().strip()
-        selected_color = color_var.get()
-        quantity = qty_spin.get()
-        
-        if not user_name:
-            messagebox.showwarning("Попередження", "Будь ласка, введіть ім'я отримувача!")
-            return
-            
-        dialog.destroy()
-        
-        # Симуляція доставки
-        status_label.config(text=f"Оформлення: {fruit_name} ({selected_color}, {quantity} шт) для {user_name}...", fg="orange")
-        root.after(1500, lambda: status_label.config(
-            text=f"В дорозі: {fruit_name} ({selected_color}, {quantity} шт) для {user_name}! 🚚", fg="purple"
-        ))
-        root.after(3000, lambda: status_label.config(
-            text=f"Доставлено: {fruit_name} ({selected_color}, {quantity} шт) для {user_name}! 🎉", fg="green"
-        ))
-        
-    tk.Button(dialog, text="Оформити замовлення", command=confirm, bg="#2ecc71", fg="white", font=("Arial", 10, "bold"), bd=0, padx=10, pady=5).pack(pady=15)
+    name_entry.insert(0, "Ваше ім'я")
 
-# Створення кнопок
+    def confirm():
+        if not name_entry.get() or name_entry.get() == "Ваше ім'я":
+            messagebox.showwarning("Помилка", "Введіть ім'я!")
+            return
+        
+        status_label.config(text=f"✅ Замовлено: {fruit_name} для {name_entry.get()}", fg=ACCENT_COLOR)
+        dialog.destroy()
+
+    tk.Button(dialog, text="Підтвердити", command=confirm, bg=ACCENT_COLOR, fg="white", 
+              font=("Segoe UI", 10, "bold"), relief="flat", padx=20).pack(pady=20)
+
+# Створення красивих кнопок
 for index, (label_text, name) in enumerate(fruits):
-    row = index // 3
-    col = index % 3
     btn = tk.Button(
-        buttons_frame, 
-        text=label_text, 
-        font=("Arial", 11), 
-        width=12, 
-        height=2, 
+        buttons_frame, text=label_text, font=("Segoe UI", 10),
+        width=14, height=2, bg=BTN_COLOR, relief="flat",
+        activebackground=BTN_HOVER, cursor="hand2",
         command=lambda f=name: start_delivery(f)
     )
-    btn.grid(row=row, column=col, padx=10, pady=10)
+    btn.grid(row=index // 3, column=index % 3, padx=10, pady=10)
 
 root.mainloop()
