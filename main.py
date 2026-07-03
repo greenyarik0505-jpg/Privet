@@ -41,22 +41,8 @@ CARD_COLORS = [
     "#EAA5A6"   # Ніжно-червоний
 ]
 
-# Спробуємо імпортувати winsound для звуків
-try:
-    import winsound
-    def play_sound(action):
-        if not sound_enabled:
-            return
-        if action == "click":
-            winsound.Beep(800, 80)
-        elif action == "success":
-            winsound.Beep(1200, 100)
-            winsound.Beep(1500, 150)
-        elif action == "error":
-            winsound.Beep(400, 300)
-except ImportError:
-    def play_sound(action):
-        pass
+def play_sound(action):
+    pass
 
 import market_db
 market_db.init_db()
@@ -1281,8 +1267,8 @@ class CartPanel(ctk.CTkFrame):
         market_db.deduct_balance(logged_in_user, discounted_price)
         date_str = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         market_db.add_order(logged_in_user, discounted_price, sum(item['qty'] for item in cart), date_str)
-        
-        receipt_filename = f"receipt_{logged_in_user}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.html"
+        safe_date = date_str.replace(" ", "_").replace(":", "-")
+        receipt_filename = f"receipt_{logged_in_user}_{safe_date}.html"
         html_content = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -1347,8 +1333,14 @@ class CartPanel(ctk.CTkFrame):
         with open(receipt_filename, "w", encoding="utf-8") as f:
             f.write(html_content)
             
+        import webbrowser
+        try:
+            webbrowser.open(os.path.abspath(receipt_filename))
+        except Exception:
+            pass
+            
         play_sound("success")
-        messagebox.showinfo("Успіх", f"Замовлення успешно створено! Чек збережено: {receipt_filename}")
+        messagebox.showinfo("Успіх", f"Замовлення успішно створено! Чек збережено: {receipt_filename}")
         cart.clear()
         session_discount = 0.0
         self.refresh_cart_list()
@@ -1439,8 +1431,27 @@ class HistoryPanel(ctk.CTkScrollableFrame):
         for index, order in enumerate(orders):
             row = ctk.CTkFrame(self, fg_color=SIDEBAR_COLOR)
             row.pack(fill="x", padx=20, pady=5)
-            ctk.CTkLabel(row, text=f"Замовлення #{len(orders)-index} [{order['date']}]", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=15, pady=4)
-            ctk.CTkLabel(row, text=f"Товарів: {order['items_count']} шт. | Сума: {order['total']} грн", font=("Arial", 10), text_color="#2e7d32").pack(anchor="w", padx=15, pady=2)
+            
+            info_frame = ctk.CTkFrame(row, fg_color="transparent")
+            info_frame.pack(side="left", padx=15, pady=4, fill="both", expand=True)
+            
+            ctk.CTkLabel(info_frame, text=f"Замовлення #{len(orders)-index} [{order['date']}]", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w")
+            ctk.CTkLabel(info_frame, text=f"Товарів: {order['items_count']} шт. | Сума: {order['total']} грн", font=("Arial", 10), text_color="#2e7d32").pack(anchor="w")
+            
+            def open_receipt(o_date=order['date']):
+                import webbrowser
+                safe_date = o_date.replace(" ", "_").replace(":", "-")
+                receipt_filename = f"receipt_{logged_in_user}_{safe_date}.html"
+                if os.path.exists(receipt_filename):
+                    webbrowser.open(os.path.abspath(receipt_filename))
+                else:
+                    messagebox.showerror("Помилка", f"Файл чека не знайдено:\n{receipt_filename}")
+                    
+            btn_receipt = ctk.CTkButton(
+                row, text="Відкрити чек", command=open_receipt, width=110, height=28,
+                fg_color=PRIMARY_COLOR, hover_color="#3b7ad2", font=("Arial", 11, "bold")
+            )
+            btn_receipt.pack(side="right", padx=15, pady=10)
 
 # --- ПАНЕЛЬ НАЛАШТУВАНЬ ---
 class SettingsPanel(ctk.CTkFrame):
