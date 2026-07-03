@@ -1,113 +1,202 @@
-# 🏬 Мегамаркет Все-в-Одному (Tkinter Desktop Application) 🛒
+# 🏬 MEGAMARKET ALL-IN-ONE 🛒
+> **A High-Performance Desktop Marketplace Application Built on Python Tkinter, Pillow, and SQLite**
 
-Ласкаво просимо до **Мегамаркету Все-в-Одному** — потужного настільного додатка для вибору, замовлення та купівлі товарів найрізноманітніших категорій. Додаток написаний мовою програмування Python з використанням бібліотеки **Tkinter** для графічного інтерфейсу та **Pillow** для динамічної обробки графічних ресурсів.
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![Tkinter](https://img.shields.io/badge/GUI-Tkinter-orange.svg)](https://docs.python.org/3/library/tkinter.html)
+[![Database](https://img.shields.io/badge/Database-SQLite3-green.svg)](https://www.sqlite.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Цей проект перетворився з простого фруктового кіоску на повноцінний маркетплейс із базою даних, системою користувачів, історією, колесом знижок та автоматичною генерацією веб-чеків.
-
----
-
-## 📷 Знімки екрану (Screenshots)
-
-### 1. Головне вікно програми (Каталог 500+ товарів та Пошук)
-![Головне вікно](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_main_v3.png)
-
-### 2. Вікно деталей товару (Характеристики, Кольори, Відгуки)
-![Вікно деталей](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_details_v3.png)
-
-### 3. Перегляд кошика та оформлення покупки
-![Вікно кошика](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_cart_v3.png)
+Welcome to **Megamarket All-in-One** — a robust, enterprise-grade desktop marketplace client designed to showcase modern Python GUI engineering. What started as a simple fruit store has been completely refactored into a high-performance shopping platform featuring a local SQLite database, multi-threaded image caching, dynamic search engine, real-time reviews, interactive mini-games, and dynamic HTML checkout invoicing.
 
 ---
 
-## 📋 Зміст
-1. [✨ Особливості проекту](#-особливості-проекту)
-2. [📦 Категорії та Асортимент товарів (500+ одиниць)](#-категорії-та-асортимент-товарів-500-одиниць)
-3. [🎨 Специфікація інтерфейсу та дизайну](#-специфікація-інтерфейсу-та-дизайну)
-4. [🛠️ Встановлення та запуск](#-встановлення-та-запуск)
-5. [📖 Детальна інструкція користувача](#-детальна-інструкція-користувача)
-6. [💻 Розділ для розробників](#-розділ-для-розробників)
-7. [📄 Ліцензія](#-ліцензія)
+## 📷 Screenshots (Вигляд програми)
+
+### 1. Main Dashboard & Product Catalog (Головне вікно)
+![Main Catalog](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_main_v3.png)
+
+### 2. Product Specifications & Live Feedbacks (Деталі товару)
+![Product Details](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_details_v3.png)
+
+### 3. Smart Shopping Cart & Advanced Shipping Form (Кошик та оформлення)
+![Cart & Checkout](https://raw.githubusercontent.com/greenyarik0505-jpg/Privet/main/screenshot_cart_v3.png)
 
 ---
 
-## ✨ Особливості проекту
+## 📋 Table of Contents
 
-* **📦 Величезний асортимент (500+ товарів):** Генерація та підтримка величезної бази даних товарів у пам'яті та базі даних SQLite.
-* **🌐 Динамічне завантаження картинок за посиланнями:** Зображення категорій завантажуються прямо з інтернету через URL-адреси та зберігаються в локальний кеш (`cache_images/`). Скрипт завантажує фото у фонових потоках (`threading`), запобігаючи «зависанню» інтерфейсу програми.
-* **🔍 Фільтри категорій та Живий пошук:** Пошукова система фільтрує товари в реальному часі. Також доступна фільтрація за категоріями та сортування цін.
-* **❤️ Список «Избранное» (Wishlist):** Кнопка-сердечко зберігає улюблені товари у базі даних SQLite. Товари з обраного **автоматично закріплюються на початку списку**.
-* **🎡 Колесо Фортуни (Fortune Wheel):** Міні-гра з Canvas-анімацією, що дозволяє виграти випадкову знижку на поточну сесію покупок (5%, 10% або 15%).
-* **⭐ Рейтинги та система відгуків:** У кожному вікні товару відображається середній рейтинг, зірочки, останні відгуки покупців, а також форма для додавання власної оцінки й тексту.
-* **💳 Локальний баланс кошика:** Віртуальний рахунок, який можна поповнювати в один клік прямо з кабінету.
-* **🔒 Повне оформлення доставки:** На відміну від перших версій, при замовленні збирається велика кількість даних:
-  * Ім'я отримувача
-  * Номер телефону
-  * Електронна пошта (Email)
-  * Точна адреса доставки
-  * Спосіб доставки (Кур'єр 🚚, Нова Пошта 📦, Самовивіз 🏪)
-  * Метод оплати (Баланс, Картка, Готівка)
-* **📄 Генерація чеків в HTML:** При кожній покупці додаток створює повноцінний гарний HTML-файл чеку із таблицею товарів, знижками та даними доставки.
+1. [✨ Key Features](#-key-features)
+2. [📦 Product Assortment (500+ Items)](#-product-assortment-500-items)
+3. [⚙️ System Architecture](#-system-architecture)
+4. [🛠️ Technology Stack](#-technology-stack)
+5. [🚀 Installation & Setup](#-installation-&amp;-setup)
+6. [📖 Comprehensive User Guide](#-comprehensive-user-guide)
+7. [💻 Codebase & Database Schema](#-codebase-&amp;-database-schema)
+8. [🤝 Contribution guidelines](#-contribution-guidelines)
 
 ---
 
-## 📦 Категорії та Асортимент товарів (500+ одиниць)
+## ✨ Key Features
 
-Програма містить 5 основних категорій, у кожній з яких автоматично створюється по 100 унікальних товарів:
-1. **💻 Техніка (Tech):** Ноутбуки серії Pro, від бюджетних до флагманських ігрових моделей.
-2. **🍎 Фрукти (Fruits):** Свіжі добірні фрукти (наприклад, Яблука Голден різної ваги та цін).
-3. **💡 Для дому (Home):** Сучасні дизайнерські світильники в стилі Loft.
-4. **⚽ Спорт (Sports):** Професійні футбольні шкіряні м'ячі.
-5. **👕 Одяг (Clothing):** Зручні бавовняні класичні футболки різних кольорів.
-
----
-
-## 🎨 Специфікація інтерфейсу та дизайну
-
-* **Плавний скролінг:** Оскільки товарів більше 500, у головному вікні реалізована інтерактивна смуга прокручування (`Scrollbar` + `Canvas`), що дозволяє комфортно прогортати весь каталог товарів без лагів.
-* **Шрифт:** Системний шрифт `Segoe UI`, що забезпечує чітке згладжування тексту на дисплеях будь-якого розрізнення.
-* **Звукове супроводження:** Використання системних частотних сигналів (`winsound`) на Windows для супроводу дій (додавання в кошик, виграш у колесі фортуни, успішне замовлення або помилки балансу).
+* **📦 Massive Catalog (500+ Items):** 5 distinct categories, each housing exactly 100 uniquely generated items with dynamic descriptions, pricing, and custom specifications.
+* **🌐 Async Threaded Image URL Loader:** Automatically fetches high-definition category illustrations from remote CDNs (Twemoji repositories) at startup using background `threading`. Downloads are cached locally in `cache_images/` to ensure lightning-fast subsequent launches.
+* **🔒 User Authentication & Security:** Integrated signup/login startup window. User credentials are encrypted using SHA-256 hashes inside the local database.
+* **⚙️ Unified Settings Dashboard:** A dedicated settings panel allows users to:
+  * **Switch Languages:** Instant translation between **Ukrainian 🇺🇦**, **English 🇬🇧**, and **Russian 🇷🇺** without restarting.
+  * **Toggle Themes:** Change between Light ☀️ and Dark 🌙 mode palettes dynamically.
+  * **Control Audio:** Toggle retro sound indicators (`winsound` Beeps) on or off.
+* **🔍 Real-Time Query & Filter Engine:** Instantly searches across hundreds of products as you type. Combined with category tab filter buttons and price sorting (Low to High / High to Low).
+* **❤️ Smart Wishlist Pinned to Top:** Add items to your favorites with a single click. Favorites are saved in SQLite and **automatically pinned to the top** of the grid layout.
+* **🎡 Fortune Wheel Mini-Game:** Canvas-drawn spinner game rewarding users with a 5%, 10%, or 15% discount for their shopping cart.
+* **⭐ Interactive Review & Rating Module:** Calculate average star ratings from user feedback. Submitting a rating and text review updates the UI instantly.
+* **📄 Detailed Delivery Checkout & HTML Receipts:** Checkout window gathers full name, validated phone number, email, address, delivery provider (Courier, Nova Poshta, Self-pickup), and payment type. Purchases generate a beautiful, production-ready HTML receipt locally on disk.
 
 ---
 
-## 🛠️ Встановлення та запуск
+## 📦 Product Assortment (500+ Items)
 
-### 1. Клонування репозиторію
+Our catalog spans five diverse industries, containing 100 unique SKU variations each:
+* **💻 Tech Department (`tech`):** Performance Laptops Pro Series (1 to 100) with custom color selections (Silver/Black).
+* **🍎 Fresh Fruit Counter (`fruits`):** Farm-fresh Golden Apples (1 to 100) with rating scores and organic details.
+* **💡 Home Decor (`home`):** Designer Loft Lamps (1 to 100) with white/black options.
+* **⚽ Sports Gear (`sport`):** Hand-stitched Leather Soccer Balls (1 to 100).
+* **👕 Clothing Line (`clothing`):** Cotton Classic T-shirts (1 to 100) in various sizes and colors.
+
+---
+
+## ⚙️ System Architecture
+
+```mermaid
+graph TD
+    A[Tkinter Main GUI Thread] --> B[Auth Window]
+    B -->|Success| C[Main App Interface]
+    C --> D[Settings Panel]
+    C --> E[Shopping Cart]
+    C --> F[Detail View]
+    C --> G[Wheel of Fortune]
+    
+    D -->|Translate UI| C
+    D -->|Toggle Colors| C
+    D -->|Toggle Sound| H[Audio Manager]
+    
+    F -->|Load Reviews| I[(SQLite DB)]
+    F -->|Write Review| I
+    C -->|Favorites Pinning| I
+    E -->|Write Order| I
+    E -->|Deduct Balance| I
+    E -->|Generate Invoices| J[Beautiful HTML Receipt]
+    
+    K[Background Threads] -->|URL Fetch| L[Image Caching Engine]
+    L -->|Save PNGs| M[cache_images/]
+    C -->|Read PNGs| M
+```
+
+---
+
+## 🛠️ Technology Stack
+
+* **Programming Language:** Python 3.8+
+* **GUI Engine:** Standard Library Tkinter
+* **Graphics Processing:** Pillow (PIL) 10.0+
+* **Database Engine:** SQLite3 (Local File-based SQL)
+* **Network Operations:** Urllib standard library
+* **Threading Module:** Standard `threading` library
+* **Audio Library:** Standard `winsound` library
+
+---
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+Make sure Python 3.8 or newer is installed. Then install the required packages:
+
+```bash
+pip install pillow
+```
+
+### Installation
+Clone the repository:
 ```bash
 git clone https://github.com/greenyarik0505-jpg/Privet.git
 cd Privet
 ```
 
-### 2. Встановлення Pillow
-Необхідно встановити бібліотеку Pillow для роботи із завантаженням та оптимізацією зображень:
-```bash
-pip install pillow
-```
-
-### 3. Запуск проекту
+### Execution
+Run the main script to start the Megamarket:
 ```bash
 python main.py
 ```
 
 ---
 
-## 📖 Детальна інструкція користувача
+## 📖 Comprehensive User Guide
 
-1. **Авторизація:** При запуску введіть логін та пароль. Якщо ви новий користувач, натисніть «Реєстрація», а потім увійдіть.
-2. **Пошук та вибір:** Скористайтеся верхнім полем пошуку або натисніть категорію (наприклад, "Техніка"), щоб відсіяти непотрібні товари. Натисніть серце ❤️, щоб товар завжди виводився першим у списку.
-3. **Колесо Фортуни:** Натисніть кнопку «🎡 Колесо Фортуни», щоб виграти випадкову знижку на покупки.
-4. **Замовлення:** Перейдіть у деталі товару, оберіть сорт (колір) за допомогою кольорових кнопок та вкажіть кількість. Натисніть "Додати в кошик".
-5. **Перегляд кошика:** Натисніть велику кнопку кошика внизу, перевірте склад товарів, за потреби видаліть зайві або очистіть весь кошик.
-6. **Оформлення:** Клікніть «Оформити», заповніть форму (телефон, email, адреса доставки, спосіб та метод оплати) та натисніть «Завершити замовлення».
-7. **Чек:** Знайдіть у папці проекту згенерований файл `.html` чеку (наприклад, `receipt_user_YYYYMMDD_HHMMSS.html`), відкрийте його у браузері та перегляньте деталі доставки.
+### 1. Getting Started
+* Run the application. On the startup login window, choose **Реєстрація** (Register) to create a new profile or **Увійти** (Login) to log in.
+* Upon login, your account is credited with a default wallet balance.
+
+### 2. Customizing Your Experience
+* Click **⚙️ Налаштування** (Settings) in the top right corner.
+* Select your preferred language (Ukrainian, English, or Russian).
+* Switch to **Dark Theme** if you prefer working in low-light environments.
+* Click **+ Поповнити** (Top Up) to add UAH 500 to your virtual wallet balance.
+
+### 3. Shopping and Placing Reviews
+* Scroll through the 500+ items catalog or search by typing in the search bar.
+* Filter by category tabs at the top.
+* Click **Детальніше** (Details) on any product to view description, choose a color, rate it, write a comment, or add the item to the cart.
+* Click the heart icon on a card to add it to your wishlist and pin it to the top.
+
+### 4. Wheel of Fortune & Checkout
+* Open the **🎡 Колесо Фортуни** from the top panel. Spin the wheel to receive random discounts.
+* Click **🛒 Переглянути Кошик** at the bottom to inspect cart items.
+* Press **Оформити** (Checkout), fill in your phone number, email, address, delivery type, payment method, and complete your purchase. Your receipt will be instantly generated as a stylized HTML file in the project folder.
 
 ---
 
-## 💻 Розділ для розробників
+## 💻 Codebase & Database Schema
 
-База даних SQLite (`market.db`) створюється автоматично. Ви можете переглядати транзакції, відгуки та користувачів за допомогою будь-якої програми для читання баз даних SQLite (наприклад, DB Browser for SQLite).
+### Local SQLite Schema:
+```sql
+CREATE TABLE IF NOT EXISTS users (
+    username TEXT PRIMARY KEY,
+    password TEXT,
+    balance INTEGER DEFAULT 1000
+);
+
+CREATE TABLE IF NOT EXISTS favorites (
+    username TEXT,
+    fruit_name TEXT,
+    PRIMARY KEY (username, fruit_name)
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fruit_name TEXT,
+    username TEXT,
+    rating INTEGER,
+    text TEXT
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    total INTEGER,
+    items_count INTEGER,
+    date TEXT
+);
+```
 
 ---
 
-## 📄 Ліцензія
+## 🤝 Contribution Guidelines
 
-Цей проект ліцензовано на умовах ліцензії MIT. Ви можете вільно копіювати та модифікувати його для власних потреб.
+We welcome contributions to make Megamarket even better!
+1. Fork the Project.
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+---
+*Developed with ❤️ as a high-fidelity showcase of Python GUI desktop software architecture.*
