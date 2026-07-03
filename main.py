@@ -4,10 +4,12 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import io
 import urllib.request
+import urllib.parse
 import datetime
 import random
 import math
 import threading
+import re
 from concurrent.futures import ThreadPoolExecutor
 
 # Налаштування стилю CustomTkinter
@@ -66,46 +68,31 @@ cloth_brands = ["Zara", "H&M", "Nike", "Adidas", "Levi's", "Puma", "Uniqlo", "To
 cloth_types = ["Футболка", "Поло", "Теніска", "Лонгслів", "Майка", "Спортивна футболка", "Футболка оверсайз", "Класична футболка", "Базова футболка", "Футболка з принтом"]
 cloth_materials = ["бавовна 100%", "органічний котон", "еластан", "поліестер Dry-Fit", "льон", "трикотаж", "сумішова тканина", "віскоза", "бамбук", "стрейч"]
 
-# Надійні URL фотографій товарів без людей
+# Надійні резервні URL фотографій категорій
 PRODUCT_URLS = {
     "tech": [
-        "https://images.unsplash.com/photo-1496181130204-755241544e35?w=150",
-        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=150",
-        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=150",
-        "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=150",
-        "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=150"
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=300",
+        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=300"
     ],
     "fruits": [
-        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150",
-        "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=150",
-        "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=150",
-        "https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?w=150",
-        "https://images.unsplash.com/photo-1610397613000-f0d2db5632a4?w=150"
+        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300",
+        "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=300"
     ],
     "home": [
-        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=150",
-        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=150",
-        "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=150",
-        "https://images.unsplash.com/photo-1542728929-14ab1c6880f9?w=150",
-        "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=150"
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300",
+        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=300"
     ],
     "sport": [
-        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=150",
-        "https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=150",
-        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=150",
-        "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=150",
-        "https://images.unsplash.com/photo-1516567727145-ab3c1a390044?w=150"
+        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300",
+        "https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=300"
     ],
     "clothing": [
-        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=150",
-        "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=150",
-        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=150",
-        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150",
-        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150"
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=300"
     ]
 }
 
-# Генерація 100 унікальних ноутбуків
+# Генерація 100 унікальних ноутбуків з пошуковими запитами для реальних фото
 for i in range(100):
     b = tech_brands[i % 10]
     m = tech_models[(i // 10) % 10]
@@ -115,7 +102,7 @@ for i in range(100):
         "price": 15000 + i * 220,
         "desc": f"Сучасний ноутбук {b} серії {m}. Специфікація: {s}.",
         "category": "tech",
-        "url": PRODUCT_URLS["tech"][i % 5],
+        "url": f"laptop {b} {m}", # Унікальний пошуковий запит
         "colors": [("Сріблястий", "#bdc3c7"), ("Чорний", "#2c3e50")]
     }
 
@@ -129,7 +116,7 @@ for i in range(100):
         "price": 20 + (i % 15),
         "desc": f"Свіжі натуральні яблука сорту {v}, вирощені в регіоні {o}.",
         "category": "fruits",
-        "url": PRODUCT_URLS["fruits"][i % 5],
+        "url": f"apples {v}",
         "colors": [("Жовте", "#f1c40f"), ("Червоне", "#e74c3c")]
     }
 
@@ -143,7 +130,7 @@ for i in range(100):
         "price": 300 + i * 18,
         "desc": f"Оригінальна лампа в стилі {s}. Тип пристрою: {t}.",
         "category": "home",
-        "url": PRODUCT_URLS["home"][i % 5],
+        "url": f"table lamp {s}",
         "colors": [("Чорний", "#2c3e50"), ("Білий", "#ffffff")]
     }
 
@@ -157,7 +144,7 @@ for i in range(100):
         "price": 400 + i * 12,
         "desc": f"Футбольний м'яч бренду {b}, лінійка {e}.",
         "category": "sport",
-        "url": PRODUCT_URLS["sport"][i % 5],
+        "url": f"soccer ball {b}",
         "colors": [("Біло-чорний", "#ffffff"), ("Червоний", "#e74c3c")]
     }
 
@@ -171,7 +158,7 @@ for i in range(100):
         "price": 250 + i * 8,
         "desc": f"Брендовий одяг {b}. Тип виробу: {t}.",
         "category": "clothing",
-        "url": PRODUCT_URLS["clothing"][i % 5],
+        "url": f"tshirt {b}",
         "colors": [("Синій", "#3498db"), ("Чорний", "#2c3e50")]
     }
 
@@ -228,9 +215,9 @@ LANGS = {
         "settings_title": "Налаштування програми",
         "lang_lbl": "Мова інтерфейсу:",
         "theme_lbl": "Тема оформлення:",
-        "theme_light": "Світла",
-        "theme_dark": "Темна",
-        "sound_chk": "Звукові ефекти"
+        "theme_light": "Светлая",
+        "theme_dark": "Темная",
+        "sound_chk": "Звуковые эффекты"
     },
     "en": {
         "title": "Megamarket All-in-One",
@@ -347,8 +334,24 @@ LANGS = {
 }
 
 # Пул потоків для плавного завантаження картинок
-image_pool = ThreadPoolExecutor(max_workers=3)
+image_pool = ThreadPoolExecutor(max_workers=4)
 memory_images_cache = {}
+resolved_queries_cache = {}
+
+# Динамічний пошук та парсинг реальних фото з Unsplash
+def get_unsplash_image_url(query):
+    try:
+        q = urllib.parse.quote(query)
+        search_url = f"https://unsplash.com/s/photos/{q}"
+        req = urllib.request.Request(search_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'})
+        with urllib.request.urlopen(req, timeout=4) as response:
+            html = response.read().decode('utf-8')
+        urls = re.findall(r'https://images.unsplash.com/photo-[a-zA-Z0-9\-_]+', html)
+        if urls:
+            return urls[0]
+    except Exception:
+        pass
+    return None
 
 def get_image_from_url_memory(url, size, callback):
     cache_key = (url, size)
@@ -357,7 +360,27 @@ def get_image_from_url_memory(url, size, callback):
     
     def load_task():
         try:
-            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            target_url = url
+            # Якщо замість прямого URL передано назву товару, спочатку шукаємо реальне фото в мережі
+            if not url.startswith("http"):
+                if url in resolved_queries_cache:
+                    target_url = resolved_queries_cache[url]
+                else:
+                    found = get_unsplash_image_url(url)
+                    if found:
+                        target_url = found + f"?w={size[0]}&q=80"
+                        resolved_queries_cache[url] = target_url
+                    else:
+                        # Запасний варіант, якщо пошук не дав результатів
+                        cat = "tech"
+                        if "apples" in url: cat = "fruits"
+                        elif "lamp" in url: cat = "home"
+                        elif "ball" in url: cat = "sport"
+                        elif "tshirt" in url: cat = "clothing"
+                        target_url = random.choice(PRODUCT_URLS[cat])
+                        resolved_queries_cache[url] = target_url
+            
+            req = urllib.request.Request(target_url, headers={'User-Agent': 'Mozilla/5.0'})
             with urllib.request.urlopen(req, timeout=5) as response:
                 img_data = response.read()
             img = Image.open(io.BytesIO(img_data))
@@ -402,17 +425,13 @@ def tr(key):
 # --- ЕКРАН АВТОРИЗАЦІЇ (ПОВНІСТЮ БЕЗ БІЛИХ КУТІВ - ВИКОРИСТОВУЄМО ОДНОРІДНЕ ГАРАНТОВАНЕ ТЛО) ---
 class AuthScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
-        # Щоб CustomTkinter міг відрендерити круглі кути без білих артефактів,
-        # ми встановлюємо суцільний сучасний колір тла для всього екрану.
-        self.bg_color_dark = "#171821" # Глибокий космос-фіолетовий
-        self.bg_color_light = "#f3f4f6" # Чистий світло-сірий
+        self.bg_color_dark = "#171821" 
+        self.bg_color_light = "#f3f4f6" 
         
         current_bg = self.bg_color_dark if ctk.get_appearance_mode() == "Dark" else self.bg_color_light
         super().__init__(parent, fg_color=current_bg)
         self.controller = app_controller
         
-        # Основна картка (дизайн як на макеті: горизонтальний спліт)
-        # Встановлюємо bg_color рівним тлу батьківського фрейму, це прибирає будь-які білі куточки під нею!
         card_bg = "#21222e" if ctk.get_appearance_mode() == "Dark" else "#ffffff"
         self.card = ctk.CTkFrame(
             self, 
@@ -426,19 +445,15 @@ class AuthScreen(ctk.CTkFrame):
         )
         self.card.place(relx=0.5, rely=0.5, anchor="center")
         
-        # Ліва сторона: Круглий логотип ноутбука з декоративними фігурами навколо (як на макеті)
         self.left_frame = ctk.CTkFrame(self.card, width=280, height=350, fg_color="transparent")
         self.left_frame.pack(side="left", fill="both", expand=True, padx=20, pady=20)
         
-        # Холст для малювання графіки
         self.left_canvas = tk.Canvas(self.left_frame, width=240, height=340, bg=card_bg, bd=0, highlightthickness=0)
         self.left_canvas.pack(fill="both", expand=True)
         
-        # Малюємо біле коло по центру для іконки
         circle_color = "#2a2b3d" if ctk.get_appearance_mode() == "Dark" else "#f3f4f6"
         self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
         
-        # Декоративні плаваючі елементи (кола, трикутники, квадрати як на макеті)
         self.left_canvas.create_oval(30, 70, 42, 82, outline="#00f2fe", width=2)
         self.left_canvas.create_polygon(210, 80, 220, 95, 200, 95, outline="#2ecc71", fill="", width=2)
         self.left_canvas.create_polygon(25, 230, 35, 245, 15, 245, outline="#e74c3c", fill="", width=2)
@@ -446,7 +461,6 @@ class AuthScreen(ctk.CTkFrame):
         self.left_canvas.create_rectangle(190, 40, 198, 48, outline="#cccccc", fill="")
         self.left_canvas.create_rectangle(70, 280, 78, 288, outline="#cccccc", fill="")
         
-        # Іконка всередині кола
         self.img_lbl = ctk.CTkLabel(self.left_frame, text="💻", font=("Segoe UI", 48), fg_color=circle_color)
         self.img_lbl.place(x=120, y=160, anchor="center")
         
@@ -456,7 +470,6 @@ class AuthScreen(ctk.CTkFrame):
                 self.img_lbl.image = photo
         get_image_from_url_memory(PRODUCT_URLS["tech"][0], (80, 80), round_logo_callback)
         
-        # Права сторона: Форма
         self.right_frame = ctk.CTkFrame(self.card, width=320, height=350, fg_color="transparent")
         self.right_frame.pack(side="right", fill="both", expand=True, padx=20, pady=20)
         
@@ -479,7 +492,6 @@ class AuthScreen(ctk.CTkFrame):
         self.btn_toggle = ctk.CTkButton(self.right_frame, text="Створити акаунт →", command=self.toggle_mode, fg_color="transparent", text_color="#3498db", hover_color=card_bg, width=200, height=20, font=("Segoe UI", 10, "underline"))
         self.btn_toggle.pack(pady=5)
         
-        # Кнопка зміни теми вгорі праворуч з кольоровою іконкою Сонця/Місяця
         theme_icon = "🌙" if ctk.get_appearance_mode() == "Dark" else "☀️"
         theme_color = "#f1c40f" if ctk.get_appearance_mode() == "Dark" else "#e67e22"
         self.btn_theme = ctk.CTkButton(
@@ -495,7 +507,6 @@ class AuthScreen(ctk.CTkFrame):
         )
         self.btn_theme.place(relx=0.98, rely=0.02, anchor="ne")
         
-        # Прапорець "Показати пароль"
         self.show_pass_var = tk.BooleanVar(value=False)
         self.chk_show_pass = ctk.CTkCheckBox(self.right_frame, text="Показати пароль", variable=self.show_pass_var, command=self.toggle_password_visibility, font=("Segoe UI", 10))
         self.chk_show_pass.pack(pady=4)
@@ -594,13 +605,11 @@ class AuthScreen(ctk.CTkFrame):
             card_bg = "#21222e"
             self.btn_theme.configure(text="🌙", text_color="#f1c40f", fg_color="#252538")
             
-        # Оновлюємо тло батьківських фреймів для прибирання білих куточків
         self.configure(fg_color=current_bg)
         self.card.configure(fg_color=card_bg, bg_color=current_bg, border_color="#34495e" if ctk.get_appearance_mode() == "Dark" else "#e0e0e0")
         self.btn_theme.configure(bg_color=current_bg)
         self.left_canvas.configure(bg=card_bg)
         
-        # Перемальовуємо елементи на холсті лівої карти
         self.left_canvas.delete("all")
         circle_color = "#2a2b3d" if ctk.get_appearance_mode() == "Dark" else "#f3f4f6"
         self.left_canvas.create_oval(50, 90, 190, 230, fill=circle_color, outline="")
@@ -1125,7 +1134,7 @@ class CartPanel(ctk.CTkFrame):
             f.write(html_content)
             
         play_sound("success")
-        messagebox.showinfo("Успіх", f"Замовлення успішно створено! Чек збережено: {receipt_filename}")
+        messagebox.showinfo("Успіх", f"Замовлення успешно створено! Чек збережено: {receipt_filename}")
         cart.clear()
         session_discount = 0.0
         self.refresh_cart_list()
@@ -1238,7 +1247,7 @@ class SettingsPanel(ctk.CTkFrame):
         self.theme_switch.set("Dark" if ctk.get_appearance_mode() == "Dark" else "Light")
         
         self.sound_var = tk.BooleanVar(value=sound_enabled)
-        sound_chk = ctk.CTkCheckBox(card, text="Звукові ефекти", variable=self.sound_var, command=self.toggle_sound)
+        sound_chk = ctk.CTkCheckBox(card, text="Звуковые эффекты", variable=self.sound_var, command=self.toggle_sound)
         sound_chk.pack(anchor="w", padx=30, pady=25)
 
     def change_lang(self, lang):
