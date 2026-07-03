@@ -473,7 +473,7 @@ class MainScreen(ctk.CTkFrame):
         self.balance_lbl = ctk.CTkLabel(self.sidebar, text=f"0 грн", font=("Segoe UI", 12), text_color="#2ecc71")
         self.balance_lbl.pack(pady=2)
         
-        btn_topup = ctk.CTkButton(self.sidebar, text="+ Поповнити", command=self.topup_balance, size=(120, 26), font=("Segoe UI", 10, "bold"), fg_color="#2ecc71", hover_color="#27ae60")
+        btn_topup = ctk.CTkButton(self.sidebar, text="+ Поповнити", command=self.topup_balance, width=120, height=26, font=("Segoe UI", 10, "bold"), fg_color="#2ecc71", hover_color="#27ae60")
         btn_topup.pack(pady=5)
         
         self.nav_buttons = {}
@@ -554,7 +554,7 @@ class CatalogPanel(ctk.CTkFrame):
         self.active_cat = "all"
         cats = [("Усі", "all"), ("Техніка", "tech"), ("Фрукти", "fruits"), ("Для дому", "home"), ("Спорт", "sport"), ("Одяг", "clothing")]
         for text, key in cats:
-            btn = ctk.CTkButton(top_bar, text=text, command=lambda k=key: self.set_category(k), size=(70, 28), font=("Segoe UI", 10))
+            btn = ctk.CTkButton(top_bar, text=text, command=lambda k=key: self.set_category(k), width=70, height=28, font=("Segoe UI", 10))
             btn.pack(side="left", padx=3)
             
         self.sort_menu = ctk.CTkOptionMenu(top_bar, values=["Дешевші", "Дорожчі"], command=self.set_sorting, width=110)
@@ -628,7 +628,7 @@ class CatalogPanel(ctk.CTkFrame):
             lbl_price = ctk.CTkLabel(card, text=f"{data['price']} грн/шт", font=("Segoe UI", 10), text_color="#2ecc71")
             lbl_price.pack(pady=2)
             
-            btn_details = ctk.CTkButton(card, text="Детальніше", command=lambda n=name: self.main_screen.switch_panel(DetailsPanel, n), size=(110, 26), font=("Segoe UI", 10, "bold"))
+            btn_details = ctk.CTkButton(card, text="Детальніше", command=lambda n=name: self.main_screen.switch_panel(DetailsPanel, n), width=110, height=26, font=("Segoe UI", 10, "bold"))
             btn_details.pack(pady=5)
             
             col += 1
@@ -649,7 +649,7 @@ class DetailsPanel(ctk.CTkFrame):
         self.name = name
         self.data = fruits_data[name]
         
-        btn_back = ctk.CTkButton(self, text="← Назад", command=lambda: self.main_screen.show_catalog(), size=(80, 28))
+        btn_back = ctk.CTkButton(self, text="← Назад", command=lambda: self.main_screen.show_catalog(), width=80, height=28)
         btn_back.pack(anchor="w", pady=10)
         
         left_box = ctk.CTkFrame(self, corner_radius=12)
