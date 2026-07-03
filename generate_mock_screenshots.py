@@ -40,11 +40,11 @@ def draw_custom_sidebar(draw, active_nav):
     
     # Кнопки навигации
     navs = [
-        ("DashBoard", "DashBoard"),
-        ("Checkout", "Checkout"),
-        ("Categories", "Categories"),
-        ("History", "History"),
-        ("Setting", "Setting")
+        ("Каталог", "Каталог"),
+        ("Кошик", "Кошик"),
+        ("Аналітика", "Аналітика"),
+        ("Історія", "Історія"),
+        ("Налаштування", "Налаштування")
     ]
     for i, (name, key) in enumerate(navs):
         y = 140 + i * 42
@@ -62,7 +62,7 @@ def create_main_screenshot():
     draw = ImageDraw.Draw(img)
     
     # Сайдбар
-    draw_custom_sidebar(draw, "DashBoard")
+    draw_custom_sidebar(draw, "Каталог")
     
     # Поле поиска
     draw.rounded_rectangle([200, 15, 835, 45], 15, fill=SEARCH_BAR_COLOR)
@@ -72,21 +72,20 @@ def create_main_screenshot():
     draw.text((200, 65), "Categories", fill="black", font=get_font(12, True))
     
     categories = [
-        ("Bakeries", "#C2D6EE", "cat_bakeries.png"),
-        ("Drinks", "#BCE6EB", "cat_drinks.png"),
-        ("Vegetables", "#ECC4EC", "cat_vegetables.png"),
-        ("Fruits", "#D3EEC2", "cat_fruits.png"),
-        ("Snacks", "#DCD2EE", "cat_snacks.png")
+        ("Випічка", "#C2D6EE", "cat_bakeries.png"),
+        ("Напої", "#BCE6EB", "cat_drinks.png"),
+        ("Фрукти", "#D3EEC2", "cat_fruits.png"),
+        ("Снеки", "#DCD2EE", "cat_snacks.png")
     ]
     for i, (cat, bg, img_file) in enumerate(categories):
-        x = 200 + i * 126
-        draw.rounded_rectangle([x, 85, x + 110, 155], 10, fill=bg)
-        prod_img = get_product_image_by_filename(img_file, (36, 36))
-        img.paste(prod_img, (x + 37, 93), prod_img if prod_img.mode == "RGBA" else None)
-        draw.text((x + 55, 142), cat, fill="black", anchor="mm", font=get_font(10, False))
+        x = 200 + i * 156
+        draw.rounded_rectangle([x, 85, x + 130, 165], 12, fill=bg)
+        prod_img = get_product_image_by_filename(img_file, (50, 50))
+        img.paste(prod_img, (x + 40, 93), prod_img if prod_img.mode == "RGBA" else None)
+        draw.text((x + 65, 150), cat, fill="black", anchor="mm", font=get_font(10, True))
         
-    # Заголовок "Popular Items" з пагінацією (1-15 з 253)
-    draw.text((200, 175), "Popular Items (1-15 / 253)", fill="black", font=get_font(12, True))
+    # Заголовок "Popular Items" з пагінацією (1-15 з 210)
+    draw.text((200, 185), "Popular Items (1-15 / 210)", fill="black", font=get_font(12, True))
     
     # Карточки товарів
     products = [
@@ -99,7 +98,7 @@ def create_main_screenshot():
     
     for i, (name, weight, price, img_file, qty_text) in enumerate(products):
         x = 200 + i * 126
-        y = 195
+        y = 205
         draw.rounded_rectangle([x, y, x + 115, y + 230], 10, fill="white")
         
         prod_img = get_product_image_by_filename(img_file, (70, 70))
@@ -123,7 +122,7 @@ def create_main_screenshot():
     draw.rounded_rectangle([735, 520, 835, 550], 6, fill=PRIMARY_COLOR)
     draw.text((785, 535), "Далі →", fill="white", anchor="mm", font=get_font(9, True))
     
-    draw.text((517, 535), "Page 1 of 17", fill="black", anchor="mm", font=get_font(10, True))
+    draw.text((517, 535), "Page 1 of 14", fill="black", anchor="mm", font=get_font(10, True))
         
     img.save("screenshot_main_v6.png")
     print("Created mockup: screenshot_main_v6.png")
@@ -133,7 +132,7 @@ def create_details_screenshot():
     img = Image.new("RGB", (w, h), BG_COLOR)
     draw = ImageDraw.Draw(img)
     
-    draw_custom_sidebar(draw, "DashBoard")
+    draw_custom_sidebar(draw, "Каталог")
     
     draw.rounded_rectangle([200, 15, 270, 40], 5, fill=PRIMARY_COLOR)
     draw.text((235, 27), "← Назад", fill="#ffffff", anchor="mm", font=get_font(9, True))
@@ -173,7 +172,7 @@ def create_cart_screenshot():
     img = Image.new("RGB", (w, h), BG_COLOR)
     draw = ImageDraw.Draw(img)
     
-    draw_custom_sidebar(draw, "Checkout")
+    draw_custom_sidebar(draw, "Кошик")
     
     draw.rounded_rectangle([200, 20, 500, 550], 10, fill=SIDEBAR_COLOR)
     draw.text((350, 40), "Кошик (грн)", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
