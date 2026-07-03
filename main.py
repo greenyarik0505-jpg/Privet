@@ -60,90 +60,61 @@ THEMES = {
     }
 }
 
-# МАСИВИ РЕАЛЬНИХ ФОТОГРАФІЙ З ІНТЕРНЕТУ ДЛЯ КОЖНОГО ТОВАРУ (завантаження в пам'ять)
-PRODUCT_URLS = {
-    "tech": [
-        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150",
-        "https://images.unsplash.com/photo-1496181130204-755241544e35?w=150",
-        "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=150",
-        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=150",
-        "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=150"
-    ],
-    "fruits": [
-        "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150",
-        "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?w=150",
-        "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=150",
-        "https://images.unsplash.com/photo-1579613832125-5d34a13ffe2a?w=150",
-        "https://images.unsplash.com/photo-1610397613000-f0d2db5632a4?w=150"
-    ],
-    "home": [
-        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=150",
-        "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=150",
-        "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=150",
-        "https://images.unsplash.com/photo-1542728929-14ab1c6880f9?w=150",
-        "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=150"
-    ],
-    "sport": [
-        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=150",
-        "https://images.unsplash.com/photo-1518063319789-7217e6706b04?w=150",
-        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=150",
-        "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=150",
-        "https://images.unsplash.com/photo-1516567727145-ab3c1a390044?w=150"
-    ],
-    "clothing": [
-        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=150",
-        "https://images.unsplash.com/photo-1562157873-818bc0726f68?w=150",
-        "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=150",
-        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150",
-        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=150"
-    ]
-}
-
-# Генерація 500+ товарів
+# Генерація 500+ товарів з УНІКАЛЬНИМИ посиланнями на фото для кожного товару (через LoremFlickr з унікальним lock)
 fruits_data = {}
+
+# Техніка (100 товарів)
 for i in range(1, 101):
     name = f"Ноутбук Pro-{i} 💻"
     fruits_data[name] = {
         "price": 15000 + i * 200,
         "desc": f"Високопродуктивний ноутбук Pro версії {i} для роботи та ігор.",
         "category": "tech",
-        "url": PRODUCT_URLS["tech"][(i - 1) % 5],
+        "url": f"https://loremflickr.com/150/150/laptop?lock={i}",
         "colors": [("Сріблястий 💿", "#bdc3c7"), ("Чорний 🌑", "#2c3e50")]
     }
+
+# Фрукти (100 товарів)
 for i in range(1, 101):
     name = f"Яблуко Голден-{i} 🍎"
     fruits_data[name] = {
         "price": 20 + (i % 15),
         "desc": f"Свіжі соковиті добірні яблука Голден, партія #{i}.",
         "category": "fruits",
-        "url": PRODUCT_URLS["fruits"][(i - 1) % 5],
+        "url": f"https://loremflickr.com/150/150/apple?lock={i}",
         "colors": [("Жовте 🟡", "#f1c40f"), ("Червоне 🔴", "#e74c3c")]
     }
+
+# Для дому (100 товарів)
 for i in range(1, 101):
     name = f"Лампа Loft-{i} 💡"
     fruits_data[name] = {
         "price": 300 + i * 15,
         "desc": f"Стильна дизайнерська настільна лампа в стилі Loft #{i}.",
         "category": "home",
-        "url": PRODUCT_URLS["home"][(i - 1) % 5],
+        "url": f"https://loremflickr.com/150/150/lamp?lock={i}",
         "colors": [("Чорний 🌑", "#2c3e50"), ("Білий ⚪", "#ffffff")]
     }
+
+# Спорт (100 товарів)
 for i in range(1, 101):
     name = f"Футбольний М'яч-{i} ⚽"
     fruits_data[name] = {
         "price": 400 + i * 10,
-        "desc": f"Міцний професійний м'яч для гри на будь-якому покритті #{i}.",
+        "desc": f"Міцний професійний м'яч для гри на будь-коряному покритті #{i}.",
         "category": "sport",
-        "url": PRODUCT_URLS["sport"][(i - 1) % 5],
+        "url": f"https://loremflickr.com/150/150/soccer,ball?lock={i}",
         "colors": [("Біло-чорний ⚽", "#ffffff"), ("Червоний 🔴", "#e74c3c")]
     }
+
+# Одяг (100 товарів)
 for i in range(1, 101):
     name = f"Футболка Класик-{i} 👕"
     fruits_data[name] = {
         "price": 250 + i * 5,
         "desc": f"Зручна бавовняна футболка класичного крою #{i}.",
         "category": "clothing",
-        "url": PRODUCT_URLS["clothing"][(i - 1) % 5],
+        "url": f"https://loremflickr.com/150/150/tshirt?lock={i}",
         "colors": [("Синій 🔵", "#3498db"), ("Чорний 🌑", "#2c3e50")]
     }
 
@@ -332,7 +303,6 @@ def get_image_from_url_memory(url, size):
     if cache_key in memory_images_cache:
         return memory_images_cache[cache_key]
     
-    # Завантажуємо зображення у фоновому режимі
     def worker():
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -342,7 +312,7 @@ def get_image_from_url_memory(url, size):
             photo = ImageTk.PhotoImage(img)
             memory_images_cache[cache_key] = photo
         except Exception as e:
-            print(f"Error fetching URL {url}: {e}")
+            # У разі помилки ставимо заглушку, щоб не перевантажувати мережу запитами
             memory_images_cache[cache_key] = None
             
     t = threading.Thread(target=worker)
@@ -1124,7 +1094,6 @@ for name, data in fruits_data.items():
     img_lbl = tk.Label(card, text="Завантаження... 🔄", font=("Segoe UI", 9, "italic"))
     img_lbl.pack(pady=10)
     
-    # Динамічне завантаження в пам'ять без збереження на диск
     def update_photo(n=name, lbl=img_lbl, u=data["url"]):
         photo = get_image_from_url_memory(u, (40, 40))
         if photo:
