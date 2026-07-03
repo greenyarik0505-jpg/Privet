@@ -89,13 +89,13 @@ def create_main_screenshot():
     # Заголовок "Popular Items"
     draw.text((200, 175), "Popular Items", fill="black", font=get_font(12, True))
     
-    # Карточки товаров Popular Items
+    # Карточки товаров Popular Items (Украинские и международные гиганты)
     products = [
-        ("Bread", "2.5kg", "$6.99", "Bread.png"),
-        ("Egg", "4kg", "$12.99", "Avocado.png"),
-        ("Coke", "0.3kg", "$2.90", "Diet_Cola.png"),
-        ("Meat", "9kg", "$128.98", "default.png"),
-        ("Oil", "12kg", "$94.98", "default.png")
+        ("Хліб", "0.6kg", "$22.00", "Bread.png"),
+        ("Кока-Кола", "0.5l", "$28.00", "Diet_Cola.png"),
+        ("Сир", "0.2kg", "$110.00", "Cheese.png"),
+        ("Чіпси", "0.1kg", "$48.00", "Potato_Chips.png"),
+        ("Смарт", "0.1kg", "$1200.00", "sport.png") # Спорт техника
     ]
     
     for i, (name, weight, price, img_file) in enumerate(products):
@@ -113,7 +113,7 @@ def create_main_screenshot():
         draw.text((x + 88, y + 78), weight, fill="gray", anchor="rt", font=get_font(8))
         
         # Цена и кнопка (+) на одной строке
-        draw.text((x + 8, y + 108), price, fill="black", font=get_font(10, True))
+        draw.text((x + 8, y + 108), price, fill="black", font=get_font(9, True))
         draw.ellipse([x + 68, y + 98, x + 88, y + 118], fill="black")
         draw.text((x + 78, y + 108), "+", fill="white", anchor="mm", font=get_font(10, True))
         
@@ -122,11 +122,11 @@ def create_main_screenshot():
     
     # Карточки New Items
     new_products = [
-        ("Indomie", "0.9kg", "$1.56", "default.png"),
-        ("Monster", "1kg", "$3.99", "Energy Drink - Red.png"),
-        ("Yogourt", "6kg", "$39.99", "Shake.png"),
-        ("Bread", "2.5kg", "$6.99", "Bread.png"),
-        ("Strawberries", "0.5kg", "$8.50", "Strawberries.png")
+        ("Фанта", "0.5l", "$28.00", "Orange.png"),
+        ("Йогурт", "0.4kg", "$45.00", "Shake.png"),
+        ("Полуниця", "0.5kg", "$180.00", "Strawberries.png"),
+        ("Бублики", "0.3kg", "$18.00", "Single Plain Bagel.png"),
+        ("Фітнес", "0.05kg", "$650.00", "sport.png")
     ]
     
     for i, (name, weight, price, img_file) in enumerate(new_products):
@@ -140,7 +140,7 @@ def create_main_screenshot():
         draw.text((x + 8, y + 78), name, fill="black", font=get_font(9))
         draw.text((x + 88, y + 78), weight, fill="gray", anchor="rt", font=get_font(8))
         
-        draw.text((x + 8, y + 108), price, fill="black", font=get_font(10, True))
+        draw.text((x + 8, y + 108), price, fill="black", font=get_font(9, True))
         draw.ellipse([x + 68, y + 98, x + 88, y + 118], fill="black")
         draw.text((x + 78, y + 108), "+", fill="white", anchor="mm", font=get_font(10, True))
         
@@ -162,9 +162,9 @@ def create_details_screenshot():
     prod_img = get_product_image_by_filename("Bread.png", (120, 120))
     img.paste(prod_img, (270, 80), prod_img if prod_img.mode == "RGBA" else None)
     
-    draw.text((330, 220), "Bread", fill="black", anchor="mm", font=get_font(12, True))
-    draw.text((330, 250), "Свіжий продукт Bread вагою 2.5kg.", fill="black", anchor="mm", font=get_font(9, True))
-    draw.text((330, 275), "Ціна: $6.99", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
+    draw.text((330, 220), "Хліб Київхліб", fill="black", anchor="mm", font=get_font(12, True))
+    draw.text((330, 250), "Свіжий український хліб.", fill="black", anchor="mm", font=get_font(9, True))
+    draw.text((330, 275), "Ціна: $22.00", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
     
     draw.text((330, 310), "Виберіть сорт/колір:", fill="black", anchor="mm", font=get_font(9, True))
     draw.rectangle([300, 325, 320, 340], fill="#e74c3c", outline=PRIMARY_COLOR, width=2)
@@ -198,19 +198,19 @@ def create_cart_screenshot():
     draw.text((330, 40), "Кошик товарів (POS)", fill=PRIMARY_COLOR, anchor="mm", font=get_font(12, True))
     
     draw.rounded_rectangle([215, 70, 445, 120], 6, fill="white")
-    draw.text((225, 95), "Bread x1", fill="black", anchor="lm", font=get_font(9, True))
-    draw.text((350, 95), "$6.99", fill="#2e7d32", anchor="lm", font=get_font(9, True))
+    draw.text((225, 95), "Хліб Київхліб x1", fill="black", anchor="lm", font=get_font(9, True))
+    draw.text((350, 95), "$22.00", fill="#2e7d32", anchor="lm", font=get_font(9, True))
     draw.rounded_rectangle([415, 85, 435, 105], 3, fill="#e74c3c")
     draw.text((425, 95), "X", fill="#ffffff", anchor="mm", font=get_font(8))
     
     draw.rounded_rectangle([215, 130, 445, 180], 6, fill="white")
-    draw.text((225, 155), "Coke x2", fill="black", anchor="lm", font=get_font(9, True))
-    draw.text((350, 155), "$5.80", fill="#2e7d32", anchor="lm", font=get_font(9, True))
+    draw.text((225, 155), "Кока-Кола x2", fill="black", anchor="lm", font=get_font(9, True))
+    draw.text((350, 155), "$56.00", fill="#2e7d32", anchor="lm", font=get_font(9, True))
     draw.rounded_rectangle([415, 145, 435, 165], 3, fill="#e74c3c")
     draw.text((425, 155), "X", fill="#ffffff", anchor="mm", font=get_font(8))
     
-    draw.text((330, 440), "Сума: $12.79", fill="black", anchor="mm", font=get_font(9, True))
-    draw.text((330, 470), "Разом: $12.79", fill=PRIMARY_COLOR, anchor="mm", font=get_font(11, True))
+    draw.text((330, 440), "Сума: $78.00", fill="black", anchor="mm", font=get_font(9, True))
+    draw.text((330, 470), "Разом: $78.00", fill=PRIMARY_COLOR, anchor="mm", font=get_font(11, True))
     draw.rounded_rectangle([260, 490, 400, 515], 50, fill="#95a5a6")
     draw.text((330, 502), "Очистити кошик", fill="#ffffff", anchor="mm", font=get_font(9, True))
     
