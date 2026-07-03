@@ -37,17 +37,14 @@ APP_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = APP_DIR  # Скріншоти зберігаємо прямо в папці проєкту
 
 def find_window():
-    """Знаходить вікно застосунку за заголовком."""
+    """Знаходить вікно застосунку за точним заголовком 'Silpo'."""
     for title in gw.getAllTitles():
-        if "Silpo" in title or "silpo" in title.lower() or "Сільпо" in title or "Market" in title:
-            return gw.getWindowsWithTitle(title)[0]
-    # Fallback — будь-яке вікно tkinter/python
-    for title in gw.getAllTitles():
-        if title and title not in ("", "Program Manager"):
+        if title.strip() == "Silpo":
             wins = gw.getWindowsWithTitle(title)
             if wins:
                 return wins[0]
     return None
+
 
 
 def capture_window(win, filename):
