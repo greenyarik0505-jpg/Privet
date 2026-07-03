@@ -117,7 +117,7 @@ status_label.pack(pady=25)
 def start_delivery(fruit_name):
     dialog = tk.Toplevel(root)
     dialog.title(f"Замовлення: {fruit_name}")
-    dialog.geometry("350x320")
+    dialog.geometry("350x340")
     
     theme = THEMES[current_theme]
     dialog.configure(bg=theme["bg"])
@@ -125,12 +125,48 @@ def start_delivery(fruit_name):
 
     tk.Label(dialog, text=f"Налаштування: {fruit_name}", font=("Segoe UI", 12, "bold"), bg=theme["bg"], fg=theme["text"]).pack(pady=15)
     
-    # Вибір кольору
-    color_var = tk.StringVar(value="Стандартний")
-    color_menu = tk.OptionMenu(dialog, color_var, "Червоний 🔴", "Зелений 🟢", "Жовтий 🟡")
-    color_menu.configure(bg=theme["btn_bg"], fg=theme["btn_fg"], activebackground=theme["btn_hover"], activeforeground=theme["btn_fg"], relief="flat")
-    color_menu.pack(pady=5)
+    # Вибір кольору через кольорові кнопки (замість OptionMenu, де емодзі стають чорно-білими)
+    tk.Label(dialog, text="Виберіть колір:", font=("Segoe UI", 10), bg=theme["bg"], fg=theme["text"]).pack(pady=5)
     
+    color_frame = tk.Frame(dialog, bg=theme["bg"])
+    color_frame.pack(pady=5)
+    
+    selected_color = tk.StringVar(value="Червоний 🔴")
+    color_buttons = {}
+    
+    colors_info = [
+        ("Червоний 🔴", "#e74c3c"),
+        ("Зелений 🟢", "#2ecc71"),
+        ("Жовтий 🟡", "#f1c40f"),
+        ("Оранжевий 🟠", "#e67e22")
+    ]
+    
+    def select_color(name):
+        selected_color.set(name)
+        for c_name, btn_widget in color_buttons.items():
+            if c_name == name:
+                btn_widget.configure(relief="solid", bd=2, highlightbackground=theme["accent"])
+            else:
+                btn_widget.configure(relief="flat", bd=1)
+                
+    for c_name, c_hex in colors_info:
+        btn_c = tk.Button(
+            color_frame,
+            bg=c_hex,
+            activebackground=c_hex,
+            width=4,
+            height=1,
+            relief="flat",
+            cursor="hand2",
+            command=lambda name=c_name: select_color(name)
+        )
+        btn_c.pack(side="left", padx=5)
+        color_buttons[c_name] = btn_c
+        
+    # За замовчуванням вибираємо перший колір
+    select_color("Червоний 🔴")
+    
+    tk.Label(dialog, text="Кількість (шт):", font=("Segoe UI", 10), bg=theme["bg"], fg=theme["text"]).pack(pady=5)
     qty_spin = tk.Spinbox(dialog, from_=1, to=20, width=10, font=("Segoe UI", 10), bg=theme["btn_bg"], fg=theme["text"])
     qty_spin.pack(pady=5)
     
@@ -143,7 +179,7 @@ def start_delivery(fruit_name):
             messagebox.showwarning("Помилка", "Введіть ім'я!")
             return
         
-        status_label.config(text=f"✅ Замовлено: {fruit_name} для {name_entry.get()}", fg=theme["accent"])
+        status_label.config(text=f"✅ Замовлено: {fruit_name} ({selected_color.get()}) для {name_entry.get()}", fg=theme["accent"])
         dialog.destroy()
 
     tk.Button(
