@@ -64,7 +64,7 @@ LANGS = {
         "reviews_lbl": "Відгуки та оцінки:",
         "rating_lbl": "Рейтинг:",
         "submit_review_btn": "Надіслати",
-        "cart_title": "Кошик товарів (POS)",
+        "cart_title": "Кошик товарів",
         "cart_empty": "Кошик порожній",
         "total_lbl": "Разом до сплати:",
         "checkout_btn": "Оформити замовлення",
@@ -110,7 +110,7 @@ LANGS = {
         "reviews_lbl": "Reviews & Ratings:",
         "rating_lbl": "Rating:",
         "submit_review_btn": "Submit",
-        "cart_title": "Cart (POS)",
+        "cart_title": "Cart",
         "cart_empty": "Cart is empty",
         "total_lbl": "Total to pay:",
         "checkout_btn": "Checkout",
@@ -156,7 +156,7 @@ LANGS = {
         "reviews_lbl": "Отзывы и оценки:",
         "rating_lbl": "Рейтинг:",
         "submit_review_btn": "Отправить",
-        "cart_title": "Корзина товаров (POS)",
+        "cart_title": "Корзина товаров",
         "cart_empty": "Корзина пуста",
         "total_lbl": "Итого к оплате:",
         "checkout_btn": "Оформить заказ",
@@ -417,7 +417,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.geometry("1240x820")
-        self.title("ConvenientShop")
+        self.title("Silpo")
         
         self.container = ctk.CTkFrame(self, fg_color=BG_COLOR)
         self.container.pack(fill="both", expand=True)
@@ -781,7 +781,18 @@ class MainScreen(ctk.CTkFrame):
         self.btn_delete_acc.pack(side="bottom", fill="x", padx=15, pady=5)
 
     def draw_profile_avatar(self):
-        # Малюємо фірмовий логотип Сільпо (помаранчеве коло з літерою С)
+        # Малюємо фірмовий логотип Сільпо із зображення
+        logo_path = os.path.join(ASSETS_DIR, "silpo_logo.png")
+        if os.path.exists(logo_path):
+            try:
+                img = Image.open(logo_path)
+                img = img.resize((80, 80), Image.Resampling.LANCZOS)
+                self.avatar_img = ImageTk.PhotoImage(img)
+                self.avatar_canvas.create_image(50, 50, image=self.avatar_img)
+                return
+            except Exception as e:
+                print("Failed to load silpo_logo.png:", e)
+        # Резервний малюнок
         self.avatar_canvas.create_oval(10, 10, 90, 90, fill="#FF5E00", outline="")
         self.avatar_canvas.create_text(50, 45, text="С", fill="white", font=("Arial", 46, "bold"))
         self.avatar_canvas.create_text(50, 75, text="сільпо", fill="white", font=("Arial", 11, "bold"))
@@ -911,11 +922,20 @@ class CatalogPanel(ctk.CTkFrame):
             ("Випічка", "bakeries", "#C2D6EE", "cat_bakeries.png"),
             ("Напої", "drinks", "#BCE6EB", "cat_drinks.png"),
             ("Фрукти", "fruits", "#D3EEC2", "cat_fruits.png"),
+            ("Молочні", "dairy", "#FFEAA7", "cat_dairy.png"),
+            ("М'ясо & Риба", "meat_fish", "#FFD2D2", "cat_meat_fish.png"),
+            ("Бакалія", "grocery", "#FFE4D2", "cat_grocery.png"),
             ("Снеки", "snacks", "#DCD2EE", "cat_snacks.png")
         ]
         
-        for name, key, bg_col, img_name in categories_data:
-            cat_card = ctk.CTkFrame(cats_frame, width=130, height=110, fg_color=bg_col, corner_radius=12)
+        row1 = ctk.CTkFrame(cats_frame, fg_color="transparent")
+        row1.pack(fill="x", pady=2)
+        row2 = ctk.CTkFrame(cats_frame, fg_color="transparent")
+        row2.pack(fill="x", pady=2)
+        
+        for i, (name, key, bg_col, img_name) in enumerate(categories_data):
+            target_row = row1 if i < 4 else row2
+            cat_card = ctk.CTkFrame(target_row, width=130, height=110, fg_color=bg_col, corner_radius=12)
             cat_card.pack(side="left", padx=6, expand=True, fill="both")
             cat_card.pack_propagate(False)
             
@@ -992,12 +1012,12 @@ class CatalogPanel(ctk.CTkFrame):
         if len(data["names"][active_lang].split()) > 1:
             display_name += " " + data["names"][active_lang].split()[1]
             
-        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Georgia", 11, "bold", "italic"), text_color="black", anchor="w", wraplength=140)
-        lbl_name.pack(side="left")
+        lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Arial", 12, "bold"), text_color="#1F2937", anchor="w", wraplength=140, justify="left")
+        lbl_name.pack(side="top", anchor="w")
         lbl_name.bind("<Button-1>", open_details)
         
-        lbl_weight = ctk.CTkLabel(name_frame, text=data["weight"], font=("Arial", 9), text_color="gray", anchor="e")
-        lbl_weight.pack(side="right")
+        lbl_weight = ctk.CTkLabel(name_frame, text=data["weight"], font=("Arial", 10), text_color="gray", anchor="w")
+        lbl_weight.pack(side="top", anchor="w", pady=(2, 0))
         
         # Ініціалізуємо змінну вибору кількості прямо на картці
         if name not in self.card_vars:
