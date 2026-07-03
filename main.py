@@ -174,6 +174,18 @@ def start_delivery(fruit_name):
     name_entry.pack(pady=5)
     name_entry.insert(0, "Ваше ім'я")
 
+    # Функції для реалізації зникаючого плейсхолдера
+    def on_entry_click(event):
+        if name_entry.get() == "Ваше ім'я":
+            name_entry.delete(0, "end")
+
+    def on_focus_out(event):
+        if name_entry.get() == "":
+            name_entry.insert(0, "Ваше ім'я")
+
+    name_entry.bind("<FocusIn>", on_entry_click)
+    name_entry.bind("<FocusOut>", on_focus_out)
+
     def confirm():
         if not name_entry.get() or name_entry.get() == "Ваше ім'я":
             messagebox.showwarning("Помилка", "Введіть ім'я!")
