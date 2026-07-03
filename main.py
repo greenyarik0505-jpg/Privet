@@ -105,7 +105,9 @@ LANGS = {
         "already_have_account": "Вже є акаунт?",
         "balance_lbl": "Баланс:",
         "topup_btn": "+ Поповнити",
-        "logout_btn": "Вийти"
+        "logout_btn": "Вийти",
+        "next_btn": "Далі →",
+        "prev_btn": "← Назад"
     },
     "en": {
         "search_placeholder": "Search products...",
@@ -149,7 +151,9 @@ LANGS = {
         "already_have_account": "Already have an account?",
         "balance_lbl": "Balance:",
         "topup_btn": "+ Top Up",
-        "logout_btn": "Logout"
+        "logout_btn": "Logout",
+        "next_btn": "Next →",
+        "prev_btn": "← Prev"
     },
     "ru": {
         "search_placeholder": "Поиск продуктов...",
@@ -193,7 +197,9 @@ LANGS = {
         "already_have_account": "Уже есть аккаунт?",
         "balance_lbl": "Баланс:",
         "topup_btn": "+ Пополнить",
-        "logout_btn": "Выйти"
+        "logout_btn": "Выйти",
+        "next_btn": "Далее →",
+        "prev_btn": "← Назад"
     }
 }
 
@@ -247,7 +253,6 @@ def get_product_image_local(filename, size):
     return ctk.CTkImage(light_image=img, dark_image=img, size=size)
 
 # Продукти: Лише українські товари або великі міжнародні бренди
-# Додано категорію "sport" (Техніка для спорту)
 groceries_raw = [
     # Фрукти (fruits)
     {"ua": "Яблука Гала", "en": "Gala Apples", "ru": "Яблоки Гала", "price": 45, "desc": "Свіжі українські яблука.", "cat": "fruits", "img": "Apple.png", "w": "1.2kg"},
@@ -278,11 +283,10 @@ groceries_raw = [
     {"ua": "Розумна скакалка", "en": "Smart Skipping Rope", "ru": "Умная скакалка", "price": 350, "desc": "Скакалка з лічильником обертів.", "cat": "sport", "img": "sport.png", "w": "0.2kg"},
 ]
 
-# Генерація унікальних 100+ товарів для наповнення бази даних
+# Генерація унікальних 150+ товарів для наповнення бази даних
 fruits_data = {}
 for idx, item in enumerate(groceries_raw):
-    for sub in range(7):
-        # Назва формується відповідно до активної мови, але як ключ використовується стабільна назва
+    for sub in range(12):
         key_name = f"{item['en']} ({sub + 1})" if sub > 0 else item["en"]
         fruits_data[key_name] = {
             "names": {"ua": f"{item['ua']} ({sub + 1} партія)" if sub > 0 else item['ua'],
@@ -631,11 +635,14 @@ class MainScreen(ctk.CTkFrame):
     def show_settings(self):
         self.switch_panel(SettingsPanel, "Setting")
 
-# --- ПАНЕЛЬ КАТАЛОГУ (ТОЧ-В-ТОЧ СТИЛЬ ЗІ СКРІНШОТУ 2) ---
+# --- ПАНЕЛЬ КАТАЛОГУ З ПАГІНАЦІЄЮ (5 ТОВАРІВ В РЯДУ, 10 РЯДІВ = 50 ТОВАРІВ НА СТОРІНКУ) ---
 class CatalogPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
+        self.current_page = 0
+        self.items_per_page = 50
+        self.active_cat = "all"
         
         search_frame = ctk.CTkFrame(self, fg_color="transparent")
         search_frame.pack(fill="x", pady=(0, 15))
@@ -646,32 +653,37 @@ class CatalogPanel(ctk.CTkFrame):
             placeholder_text_color="white", border_width=0, corner_radius=50, justify="center"
         )
         self.search_entry.pack(fill="x", padx=10)
-        self.search_entry.bind("<KeyRelease>", self.filter_products)
+        self.search_entry.bind("<KeyRelease>", self.reset_page_and_filter)
         
         self.scroll_frame = ctk.CTkScrollableFrame(self, fg_color="transparent")
         self.scroll_frame.pack(fill="both", expand=True)
         
-        self.active_cat = "all"
+        # Контейнер для кнопок пагінації внизу
+        self.pagination_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.pagination_frame.pack(fill="x", pady=10)
+        
+        self.draw_dashboard()
+
+    def reset_page_and_filter(self, event):
+        self.current_page = 0
         self.draw_dashboard()
 
     def set_category(self, cat):
         self.active_cat = cat
-        self.draw_dashboard()
-
-    def filter_products(self, event):
+        self.current_page = 0
         self.draw_dashboard()
 
     def draw_dashboard(self):
         for widget in self.scroll_frame.winfo_children():
             widget.destroy()
             
+        # Категорії
         lbl_cat_title = ctk.CTkLabel(self.scroll_frame, text=t("categories"), font=("Arial", 16, "bold"), text_color="black")
         lbl_cat_title.pack(anchor="w", padx=10, pady=(5, 5))
         
         cats_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
         cats_frame.pack(fill="x", padx=5, pady=5)
         
-        # 6 Категорій з урахуванням Спорт Техніки
         categories_data = [
             ("Bakeries", "bakeries", "#C2D6EE", "Bread.png"),
             ("Drinks", "drinks", "#BCE6EB", "Diet_Cola.png"),
@@ -700,54 +712,45 @@ class CatalogPanel(ctk.CTkFrame):
             lbl_cat_name.bind("<Button-1>", select_cat)
 
         search_query = self.search_entry.get().strip().lower()
-        favorites = market_db.get_favorites(logged_in_user)
         
-        # Рендеримо "Popular Items"
-        lbl_pop_title = ctk.CTkLabel(self.scroll_frame, text=t("popular_items"), font=("Arial", 16, "bold"), text_color="black")
-        lbl_pop_title.pack(anchor="w", padx=10, pady=(15, 5))
-        
-        pop_grid_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
-        pop_grid_frame.pack(fill="x", padx=5)
-        for c in range(6):
-            pop_grid_frame.grid_columnconfigure(c, weight=1)
-        
-        col = 0
-        row = 0
+        # Отримуємо відфільтровані товари
+        filtered = []
         for name, data in fruits_data.items():
-            if data["section"] != "popular": continue
             if search_query and search_query not in name.lower() and search_query not in data["names"][active_lang].lower(): continue
             if self.active_cat != "all" and data["category"] != self.active_cat: continue
+            filtered.append((name, data))
             
-            self.draw_product_card(pop_grid_frame, name, data, row, col)
+        # Пагінація: вираховуємо межі
+        total_items = len(filtered)
+        start_idx = self.current_page * self.items_per_page
+        end_idx = min(start_idx + self.items_per_page, total_items)
+        page_items = filtered[start_idx:end_idx]
+        
+        # Створюємо секцію товарів
+        lbl_pop_title = ctk.CTkLabel(self.scroll_frame, text=f"{t('popular_items')} ({start_idx+1}-{end_idx} / {total_items})", font=("Arial", 16, "bold"), text_color="black")
+        lbl_pop_title.pack(anchor="w", padx=10, pady=(15, 5))
+        
+        grid_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
+        grid_frame.pack(fill="x", padx=5)
+        
+        # 5 колонок в ряду (за замовленням користувача)
+        cols = 5
+        for c in range(cols):
+            grid_frame.grid_columnconfigure(c, weight=1)
+            
+        col = 0
+        row = 0
+        for name, data in page_items:
+            self.draw_product_card(grid_frame, name, data, row, col)
             col += 1
-            if col >= 6:
+            if col >= cols:
                 col = 0
                 row += 1
                 
-        # Рендеримо "New Items"
-        lbl_new_title = ctk.CTkLabel(self.scroll_frame, text=t("new_items"), font=("Arial", 16, "bold"), text_color="black")
-        lbl_new_title.pack(anchor="w", padx=10, pady=(20, 5))
-        
-        new_grid_frame = ctk.CTkFrame(self.scroll_frame, fg_color="transparent")
-        new_grid_frame.pack(fill="x", padx=5)
-        for c in range(6):
-            new_grid_frame.grid_columnconfigure(c, weight=1)
-        
-        col = 0
-        row = 0
-        for name, data in fruits_data.items():
-            if data["section"] != "new": continue
-            if search_query and search_query not in name.lower() and search_query not in data["names"][active_lang].lower(): continue
-            if self.active_cat != "all" and data["category"] != self.active_cat: continue
-            
-            self.draw_product_card(new_grid_frame, name, data, row, col)
-            col += 1
-            if col >= 6:
-                col = 0
-                row += 1
+        self.draw_pagination_buttons(total_items)
 
     def draw_product_card(self, parent_frame, name, data, row, col):
-        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=125, height=170, fg_color="white")
+        card = ctk.CTkFrame(parent_frame, corner_radius=12, width=150, height=170, fg_color="white")
         card.grid(row=row, column=col, padx=6, pady=6)
         card.grid_propagate(False)
         
@@ -762,7 +765,6 @@ class CatalogPanel(ctk.CTkFrame):
         name_frame = ctk.CTkFrame(card, fg_color="transparent")
         name_frame.pack(fill="x", padx=8)
         
-        # Відображення перекладеної назви продукту
         display_name = data["names"][active_lang].split()[0]
         lbl_name = ctk.CTkLabel(name_frame, text=display_name, font=("Georgia", 11, "italic"), text_color="black", anchor="w")
         lbl_name.pack(side="left")
@@ -796,6 +798,36 @@ class CatalogPanel(ctk.CTkFrame):
         play_sound("success")
         self.main_screen.update_profile_info()
         messagebox.showinfo("Успіх", t("add_to_cart_success"))
+
+    def draw_pagination_buttons(self, total_items):
+        for widget in self.pagination_frame.winfo_children():
+            widget.destroy()
+            
+        max_pages = math.ceil(total_items / self.items_per_page)
+        
+        if self.current_page > 0:
+            btn_prev = ctk.CTkButton(self.pagination_frame, text=t("prev_btn"), command=self.prev_page, fg_color=PRIMARY_COLOR, hover_color="#4338CA", width=120)
+            btn_prev.pack(side="left", padx=20)
+            
+        if (self.current_page + 1) < max_pages:
+            btn_next = ctk.CTkButton(self.pagination_frame, text=t("next_btn"), command=self.next_page, fg_color=PRIMARY_COLOR, hover_color="#4338CA", width=120)
+            btn_next.pack(side="right", padx=20)
+            
+        # Показати номер поточної сторінки посередині
+        lbl_page_num = ctk.CTkLabel(self.pagination_frame, text=f"Page {self.current_page + 1} of {max(1, max_pages)}", font=("Arial", 11, "bold"), text_color="black")
+        lbl_page_num.pack(pady=5)
+
+    def next_page(self):
+        play_sound("click")
+        self.current_page += 1
+        self.draw_dashboard()
+        self.scroll_frame._parent_canvas.yview_moveto(0) # Прокрутка до верху сторінки
+
+    def prev_page(self):
+        play_sound("click")
+        self.current_page -= 1
+        self.draw_dashboard()
+        self.scroll_frame._parent_canvas.yview_moveto(0)
 
 # --- ПАНЕЛЬ ДЕТАЛЕЙ ТОВАРУ ---
 class DetailsPanel(ctk.CTkFrame):
@@ -1221,7 +1253,7 @@ class HistoryPanel(ctk.CTkScrollableFrame):
             ctk.CTkLabel(row, text=f"Замовлення #{len(orders)-index} [{order['date']}]", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=15, pady=4)
             ctk.CTkLabel(row, text=f"Товарів: {order['items_count']} шт. | Сума: {order['total']} грн", font=("Arial", 10), text_color="#2e7d32").pack(anchor="w", padx=15, pady=2)
 
-# --- ПАНЕЛЬ НАЛАШТУВАНЬ (ПІДТРИМУЄ ЗМІНУ МОВИ НА ЛЬОТУ) ---
+# --- ПАНЕЛЬ НАЛАШТУВАНЬ ---
 class SettingsPanel(ctk.CTkFrame):
     def __init__(self, parent, main_screen):
         super().__init__(parent, fg_color="transparent")
@@ -1252,7 +1284,6 @@ class SettingsPanel(ctk.CTkFrame):
         global active_lang
         active_lang = lang
         play_sound("click")
-        # Оновлюємо бічну панель та навігацію
         self.main_screen.draw_navigation()
         self.main_screen.update_profile_info()
         self.main_screen.show_settings()
