@@ -22,26 +22,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Хліб «Крафтяр» «Вулкан» подовий",
-      "en": "Хліб «Крафтяр» «Вулкан» подовий",
-      "ru": "Хліб «Крафтяр» «Вулкан» подовий"
-    },
-    "price": 46,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/815247_480x480wwm_c8ac217d-c8f6-f0d9-248f-f22eed3278be.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Хліб Цар-Хліб Балтійський світлий половинка нарізаний",
       "en": "Хліб Цар-Хліб Балтійський світлий половинка нарізаний",
       "ru": "Хліб Цар-Хліб Балтійський світлий половинка нарізаний"
@@ -50,26 +30,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/927988_480x480wwm_287e1649-8f6e-e88e-71c2-d98c18f9ee38.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Хліб Цар-Хліб Житній Ризький половинка нарізаний",
-      "en": "Хліб Цар-Хліб Житній Ризький половинка нарізаний",
-      "ru": "Хліб Цар-Хліб Житній Ризький половинка нарізаний"
-    },
-    "price": 30,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/969860_480x480wwm_14e3a6f6-ff7c-3000-aa32-ba40672fad9c.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -102,14 +62,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Хліб Цар-Хліб Цей тост Класичний нарізаний",
-      "en": "Хліб Цар-Хліб Цей тост Класичний нарізаний",
-      "ru": "Хліб Цар-Хліб Цей тост Класичний нарізаний"
+      "ua": "Хліб Цар-Хліб Житній Ризький половинка нарізаний",
+      "en": "Хліб Цар-Хліб Житній Ризький половинка нарізаний",
+      "ru": "Хліб Цар-Хліб Житній Ризький половинка нарізаний"
     },
-    "price": 37,
+    "price": 30,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/991207_480x480wwm_abf84235-dc17-d9fe-70b3-be62983f5b3b.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/969860_480x480wwm_14e3a6f6-ff7c-3000-aa32-ba40672fad9c.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -182,26 +142,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Батон «Кулиничі» «Звичайний»",
-      "en": "Батон «Кулиничі» «Звичайний»",
-      "ru": "Батон «Кулиничі» «Звичайний»"
-    },
-    "price": 36,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/53/480x480wwm/536027_480x480wwm_f74b673c-70ae-1082-07c9-fa9fb54eed51.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Батон Київхліб Пшеничний нарізаний",
       "en": "Батон Київхліб Пшеничний нарізаний",
       "ru": "Батон Київхліб Пшеничний нарізаний"
@@ -212,7 +152,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/957220_480x480wwm_42654f32-c922-cc90-4eb7-1dcdcd844da6.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -232,7 +172,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/962302_480x480wwm_7dcfe95d-8433-5634-3619-76b2c6f359cd.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -250,26 +190,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1025364_480x480wwm_2a0ef078-11d5-e823-022d-ed6f1699e3da.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Батон «Кулиничі» звичайний нарізаний",
-      "en": "Батон «Кулиничі» звичайний нарізаний",
-      "ru": "Батон «Кулиничі» звичайний нарізаний"
-    },
-    "price": 40,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/53/480x480wwm/533041_480x480wwm_65a16da7-6124-fde2-05ca-abb844629431.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -322,26 +242,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Булка Бріош",
-      "en": "Булка Бріош",
-      "ru": "Булка Бріош"
-    },
-    "price": 49,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/7_480x480.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Булка подова Французька",
       "en": "Булка подова Французька",
       "ru": "Булка подова Французька"
@@ -350,26 +250,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/55/480x480wwm/552812_480x480wwm_1832fd8b-831d-e58a-3b62-495beff64c6b.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Булка подова Французька зернова",
-      "en": "Булка подова Французька зернова",
-      "ru": "Булка подова Французька зернова"
-    },
-    "price": 51,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/59/480x480wwm/596031_480x480wwm_a0b35004-31dc-66d9-39ea-7ea594f3c202.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -442,46 +322,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Круасан 7 Days міді з начинкою «Полуниця»",
-      "en": "Круасан 7 Days міді з начинкою «Полуниця»",
-      "ru": "Круасан 7 Days міді з начинкою «Полуниця»"
-    },
-    "price": 26,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/66/480x480wwm/662705_480x480wwm_4f7a2971-628d-a795-cc9d-554f17436e1c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Круасан Panavi",
-      "en": "Круасан Panavi",
-      "ru": "Круасан Panavi"
-    },
-    "price": 34,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/43/480x480wwm/437495_480x480wwm_8f87c083-b3db-2d46-a013-6d10d835aace.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Круасан Тропік-Рол",
       "en": "Круасан Тропік-Рол",
       "ru": "Круасан Тропік-Рол"
@@ -502,26 +342,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Круасан ягідний рол",
-      "en": "Круасан ягідний рол",
-      "ru": "Круасан ягідний рол"
-    },
-    "price": 66,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/1_480x480.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Круасан Milka Choco",
       "en": "Круасан Milka Choco",
       "ru": "Круасан Milka Choco"
@@ -532,7 +352,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1011413_480x480wwm_b348de5b-3306-9a4d-fceb-3942fa2fe02a.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -552,7 +372,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/88/480x480wwm/886008_480x480wwm_21da6025-63c5-d637-df39-4ccfb53434fd.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -572,7 +392,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/867883_480x480wwm_5b662172-dbb5-40e3-dc13-2dd0b439e3c4.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -592,7 +412,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/47/480x480wwm/478408_480x480wwm_8cf738c3-b7f2-a846-d08c-d55d90f706ba.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -610,26 +430,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1013329_480x480wwm_087d6e71-1970-ff20-3302-6f270293f4ea.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Багет подовий з пророщеною спельтою та чіа",
-      "en": "Багет подовий з пророщеною спельтою та чіа",
-      "ru": "Багет подовий з пророщеною спельтою та чіа"
-    },
-    "price": 34,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1012515_480x480wwm_927ada57-7528-ffc5-e9fa-fb0fb2f0d941.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -662,37 +462,17 @@ products = [
   },
   {
     "names": {
-      "ua": "Сухарики ХрумTeam Багет Пікантна паприка",
-      "en": "Сухарики ХрумTeam Багет Пікантна паприка",
-      "ru": "Сухарики ХрумTeam Багет Пікантна паприка"
-    },
-    "price": 19,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990353_480x480wwm_21e93324-6b30-9263-a43e-9c5942c24b42.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Сухарики ХрумTeam Багет Королівський краб",
       "en": "Сухарики ХрумTeam Багет Королівський краб",
       "ru": "Сухарики ХрумTeam Багет Королівський краб"
     },
-    "price": 14,
+    "price": 19,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990349_480x480wwm_e84da4cf-c72e-2648-5b66-3b076ea860cd.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990352_480x480wwm_4d322bc4-50b2-d56e-7eb3-3eb0d347487d.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -712,7 +492,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/76/480x480wwm/761062_480x480wwm_cac95f33-7934-35be-dbdb-d5f65725280d.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -730,26 +510,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/53/480x480wwm/537138_480x480wwm_473d937a-dce7-bc60-04ff-b69cfc16081a.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Лаваш Кулиничі Кавказький",
-      "en": "Лаваш Кулиничі Кавказький",
-      "ru": "Лаваш Кулиничі Кавказький"
-    },
-    "price": 41,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/910511_480x480wwm_60eb571a-018b-766e-d2a7-3d36a9686458.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -782,26 +542,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Лаваш «Премія»® Вірменський",
-      "en": "Лаваш «Премія»® Вірменський",
-      "ru": "Лаваш «Премія»® Вірменський"
-    },
-    "price": 27,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/59/480x480wwm/591472_480x480wwm_04530f87-c8a8-acaa-e312-8d0a47bcc63e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Лаваш Київхліб Вірменський бездріжджовий",
       "en": "Лаваш Київхліб Вірменський бездріжджовий",
       "ru": "Лаваш Київхліб Вірменський бездріжджовий"
@@ -812,7 +552,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995512_480x480wwm_a8628491-8e76-45e3-d0b2-1933d2659b9b.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -822,17 +562,17 @@ products = [
   },
   {
     "names": {
-      "ua": "Лаваш Ifood «Вірменський» тонкий",
-      "en": "Лаваш Ifood «Вірменський» тонкий",
-      "ru": "Лаваш Ifood «Вірменський» тонкий"
+      "ua": "Лаваш «Премія»® Вірменський",
+      "en": "Лаваш «Премія»® Вірменський",
+      "ru": "Лаваш «Премія»® Вірменський"
     },
-    "price": 56,
+    "price": 27,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/60/480x480wwm/605565_480x480wwm_70b72e4b-1cfa-8b78-9db7-a2db9639befe.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/59/480x480wwm/591472_480x480wwm_04530f87-c8a8-acaa-e312-8d0a47bcc63e.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -851,26 +591,6 @@ products = [
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/972103_480x480wwm_bcadff17-39e3-ccbd-244e-9730000dba97.png",
     "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Лаваш Ситий двір Кавказький тонкий 2 шт.",
-      "en": "Лаваш Ситий двір Кавказький тонкий 2 шт.",
-      "ru": "Лаваш Ситий двір Кавказький тонкий 2 шт."
-    },
-    "price": 30,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1026197_480x480wwm_f3c99aae-3695-c191-807f-5e08e612e568.png",
-    "weight": "2 шт",
     "unit": "pcs",
     "section": "new",
     "colors": [
@@ -902,26 +622,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Чіабата з цибулею",
-      "en": "Чіабата з цибулею",
-      "ru": "Чіабата з цибулею"
-    },
-    "price": 35,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1025941_480x480wwm_396f6f6a-410c-e457-f45e-67905475bdef.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Чіабата з висівками бездріжджова",
       "en": "Чіабата з висівками бездріжджова",
       "ru": "Чіабата з висівками бездріжджова"
@@ -932,7 +632,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/88/480x480wwm/886432_480x480wwm_e8c2bed0-16f5-cef7-b83d-e64235e7c026.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -950,26 +650,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/36/480x480wwm/364673_480x480wwm_34f80f67-8577-a71d-3696-f0330aec8ada.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пиріг Флан з полуницею",
-      "en": "Пиріг Флан з полуницею",
-      "ru": "Пиріг Флан з полуницею"
-    },
-    "price": 768,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/922161_480x480wwm_3e089835-584e-7ee7-2702-c1c5ef6fe48e.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -1062,166 +742,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Пиріг Ioniki з йогуртом,оливками, орегано та олією",
-      "en": "Пиріг Ioniki з йогуртом,оливками, орегано та олією",
-      "ru": "Пиріг Ioniki з йогуртом,оливками, орегано та олією"
-    },
-    "price": 399,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995125_480x480wwm_b3105b42-92fb-7abc-11de-0264e9480259.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пиріг із сухофруктів Corona Blanca інжир-фініки-курага",
-      "en": "Пиріг із сухофруктів Corona Blanca інжир-фініки-курага",
-      "ru": "Пиріг із сухофруктів Corona Blanca інжир-фініки-курага"
-    },
-    "price": 149,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/60/480x480wwm/604001_480x480wwm_11b4b5f2-6a80-b261-6ca3-dbd4f8332791.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пончик Panavi шоколадний",
-      "en": "Пончик Panavi шоколадний",
-      "ru": "Пончик Panavi шоколадний"
-    },
-    "price": 44,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/48/480x480wwm/488107_480x480wwm_44f97ebf-1303-3fa6-8a29-b42cf8dcd055.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пончик «Рум'янець» Пряжене молоко",
-      "en": "Пончик «Рум'янець» Пряжене молоко",
-      "ru": "Пончик «Рум'янець» Пряжене молоко"
-    },
-    "price": 22,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/88/480x480wwm/889471_480x480wwm_3ecda9d6-94fa-1610-3e5f-4239446826ff.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пончик з начинкою зі смаком шоколаду",
-      "en": "Пончик з начинкою зі смаком шоколаду",
-      "ru": "Пончик з начинкою зі смаком шоколаду"
-    },
-    "price": 46,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/983277_480x480wwm_1a13c697-a9c2-cff5-5baa-181a63fe602a.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пончик Milka з начинкою молочний шоколад",
-      "en": "Пончик Milka з начинкою молочний шоколад",
-      "ru": "Пончик Milka з начинкою молочний шоколад"
-    },
-    "price": 219,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995487_480x480wwm_d13c236b-567f-4b91-7a2c-020889539711.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Брязкальце Пес-пончик 985931",
-      "en": "Брязкальце Пес-пончик 985931",
-      "ru": "Брязкальце Пес-пончик 985931"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/985931_480x480wwm_1b364099-1b3f-03bc-ffe9-fa8b1a119c7b.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Міні-пончик з шоколадно-горіховою начинкою",
-      "en": "Міні-пончик з шоколадно-горіховою начинкою",
-      "ru": "Міні-пончик з шоколадно-горіховою начинкою"
-    },
-    "price": 23,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/7_480x480.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Круг для плавання Bestway Пончик 107 см",
       "en": "Круг для плавання Bestway Пончик 107 см",
       "ru": "Круг для плавання Bestway Пончик 107 см"
@@ -1230,46 +750,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/729864_480x480wwm_e1c0d0ef-30ca-3d50-4e6b-8789c039185f.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Міні-пончик з начинкою з рожевих і червоних ягід",
-      "en": "Міні-пончик з начинкою з рожевих і червоних ягід",
-      "ru": "Міні-пончик з начинкою з рожевих і червоних ягід"
-    },
-    "price": 21,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/7_480x480.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Круг для плавання Bestway Солодкий пончик від 10 років 91 см",
-      "en": "Круг для плавання Bestway Солодкий пончик від 10 років 91 см",
-      "ru": "Круг для плавання Bestway Солодкий пончик від 10 років 91 см"
-    },
-    "price": 199,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875725_480x480wwm_fc87d97a-2cd8-3d26-e2ee-df07062d76c4.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -1582,14 +1062,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Тістечко Чері",
-      "en": "Тістечко Чері",
-      "ru": "Тістечко Чері"
+      "ua": "Тістечко Лисенятко",
+      "en": "Тістечко Лисенятко",
+      "ru": "Тістечко Лисенятко"
     },
-    "price": 129,
+    "price": 109,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/954731_480x480wwm_cbd75e58-b3f7-f877-8555-fc3e0bb2a637.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979450_480x480wwm_ca6f9af1-41e7-d88a-c686-c2e5797f4181.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -1602,14 +1082,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Тістечко Лимон",
-      "en": "Тістечко Лимон",
-      "ru": "Тістечко Лимон"
+      "ua": "Тістечко Тропіки",
+      "en": "Тістечко Тропіки",
+      "ru": "Тістечко Тропіки"
     },
     "price": 149,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/964049_480x480wwm_e4ded33e-3440-a97e-1cdf-8119ad87eef9.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/960430_480x480wwm_685944aa-23e7-8aff-6afb-3d2a7aa96f19.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -1742,26 +1222,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Рулет «Японський з полуницею»",
-      "en": "Рулет «Японський з полуницею»",
-      "ru": "Рулет «Японський з полуницею»"
-    },
-    "price": 69,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990421_480x480wwm_904bb25d-3568-66e9-5491-e249d308a5b0.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Сухарі «Київхліб» «Київські»",
       "en": "Сухарі «Київхліб» «Київські»",
       "ru": "Сухарі «Київхліб» «Київські»"
@@ -1772,7 +1232,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/724408_480x480wwm_17cc714f-4be4-18ee-7647-d3f674d00a23.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -1790,26 +1250,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
     "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/724410_480x480wwm_dc343094-be49-f7d5-d253-d78bbc76f853.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сухарі панірувальні ХПП білі",
-      "en": "Сухарі панірувальні ХПП білі",
-      "ru": "Сухарі панірувальні ХПП білі"
-    },
-    "price": 43,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/13/480x480wwm/131857_480x480wwm_2a703ab5-8b5c-df4e-0400-e05aed9e42a5.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -1862,37 +1302,17 @@ products = [
   },
   {
     "names": {
-      "ua": "Сухарі панірувальні ХПП спеції",
-      "en": "Сухарі панірувальні ХПП спеції",
-      "ru": "Сухарі панірувальні ХПП спеції"
-    },
-    "price": 43,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/13/480x480wwm/130585_480x480wwm_8c3c1aa6-3d79-248c-b378-1ceb7e5809f3.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пампух з малиновою начинкою",
-      "en": "Пампух з малиновою начинкою",
-      "ru": "Пампух з малиновою начинкою"
+      "ua": "Пампух з абрикосовою начинкою",
+      "en": "Пампух з абрикосовою начинкою",
+      "ru": "Пампух з абрикосовою начинкою"
     },
     "price": 25,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993348_480x480wwm_e956ee34-c398-b7d4-86c2-7c9c0b4e4b16.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993350_480x480wwm_36c65cfb-cd13-390d-b97a-ede45bfc5ec2.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -1912,26 +1332,6 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993346_480x480wwm_fba2a7ed-d481-be5e-4e8b-5236dccfbfef.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пампух з вишневою начинкою",
-      "en": "Пампух з вишневою начинкою",
-      "ru": "Пампух з вишневою начинкою"
-    },
-    "price": 19,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993347_480x480wwm_d457abf0-f2e1-43ab-4f3b-03a4ac46a785.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "popular",
     "colors": [
       [
@@ -1942,14 +1342,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Пампух з абрикосовою начинкою",
-      "en": "Пампух з абрикосовою начинкою",
-      "ru": "Пампух з абрикосовою начинкою"
+      "ua": "Пампух з малиновою начинкою",
+      "en": "Пампух з малиновою начинкою",
+      "ru": "Пампух з малиновою начинкою"
     },
     "price": 25,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993350_480x480wwm_36c65cfb-cd13-390d-b97a-ede45bfc5ec2.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993348_480x480wwm_e956ee34-c398-b7d4-86c2-7c9c0b4e4b16.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -2102,14 +1502,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Балик «Дарницький» «Глобинський МК» с/к",
-      "en": "Балик «Дарницький» «Глобинський МК» с/к",
-      "ru": "Балик «Дарницький» «Глобинський МК» с/к"
+      "ua": "Балик «Ювілейний МК» «Дарницький» с/к",
+      "en": "Балик «Ювілейний МК» «Дарницький» с/к",
+      "ru": "Балик «Ювілейний МК» «Дарницький» с/к"
     },
-    "price": 79,
+    "price": 1199,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/26/480x480wwm/261839_480x480wwm_47e39a7a-21ee-b62b-e96b-1da097a27946.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/31/480x480wwm/311053_480x480wwm_16a2e580-fae2-21e1-fa47-a256f2491f8d.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -2142,26 +1542,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Кекс «Столичний» упакований",
-      "en": "Кекс «Столичний» упакований",
-      "ru": "Кекс «Столичний» упакований"
-    },
-    "price": 29,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/88/480x480wwm/880211_480x480wwm_bd814ac9-b183-2da9-c168-7c7d19869d98.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Кекс шоколадно-апельсиновий",
       "en": "Кекс шоколадно-апельсиновий",
       "ru": "Кекс шоколадно-апельсиновий"
@@ -2172,7 +1552,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/996153_480x480wwm_1c59f11e-981c-3bf2-ae53-62387a49fb96.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -2192,7 +1572,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1001956_480x480wwm_36c1c99b-9987-7d30-4e4a-92be2b7fbc4c.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -2212,7 +1592,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/52/480x480wwm/529978_480x480wwm_046ec2c6-b5da-e822-daa7-56d9835892da.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -2232,7 +1612,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/52/480x480wwm/529950_480x480wwm_78dfb575-a01d-42d1-7f68-05231782d76e.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -2252,7 +1632,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/52/480x480wwm/529968_480x480wwm_55685c1f-0d9e-f46f-e5fc-af84c42fe17d.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -2272,6 +1652,26 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/906590_480x480wwm_18be5902-b10b-a8ba-fab3-9cb5303548c5.png",
     "weight": "1 шт",
     "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сушка «Київхліб» «Малютка»",
+      "en": "Сушка «Київхліб» «Малютка»",
+      "ru": "Сушка «Київхліб» «Малютка»"
+    },
+    "price": 66,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/724400_480x480wwm_532e1a3d-20a9-cd27-1bbb-abfe2afd7de2.png",
+    "weight": "1 шт",
+    "unit": "pcs",
     "section": "new",
     "colors": [
       [
@@ -2282,14 +1682,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Кекс DAT-Schaub зі смаком шоколаду",
-      "en": "Кекс DAT-Schaub зі смаком шоколаду",
-      "ru": "Кекс DAT-Schaub зі смаком шоколаду"
+      "ua": "Сушки БКК міні",
+      "en": "Сушки БКК міні",
+      "ru": "Сушки БКК міні"
     },
-    "price": 149,
+    "price": 41,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "bakeries",
-    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1010095_480x480wwm_9eb42726-7cc6-dec5-8250-156939376008.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/856238_480x480wwm_268d344b-272c-df9d-4e80-8c2f7d9a6daa.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -2302,14 +1702,614 @@ products = [
   },
   {
     "names": {
-      "ua": "Вода мінеральна «Набеглаві»",
-      "en": "Вода мінеральна «Набеглаві»",
-      "ru": "Вода мінеральна «Набеглаві»"
+      "ua": "Сушки БКК «Фірмові»",
+      "en": "Сушки БКК «Фірмові»",
+      "ru": "Сушки БКК «Фірмові»"
     },
-    "price": 48,
+    "price": 47,
     "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/33/480x480wwm/332537_480x480wwm_784d8cf0-6657-0975-053b-6ff45c36de05.png",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/723182_480x480wwm_ea1d4f03-6055-27d9-c4a3-0360307f7860.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сушка «Київхліб» «Ванільна»",
+      "en": "Сушка «Київхліб» «Ванільна»",
+      "ru": "Сушка «Київхліб» «Ванільна»"
+    },
+    "price": 59,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/724396_480x480wwm_6004659f-8ae2-e04e-c2c4-d162d0961bcd.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сушка «Київхліб» «Київська»",
+      "en": "Сушка «Київхліб» «Київська»",
+      "ru": "Сушка «Київхліб» «Київська»"
+    },
+    "price": 64,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/724399_480x480wwm_b3b3fa91-5454-9f3f-a08e-fd9aa58e5dae.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сушки БКК «Флора» малютка",
+      "en": "Сушки БКК «Флора» малютка",
+      "ru": "Сушки БКК «Флора» малютка"
+    },
+    "price": 47,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/723179_480x480wwm_e30ee413-981d-3a0f-25c8-e36e6952bfb3.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сушки Кулиничі Ванільні солодкі",
+      "en": "Сушки Кулиничі Ванільні солодкі",
+      "ru": "Сушки Кулиничі Ванільні солодкі"
+    },
+    "price": 39,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/931218_480x480wwm_fb67d069-d0dc-20c1-499b-335f08350c63.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сушка Forno Meridiano Тараліні рустіко",
+      "en": "Сушка Forno Meridiano Тараліні рустіко",
+      "ru": "Сушка Forno Meridiano Тараліні рустіко"
+    },
+    "price": 63,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1012699_480x480wwm_ca860d45-f186-59b3-efc7-8ce258dc2958.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін з вишнею",
+      "en": "Мафін з вишнею",
+      "ru": "Мафін з вишнею"
+    },
+    "price": 23,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/35/480x480wwm/354290_480x480wwm_5e87ca07-6189-eb4f-f1c4-ba2063c921a4.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін Achva з полуницею",
+      "en": "Мафін Achva з полуницею",
+      "ru": "Мафін Achva з полуницею"
+    },
+    "price": 27,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/52/480x480wwm/529954_480x480wwm_70a98ac5-c69e-5c15-789d-b92de3dada79.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін Achva з шоколадом",
+      "en": "Мафін Achva з шоколадом",
+      "ru": "Мафін Achva з шоколадом"
+    },
+    "price": 25,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/52/480x480wwm/529958_480x480wwm_a2d2d43e-3eeb-4835-dc46-83173a507850.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін Два млина Ведмедик зі смаком банану",
+      "en": "Мафін Два млина Ведмедик зі смаком банану",
+      "ru": "Мафін Два млина Ведмедик зі смаком банану"
+    },
+    "price": 129,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/967326_480x480wwm_5ccb4375-37b3-4387-de3f-05d877765746.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін Milka із молочною начинкою та шоколадом",
+      "en": "Мафін Milka із молочною начинкою та шоколадом",
+      "ru": "Мафін Milka із молочною начинкою та шоколадом"
+    },
+    "price": 369,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995489_480x480wwm_211cf6b0-9b25-67c1-3baf-d97f758c5701.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін Balviten з какао без глютена",
+      "en": "Мафін Balviten з какао без глютена",
+      "ru": "Мафін Balviten з какао без глютена"
+    },
+    "price": 119,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/812803_480x480wwm_4d076bef-4bb3-81b1-f115-dfe0161301d6.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін Balviten з шоколадними краплями без глютена",
+      "en": "Мафін Balviten з шоколадними краплями без глютена",
+      "ru": "Мафін Balviten з шоколадними краплями без глютена"
+    },
+    "price": 119,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/812802_480x480wwm_27ab04d3-636c-0149-9b23-b179820b5e42.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мафін Два млина зі смаком лимону",
+      "en": "Мафін Два млина зі смаком лимону",
+      "ru": "Мафін Два млина зі смаком лимону"
+    },
+    "price": 129,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/984276_480x480wwm_f105c815-e916-ecca-f036-fc0a4ce97d49.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Пряники «Повна Чаша»® молочні глазуровані",
+      "en": "Пряники «Повна Чаша»® молочні глазуровані",
+      "ru": "Пряники «Повна Чаша»® молочні глазуровані"
+    },
+    "price": 37,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/854063_480x480wwm_cdb8bb79-9f7a-cd13-7fff-aaff2425003d.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Пряники «Повна Чаша»® з яблучною начинкою глазуровані",
+      "en": "Пряники «Повна Чаша»® з яблучною начинкою глазуровані",
+      "ru": "Пряники «Повна Чаша»® з яблучною начинкою глазуровані"
+    },
+    "price": 33,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/854064_480x480wwm_c1c6c807-0e18-f214-12e9-31f803241b37.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Пряники Кулиничі Журавлинка",
+      "en": "Пряники Кулиничі Журавлинка",
+      "ru": "Пряники Кулиничі Журавлинка"
+    },
+    "price": 62,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/922746_480x480wwm_263c049f-77aa-9327-ae42-36fa9b5aa2ad.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Пряники Хлібодар Житні",
+      "en": "Пряники Хлібодар Житні",
+      "ru": "Пряники Хлібодар Житні"
+    },
+    "price": 54,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/922582_480x480wwm_bd65ea09-4fc9-418b-e8f3-4142aa6147bd.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Пряники Київхліб Північні",
+      "en": "Пряники Київхліб Північні",
+      "ru": "Пряники Київхліб Північні"
+    },
+    "price": 79,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/970094_480x480wwm_98f8d161-2888-b583-c1cf-bc98f8edd019.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Пряники Київхліб Київські",
+      "en": "Пряники Київхліб Київські",
+      "ru": "Пряники Київхліб Київські"
+    },
+    "price": 49,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/970093_480x480wwm_a046e8eb-3549-0f94-ced6-ddc390238560.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Круасани Schulstad",
+      "en": "Круасани Schulstad",
+      "ru": "Круасани Schulstad"
+    },
+    "price": 369,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/861549_480x480wwm_31709995-b838-cbff-6d2d-7cd3024c1977.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Круасани Picard на вершковому маслі",
+      "en": "Круасани Picard на вершковому маслі",
+      "ru": "Круасани Picard на вершковому маслі"
+    },
+    "price": 289,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1013332_480x480wwm_a54a2d0b-73a2-cae7-3b22-1ddae3c6fd98.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Круасани Eesti Pagar XL швидкозаморожені",
+      "en": "Круасани Eesti Pagar XL швидкозаморожені",
+      "ru": "Круасани Eesti Pagar XL швидкозаморожені"
+    },
+    "price": 499,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993272_480x480wwm_fc975bba-4d49-0e6d-813c-54ffc259585d.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Круасани «Премія»® міні з начинкою шоколад",
+      "en": "Круасани «Премія»® міні з начинкою шоколад",
+      "ru": "Круасани «Премія»® міні з начинкою шоколад"
+    },
+    "price": 39,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1016438_480x480wwm_f80e29f3-df38-e156-aabb-97c24411b967.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Булочка здобна",
+      "en": "Булочка здобна",
+      "ru": "Булочка здобна"
+    },
+    "price": 18,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/23/480x480wwm/231532_480x480wwm_f0bb3443-bb7e-1020-8cb7-a3fd75f2c838.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Булочка «Кулиничі» для гамбургера",
+      "en": "Булочка «Кулиничі» для гамбургера",
+      "ru": "Булочка «Кулиничі» для гамбургера"
+    },
+    "price": 38,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/74/480x480wwm/741880_480x480wwm_a0c5e206-dd59-d8f6-b4f9-76dc08f10e7d.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Булочки з молочним смаком",
+      "en": "Булочки з молочним смаком",
+      "ru": "Булочки з молочним смаком"
+    },
+    "price": 19,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/977478_480x480wwm_b61484f5-12bf-4a31-c156-b70a6ce96196.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Булочка Равлик маково-сливовий",
+      "en": "Булочка Равлик маково-сливовий",
+      "ru": "Булочка Равлик маково-сливовий"
+    },
+    "price": 39,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979963_480x480wwm_0320062f-60fb-61c7-1c25-1d575773d0e0.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Булочка Кулиничі зі смородиною",
+      "en": "Булочка Кулиничі зі смородиною",
+      "ru": "Булочка Кулиничі зі смородиною"
+    },
+    "price": 23,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/935746_480x480wwm_a0c1a177-1313-e677-ecf2-d28a288fae29.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Булочка LaBrio Burger з кунжутом",
+      "en": "Булочка LaBrio Burger з кунжутом",
+      "ru": "Булочка LaBrio Burger з кунжутом"
+    },
+    "price": 51,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/992310_480x480wwm_7f8a8658-d443-601a-8b28-86192920fbf1.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Булочка з маком в упаковці",
+      "en": "Булочка з маком в упаковці",
+      "ru": "Булочка з маком в упаковці"
+    },
+    "price": 26,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "bakeries",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/998108_480x480wwm_a4ad7676-e8b0-00c7-d6cd-2048cbbaf0a7.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -2342,26 +2342,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Вода мінеральна «Моршинська» слабогазована",
-      "en": "Вода мінеральна «Моршинська» слабогазована",
-      "ru": "Вода мінеральна «Моршинська» слабогазована"
-    },
-    "price": 30,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/3/480x480wwm/39465_480x480wwm_103613ae-199f-ba87-af4c-ab857c9eba32.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Вода BonAqua негазована",
       "en": "Вода BonAqua негазована",
       "ru": "Вода BonAqua негазована"
@@ -2370,26 +2350,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/3/480x480wwm/35312_480x480wwm_d6acbd7b-b0b2-b5ed-62a2-5e73ec0b6c63.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вода Bon Aqua газована",
-      "en": "Вода Bon Aqua газована",
-      "ru": "Вода Bon Aqua газована"
-    },
-    "price": 26,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/0/480x480wwm/487_480x480wwm_ad9925e2-49a7-0b02-58c0-747c75e5dc8e.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -2462,26 +2422,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Сік Jaffa яблучний",
-      "en": "Сік Jaffa яблучний",
-      "ru": "Сік Jaffa яблучний"
-    },
-    "price": 59,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/76/480x480wwm/760347_480x480wwm_ab96bea6-eadc-e613-be42-39f4e1d770d8.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Тунець Fish Line Салатний у власному соку",
       "en": "Тунець Fish Line Салатний у власному соку",
       "ru": "Тунець Fish Line Салатний у власному соку"
@@ -2492,7 +2432,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/969903_480x480wwm_11a8ac22-f15d-52c6-45ff-b5df446ce5f0.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -2512,87 +2452,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1018790_480x480wwm_54e132dc-67d9-0366-34de-4c0c7e962947.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сік Feels good яблучний прямий віджим",
-      "en": "Сік Feels good яблучний прямий віджим",
-      "ru": "Сік Feels good яблучний прямий віджим"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/944111_480x480wwm_ab5e185f-8aa8-480e-b335-9fffab8f9184.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сік Feels good апельсиновий прямого віджиму",
-      "en": "Сік Feels good апельсиновий прямого віджиму",
-      "ru": "Сік Feels good апельсиновий прямого віджиму"
-    },
-    "price": 239,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/878851_480x480wwm_a31ff2b9-8767-1435-171f-4fd72836669b.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Смузі Feels good з апельсиновим соком та манго",
-      "en": "Смузі Feels good з апельсиновим соком та манго",
-      "ru": "Смузі Feels good з апельсиновим соком та манго"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/980107_480x480wwm_054ff597-8556-7390-a32f-f3c96ec56cae.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Смузі Feels good з апельсиновим соком, яблуком, селерою, шпинатом та імбиром",
-      "en": "Смузі Feels good з апельсиновим соком, яблуком, селерою, шпинатом та імбиром",
-      "ru": "Смузі Feels good з апельсиновим соком, яблуком, селерою, шпинатом та імбиром"
-    },
-    "price": 84,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/980111_480x480wwm_d87ed406-322a-1daa-160f-24fe0254cb85.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -2610,66 +2470,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/980119_480x480wwm_615dfcbd-ced1-0c91-16b5-bd8c2ba79bd5.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сік Cappy яблучний із концентрату",
-      "en": "Сік Cappy яблучний із концентрату",
-      "ru": "Сік Cappy яблучний із концентрату"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/984057_480x480wwm_39e60000-b6c3-0fe2-6701-a13cc4be3ede.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій Coca-Cola Vanilla з/б",
-      "en": "Напій Coca-Cola Vanilla з/б",
-      "ru": "Напій Coca-Cola Vanilla з/б"
-    },
-    "price": 87,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908255_480x480wwm_efea3804-6761-019e-58cf-487f0cef9db6.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій Coca-Cola",
-      "en": "Напій Coca-Cola",
-      "ru": "Напій Coca-Cola"
-    },
-    "price": 30,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/0/480x480wwm/665_480x480wwm_96c7d22b-1651-ce9f-115b-e3bb91df671f.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -2702,26 +2502,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій Coca-Cola Zero",
-      "en": "Напій Coca-Cola Zero",
-      "ru": "Напій Coca-Cola Zero"
-    },
-    "price": 30,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/69/480x480wwm/692605_480x480wwm_4d56d0ca-75e6-beac-e705-033a9ca06722.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій Coca-Cola Cherry сильногазований",
       "en": "Напій Coca-Cola Cherry сильногазований",
       "ru": "Напій Coca-Cola Cherry сильногазований"
@@ -2730,26 +2510,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959292_480x480wwm_bbbaadce-81f0-53fa-5098-d964c6b6e095.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій Coca-Cola безалкогольний сильногазований",
-      "en": "Напій Coca-Cola безалкогольний сильногазований",
-      "ru": "Напій Coca-Cola безалкогольний сильногазований"
-    },
-    "price": 63,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/929151_480x480wwm_d6b5d314-6800-d82c-b713-b72b244dfc14.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -2822,26 +2582,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій Fanta Peach з/б",
-      "en": "Напій Fanta Peach з/б",
-      "ru": "Напій Fanta Peach з/б"
-    },
-    "price": 88,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908257_480x480wwm_b15d9beb-6123-3c88-9615-a81b4c5a1faf.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій Fanta Pineapple з/б",
       "en": "Напій Fanta Pineapple з/б",
       "ru": "Напій Fanta Pineapple з/б"
@@ -2852,7 +2592,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908256_480x480wwm_b0c63bee-94f9-d910-f788-a80559c80c2b.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -2872,7 +2612,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908258_480x480wwm_103dcfcb-474b-4535-8fad-4583190b36c3.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -2890,6 +2630,26 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908259_480x480wwm_69e800fd-b176-d85b-7fa5-9f5ede6c822f.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Напій Fanta Grappa з/б",
+      "en": "Напій Fanta Grappa з/б",
+      "ru": "Напій Fanta Grappa з/б"
+    },
+    "price": 99,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908260_480x480wwm_6e0c1bbc-2203-1574-5d49-16676da0db9c.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -2930,46 +2690,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/67/480x480wwm/676916_480x480wwm_cb7810d2-b6b2-8976-58aa-745f196cce1e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Квас «Львівський квас» «Хлібний»",
-      "en": "Квас «Львівський квас» «Хлібний»",
-      "ru": "Квас «Львівський квас» «Хлібний»"
-    },
-    "price": 85,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/15/480x480wwm/158521_480x480wwm_605379ba-eaef-d005-1d35-4fc47987e48e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Квас «Квас Тарас» «Білий» хлібний",
-      "en": "Квас «Квас Тарас» «Білий» хлібний",
-      "ru": "Квас «Квас Тарас» «Білий» хлібний"
-    },
-    "price": 63,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/60/480x480wwm/609237_480x480wwm_b4adc7a0-0d34-6369-faa5-42450a2a1d34.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -3122,26 +2842,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій Spraga Комбуча малина та шипшина з/б",
-      "en": "Напій Spraga Комбуча малина та шипшина з/б",
-      "ru": "Напій Spraga Комбуча малина та шипшина з/б"
-    },
-    "price": 39,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/927481_480x480wwm_571a4327-679d-32d6-6c21-4407bf74b6c7.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій на основі вина Latinium Sparkling білий напівсолодкий",
       "en": "Напій на основі вина Latinium Sparkling білий напівсолодкий",
       "ru": "Напій на основі вина Latinium Sparkling білий напівсолодкий"
@@ -3152,7 +2852,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/65/480x480wwm/654318_480x480wwm_b39bb899-1cb2-6a47-8488-2f524b860d44.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -3172,7 +2872,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1019472_480x480wwm_811fea7b-4dfd-6aa2-d360-8a2c5a9961a3.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -3190,26 +2890,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/73/480x480wwm/739662_480x480wwm_bd0a52d1-7e04-898a-a119-845a8a1f5531.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій на основі рому Bacardi Spiced",
-      "en": "Напій на основі рому Bacardi Spiced",
-      "ru": "Напій на основі рому Bacardi Spiced"
-    },
-    "price": 569,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/80/480x480wwm/803321_480x480wwm_3adab056-aeb7-2eff-271e-3860904caf13.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -3250,46 +2930,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/931430_480x480wwm_82ac804f-c461-e481-eaee-cc190ebae0f9.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Лимонад з чорної смородини",
-      "en": "Лимонад з чорної смородини",
-      "ru": "Лимонад з чорної смородини"
-    },
-    "price": 64,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/955065_480x480wwm_4fd1870b-9344-c284-37d9-1777479c2749.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Малиновий лимонад",
-      "en": "Малиновий лимонад",
-      "ru": "Малиновий лимонад"
-    },
-    "price": 64,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/955067_480x480wwm_c13f1c1e-049f-760e-8231-98b98355ff74.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -3482,46 +3122,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій Pepsi Пепсі нуль цукру безалкогольний сильногазований з/б",
-      "en": "Напій Pepsi Пепсі нуль цукру безалкогольний сильногазований з/б",
-      "ru": "Напій Pepsi Пепсі нуль цукру безалкогольний сильногазований з/б"
-    },
-    "price": 21,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/994231_480x480wwm_301af2f7-900d-7dfd-ed64-49aecc94efd2.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій Pepsi Cola",
-      "en": "Напій Pepsi Cola",
-      "ru": "Напій Pepsi Cola"
-    },
-    "price": 29,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/3/480x480wwm/37871_480x480wwm_fe532538-eb30-f615-c3ee-6ff3f7826a4d.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій Pepsi Cola с/п",
       "en": "Напій Pepsi Cola с/п",
       "ru": "Напій Pepsi Cola с/п"
@@ -3582,46 +3182,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій соковмісний Schweppes Classic Mojito",
-      "en": "Напій соковмісний Schweppes Classic Mojito",
-      "ru": "Напій соковмісний Schweppes Classic Mojito"
-    },
-    "price": 46,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/69/480x480wwm/692621_480x480wwm_55f4d5f9-ad38-57f5-cf64-56d95af53db3.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій соковмісний Schweppes Tangerine сильногазований",
-      "en": "Напій соковмісний Schweppes Tangerine сильногазований",
-      "ru": "Напій соковмісний Schweppes Tangerine сильногазований"
-    },
-    "price": 46,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/931757_480x480wwm_6e3d1521-a82e-2b33-2e96-340587f8508f.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій соковмісний Schweppes Original Bitter Lemon",
       "en": "Напій соковмісний Schweppes Original Bitter Lemon",
       "ru": "Напій соковмісний Schweppes Original Bitter Lemon"
@@ -3642,26 +3202,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій соковмісний Schweppes Indian Tonic",
-      "en": "Напій соковмісний Schweppes Indian Tonic",
-      "ru": "Напій соковмісний Schweppes Indian Tonic"
-    },
-    "price": 31,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/71/480x480wwm/714691_480x480wwm_b94a78dc-722f-0b7b-63be-67ddfe1ee028.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій соковмісний Schweppes Bitter Lemon",
       "en": "Напій соковмісний Schweppes Bitter Lemon",
       "ru": "Напій соковмісний Schweppes Bitter Lemon"
@@ -3672,7 +3212,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/71/480x480wwm/714692_480x480wwm_ddbdd337-be90-3423-0ba1-37c8e8df6e10.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -3692,7 +3232,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/0/480x480wwm/666_480x480wwm_b3a3ed55-7fe5-7d49-f790-f106f015f793.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -3712,7 +3252,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/0/480x480wwm/3376_480x480wwm_b9171680-f0c3-2921-d598-97b5e8664422.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -3732,7 +3272,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/4/480x480wwm/48593_480x480wwm_dda5c86e-dbc0-23ca-69c8-808d500b88e2.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -3746,53 +3286,13 @@ products = [
       "en": "Напій Sprite безалкогольний сильногазований",
       "ru": "Напій Sprite безалкогольний сильногазований"
     },
-    "price": 44,
+    "price": 57,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/930141_480x480wwm_c95f1392-1680-8a2d-5535-2ed9c91904b7.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій «Біола» «Мохіто»",
-      "en": "Напій «Біола» «Мохіто»",
-      "ru": "Напій «Біола» «Мохіто»"
-    },
-    "price": 40,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/53/480x480wwm/532517_480x480wwm_a928fac0-460e-2d95-7db3-f39c3bcdfb1c.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/929152_480x480wwm_23fe130c-a809-50c7-e80d-7074c77a9aa3.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій соковмісний Моршинська Лимонада Мохіто",
-      "en": "Напій соковмісний Моршинська Лимонада Мохіто",
-      "ru": "Напій соковмісний Моршинська Лимонада Мохіто"
-    },
-    "price": 58,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/949961_480x480wwm_bbcc4d9a-8b2e-e2f1-e9b7-43e8aafed678.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -3812,7 +3312,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/70/480x480wwm/703868_480x480wwm_0dec3c01-3d6b-f618-015c-d3b9b102bb1c.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -3830,26 +3330,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/949964_480x480wwm_17eff013-9c03-fd80-e04f-f21161f97633.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій соковмисний Schweppes Лохиновий мохіто безалкогольний сильногазований",
-      "en": "Напій соковмисний Schweppes Лохиновий мохіто безалкогольний сильногазований",
-      "ru": "Напій соковмисний Schweppes Лохиновий мохіто безалкогольний сильногазований"
-    },
-    "price": 52,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1024595_480x480wwm_816fc5ea-0974-90b1-87e8-fc8d57ac86b9.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -3882,26 +3362,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій адаптогенний Beermaster Brewery Zerobrew Мохіто середньогазований з/б",
-      "en": "Напій адаптогенний Beermaster Brewery Zerobrew Мохіто середньогазований з/б",
-      "ru": "Напій адаптогенний Beermaster Brewery Zerobrew Мохіто середньогазований з/б"
-    },
-    "price": 55,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990195_480x480wwm_76684984-3967-30eb-9fc3-7e61c7aa2672.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Чай зелений «Премія»® Манго",
       "en": "Чай зелений «Премія»® Манго",
       "ru": "Чай зелений «Премія»® Манго"
@@ -3910,26 +3370,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/966046_480x480wwm_f31bef8b-ef89-df7b-3dcd-198010a345dd.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Чай чорний «Премія»® Малинова феєрія в пірамідках",
-      "en": "Чай чорний «Премія»® Малинова феєрія в пірамідках",
-      "ru": "Чай чорний «Премія»® Малинова феєрія в пірамідках"
-    },
-    "price": 93,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/966041_480x480wwm_6b6a9b43-3d0a-c7bb-0861-cd2bca03f633.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -4022,26 +3462,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Кава мелена «Ефіопія»",
-      "en": "Кава мелена «Ефіопія»",
-      "ru": "Кава мелена «Ефіопія»"
-    },
-    "price": 389,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/799245_480x480wwm_6bb087ab-8009-955d-197d-29407d039c7c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Кава мелена L'OR Blonde Roast Classique смажена",
       "en": "Кава мелена L'OR Blonde Roast Classique смажена",
       "ru": "Кава мелена L'OR Blonde Roast Classique смажена"
@@ -4052,7 +3472,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/864682_480x480wwm_e65a9470-8ab6-6ac2-3336-bc0c0805e448.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4072,7 +3492,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/977653_480x480wwm_3f1fce54-3036-031a-7e50-6edcdd1f0320.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -4092,7 +3512,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/57/480x480wwm/579164_480x480wwm_e3de40d2-2857-de24-e62e-e667cd899e6b.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4112,7 +3532,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/76/480x480wwm/767850_480x480wwm_a1060850-af9d-df5c-d98c-b6c945cad0c8.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -4132,7 +3552,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/799240_480x480wwm_d0fe2b34-6e8c-11a4-0ba9-5fdbfc552bcd.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4152,7 +3572,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/722638_480x480wwm_f58d8b4b-d89b-cf0e-f8e3-0189669ca01c.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -4172,7 +3592,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/912548_480x480wwm_74176a81-cebd-ce04-9ade-23ebebe904b8.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4190,26 +3610,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "drinks",
     "image": "https://content.silpo.ua/sku/ecommerce/84/480x480wwm/840586_480x480wwm_d20ce2d1-f8bd-dc14-1e32-90d1147d1b47.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Десерт сирковий «Марійка» какао 5%",
-      "en": "Десерт сирковий «Марійка» какао 5%",
-      "ru": "Десерт сирковий «Марійка» какао 5%"
-    },
-    "price": 36,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/912615_480x480wwm_2dd16f70-a01e-90b2-ac8c-b39520b1c12d.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -4242,26 +3642,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій з какао «Премія»® порошкоподібний розчинний",
-      "en": "Напій з какао «Премія»® порошкоподібний розчинний",
-      "ru": "Напій з какао «Премія»® порошкоподібний розчинний"
-    },
-    "price": 89,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/950641_480x480wwm_89a6279a-1a6d-7910-c7a1-49c533da8172.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Какао-порошок Мрія",
       "en": "Какао-порошок Мрія",
       "ru": "Какао-порошок Мрія"
@@ -4272,7 +3652,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1003242_480x480wwm_d4428148-c2ae-7ec7-882a-c802126105a6.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -4292,7 +3672,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/52/480x480wwm/529366_480x480wwm_d1379011-6f57-1621-6def-c56719a4e6f6.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4312,6 +3692,26 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/77/480x480wwm/772312_480x480wwm_64a13557-827b-ef3d-3e76-6b424a7e7e9d.png",
     "weight": "1 шт",
     "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Фініки Меджул сушені",
+      "en": "Фініки Меджул сушені",
+      "ru": "Фініки Меджул сушені"
+    },
+    "price": 199,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/977636_480x480wwm_5f946294-491a-4737-6a6a-1f8affed1338.png",
+    "weight": "1 шт",
+    "unit": "pcs",
     "section": "new",
     "colors": [
       [
@@ -4322,17 +3722,717 @@ products = [
   },
   {
     "names": {
-      "ua": "Пюре Чудо-Чадо яблуко-банан без цукру",
-      "en": "Пюре Чудо-Чадо яблуко-банан без цукру",
-      "ru": "Пюре Чудо-Чадо яблуко-банан без цукру"
+      "ua": "Набір для творчості Crystal Art Дедпул",
+      "en": "Набір для творчості Crystal Art Дедпул",
+      "ru": "Набір для творчості Crystal Art Дедпул"
     },
-    "price": 53,
+    "price": 149,
     "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/927020_480x480wwm_716ced43-ecdd-76f5-7bd3-66cce4b4018a.png",
-    "weight": "1 кг",
-    "unit": "kg",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/937393_480x480wwm_33cd24c1-ccc8-de4a-77f7-5d18f466ef48.png",
+    "weight": "1 шт",
+    "unit": "pcs",
     "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Jaffa Select Цитрусовий мікс із сумішшю фруктів",
+      "en": "Нектар Jaffa Select Цитрусовий мікс із сумішшю фруктів",
+      "ru": "Нектар Jaffa Select Цитрусовий мікс із сумішшю фруктів"
+    },
+    "price": 74,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1024308_480x480wwm_e9b22741-369d-9a1d-f677-aa40956c258f.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Cappy апельсиновий",
+      "en": "Нектар Cappy апельсиновий",
+      "ru": "Нектар Cappy апельсиновий"
+    },
+    "price": 114,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/981473_480x480wwm_044b0427-3bf6-0be4-2548-c822658cd1bf.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Cappy персиковий",
+      "en": "Нектар Cappy персиковий",
+      "ru": "Нектар Cappy персиковий"
+    },
+    "price": 109,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/981474_480x480wwm_630f546c-c66e-f229-a3bb-fefa0c629c6b.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Cappy Exotic",
+      "en": "Нектар Cappy Exotic",
+      "ru": "Нектар Cappy Exotic"
+    },
+    "price": 109,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/981476_480x480wwm_08a5e1a3-c55f-c818-01a9-69c053f4eac2.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Cappy mini персик б/а",
+      "en": "Нектар Cappy mini персик б/а",
+      "ru": "Нектар Cappy mini персик б/а"
+    },
+    "price": 26,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979132_480x480wwm_eeec6077-f9e7-6817-afc6-bea6df3545fc.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Cappy Mini Мультифрукт пастеризований безалкогольний",
+      "en": "Нектар Cappy Mini Мультифрукт пастеризований безалкогольний",
+      "ru": "Нектар Cappy Mini Мультифрукт пастеризований безалкогольний"
+    },
+    "price": 26,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/994513_480x480wwm_795f9d26-2b17-1a93-7f41-abb8b016cc07.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Cappy mini груша і яблуко б/а",
+      "en": "Нектар Cappy mini груша і яблуко б/а",
+      "ru": "Нектар Cappy mini груша і яблуко б/а"
+    },
+    "price": 26,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979134_480x480wwm_2d0dea58-0f1c-69fb-9eb3-4efd6683991b.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир «Брі Діжон» 60% з коров'ячого молока",
+      "en": "Сир «Брі Діжон» 60% з коров'ячого молока",
+      "ru": "Сир «Брі Діжон» 60% з коров'ячого молока"
+    },
+    "price": 69,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/54/480x480wwm/543663_480x480wwm_091be9dc-546a-1cf7-894b-15d713696e99.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Jager «Моцарела» 45% з коров'ячого молока",
+      "en": "Сир Jager «Моцарела» 45% з коров'ячого молока",
+      "ru": "Сир Jager «Моцарела» 45% з коров'ячого молока"
+    },
+    "price": 44,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/48/480x480wwm/486793_480x480wwm_5b984a99-ce0a-093a-15a6-99bb4b23a000.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Кефір «Ферма» 2,5%",
+      "en": "Кефір «Ферма» 2,5%",
+      "ru": "Кефір «Ферма» 2,5%"
+    },
+    "price": 71,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/83/480x480wwm/837452_480x480wwm_4e46198d-7f1d-fd5c-1150-411f95267a85.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Кефір «Селянський» 2,5%",
+      "en": "Кефір «Селянський» 2,5%",
+      "ru": "Кефір «Селянський» 2,5%"
+    },
+    "price": 40,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/71/480x480wwm/719170_480x480wwm_44de3c85-e3d6-19f0-2237-9e4b93208bf2.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Кефір «Яготинський» 2,5%",
+      "en": "Кефір «Яготинський» 2,5%",
+      "ru": "Кефір «Яготинський» 2,5%"
+    },
+    "price": 43,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/38/480x480wwm/381862_480x480wwm_2c6b4784-4a35-2c79-192a-0d3386f0ea47.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вершки «Ферма» ультрапастеризовані відбірні 20%",
+      "en": "Вершки «Ферма» ультрапастеризовані відбірні 20%",
+      "ru": "Вершки «Ферма» ультрапастеризовані відбірні 20%"
+    },
+    "price": 149,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/60/480x480wwm/605304_480x480wwm_52b9fb55-7131-10c8-9483-6296e49eecca.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Базилік Вершки та Корінці зелений",
+      "en": "Базилік Вершки та Корінці зелений",
+      "ru": "Базилік Вершки та Корінці зелений"
+    },
+    "price": 89,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/996876_480x480wwm_54a00b52-12ee-7648-539f-13bfc6cc78ac.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Морозиво Три ведмеді ванільно-вершкове в глазурі на паличці",
+      "en": "Морозиво Три ведмеді ванільно-вершкове в глазурі на паличці",
+      "ru": "Морозиво Три ведмеді ванільно-вершкове в глазурі на паличці"
+    },
+    "price": 46,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1022882_480x480wwm_72a4958b-2107-ebbc-a3aa-1af723665603.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вершки «Галичина» 33%",
+      "en": "Вершки «Галичина» 33%",
+      "ru": "Вершки «Галичина» 33%"
+    },
+    "price": 164,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/84/480x480wwm/846424_480x480wwm_6148e741-e0b6-d181-fcc5-822c1fee3550.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вершки ультрапастеризовані ОКЗДХ 10%",
+      "en": "Вершки ультрапастеризовані ОКЗДХ 10%",
+      "ru": "Вершки ультрапастеризовані ОКЗДХ 10%"
+    },
+    "price": 95,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/933070_480x480wwm_7b7dd3ef-ee54-48fe-708d-1e2050f38524.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вершки Галичина ультрапастеризовані 33%",
+      "en": "Вершки Галичина ультрапастеризовані 33%",
+      "ru": "Вершки Галичина ультрапастеризовані 33%"
+    },
+    "price": 80,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/991353_480x480wwm_e57c0b70-fb91-2288-1296-f41997e9cf1c.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вершки «Селянські» ультрапастеризовані 10%",
+      "en": "Вершки «Селянські» ультрапастеризовані 10%",
+      "ru": "Вершки «Селянські» ультрапастеризовані 10%"
+    },
+    "price": 88,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/82/480x480wwm/827092_480x480wwm_9c40f1c8-90df-4a41-6652-77de19870c12.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ряжанка «Ферма» 3,2%",
+      "en": "Ряжанка «Ферма» 3,2%",
+      "ru": "Ряжанка «Ферма» 3,2%"
+    },
+    "price": 49,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/83/480x480wwm/837453_480x480wwm_c3bd1ba1-01c5-9f63-7381-c3277277cf64.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ряжанка «Селянська» 4%",
+      "en": "Ряжанка «Селянська» 4%",
+      "ru": "Ряжанка «Селянська» 4%"
+    },
+    "price": 79,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/84/480x480wwm/843894_480x480wwm_c04bedd2-74f2-28ea-35e7-a566c6df853a.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ряжанка Селянська 4%",
+      "en": "Ряжанка Селянська 4%",
+      "ru": "Ряжанка Селянська 4%"
+    },
+    "price": 74,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/966826_480x480wwm_2118919e-7172-ed26-e0d9-99e4c4f1fd28.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ряжанка ПростоНаше 3,2% пет",
+      "en": "Ряжанка ПростоНаше 3,2% пет",
+      "ru": "Ряжанка ПростоНаше 3,2% пет"
+    },
+    "price": 71,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/935133_480x480wwm_8791a380-9846-d898-a8a0-c6dfd7068fb4.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ряжанка Яготинська  3,2% стакан",
+      "en": "Ряжанка Яготинська  3,2% стакан",
+      "ru": "Ряжанка Яготинська  3,2% стакан"
+    },
+    "price": 35,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/953422_480x480wwm_97849ac6-3482-ccfa-5eea-718b8bf5b304.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ряжанка Селянська безлактозна 4% пет",
+      "en": "Ряжанка Селянська безлактозна 4% пет",
+      "ru": "Ряжанка Селянська безлактозна 4% пет"
+    },
+    "price": 63,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1004492_480x480wwm_19fb94a3-3fa1-237e-f7d2-3c6ce5e7272b.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вода мінеральна S.Bernardo негазована",
+      "en": "Вода мінеральна S.Bernardo негазована",
+      "ru": "Вода мінеральна S.Bernardo негазована"
+    },
+    "price": 80,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/983074_480x480wwm_02a20059-da29-f780-b945-81892c05f62e.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вода мінеральна S.Bernardo cередньогазована",
+      "en": "Вода мінеральна S.Bernardo cередньогазована",
+      "ru": "Вода мінеральна S.Bernardo cередньогазована"
+    },
+    "price": 46,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/983076_480x480wwm_ccf00234-81d2-da79-a3c9-b07a76496000.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Вода мінеральна «Свалява»",
+      "en": "Вода мінеральна «Свалява»",
+      "ru": "Вода мінеральна «Свалява»"
+    },
+    "price": 61,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/2/480x480wwm/21698_480x480wwm_58d1dffe-d7b8-e6d2-98bb-d4f8ce63446a.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мармелад жувальний Nimm2 Соки Солодкий сад",
+      "en": "Мармелад жувальний Nimm2 Соки Солодкий сад",
+      "ru": "Мармелад жувальний Nimm2 Соки Солодкий сад"
+    },
+    "price": 92,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/89/480x480wwm/895958_480x480wwm_5174cbcc-a9d0-a1d5-f9a5-0316b425bb59.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Тунець Amberfish у власному соку",
+      "en": "Тунець Amberfish у власному соку",
+      "ru": "Тунець Amberfish у власному соку"
+    },
+    "price": 399,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/974592_480x480wwm_0e8ed99a-cbd8-479d-0d01-47fa03382330.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Чай чорний «Чайні шедеври» «Англійський аристократичний» особливокрупний",
+      "en": "Чай чорний «Чайні шедеври» «Англійський аристократичний» особливокрупний",
+      "ru": "Чай чорний «Чайні шедеври» «Англійський аристократичний» особливокрупний"
+    },
+    "price": 1099,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/62/480x480wwm/624209_480x480wwm_d9e8e23a-7a55-9d6c-7f17-1775f247bb70.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Лукум «Стимул» «Чайна троянда»",
+      "en": "Лукум «Стимул» «Чайна троянда»",
+      "ru": "Лукум «Стимул» «Чайна троянда»"
+    },
+    "price": 229,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/75/480x480wwm/752986_480x480wwm_e3a9620f-3102-d15e-65af-9d649c39243f.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Набір ігровий Чайний сервіз",
+      "en": "Набір ігровий Чайний сервіз",
+      "ru": "Набір ігровий Чайний сервіз"
+    },
+    "price": 199,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/869100_480x480wwm_dfb89ca1-d6cc-62f1-8f8b-34643175ff82.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ложки чайні «Премія»® пластикові прозорі",
+      "en": "Ложки чайні «Премія»® пластикові прозорі",
+      "ru": "Ложки чайні «Премія»® пластикові прозорі"
+    },
+    "price": 18,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/859154_480x480wwm_21d2cc06-6157-8eb6-5cfd-b1ac779d22ce.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Ложки чайні «Повна Чаша»® пластикові",
+      "en": "Ложки чайні «Повна Чаша»® пластикові",
+      "ru": "Ложки чайні «Повна Чаша»® пластикові"
+    },
+    "price": 14,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/36/480x480wwm/367019_480x480wwm_04c37145-75a1-be89-cc1b-83f2bb8ea973.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4350,6 +4450,26 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/865860_480x480wwm_0da17998-739b-5d12-8a53-e19e7440ae93.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Пюре Чудо-Чадо яблуко-банан без цукру",
+      "en": "Пюре Чудо-Чадо яблуко-банан без цукру",
+      "ru": "Пюре Чудо-Чадо яблуко-банан без цукру"
+    },
+    "price": 53,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/927020_480x480wwm_716ced43-ecdd-76f5-7bd3-66cce4b4018a.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "new",
@@ -4410,46 +4530,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/982376_480x480wwm_6346bd6d-95df-a167-618f-172c22b9cbfe.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Чипси фруктові Crispy natural Яблуко зі смаком полуниці",
-      "en": "Чипси фруктові Crispy natural Яблуко зі смаком полуниці",
-      "ru": "Чипси фруктові Crispy natural Яблуко зі смаком полуниці"
-    },
-    "price": 59,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1007147_480x480wwm_20ec5275-9ab9-5a06-2ecb-f6f30a155af8.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Чипси фруктові Crispy natural Яблуко зі смаком манго",
-      "en": "Чипси фруктові Crispy natural Яблуко зі смаком манго",
-      "ru": "Чипси фруктові Crispy natural Яблуко зі смаком манго"
-    },
-    "price": 74,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1007145_480x480wwm_0a4996ab-d993-2872-d093-d72072662072.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -4542,26 +4622,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Напій Vega Milk вівсяний ультрапастеризований з бананом 1,5%",
-      "en": "Напій Vega Milk вівсяний ультрапастеризований з бананом 1,5%",
-      "ru": "Напій Vega Milk вівсяний ультрапастеризований з бананом 1,5%"
-    },
-    "price": 33,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/815575_480x480wwm_b9ebf21e-f904-196a-3872-23b1eb375621.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій Feels good мигдальний з манго, бананом та насінням чіа",
       "en": "Напій Feels good мигдальний з манго, бананом та насінням чіа",
       "ru": "Напій Feels good мигдальний з манго, бананом та насінням чіа"
@@ -4572,7 +4632,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/980116_480x480wwm_ae1955e4-cfcb-117c-39dc-8abe29cfa8fa.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4592,47 +4652,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1007882_480x480wwm_b1d52fb0-2ef2-30b3-3f14-5e4405c5dbd2.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Зефір Полуниця журавлина",
-      "en": "Зефір Полуниця журавлина",
-      "ru": "Зефір Полуниця журавлина"
-    },
-    "price": 219,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/972717_480x480wwm_fe51c75a-c908-2cb7-d77e-e697c6d6b0fe.png",
-    "weight": "1 кг",
-    "unit": "kg",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сирок глазурований Ферма полуниця 23%",
-      "en": "Сирок глазурований Ферма полуниця 23%",
-      "ru": "Сирок глазурований Ферма полуниця 23%"
-    },
-    "price": 11,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/903567_480x480wwm_3f24daa4-ce87-c865-77c4-ed72899d041c.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4652,7 +4672,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1001364_480x480wwm_d934058f-04ac-9b0a-bdb5-19217949c0e5.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4672,7 +4692,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1006863_480x480wwm_6b9d9b25-429f-3d4e-79ee-6690bcff8906.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -4690,26 +4710,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1023536_480x480wwm_50f3329d-28d0-84b1-0390-98c14dd49333.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Печиво Delicia зі смаком апельсину здобне",
-      "en": "Печиво Delicia зі смаком апельсину здобне",
-      "ru": "Печиво Delicia зі смаком апельсину здобне"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/938161_480x480wwm_a15d1ef3-5e90-1617-5215-0de07f94e3d4.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "new",
@@ -4842,26 +4842,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Цедра Kotanyi апельсину",
-      "en": "Цедра Kotanyi апельсину",
-      "ru": "Цедра Kotanyi апельсину"
-    },
-    "price": 59,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/55/480x480wwm/551571_480x480wwm_ce633872-22cb-79e0-b844-32974edf3f9e.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Капсули для посудомийної машини Fairy Platinum Plus All in one Лимон",
       "en": "Капсули для посудомийної машини Fairy Platinum Plus All in one Лимон",
       "ru": "Капсули для посудомийної машини Fairy Platinum Plus All in one Лимон"
@@ -4872,47 +4852,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1015679_480x480wwm_6341d78c-8409-806c-cf72-62aedd770d85.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Засіб для миття посуду Fairy Лимон",
-      "en": "Засіб для миття посуду Fairy Лимон",
-      "ru": "Засіб для миття посуду Fairy Лимон"
-    },
-    "price": 224,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1002425_480x480wwm_486890cf-fad3-c0bb-1932-d50398e1d1b7.png",
-    "weight": "1 кг",
-    "unit": "kg",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Рідина для миття посуду Frosch Зелений лимон",
-      "en": "Рідина для миття посуду Frosch Зелений лимон",
-      "ru": "Рідина для миття посуду Frosch Зелений лимон"
-    },
-    "price": 759,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/51/480x480wwm/515841_480x480wwm_59b17f3b-852c-7863-9f82-fc9591bae3e4.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4932,7 +4872,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/907400_480x480wwm_d3bab983-e3e0-b669-ac50-69fcd831b3f3.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -4952,7 +4892,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/910593_480x480wwm_c243b83b-d995-78d1-60da-ff57471c6683.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -4970,26 +4910,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/3/480x480wwm/32550_480x480wwm_ffb32668-fa16-d8ae-f85a-fc592e35f949.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Лимон Sainte Lucie шматочки сушений",
-      "en": "Лимон Sainte Lucie шматочки сушений",
-      "ru": "Лимон Sainte Lucie шматочки сушений"
-    },
-    "price": 244,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990557_480x480wwm_ebf043d9-ef24-9f6a-9c77-8af942e5f7a3.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "new",
@@ -5022,26 +4942,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Нектар Cappy mini груша і яблуко б/а",
-      "en": "Нектар Cappy mini груша і яблуко б/а",
-      "ru": "Нектар Cappy mini груша і яблуко б/а"
-    },
-    "price": 26,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979134_480x480wwm_2d0dea58-0f1c-69fb-9eb3-4efd6683991b.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Груша Абат",
       "en": "Груша Абат",
       "ru": "Груша Абат"
@@ -5050,26 +4950,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/36/480x480wwm/368864_480x480wwm_88720bc2-9f42-8e41-0357-860c6cb10ac2.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Груша Конференція",
-      "en": "Груша Конференція",
-      "ru": "Груша Конференція"
-    },
-    "price": 169,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/55/480x480wwm/557841_480x480wwm_3948ec17-e979-191b-72d4-00993b80c7cc.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "new",
@@ -5162,46 +5042,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Мандарин Клементин",
-      "en": "Мандарин Клементин",
-      "ru": "Мандарин Клементин"
-    },
-    "price": 149,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/30/480x480wwm/305597_480x480wwm_28bb2381-d998-9b37-92bb-1b2a2759f4b2.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій Сільпо Золотий мандарин безалкогольний сильногазований",
-      "en": "Напій Сільпо Золотий мандарин безалкогольний сильногазований",
-      "ru": "Напій Сільпо Золотий мандарин безалкогольний сильногазований"
-    },
-    "price": 34,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1024597_480x480wwm_7fda3f37-f726-8835-d1f3-77a6e74a5ef8.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Мандарин Helios в легкому сиропі",
       "en": "Мандарин Helios в легкому сиропі",
       "ru": "Мандарин Helios в легкому сиропі"
@@ -5222,66 +5062,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Мандарини Vera часточками у легкому сиропі",
-      "en": "Мандарини Vera часточками у легкому сиропі",
-      "ru": "Мандарини Vera часточками у легкому сиропі"
-    },
-    "price": 129,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/920635_480x480wwm_36a2cd1c-eb43-605b-7341-57a440d2a30b.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій соковий Джусік Апельсин мандарин",
-      "en": "Напій соковий Джусік Апельсин мандарин",
-      "ru": "Напій соковий Джусік Апельсин мандарин"
-    },
-    "price": 23,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990065_480x480wwm_996b36e0-8a2b-7d77-af1e-2aadbc955d40.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Спрей для чищення Mr.Proper Бадьорий мандарин",
-      "en": "Спрей для чищення Mr.Proper Бадьорий мандарин",
-      "ru": "Спрей для чищення Mr.Proper Бадьорий мандарин"
-    },
-    "price": 199,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/962131_480x480wwm_0baf216d-3273-bb23-ecb4-934baea9c1b3.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Бомбочка для ванної Flor de Mayo Мандарин",
       "en": "Бомбочка для ванної Flor de Mayo Мандарин",
       "ru": "Бомбочка для ванної Flor de Mayo Мандарин"
@@ -5292,7 +5072,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/970614_480x480wwm_e1918d9d-69dc-527c-ddc9-8175668a4be1.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -5310,26 +5090,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1001369_480x480wwm_25ef9712-25d4-3575-2ed4-b1dcab67a410.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Нектар Cappy mini персик б/а",
-      "en": "Нектар Cappy mini персик б/а",
-      "ru": "Нектар Cappy mini персик б/а"
-    },
-    "price": 26,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979132_480x480wwm_eeec6077-f9e7-6817-afc6-bea6df3545fc.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -5402,26 +5162,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Персики Oscar Foods половинки",
-      "en": "Персики Oscar Foods половинки",
-      "ru": "Персики Oscar Foods половинки"
-    },
-    "price": 154,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/23/480x480wwm/232377_480x480wwm_7ff46808-110f-785a-107d-59692928767e.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Нектарин",
       "en": "Нектарин",
       "ru": "Нектарин"
@@ -5432,7 +5172,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/4/480x480wwm/45823_480x480wwm_fc3b523c-bf42-2164-788b-d86975cc1a92.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -5452,7 +5192,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/55/480x480wwm/550619_480x480wwm_cef281db-83b4-3a41-58ef-4e8687e5e278.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -5472,7 +5212,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/931294_480x480wwm_2a8457b5-bd19-fe25-d1e5-910ddba16119.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -5492,7 +5232,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/937839_480x480wwm_9bc14952-0f68-62c9-c694-d6f992b175b5.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -5512,7 +5252,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1011040_480x480wwm_41aa1330-5318-08c8-2039-87e261b63854.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -5532,47 +5272,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/13/480x480wwm/137598_480x480wwm_1c3dec79-6a9f-52b1-b4a9-203a49381a09.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сливи мариновані",
-      "en": "Сливи мариновані",
-      "ru": "Сливи мариновані"
-    },
-    "price": 94,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/903857_480x480wwm_f8fef605-60e8-7742-7bc6-2c491e668a9c.png",
-    "weight": "1 кг",
-    "unit": "kg",
     "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Слива «Хуторок» маринована с/б",
-      "en": "Слива «Хуторок» маринована с/б",
-      "ru": "Слива «Хуторок» маринована с/б"
-    },
-    "price": 112,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/872107_480x480wwm_72dee756-9f03-d6fb-7862-3792f59464d7.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -5590,26 +5290,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/76/480x480wwm/760438_480x480wwm_e1a1b329-4fd5-93b3-6b1e-e304af8c6d0b.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Пиріжок зі сливою в упаковці",
-      "en": "Пиріжок зі сливою в упаковці",
-      "ru": "Пиріжок зі сливою в упаковці"
-    },
-    "price": 27,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/998101_480x480wwm_919fb57e-4568-064a-ed2e-6acec3a53ae9.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -5722,26 +5402,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Лохина Сільпо боул",
-      "en": "Лохина Сільпо боул",
-      "ru": "Лохина Сільпо боул"
-    },
-    "price": 189,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993501_480x480wwm_abc8c614-764e-86b2-e51f-130da90477d6.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Лохина",
       "en": "Лохина",
       "ru": "Лохина"
@@ -5752,47 +5412,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/24/480x480wwm/243933_480x480wwm_0cd0dcdb-7829-9532-07ab-90431fbf932e.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Лохина BlueBerry Club",
-      "en": "Лохина BlueBerry Club",
-      "ru": "Лохина BlueBerry Club"
-    },
-    "price": 207,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/960457_480x480wwm_89783dd7-f559-2152-e3a4-59d650dc365b.png",
-    "weight": "1 кг",
-    "unit": "kg",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Лохина органічна свіжа",
-      "en": "Лохина органічна свіжа",
-      "ru": "Лохина органічна свіжа"
-    },
-    "price": 199,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/7_480x480.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -5812,7 +5432,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/997573_480x480wwm_ed6986e7-2442-81d8-8b17-42083c807e43.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -5832,7 +5452,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/70/480x480wwm/708298_480x480wwm_910949d2-d1e7-fc97-ce1a-7ac73d197315.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -5850,26 +5470,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875443_480x480wwm_0a19f7b5-31fe-bd07-dd35-ab4ab7de300b.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Малина",
-      "en": "Малина",
-      "ru": "Малина"
-    },
-    "price": 129,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/7_480x480.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "new",
@@ -5962,26 +5562,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Чай фруктовий Belin «Малина»",
-      "en": "Чай фруктовий Belin «Малина»",
-      "ru": "Чай фруктовий Belin «Малина»"
-    },
-    "price": 24,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/75/480x480wwm/755817_480x480wwm_e9d65dbc-ffe6-303b-3be2-1d0a0ea89a12.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Ківі Голд Zespri",
       "en": "Ківі Голд Zespri",
       "ru": "Ківі Голд Zespri"
@@ -5992,7 +5572,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/920434_480x480wwm_90385167-f1a6-6134-8047-d6da6943e774.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6012,7 +5592,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/797648_480x480wwm_1078f70b-855a-c500-64d4-79ab8cc19657.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -6032,7 +5612,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/65/480x480wwm/652084_480x480wwm_388fc4de-9005-ccd7-9a9a-54a8a3e383b8.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6052,7 +5632,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1014416_480x480wwm_6b6a65d1-6147-03b5-3658-0fc187e8f1ac.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -6072,7 +5652,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/73/480x480wwm/739119_480x480wwm_480e866b-fc93-06f1-2519-5c2cf1b1dedd.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6092,47 +5672,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/75/480x480wwm/758596_480x480wwm_8cde3e9e-c82e-1a74-bb01-adeecf228c03.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Желе «Премія»® зі смаком ківі",
-      "en": "Желе «Премія»® зі смаком ківі",
-      "ru": "Желе «Премія»® зі смаком ківі"
-    },
-    "price": 19,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/83/480x480wwm/834465_480x480wwm_d6718bfc-43bf-3d1d-18da-0da1f14a2a9f.png",
-    "weight": "1 кг",
-    "unit": "kg",
     "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Морозиво «Хладик» Bravo ківі-ананас 10%",
-      "en": "Морозиво «Хладик» Bravo ківі-ананас 10%",
-      "ru": "Морозиво «Хладик» Bravo ківі-ананас 10%"
-    },
-    "price": 42,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/861577_480x480wwm_addab766-67a4-3968-4692-c248cc4bd848.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6152,7 +5692,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1001366_480x480wwm_afda7489-39b9-6801-e06a-26eea192c3db.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6172,7 +5712,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1006862_480x480wwm_56c65369-d61e-f493-86a2-9dca5a3ac0ca.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -6192,7 +5732,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/929448_480x480wwm_beb0617d-5d2b-d197-bdc4-1d85c375ed63.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6212,7 +5752,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/22/480x480wwm/220852_480x480wwm_99770895-2e77-4cd4-cd69-3c3aefe1c54b.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -6230,26 +5770,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/980099_480x480wwm_7ed98694-ca91-2666-b54c-cc2558ff8501.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ананас «Дольче Віта» шматочками",
-      "en": "Ананас «Дольче Віта» шматочками",
-      "ru": "Ананас «Дольче Віта» шматочками"
-    },
-    "price": 123,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/22/480x480wwm/220855_480x480wwm_1857ea24-b427-9982-b634-c7fc866d71a0.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -6302,26 +5822,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Нектар Cido грейпфрут",
-      "en": "Нектар Cido грейпфрут",
-      "ru": "Нектар Cido грейпфрут"
-    },
-    "price": 98,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/928881_480x480wwm_7cf98056-414e-334e-4d7d-d896a03b11a9.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Напій спиртний Beefeater Грейпфрут",
       "en": "Напій спиртний Beefeater Грейпфрут",
       "ru": "Напій спиртний Beefeater Грейпфрут"
@@ -6332,7 +5832,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995684_480x480wwm_7941782f-3075-5a2b-15af-e298cbec9b79.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -6352,7 +5852,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/38/480x480wwm/387152_480x480wwm_35c3e964-bf3b-c34d-3680-13dc5e747f5a.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6366,30 +5866,10 @@ products = [
       "en": "Напій соковмісний Моршинська Лимонада грейпфрут",
       "ru": "Напій соковмісний Моршинська Лимонада грейпфрут"
     },
-    "price": 29,
+    "price": 58,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/924943_480x480wwm_e294b93a-d118-6871-a15d-e125ce197d4e.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Нектар Granini «Рожевий грейпфрут» пет",
-      "en": "Нектар Granini «Рожевий грейпфрут» пет",
-      "ru": "Нектар Granini «Рожевий грейпфрут» пет"
-    },
-    "price": 159,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/82/480x480wwm/826251_480x480wwm_d33ba613-4f7b-0ebe-c52b-072fdd6b779e.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/924946_480x480wwm_dd3def5e-15bb-2098-90f0-0b1748635198.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "new",
@@ -6462,46 +5942,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Гумка жувальна Trident полуниця-лайм",
-      "en": "Гумка жувальна Trident полуниця-лайм",
-      "ru": "Гумка жувальна Trident полуниця-лайм"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/73/480x480wwm/736131_480x480wwm_745f842b-31d4-2df2-fc86-2d5db9a4c9b7.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сидр Somersby Полуниця-лайм безалкогольний",
-      "en": "Сидр Somersby Полуниця-лайм безалкогольний",
-      "ru": "Сидр Somersby Полуниця-лайм безалкогольний"
-    },
-    "price": 40,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1018475_480x480wwm_ff9351da-2a41-b62b-dd72-4354031573e5.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Сидр Somersby смак малина-лайм",
       "en": "Сидр Somersby смак малина-лайм",
       "ru": "Сидр Somersby смак малина-лайм"
@@ -6522,26 +5962,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Морозиво Rud MIXIE Черешня-лайм-малина",
-      "en": "Морозиво Rud MIXIE Черешня-лайм-малина",
-      "ru": "Морозиво Rud MIXIE Черешня-лайм-малина"
-    },
-    "price": 49,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1022401_480x480wwm_1552312d-77ca-2d4a-ab18-9d81d4f266f2.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Вода мінеральна Voss лайм-м'ята газована",
       "en": "Вода мінеральна Voss лайм-м'ята газована",
       "ru": "Вода мінеральна Voss лайм-м'ята газована"
@@ -6552,7 +5972,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/796003_480x480wwm_5e18cc79-442b-08b9-d8b4-2fe8fcc1d471.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6572,7 +5992,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/934596_480x480wwm_78eb1dcb-2d4d-66a5-d7a8-5506625fb446.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -6590,26 +6010,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/47/480x480wwm/477228_480x480wwm_432f0ec3-bd6a-2252-7a49-389a5392c8af.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кокос Drink&Eat",
-      "en": "Кокос Drink&Eat",
-      "ru": "Кокос Drink&Eat"
-    },
-    "price": 159,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/77/480x480wwm/770236_480x480wwm_5641fe89-eb54-66f3-9edc-00bf42510b22.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -6642,14 +6042,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Коктейль молочний ОКЗДХ з кокосом без лактози",
-      "en": "Коктейль молочний ОКЗДХ з кокосом без лактози",
-      "ru": "Коктейль молочний ОКЗДХ з кокосом без лактози"
+      "ua": "Кокос Drink&Eat",
+      "en": "Кокос Drink&Eat",
+      "ru": "Кокос Drink&Eat"
     },
-    "price": 111,
+    "price": 159,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/994833_480x480wwm_4bb8db09-531f-f840-d79f-c8bb547bba36.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/77/480x480wwm/770236_480x480wwm_5641fe89-eb54-66f3-9edc-00bf42510b22.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -6662,14 +6062,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Десерт Ласунка кокос-манго-чиа з наповнювачем кокос-вершки",
-      "en": "Десерт Ласунка кокос-манго-чиа з наповнювачем кокос-вершки",
-      "ru": "Десерт Ласунка кокос-манго-чиа з наповнювачем кокос-вершки"
+      "ua": "Коктейль молочний ОКЗДХ з кокосом без лактози",
+      "en": "Коктейль молочний ОКЗДХ з кокосом без лактози",
+      "ru": "Коктейль молочний ОКЗДХ з кокосом без лактози"
     },
-    "price": 91,
+    "price": 111,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1016075_480x480wwm_60d31911-7e0a-a9eb-7d97-2de0077bf07b.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/994833_480x480wwm_4bb8db09-531f-f840-d79f-c8bb547bba36.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "new",
@@ -6722,26 +6122,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Драже Skawa Корсар кокос",
-      "en": "Драже Skawa Корсар кокос",
-      "ru": "Драже Skawa Корсар кокос"
-    },
-    "price": 27,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/909007_480x480wwm_2b394809-76fe-310c-7d58-65005682563a.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Батончик Knoppers з кокосом",
       "en": "Батончик Knoppers з кокосом",
       "ru": "Батончик Knoppers з кокосом"
@@ -6752,7 +6132,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/949220_480x480wwm_9cf8d9d9-3677-4d66-9c97-877819911ec2.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -6772,7 +6152,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/998034_480x480wwm_279f6a7f-b763-b9e8-8c33-d125c0da7277.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -6790,26 +6170,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959706_480x480wwm_6e86ff37-f8ce-1d57-e5b2-528059374ee5.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Десерт Wao Mochi з сорбетом з манго в рисовому тісті",
-      "en": "Десерт Wao Mochi з сорбетом з манго в рисовому тісті",
-      "ru": "Десерт Wao Mochi з сорбетом з манго в рисовому тісті"
-    },
-    "price": 229,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/797751_480x480wwm_67bfd5a0-4ec9-7669-e54c-4f30204d750c.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -6842,26 +6202,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Манго King nafoods без цукру",
-      "en": "Манго King nafoods без цукру",
-      "ru": "Манго King nafoods без цукру"
-    },
-    "price": 474,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/914997_480x480wwm_d04bd1f1-950b-9122-2819-9395c310af5a.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Зефір Манго маракуя",
       "en": "Зефір Манго маракуя",
       "ru": "Зефір Манго маракуя"
@@ -6870,66 +6210,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "fruits",
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/964042_480x480wwm_f90526ae-5bba-9fdb-cd6f-3503c9a0cc2f.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Біфідойогурт Активіа Ягоди злаки питний 1,2%",
-      "en": "Біфідойогурт Активіа Ягоди злаки питний 1,2%",
-      "ru": "Біфідойогурт Активіа Ягоди злаки питний 1,2%"
-    },
-    "price": 36,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1001367_480x480wwm_b7b41482-d6ff-c136-0fc5-27c5323b6e53.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Горілка Finlandia Журавлина червона",
-      "en": "Горілка Finlandia Журавлина червона",
-      "ru": "Горілка Finlandia Журавлина червона"
-    },
-    "price": 519,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/25/480x480wwm/255607_480x480wwm_4b11b504-c205-5bda-daaf-5fec9cbf44b8.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ягода мікс",
-      "en": "Ягода мікс",
-      "ru": "Ягода мікс"
-    },
-    "price": 499,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/48/480x480wwm/488775_480x480wwm_a0190951-7ddd-cd21-35f8-3cb9218c5562.png",
     "weight": "1 кг",
     "unit": "kg",
     "section": "popular",
@@ -6982,26 +6262,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Тістечко «Йогуртове» з ягодами",
-      "en": "Тістечко «Йогуртове» з ягодами",
-      "ru": "Тістечко «Йогуртове» з ягодами"
-    },
-    "price": 649,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/69/480x480wwm/696905_480x480wwm_64f100f5-73dd-0455-d104-2c1a3d531089.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Вишня сушена зацукрована",
       "en": "Вишня сушена зацукрована",
       "ru": "Вишня сушена зацукрована"
@@ -7012,47 +6272,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875390_480x480wwm_05f7c9b2-45ed-ac90-d0ac-54fbd2162638.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Чизкейк з вишнями в упаковці",
-      "en": "Чизкейк з вишнями в упаковці",
-      "ru": "Чизкейк з вишнями в упаковці"
-    },
-    "price": 90,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/961877_480x480wwm_469c74d2-03d7-e353-57d3-51b41843b5ae.png",
-    "weight": "1 кг",
-    "unit": "kg",
     "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Біфідойогурт Активіа Вишня чіа питний 1,2%",
-      "en": "Біфідойогурт Активіа Вишня чіа питний 1,2%",
-      "ru": "Біфідойогурт Активіа Вишня чіа питний 1,2%"
-    },
-    "price": 36,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1001365_480x480wwm_75d5c959-dec4-eba1-ac1d-7400098871c8.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7072,47 +6292,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/903568_480x480wwm_49ec364b-a7d8-486a-79fd-3ece40d8b9ea.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Батончик Green Chef Oat cherry pie пластівці вишня",
-      "en": "Батончик Green Chef Oat cherry pie пластівці вишня",
-      "ru": "Батончик Green Chef Oat cherry pie пластівці вишня"
-    },
-    "price": 71,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/975155_480x480wwm_62f7c4bd-bd12-6712-be5a-c9390159453c.png",
-    "weight": "1 кг",
-    "unit": "kg",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вертута пісочна з вишнею",
-      "en": "Вертута пісочна з вишнею",
-      "ru": "Вертута пісочна з вишнею"
-    },
-    "price": 699,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/70/480x480wwm/705047_480x480wwm_da6b92e2-b4d5-003d-5eef-f6a312c546d7.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -7132,7 +6312,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/5/480x480wwm/51609_480x480wwm_b16dffd8-ed6a-381f-6d94-57764f8bcdaa.png",
     "weight": "1 кг",
     "unit": "kg",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -7152,7 +6332,327 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/997574_480x480wwm_bd1c24c5-66ef-78a8-62d2-ea972541b0da.png",
     "weight": "1 кг",
     "unit": "kg",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Нектар Cappy із банана, полуниці, яблук та чорноплідної горобини",
+      "en": "Нектар Cappy із банана, полуниці, яблук та чорноплідної горобини",
+      "ru": "Нектар Cappy із банана, полуниці, яблук та чорноплідної горобини"
+    },
+    "price": 109,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/981478_480x480wwm_c49c8614-de7e-4801-cac4-bec688459f54.png",
+    "weight": "1 кг",
+    "unit": "kg",
     "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Банан «Премія»® сушений цілий",
+      "en": "Банан «Премія»® сушений цілий",
+      "ru": "Банан «Премія»® сушений цілий"
+    },
+    "price": 38,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/961330_480x480wwm_ae742a1e-a0fa-9c99-bd0e-78cba0b08c06.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Черешня сортова",
+      "en": "Черешня сортова",
+      "ru": "Черешня сортова"
+    },
+    "price": 273,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/18/480x480wwm/186526_480x480wwm_d9ab8c6d-b1c0-ad79-daab-99b4ccdc87a2.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Черешня жовта",
+      "en": "Черешня жовта",
+      "ru": "Черешня жовта"
+    },
+    "price": 229,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/12/480x480wwm/127020_480x480wwm_4bbd4217-eb5d-18f2-1815-efc9609b944f.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Черешня Коник Закарпаття",
+      "en": "Черешня Коник Закарпаття",
+      "ru": "Черешня Коник Закарпаття"
+    },
+    "price": 879,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/794213_480x480wwm_0bcfef35-6a4d-7aa0-4edd-d2131a4617b8.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Йогурт «Чудо» вишня-черешня 2,5%",
+      "en": "Йогурт «Чудо» вишня-черешня 2,5%",
+      "ru": "Йогурт «Чудо» вишня-черешня 2,5%"
+    },
+    "price": 41,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/913098_480x480wwm_aeac2610-a6b1-3dc0-06aa-8ea1953c4ed3.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Йогурт Галичина Карпатський вишня-черешня 2,2%",
+      "en": "Йогурт Галичина Карпатський вишня-черешня 2,2%",
+      "ru": "Йогурт Галичина Карпатський вишня-черешня 2,2%"
+    },
+    "price": 52,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/88/480x480wwm/880828_480x480wwm_e0e5ef3c-119f-01f2-e976-54f04bde4f69.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Морозиво Рудь Millenium білий шоколад-черешня",
+      "en": "Морозиво Рудь Millenium білий шоколад-черешня",
+      "ru": "Морозиво Рудь Millenium білий шоколад-черешня"
+    },
+    "price": 73,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "fruits",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/925092_480x480wwm_e814c85a-e3b7-3e80-3ee1-18691a67e955.png",
+    "weight": "1 кг",
+    "unit": "kg",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Цукерки PREMIA Ягоди желейні",
+      "en": "Цукерки PREMIA Ягоди желейні",
+      "ru": "Цукерки PREMIA Ягоди желейні"
+    },
+    "price": 34,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/994422_480x480wwm_4da1d481-bd07-7d32-0e49-8d4ad5d81a13.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Льодяники Halls лісові ягоди",
+      "en": "Льодяники Halls лісові ягоди",
+      "ru": "Льодяники Halls лісові ягоди"
+    },
+    "price": 19,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/70/480x480wwm/706786_480x480wwm_b30d0701-3843-031b-eac6-9bcb81513a96.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Драже Skittles Лісові ягоди",
+      "en": "Драже Skittles Лісові ягоди",
+      "ru": "Драже Skittles Лісові ягоди"
+    },
+    "price": 30,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/78/480x480wwm/788406_480x480wwm_30f591a1-7c97-eda9-8db4-9561ba6ab7be.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Освіжувач повітря Sabrise Морозні ягоди",
+      "en": "Освіжувач повітря Sabrise Морозні ягоди",
+      "ru": "Освіжувач повітря Sabrise Морозні ягоди"
+    },
+    "price": 95,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/966788_480x480wwm_b81987ef-c6fe-abe9-1b9e-8fa30c0df363.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Чай зелений Terre d'Oc слива з Лотарингії органічний",
+      "en": "Чай зелений Terre d'Oc слива з Лотарингії органічний",
+      "ru": "Чай зелений Terre d'Oc слива з Лотарингії органічний"
+    },
+    "price": 699,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "drinks",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/972084_480x480wwm_0fa5078c-ce53-8da2-bef2-111d7470bc71.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Хумус YoFi! з авокадо",
+      "en": "Хумус YoFi! з авокадо",
+      "ru": "Хумус YoFi! з авокадо"
+    },
+    "price": 97,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/985529_480x480wwm_ab9eb6a3-5ece-3964-70e5-a65379b68370.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Олія Mueloliva з авокадо",
+      "en": "Олія Mueloliva з авокадо",
+      "ru": "Олія Mueloliva з авокадо"
+    },
+    "price": 324,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1009100_480x480wwm_c1006a07-be05-a653-4e3e-8698c13a5df0.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Будильник Оффтоп Авокадо GSB10405",
+      "en": "Будильник Оффтоп Авокадо GSB10405",
+      "ru": "Будильник Оффтоп Авокадо GSB10405"
+    },
+    "price": 49,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/900676_480x480wwm_2f1db8c2-76b8-9d23-12b1-fe69b56fff98.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7172,47 +6672,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875389_480x480wwm_7d80bcfe-5262-0f38-8f38-e1bf351018c8.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Морозиво Tonitto з шоколадом протеїнове",
-      "en": "Морозиво Tonitto з шоколадом протеїнове",
-      "ru": "Морозиво Tonitto з шоколадом протеїнове"
-    },
-    "price": 299,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/953577_480x480wwm_acff87d0-3044-d8cc-a9bd-fefa0dc51e7b.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Шоколад молочний Milka зі смаком чизкейка, полуничною начинкою та печивом",
-      "en": "Шоколад молочний Milka зі смаком чизкейка, полуничною начинкою та печивом",
-      "ru": "Шоколад молочний Milka зі смаком чизкейка, полуничною начинкою та печивом"
-    },
-    "price": 244,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/80/480x480wwm/801767_480x480wwm_a3f5ab75-9b3a-6102-9173-aa535e744496.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7232,7 +6692,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993866_480x480wwm_9aa41974-b2d3-0c00-b9e0-3640b99b6d86.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7252,7 +6712,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/999274_480x480wwm_526e6cb8-d1dc-369a-da1d-5faddf15c87f.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -7270,26 +6730,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/728272_480x480wwm_c7990cc2-5057-0523-c2ff-b0219c40cc4c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Цукерки «Пташине молоко» в молочному шоколаді",
-      "en": "Цукерки «Пташине молоко» в молочному шоколаді",
-      "ru": "Цукерки «Пташине молоко» в молочному шоколаді"
-    },
-    "price": 299,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/63/480x480wwm/638531_480x480wwm_c68ca549-c6ff-44d6-eb80-4af7d1fca064.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -7402,26 +6842,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Цукерки Raffaello",
-      "en": "Цукерки Raffaello",
-      "ru": "Цукерки Raffaello"
-    },
-    "price": 179,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/0/480x480wwm/2007_480x480wwm_d3b6e5af-a233-fb0b-f5cc-9c9c3121171b.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Цукерки Nesquik",
       "en": "Цукерки Nesquik",
       "ru": "Цукерки Nesquik"
@@ -7430,26 +6850,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/918366_480x480wwm_3784ea84-1a38-7e8d-e06b-ea8f3a8dee80.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Цукерки Shokoladno Velasko",
-      "en": "Цукерки Shokoladno Velasko",
-      "ru": "Цукерки Shokoladno Velasko"
-    },
-    "price": 47,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/929917_480x480wwm_f9f3fb9d-efd5-0dca-02f7-2495f62ffc18.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -7482,26 +6882,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Цукерки Shokoladno Provance",
-      "en": "Цукерки Shokoladno Provance",
-      "ru": "Цукерки Shokoladno Provance"
-    },
-    "price": 41,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/929916_480x480wwm_04715626-9390-52c5-6aaf-eb384996f69a.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Цукерки Lonka лакриця",
       "en": "Цукерки Lonka лакриця",
       "ru": "Цукерки Lonka лакриця"
@@ -7512,7 +6892,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/999689_480x480wwm_24da9359-3aa4-6899-a4cb-e11f6602d5ac.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7522,17 +6902,17 @@ products = [
   },
   {
     "names": {
-      "ua": "Арахіс «Премія»® у хрусткій оболонці зі смаком томату чилі",
-      "en": "Арахіс «Премія»® у хрусткій оболонці зі смаком томату чилі",
-      "ru": "Арахіс «Премія»® у хрусткій оболонці зі смаком томату чилі"
+      "ua": "Цукерки Millennium Riviera",
+      "en": "Цукерки Millennium Riviera",
+      "ru": "Цукерки Millennium Riviera"
     },
-    "price": 24,
+    "price": 219,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/914327_480x480wwm_898bb0f2-1cd3-6cd7-648f-99c5a934c1d0.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/48/480x480wwm/486499_480x480wwm_9569d3b9-85cb-2d15-6c00-c0d37db935a1.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -7552,47 +6932,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/912216_480x480wwm_0fc58c37-eaf0-0a18-573e-f09dddd38605.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Арахіс Nut's Amore смажений в шкаралупі",
-      "en": "Арахіс Nut's Amore смажений в шкаралупі",
-      "ru": "Арахіс Nut's Amore смажений в шкаралупі"
-    },
-    "price": 259,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/970581_480x480wwm_2ad14f31-fb90-deb5-2bc4-ef8bc7b210e0.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Арахіс «Повна Чаша»® смажений",
-      "en": "Арахіс «Повна Чаша»® смажений",
-      "ru": "Арахіс «Повна Чаша»® смажений"
-    },
-    "price": 39,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995462_480x480wwm_5091f006-1dba-9465-c574-a2c056f80084.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -7610,6 +6950,26 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/88/480x480wwm/883326_480x480wwm_ce72a681-1782-ddcb-f714-b60b71989db4.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Арахіс «Повна Чаша»® смажений",
+      "en": "Арахіс «Повна Чаша»® смажений",
+      "ru": "Арахіс «Повна Чаша»® смажений"
+    },
+    "price": 39,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995462_480x480wwm_5091f006-1dba-9465-c574-a2c056f80084.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -7642,54 +7002,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Арахіс сушений",
-      "en": "Арахіс сушений",
-      "ru": "Арахіс сушений"
+      "ua": "Арахіс смажений солоний",
+      "en": "Арахіс смажений солоний",
+      "ru": "Арахіс смажений солоний"
     },
-    "price": 44,
+    "price": 49,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875387_480x480wwm_24ded6ed-d396-62a2-ea5f-472cccfac22e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Арахіс смажений",
-      "en": "Арахіс смажений",
-      "ru": "Арахіс смажений"
-    },
-    "price": 64,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875381_480x480wwm_ef86d2c1-5e33-f0b9-4bf9-5c9330e6cc77.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Арахіс Стимул Рижик",
-      "en": "Арахіс Стимул Рижик",
-      "ru": "Арахіс Стимул Рижик"
-    },
-    "price": 149,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/950363_480x480wwm_5f61e6f0-1833-30c2-c866-c292c8d97462.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875383_480x480wwm_c0848fcc-7172-dc24-d792-3cc7c71ec4f1.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -7722,26 +7042,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Десерт сирковий «Марійка» з печивом 5%",
-      "en": "Десерт сирковий «Марійка» з печивом 5%",
-      "ru": "Десерт сирковий «Марійка» з печивом 5%"
-    },
-    "price": 34,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/913047_480x480wwm_49487faf-451a-746e-5e5d-f01708d45fbb.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Печиво пісочне «Премія»® Тарталетка кругла середня",
       "en": "Печиво пісочне «Премія»® Тарталетка кругла середня",
       "ru": "Печиво пісочне «Премія»® Тарталетка кругла середня"
@@ -7752,7 +7052,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/43/480x480wwm/437602_480x480wwm_c4e6fa9c-3a99-7849-032e-0866ec411b49.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7772,7 +7072,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/78/480x480wwm/788072_480x480wwm_5d7e535a-095d-558b-0bec-f30091789425.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -7792,7 +7092,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979458_480x480wwm_e57cbf20-9087-4162-f3d4-7834e22550c7.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7812,7 +7112,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/62/480x480wwm/624562_480x480wwm_e3f05b73-c6bb-dcd7-3ed4-2882852e5fd9.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -7832,7 +7132,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/989992_480x480wwm_57c3828b-1a4a-4b99-8315-9d3be96a679c.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7852,6 +7152,26 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/989994_480x480wwm_f28e678b-dfb4-84fa-65bc-f52a291a2675.png",
     "weight": "1 шт",
     "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сухарики ХрумTeam Багет Пікантна паприка",
+      "en": "Сухарики ХрумTeam Багет Пікантна паприка",
+      "ru": "Сухарики ХрумTeam Багет Пікантна паприка"
+    },
+    "price": 19,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990353_480x480wwm_21e93324-6b30-9263-a43e-9c5942c24b42.png",
+    "weight": "1 шт",
+    "unit": "pcs",
     "section": "popular",
     "colors": [
       [
@@ -7866,33 +7186,13 @@ products = [
       "en": "Сухарики ХрумTeam Багет Сметана і зелень",
       "ru": "Сухарики ХрумTeam Багет Сметана і зелень"
     },
-    "price": 19,
+    "price": 14,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990354_480x480wwm_00f4668e-3a76-f705-9cb5-8a193c2bb27a.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990350_480x480wwm_54a8dae2-8b27-2e56-9de8-726faaa893d4.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сухарики Jokers житньо-пшеничні смак часнику",
-      "en": "Сухарики Jokers житньо-пшеничні смак часнику",
-      "ru": "Сухарики Jokers житньо-пшеничні смак часнику"
-    },
-    "price": 36,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1021808_480x480wwm_9db8a914-0db8-bbc0-3b1e-223dab357e1a.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -7910,6 +7210,26 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1021810_480x480wwm_41391873-f4ed-8fcf-9884-7bdf5eea1730.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сухарики Jokers житньо-пшеничні смак часнику",
+      "en": "Сухарики Jokers житньо-пшеничні смак часнику",
+      "ru": "Сухарики Jokers житньо-пшеничні смак часнику"
+    },
+    "price": 36,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1021808_480x480wwm_9db8a914-0db8-bbc0-3b1e-223dab357e1a.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -8002,26 +7322,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Вафлі Duplo Chocnut",
-      "en": "Вафлі Duplo Chocnut",
-      "ru": "Вафлі Duplo Chocnut"
-    },
-    "price": 60,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/89/480x480wwm/895505_480x480wwm_bd22331a-2fc7-6ccb-2399-f7f60b576af8.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Батончик Fizi Strawberry almond протеїновий",
       "en": "Батончик Fizi Strawberry almond протеїновий",
       "ru": "Батончик Fizi Strawberry almond протеїновий"
@@ -8030,26 +7330,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/944188_480x480wwm_765b8322-5798-6974-f45a-c31a3d71866c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Батончик Picnic",
-      "en": "Батончик Picnic",
-      "ru": "Батончик Picnic"
-    },
-    "price": 34,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/924891_480x480wwm_ea3d2f40-b691-3036-4d0d-f6fe715f3f1f.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -8122,26 +7402,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Батончик Том кокосово-кокосовий",
-      "en": "Батончик Том кокосово-кокосовий",
-      "ru": "Батончик Том кокосово-кокосовий"
-    },
-    "price": 59,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959141_480x480wwm_76a2a600-b811-da3b-8c84-03e9bbbd4389.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Мармелад фруктовий",
       "en": "Мармелад фруктовий",
       "ru": "Мармелад фруктовий"
@@ -8152,7 +7412,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/76/480x480wwm/763408_480x480wwm_972073d3-28c0-6d4f-965b-c1fda07f9cef.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -8172,7 +7432,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/60/480x480wwm/603866_480x480wwm_017ff1e8-4d34-3551-95e5-327ce9071c6f.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -8190,66 +7450,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995252_480x480wwm_abc3b763-f7ba-0bb2-c821-0650f4958ae6.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Мармелад «Стимул» «Равлик»",
-      "en": "Мармелад «Стимул» «Равлик»",
-      "ru": "Мармелад «Стимул» «Равлик»"
-    },
-    "price": 139,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/857205_480x480wwm_a1a00500-d6c2-837a-b0bb-fd6610e21956.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Мармелад Стимул Alvarel",
-      "en": "Мармелад Стимул Alvarel",
-      "ru": "Мармелад Стимул Alvarel"
-    },
-    "price": 129,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/928858_480x480wwm_0646511a-d644-fe00-41d8-43a7e6adeed7.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Мармелад «Стимул» «Славутич»",
-      "en": "Мармелад «Стимул» «Славутич»",
-      "ru": "Мармелад «Стимул» «Славутич»"
-    },
-    "price": 19,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/75/480x480wwm/752982_480x480wwm_2df2e938-71a0-7287-9e03-40054d945402.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -8290,6 +7490,46 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/961823_480x480wwm_06090d78-0de4-12ba-22a6-9770aba6e16c.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мармелад Стимул Alvarel",
+      "en": "Мармелад Стимул Alvarel",
+      "ru": "Мармелад Стимул Alvarel"
+    },
+    "price": 129,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/928858_480x480wwm_0646511a-d644-fe00-41d8-43a7e6adeed7.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Мармелад «Стимул» «Славутич»",
+      "en": "Мармелад «Стимул» «Славутич»",
+      "ru": "Мармелад «Стимул» «Славутич»"
+    },
+    "price": 19,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/75/480x480wwm/752982_480x480wwm_2df2e938-71a0-7287-9e03-40054d945402.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -8362,26 +7602,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Зефір чорносмородиновий",
-      "en": "Зефір чорносмородиновий",
-      "ru": "Зефір чорносмородиновий"
-    },
-    "price": 199,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/964041_480x480wwm_af956861-3bff-fb67-2be8-c387ff6711b1.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Зефір смородиновий",
       "en": "Зефір смородиновий",
       "ru": "Зефір смородиновий"
@@ -8392,7 +7612,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/66/480x480wwm/666072_480x480wwm_af81b039-dbb8-67af-79a8-f60b971cf800.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -8410,26 +7630,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/964043_480x480wwm_e05a7df2-f655-631f-e310-7572de9822d4.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Зефір манго-маракуя",
-      "en": "Зефір манго-маракуя",
-      "ru": "Зефір манго-маракуя"
-    },
-    "price": 419,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/817907_480x480wwm_355964a4-8c26-e682-4914-538fd484de86.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -8482,14 +7682,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Крекер Yarych цибулевий",
-      "en": "Крекер Yarych цибулевий",
-      "ru": "Крекер Yarych цибулевий"
+      "ua": "Крекер Tuc солоний",
+      "en": "Крекер Tuc солоний",
+      "ru": "Крекер Tuc солоний"
     },
-    "price": 35,
+    "price": 59,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/44/480x480wwm/441066_480x480wwm_f5eba8a9-f6b5-d9d1-eb39-e8aeb97e0402.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/43/480x480wwm/434740_480x480wwm_87f1b1ab-82b2-65b2-b96b-fc8aed9473c0.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -8502,14 +7702,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Крекер Tuc солоний",
-      "en": "Крекер Tuc солоний",
-      "ru": "Крекер Tuc солоний"
+      "ua": "Крекер Yarych цибулевий",
+      "en": "Крекер Yarych цибулевий",
+      "ru": "Крекер Yarych цибулевий"
     },
-    "price": 59,
+    "price": 35,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/43/480x480wwm/434740_480x480wwm_87f1b1ab-82b2-65b2-b96b-fc8aed9473c0.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/44/480x480wwm/441066_480x480wwm_f5eba8a9-f6b5-d9d1-eb39-e8aeb97e0402.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -8562,37 +7762,17 @@ products = [
   },
   {
     "names": {
-      "ua": "Крекер Gullon Міні Фіш",
-      "en": "Крекер Gullon Міні Фіш",
-      "ru": "Крекер Gullon Міні Фіш"
+      "ua": "Крекер Yarych з какао",
+      "en": "Крекер Yarych з какао",
+      "ru": "Крекер Yarych з какао"
     },
-    "price": 139,
+    "price": 35,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/902465_480x480wwm_64768000-3ab7-a662-8948-6d873075dd4f.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/969600_480x480wwm_bf153e96-0992-8d34-c39f-e76b9cf48775.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Крекер Yarych Хрумики макові",
-      "en": "Крекер Yarych Хрумики макові",
-      "ru": "Крекер Yarych Хрумики макові"
-    },
-    "price": 31,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/961395_480x480wwm_8e9e4e57-e460-3425-119d-ab1820816ef5.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -8610,6 +7790,26 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/80/480x480wwm/805929_480x480wwm_84f53003-3339-d2bb-24e4-f6c0ce717cd1.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Попкорн Сільпо у карамелі",
+      "en": "Попкорн Сільпо у карамелі",
+      "ru": "Попкорн Сільпо у карамелі"
+    },
+    "price": 61,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1000654_480x480wwm_26215e04-0e59-c46a-b3bc-432c61e9295a.jpg",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -8662,86 +7862,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Попкорн Candy Pop Snickers",
-      "en": "Попкорн Candy Pop Snickers",
-      "ru": "Попкорн Candy Pop Snickers"
-    },
-    "price": 289,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959412_480x480wwm_8487947b-79f6-d98e-45cd-a3fe61922940.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Попкорн «Премія»® солодкий",
-      "en": "Попкорн «Премія»® солодкий",
-      "ru": "Попкорн «Премія»® солодкий"
-    },
-    "price": 39,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/997734_480x480wwm_5a91034b-592c-c0b7-5496-fbb9ece0474d.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Попкорн Сільпо у карамелі",
-      "en": "Попкорн Сільпо у карамелі",
-      "ru": "Попкорн Сільпо у карамелі"
-    },
-    "price": 61,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1000654_480x480wwm_26215e04-0e59-c46a-b3bc-432c61e9295a.jpg",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Попкорн Candy Pop TWIX",
-      "en": "Попкорн Candy Pop TWIX",
-      "ru": "Попкорн Candy Pop TWIX"
-    },
-    "price": 289,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959411_480x480wwm_08157125-deb9-c31d-1413-e9490452f40a.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Горіх волоський бланшований",
       "en": "Горіх волоський бланшований",
       "ru": "Горіх волоський бланшований"
@@ -8762,26 +7882,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Горіх Макадамія в шкарлупі",
-      "en": "Горіх Макадамія в шкарлупі",
-      "ru": "Горіх Макадамія в шкарлупі"
-    },
-    "price": 89,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/972881_480x480wwm_4785009a-6500-fa5e-638a-50b823b8a7f3.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Горіх кедровий сушений",
       "en": "Горіх кедровий сушений",
       "ru": "Горіх кедровий сушений"
@@ -8792,7 +7892,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/971733_480x480wwm_2f85dd2d-d145-2235-bc3a-887fe1726a09.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -8812,7 +7912,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/878108_480x480wwm_242a4d9c-40ff-0ab5-7a2d-18ec403368da.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -8832,47 +7932,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/925146_480x480wwm_df40841f-0e4c-a1ed-17fc-94ff0e13e205.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кеш'ю «Премія»® смажені ядра горіхів",
-      "en": "Кеш'ю «Премія»® смажені ядра горіхів",
-      "ru": "Кеш'ю «Премія»® смажені ядра горіхів"
-    },
-    "price": 74,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959707_480x480wwm_64bd4920-2d7f-71c2-1d83-ed624c0f9103.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кеш'ю «Премія»® ядра горіхів сушені",
-      "en": "Кеш'ю «Премія»® ядра горіхів сушені",
-      "ru": "Кеш'ю «Премія»® ядра горіхів сушені"
-    },
-    "price": 64,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959561_480x480wwm_027d9a4f-8f02-54e3-d6b6-4405f819745b.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -8892,7 +7952,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/959560_480x480wwm_30b3f87f-4a7e-4183-6efe-9e98a4203699.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -8910,66 +7970,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/12/480x480wwm/125780_480x480wwm_f71a57c9-20cc-fc49-ab62-abacac4d25d0.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Халва з арахісом",
-      "en": "Халва з арахісом",
-      "ru": "Халва з арахісом"
-    },
-    "price": 45,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/12/480x480wwm/125781_480x480wwm_6bdaf539-5a3e-5cee-e3a1-177cc796a4fb.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Халва Achva фісташкова",
-      "en": "Халва Achva фісташкова",
-      "ru": "Халва Achva фісташкова"
-    },
-    "price": 249,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/53/480x480wwm/533315_480x480wwm_09a2eaf6-b4fc-a187-7116-03d1ed45d1b4.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Халва Золотий Вік тахінна",
-      "en": "Халва Золотий Вік тахінна",
-      "ru": "Халва Золотий Вік тахінна"
-    },
-    "price": 144,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/42/480x480wwm/422986_480x480wwm_78e39332-8c49-bbd2-9db7-4970c72ecb2b.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -9002,6 +8002,26 @@ products = [
   },
   {
     "names": {
+      "ua": "Халва Золотий Вік тахінна",
+      "en": "Халва Золотий Вік тахінна",
+      "ru": "Халва Золотий Вік тахінна"
+    },
+    "price": 144,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/42/480x480wwm/422986_480x480wwm_78e39332-8c49-bbd2-9db7-4970c72ecb2b.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
       "ua": "Халва Жайвір соняшникова на фруктозі",
       "en": "Халва Жайвір соняшникова на фруктозі",
       "ru": "Халва Жайвір соняшникова на фруктозі"
@@ -9012,26 +8032,6 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/903609_480x480wwm_6a7031a1-346e-9d00-603d-302d3b7437b0.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Халва «Жайвір» соняшникова горіховий мікс",
-      "en": "Халва «Жайвір» соняшникова горіховий мікс",
-      "ru": "Халва «Жайвір» соняшникова горіховий мікс"
-    },
-    "price": 74,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/64/480x480wwm/646817_480x480wwm_5617f80c-5f58-dabd-dae3-254fdc293fc3.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "new",
     "colors": [
       [
@@ -9042,37 +8042,17 @@ products = [
   },
   {
     "names": {
-      "ua": "Халва з арахісом та родзинками",
-      "en": "Халва з арахісом та родзинками",
-      "ru": "Халва з арахісом та родзинками"
+      "ua": "Халва Zolotoi Vek соняшникова ванільна",
+      "en": "Халва Zolotoi Vek соняшникова ванільна",
+      "ru": "Халва Zolotoi Vek соняшникова ванільна"
     },
-    "price": 52,
+    "price": 169,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/12/480x480wwm/125779_480x480wwm_68270dd7-df13-338a-6449-0d15df46dbde.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/868189_480x480wwm_7411ba91-530c-002c-644c-155dfdac13cc.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Халва Zolotoi Vek «Фантазія» соняшникова",
-      "en": "Халва Zolotoi Vek «Фантазія» соняшникова",
-      "ru": "Халва Zolotoi Vek «Фантазія» соняшникова"
-    },
-    "price": 14,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/868191_480x480wwm_898b2e5e-13c0-37d0-cf67-f2da06047592.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9092,7 +8072,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/17/480x480wwm/175593_480x480wwm_c4925622-5c6d-e085-1783-f9b0d55a98c5.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9110,26 +8090,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/76/480x480wwm/763409_480x480wwm_dbf67046-5b31-ce1b-3269-cc122c709541.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ірис Zhytomyr Lasoshchi Мілк Вау",
-      "en": "Ірис Zhytomyr Lasoshchi Мілк Вау",
-      "ru": "Ірис Zhytomyr Lasoshchi Мілк Вау"
-    },
-    "price": 27,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/923075_480x480wwm_95d33e1b-80fa-9131-a1da-15023a21eb23.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -9182,26 +8142,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Цукерки Werther's Original Eclairs ірис з шоколадною начинкою",
-      "en": "Цукерки Werther's Original Eclairs ірис з шоколадною начинкою",
-      "ru": "Цукерки Werther's Original Eclairs ірис з шоколадною начинкою"
-    },
-    "price": 134,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/943937_480x480wwm_9c629971-4059-3527-fdf2-96e1f18c6ac5.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Попкорн Popcorn Girl карамелізований з мигдалем зі смаком ірису",
       "en": "Попкорн Popcorn Girl карамелізований з мигдалем зі смаком ірису",
       "ru": "Попкорн Popcorn Girl карамелізований з мигдалем зі смаком ірису"
@@ -9212,7 +8152,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/912874_480x480wwm_629f24f6-641a-502e-2f54-ac419d30efdc.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9232,207 +8172,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/3/480x480wwm/37262_480x480wwm_f4c393b0-9ec7-a0eb-53c3-6e962cb9656a.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Мигдаль в карамелі",
-      "en": "Мигдаль в карамелі",
-      "ru": "Мигдаль в карамелі"
-    },
-    "price": 189,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/790702_480x480wwm_46c871bd-1848-1b92-4311-60f15f246287.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Десерт Premialle Life PRO Protein карамель  10% стакан",
-      "en": "Десерт Premialle Life PRO Protein карамель  10% стакан",
-      "ru": "Десерт Premialle Life PRO Protein карамель  10% стакан"
-    },
-    "price": 66,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1023880_480x480wwm_66e34e80-c571-7bf4-604a-77cd61c648f7.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Морозиво Три ведмеді ваніль-карамель у глазурі на паличці",
-      "en": "Морозиво Три ведмеді ваніль-карамель у глазурі на паличці",
-      "ru": "Морозиво Три ведмеді ваніль-карамель у глазурі на паличці"
-    },
-    "price": 46,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/7_480x480.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Напій Coca-Cola Plus Coffee карамель",
-      "en": "Напій Coca-Cola Plus Coffee карамель",
-      "ru": "Напій Coca-Cola Plus Coffee карамель"
-    },
-    "price": 32,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/82/480x480wwm/820207_480x480wwm_9158f265-717b-fc8e-24ad-4e8bb3b10dbd.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Карамель TOM солона класична",
-      "en": "Карамель TOM солона класична",
-      "ru": "Карамель TOM солона класична"
-    },
-    "price": 239,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/921356_480x480wwm_00a3df20-983e-c816-fcfb-1ce3d0aa0100.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Карамель Roshen «Льодяник» мікс",
-      "en": "Карамель Roshen «Льодяник» мікс",
-      "ru": "Карамель Roshen «Льодяник» мікс"
-    },
-    "price": 35,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/66/480x480wwm/664288_480x480wwm_ca0dc6ce-d136-8ce5-b75b-4b03deee386d.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Карамель Roshen Beri льодяникова",
-      "en": "Карамель Roshen Beri льодяникова",
-      "ru": "Карамель Roshen Beri льодяникова"
-    },
-    "price": 38,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/974633_480x480wwm_edae38ec-3a55-fab7-c1c3-7b1c875211f3.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Карамель TOM солона з полуницею",
-      "en": "Карамель TOM солона з полуницею",
-      "ru": "Карамель TOM солона з полуницею"
-    },
-    "price": 239,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/943021_480x480wwm_28990039-0f56-d27b-34ee-eccdd061b133.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кукурудза обсмажена зі смаком меду і гірчиці",
-      "en": "Кукурудза обсмажена зі смаком меду і гірчиці",
-      "ru": "Кукурудза обсмажена зі смаком меду і гірчиці"
-    },
-    "price": 54,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875405_480x480wwm_2472e6ee-d030-c7cf-8138-546d1f057a22.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Мед Beehive гречаний",
-      "en": "Мед Beehive гречаний",
-      "ru": "Мед Beehive гречаний"
-    },
-    "price": 299,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/74/480x480wwm/748431_480x480wwm_64b3a68a-4a5e-393a-30c0-825568a4d2b8.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9452,7 +8192,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/74/480x480wwm/748433_480x480wwm_1df1eb14-ce0e-5a71-98ab-f4951c2a22e8.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9472,7 +8212,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/74/480x480wwm/748430_480x480wwm_5c0800ab-c9a2-4d67-02f8-848385e80482.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -9492,7 +8232,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/969876_480x480wwm_c44c30d8-62b7-5ff6-4698-702923206db8.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9512,6 +8252,26 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/72/480x480wwm/729803_480x480wwm_067f0a98-4761-3b82-86ae-7a4ac3ddbfbf.png",
     "weight": "1 шт",
     "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Джем Zuegg апельсиновий",
+      "en": "Джем Zuegg апельсиновий",
+      "ru": "Джем Zuegg апельсиновий"
+    },
+    "price": 199,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/971433_480x480wwm_9965ad63-8944-bfa1-c3fa-c87bb38edd43.png",
+    "weight": "1 шт",
+    "unit": "pcs",
     "section": "new",
     "colors": [
       [
@@ -9522,14 +8282,14 @@ products = [
   },
   {
     "names": {
-      "ua": "Мед Лавка Традицій «Конюшина» лісовий",
-      "en": "Мед Лавка Традицій «Конюшина» лісовий",
-      "ru": "Мед Лавка Традицій «Конюшина» лісовий"
+      "ua": "Джем «Верес» абрикосовий",
+      "en": "Джем «Верес» абрикосовий",
+      "ru": "Джем «Верес» абрикосовий"
     },
-    "price": 189,
+    "price": 99,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/88/480x480wwm/887551_480x480wwm_935efced-008e-5730-9645-60383a82b3db.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/811250_480x480wwm_6b43d8fc-829a-202f-35dc-7b1b02d8afbb.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -9582,126 +8342,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Джем Zuegg абрикосовий",
-      "en": "Джем Zuegg абрикосовий",
-      "ru": "Джем Zuegg абрикосовий"
-    },
-    "price": 189,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/971431_480x480wwm_b4198174-6ad0-8fe4-8e3d-9773891108a4.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Джем Zuegg апельсиновий",
-      "en": "Джем Zuegg апельсиновий",
-      "ru": "Джем Zuegg апельсиновий"
-    },
-    "price": 199,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/971433_480x480wwm_9965ad63-8944-bfa1-c3fa-c87bb38edd43.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Джем «Верес» абрикосовий",
-      "en": "Джем «Верес» абрикосовий",
-      "ru": "Джем «Верес» абрикосовий"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/811250_480x480wwm_6b43d8fc-829a-202f-35dc-7b1b02d8afbb.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Джем Nora з морошки",
-      "en": "Джем Nora з морошки",
-      "ru": "Джем Nora з морошки"
-    },
-    "price": 499,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995257_480x480wwm_1079acb5-718d-f2a8-efe2-92a39eb6e5ba.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Джем Nora з журавлини",
-      "en": "Джем Nora з журавлини",
-      "ru": "Джем Nora з журавлини"
-    },
-    "price": 229,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995254_480x480wwm_7fabf236-d8ee-8864-459b-a4fae8a7925a.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Джем Nora з чорниці",
-      "en": "Джем Nora з чорниці",
-      "ru": "Джем Nora з чорниці"
-    },
-    "price": 429,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995255_480x480wwm_418a70a3-8182-4c78-36d7-2b5e32197296.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Джем Nora з малини",
       "en": "Джем Nora з малини",
       "ru": "Джем Nora з малини"
@@ -9710,6 +8350,46 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995253_480x480wwm_b3972401-6cd0-bcee-e680-ccc4f1528dc0.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Джем Nora з полуниці",
+      "en": "Джем Nora з полуниці",
+      "ru": "Джем Nora з полуниці"
+    },
+    "price": 159,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995256_480x480wwm_c6bf2339-4efe-d5fa-e84a-16ad40a10bfe.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Джем Helios з полуниці",
+      "en": "Джем Helios з полуниці",
+      "ru": "Джем Helios з полуниці"
+    },
+    "price": 189,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/57/480x480wwm/579238_480x480wwm_39d49df8-bc26-f71d-f409-3de7d5da69ba.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -9882,6 +8562,26 @@ products = [
   },
   {
     "names": {
+      "ua": "Мигдаль в карамелі",
+      "en": "Мигдаль в карамелі",
+      "ru": "Мигдаль в карамелі"
+    },
+    "price": 189,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/79/480x480wwm/790702_480x480wwm_46c871bd-1848-1b92-4311-60f15f246287.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
       "ua": "Мигдаль «Премія»®",
       "en": "Мигдаль «Премія»®",
       "ru": "Мигдаль «Премія»®"
@@ -9892,7 +8592,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/32/480x480wwm/323958_480x480wwm_efdb1646-4687-c360-3b4b-9ca503642e6c.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9912,7 +8612,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/920348_480x480wwm_979afe33-1fd1-5b74-e0f8-5d8736cdc54e.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -9932,7 +8632,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/914998_480x480wwm_d1e27983-c0fd-c29f-7ef2-bbf12c5d9f9d.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -9952,87 +8652,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/975472_480x480wwm_d57d9e16-4aa4-b848-7a6f-b4e9d425ee9a.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Мигдаль Serano смажений",
-      "en": "Мигдаль Serano смажений",
-      "ru": "Мигдаль Serano смажений"
-    },
-    "price": 279,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/912881_480x480wwm_ee6ce342-d729-9d7e-d6cc-f0741328a8b8.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Мигдаль Winway смажений",
-      "en": "Мигдаль Winway смажений",
-      "ru": "Мигдаль Winway смажений"
-    },
-    "price": 129,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/76/480x480wwm/769975_480x480wwm_6d707d29-d77e-c3c1-36ad-3233d2095794.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Йогурт Lactel Білий 3% стакан",
-      "en": "Йогурт Lactel Білий 3% стакан",
-      "ru": "Йогурт Lactel Білий 3% стакан"
-    },
-    "price": 14,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1024741_480x480wwm_f5ed81f4-e329-eefa-0c0d-728f487a521f.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Йогурт Premialle Smart Food Манго, маракуйя, кіноа 1,3%",
-      "en": "Йогурт Premialle Smart Food Манго, маракуйя, кіноа 1,3%",
-      "ru": "Йогурт Premialle Smart Food Манго, маракуйя, кіноа 1,3%"
-    },
-    "price": 54,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "fruits",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/994160_480x480wwm_bffaabc3-12d1-ced5-b44d-ced19e7db489.png",
-    "weight": "1 кг",
-    "unit": "kg",
-    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -10052,47 +8672,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1009618_480x480wwm_d3f67dfd-e0c8-7cdb-5138-deced9771678.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сир Spomlek Емменталь 45%",
-      "en": "Сир Spomlek Емменталь 45%",
-      "ru": "Сир Spomlek Емменталь 45%"
-    },
-    "price": 299,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/default/480x480/5_480x480.png",
-    "weight": "1 шт",
-    "unit": "pcs",
     "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сир «Брі Діжон» 60% з коров'ячого молока",
-      "en": "Сир «Брі Діжон» 60% з коров'ячого молока",
-      "ru": "Сир «Брі Діжон» 60% з коров'ячого молока"
-    },
-    "price": 69,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/54/480x480wwm/543663_480x480wwm_091be9dc-546a-1cf7-894b-15d713696e99.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -10110,66 +8690,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/979708_480x480wwm_4cad63e0-ea30-fe6c-982b-0345ba05254c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сир Jager «Моцарела» 45% з коров'ячого молока",
-      "en": "Сир Jager «Моцарела» 45% з коров'ячого молока",
-      "ru": "Сир Jager «Моцарела» 45% з коров'ячого молока"
-    },
-    "price": 44,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/48/480x480wwm/486793_480x480wwm_5b984a99-ce0a-093a-15a6-99bb4b23a000.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сир кисломолочний President Сирна Традиція 5%, ванночка",
-      "en": "Сир кисломолочний President Сирна Традиція 5%, ванночка",
-      "ru": "Сир кисломолочний President Сирна Традиція 5%, ванночка"
-    },
-    "price": 66,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/933521_480x480wwm_1d21380c-8c8a-01cc-ee8f-190e6bf145d9.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сир Deli Q Daily Маасдам 45% DE з коров’ячого молока слайси",
-      "en": "Сир Deli Q Daily Маасдам 45% DE з коров’ячого молока слайси",
-      "ru": "Сир Deli Q Daily Маасдам 45% DE з коров’ячого молока слайси"
-    },
-    "price": 169,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1024257_480x480wwm_5c0a5c2a-ac03-f121-986b-dc3965ddbb8e.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -10202,746 +8722,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Горішок зі згущеним молоком",
-      "en": "Горішок зі згущеним молоком",
-      "ru": "Горішок зі згущеним молоком"
-    },
-    "price": 14,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/983571_480x480wwm_d4f270b4-7a6f-f620-6e05-6e4f972523a3.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Трубочка вафельна зі згущеним молоком",
-      "en": "Трубочка вафельна зі згущеним молоком",
-      "ru": "Трубочка вафельна зі згущеним молоком"
-    },
-    "price": 149,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1009125_480x480wwm_09765a90-ce8c-f724-3ab0-b37ee099508c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Молоко «Галичина» ультрапастеризоване 3,2%, т/ф",
-      "en": "Молоко «Галичина» ультрапастеризоване 3,2%, т/ф",
-      "ru": "Молоко «Галичина» ультрапастеризоване 3,2%, т/ф"
-    },
-    "price": 65,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/77/480x480wwm/771997_480x480wwm_dab8c2b4-e1cc-0be4-ec58-04cca5ef446e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір Селянський питний 2,5%",
-      "en": "Кефір Селянський питний 2,5%",
-      "ru": "Кефір Селянський питний 2,5%"
-    },
-    "price": 44,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/966825_480x480wwm_43a81f37-d88b-658e-bf35-1f5d213326e5.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір «Ферма» 1%",
-      "en": "Кефір «Ферма» 1%",
-      "ru": "Кефір «Ферма» 1%"
-    },
-    "price": 67,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/83/480x480wwm/837451_480x480wwm_43b655c6-f97a-fe62-5275-7d4b6a9c7851.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір «Ферма» 2,5%",
-      "en": "Кефір «Ферма» 2,5%",
-      "ru": "Кефір «Ферма» 2,5%"
-    },
-    "price": 71,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/83/480x480wwm/837452_480x480wwm_4e46198d-7f1d-fd5c-1150-411f95267a85.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір ПростоНаше 2,5% пет",
-      "en": "Кефір ПростоНаше 2,5% пет",
-      "ru": "Кефір ПростоНаше 2,5% пет"
-    },
-    "price": 49,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/935135_480x480wwm_95349560-0cbe-2af2-8028-090f82f903d8.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір «Селянський» 2,5%",
-      "en": "Кефір «Селянський» 2,5%",
-      "ru": "Кефір «Селянський» 2,5%"
-    },
-    "price": 40,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/71/480x480wwm/719170_480x480wwm_44de3c85-e3d6-19f0-2237-9e4b93208bf2.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір ҐоКарпати 2,5%",
-      "en": "Кефір ҐоКарпати 2,5%",
-      "ru": "Кефір ҐоКарпати 2,5%"
-    },
-    "price": 38,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/20/480x480wwm/204071_480x480wwm_8fba2288-6cd5-4496-a5a1-a1ed33f96c3e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір MiMiMilk 2,5%",
-      "en": "Кефір MiMiMilk 2,5%",
-      "ru": "Кефір MiMiMilk 2,5%"
-    },
-    "price": 59,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/909237_480x480wwm_20b62001-b0a1-541b-fde0-a95f8a2f8b1c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Кефір «Яготинський» 2,5%",
-      "en": "Кефір «Яготинський» 2,5%",
-      "ru": "Кефір «Яготинський» 2,5%"
-    },
-    "price": 43,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/38/480x480wwm/381862_480x480wwm_2c6b4784-4a35-2c79-192a-0d3386f0ea47.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сметана ПростоНаше 20% стакан",
-      "en": "Сметана ПростоНаше 20% стакан",
-      "ru": "Сметана ПростоНаше 20% стакан"
-    },
-    "price": 70,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/954289_480x480wwm_67fc0838-f08e-6684-5afd-335281e94844.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сметана «Ферма» 15%, стакан",
-      "en": "Сметана «Ферма» 15%, стакан",
-      "ru": "Сметана «Ферма» 15%, стакан"
-    },
-    "price": 49,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/58/480x480wwm/584782_480x480wwm_862fc401-77c4-fd97-8afa-08914bed49d5.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сметана «Ферма» 20%, стакан",
-      "en": "Сметана «Ферма» 20%, стакан",
-      "ru": "Сметана «Ферма» 20%, стакан"
-    },
-    "price": 57,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/58/480x480wwm/584783_480x480wwm_ed886bb6-90e7-7cb1-7e27-6894b6ec7478.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сметана Ферма 20%, стакан",
-      "en": "Сметана Ферма 20%, стакан",
-      "ru": "Сметана Ферма 20%, стакан"
-    },
-    "price": 49,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/981490_480x480wwm_a2bfe853-08db-a5e1-406f-0d8e83541122.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сметана Простонаше 15%, стакан",
-      "en": "Сметана Простонаше 15%, стакан",
-      "ru": "Сметана Простонаше 15%, стакан"
-    },
-    "price": 36,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/954286_480x480wwm_35dfa255-8671-94c8-046a-9524b79b24ca.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сметана Ферма Густа по-фермерськи 10%, стакан",
-      "en": "Сметана Ферма Густа по-фермерськи 10%, стакан",
-      "ru": "Сметана Ферма Густа по-фермерськи 10%, стакан"
-    },
-    "price": 59,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/945720_480x480wwm_df4d359f-3ca9-abe3-1bc1-63554376d149.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Чипси картопляні «Премія»® зі смаком сметани та зелені",
-      "en": "Чипси картопляні «Премія»® зі смаком сметани та зелені",
-      "ru": "Чипси картопляні «Премія»® зі смаком сметани та зелені"
-    },
-    "price": 87,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/89/480x480wwm/893052_480x480wwm_f43f1bf0-e478-67b1-b1d9-77128512c82f.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сметана «Молокія» 15%",
-      "en": "Сметана «Молокія» 15%",
-      "ru": "Сметана «Молокія» 15%"
-    },
-    "price": 56,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/83/480x480wwm/839325_480x480wwm_10f36f7d-bdd4-7427-b995-42f089a7d361.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Масло солодковершкове Ферма Екстра 82%",
-      "en": "Масло солодковершкове Ферма Екстра 82%",
-      "ru": "Масло солодковершкове Ферма Екстра 82%"
-    },
-    "price": 159,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1023940_480x480wwm_85388a6f-ac7f-28cb-5a42-00868c8746fe.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Масло солодковершкове «Ферма» «Бутербродне» 63%",
-      "en": "Масло солодковершкове «Ферма» «Бутербродне» 63%",
-      "ru": "Масло солодковершкове «Ферма» «Бутербродне» 63%"
-    },
-    "price": 97,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/84/480x480wwm/840585_480x480wwm_5283d70d-5a60-639d-4226-36fbac4deb75.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Масло солодковершкове Ферма Селянське 72,6%",
-      "en": "Масло солодковершкове Ферма Селянське 72,6%",
-      "ru": "Масло солодковершкове Ферма Селянське 72,6%"
-    },
-    "price": 129,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1023939_480x480wwm_7adfd35b-c036-8ac7-8492-338416e26bff.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Масло солодковершкове «Молокія» 73%",
-      "en": "Масло солодковершкове «Молокія» 73%",
-      "ru": "Масло солодковершкове «Молокія» 73%"
-    },
-    "price": 119,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908058_480x480wwm_aa28039e-cfb1-bcd0-280b-4afeaec01273.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Масло Яготинське топлене 99%",
-      "en": "Масло Яготинське топлене 99%",
-      "ru": "Масло Яготинське топлене 99%"
-    },
-    "price": 224,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/995767_480x480wwm_cf764eae-987c-9d42-6894-c1d19558183b.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Масло солодковершкове «Галичина» 82,5%",
-      "en": "Масло солодковершкове «Галичина» 82,5%",
-      "ru": "Масло солодковершкове «Галичина» 82,5%"
-    },
-    "price": 127,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/89/480x480wwm/892644_480x480wwm_b67efd43-6e44-cad6-2e8c-e78b49278edb.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Масло кисловершкове President 82%",
-      "en": "Масло кисловершкове President 82%",
-      "ru": "Масло кисловершкове President 82%"
-    },
-    "price": 199,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/8/480x480wwm/82983_480x480wwm_2f8d091b-67d3-3a55-755d-9a9a2c8567aa.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вершки «Ферма» ультрапастеризовані відбірні 20%",
-      "en": "Вершки «Ферма» ультрапастеризовані відбірні 20%",
-      "ru": "Вершки «Ферма» ультрапастеризовані відбірні 20%"
-    },
-    "price": 149,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/60/480x480wwm/605304_480x480wwm_52b9fb55-7131-10c8-9483-6296e49eecca.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вершки «Ферма» ультрапастеризовані відбірні 10% т/б",
-      "en": "Вершки «Ферма» ультрапастеризовані відбірні 10% т/б",
-      "ru": "Вершки «Ферма» ультрапастеризовані відбірні 10% т/б"
-    },
-    "price": 99,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/60/480x480wwm/605295_480x480wwm_ec0cd0ba-a664-db9b-9ae2-177fbae6f639.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Базилік Вершки та Корінці зелений",
-      "en": "Базилік Вершки та Корінці зелений",
-      "ru": "Базилік Вершки та Корінці зелений"
-    },
-    "price": 89,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/996876_480x480wwm_54a00b52-12ee-7648-539f-13bfc6cc78ac.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Морозиво Три ведмеді ванільно-вершкове в глазурі на паличці",
-      "en": "Морозиво Три ведмеді ванільно-вершкове в глазурі на паличці",
-      "ru": "Морозиво Три ведмеді ванільно-вершкове в глазурі на паличці"
-    },
-    "price": 46,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1022882_480x480wwm_72a4958b-2107-ebbc-a3aa-1af723665603.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вершки «Галичина» 33%",
-      "en": "Вершки «Галичина» 33%",
-      "ru": "Вершки «Галичина» 33%"
-    },
-    "price": 164,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/84/480x480wwm/846424_480x480wwm_6148e741-e0b6-d181-fcc5-822c1fee3550.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вершки ультрапастеризовані ОКЗДХ 10%",
-      "en": "Вершки ультрапастеризовані ОКЗДХ 10%",
-      "ru": "Вершки ультрапастеризовані ОКЗДХ 10%"
-    },
-    "price": 95,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/93/480x480wwm/933070_480x480wwm_7b7dd3ef-ee54-48fe-708d-1e2050f38524.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вершки Бурьонка стерилізовані 10%",
-      "en": "Вершки Бурьонка стерилізовані 10%",
-      "ru": "Вершки Бурьонка стерилізовані 10%"
-    },
-    "price": 69,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/32/480x480wwm/329025_480x480wwm_f296d4ec-c334-92ed-f35e-a7c00189c2db.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вершки «Селянські» ультрапастеризовані 10%",
-      "en": "Вершки «Селянські» ультрапастеризовані 10%",
-      "ru": "Вершки «Селянські» ультрапастеризовані 10%"
-    },
-    "price": 88,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/82/480x480wwm/827092_480x480wwm_9c40f1c8-90df-4a41-6652-77de19870c12.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Вершки Галичина ультрапастеризовані 33%",
-      "en": "Вершки Галичина ультрапастеризовані 33%",
-      "ru": "Вершки Галичина ультрапастеризовані 33%"
-    },
-    "price": 80,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "drinks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/991353_480x480wwm_e57c0b70-fb91-2288-1296-f41997e9cf1c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ковбаса «Глобино» «Мортаделька» білкова в/ґ",
-      "en": "Ковбаса «Глобино» «Мортаделька» білкова в/ґ",
-      "ru": "Ковбаса «Глобино» «Мортаделька» білкова в/ґ"
-    },
-    "price": 89,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/82/480x480wwm/827531_480x480wwm_9f5dd43a-b2fd-fe27-b55c-4bed5e073076.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ковбаса Алан Брауншвейгська с/к в/ґ",
-      "en": "Ковбаса Алан Брауншвейгська с/к в/ґ",
-      "ru": "Ковбаса Алан Брауншвейгська с/к в/ґ"
-    },
-    "price": 249,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/955037_480x480wwm_03c805de-1320-7510-a112-946a19482b96.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Ковбаса «Алан» «Президентська» с/в в/ґ нарізка",
       "en": "Ковбаса «Алан» «Президентська» с/в в/ґ нарізка",
       "ru": "Ковбаса «Алан» «Президентська» с/в в/ґ нарізка"
@@ -10950,106 +8730,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/80/480x480wwm/809394_480x480wwm_4dc8e545-0a04-72be-4fee-60ae914739c7.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ковбаса «Лавка традицій» «Домашня» смажена",
-      "en": "Ковбаса «Лавка традицій» «Домашня» смажена",
-      "ru": "Ковбаса «Лавка традицій» «Домашня» смажена"
-    },
-    "price": 799,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/49/480x480wwm/495767_480x480wwm_49f169d2-50a0-0086-83ec-cd6d37ab0814.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ковбаса «Лавка традицій» «Домашня» копчена",
-      "en": "Ковбаса «Лавка традицій» «Домашня» копчена",
-      "ru": "Ковбаса «Лавка традицій» «Домашня» копчена"
-    },
-    "price": 69,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/50/480x480wwm/502365_480x480wwm_58fd929e-a032-419f-4037-7909d282a9f5.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ковбаса Лавка традицій ЛеФіле Домашня смажена куряча в/ґ",
-      "en": "Ковбаса Лавка традицій ЛеФіле Домашня смажена куряча в/ґ",
-      "ru": "Ковбаса Лавка традицій ЛеФіле Домашня смажена куряча в/ґ"
-    },
-    "price": 799,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/904771_480x480wwm_54a34e8d-acfe-c96d-627d-fcd8dd625311.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ковбаса домашня",
-      "en": "Ковбаса домашня",
-      "ru": "Ковбаса домашня"
-    },
-    "price": 279,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/78/480x480wwm/783341_480x480wwm_56dd0263-c4bb-1cf4-f597-c903ec4aa63e.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Ковбаса Tarczynski Краківська",
-      "en": "Ковбаса Tarczynski Краківська",
-      "ru": "Ковбаса Tarczynski Краківська"
-    },
-    "price": 299,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1003597_480x480wwm_1bf8ac10-7c30-e082-4323-2990951c9644.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -11150,46 +8830,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/96/480x480wwm/960043_480x480wwm_72b16982-394b-38fe-ac4e-a45bfc7ede3c.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сосиски Фарро Фаррошка в/ґ",
-      "en": "Сосиски Фарро Фаррошка в/ґ",
-      "ru": "Сосиски Фарро Фаррошка в/ґ"
-    },
-    "price": 499,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1016827_480x480wwm_4a6e2ad2-53ab-e46c-644c-6e76192738ad.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Сосиски Ювілейний Легкі в/ґ",
-      "en": "Сосиски Ювілейний Легкі в/ґ",
-      "ru": "Сосиски Ювілейний Легкі в/ґ"
-    },
-    "price": 139,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/990597_480x480wwm_74613e06-481e-0825-d513-f1873816003c.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
@@ -11382,26 +9022,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Шинка «Ятрань» «По-київськи» 1 ґ",
-      "en": "Шинка «Ятрань» «По-київськи» 1 ґ",
-      "ru": "Шинка «Ятрань» «По-київськи» 1 ґ"
-    },
-    "price": 619,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/61/480x480wwm/616023_480x480wwm_fa601c2e-06d7-f324-c867-bbeee6579131.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Паштет Zigmas класичний із тунця",
       "en": "Паштет Zigmas класичний із тунця",
       "ru": "Паштет Zigmas класичний із тунця"
@@ -11412,7 +9032,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/996813_480x480wwm_7a5d727e-4200-3009-0e61-97f460b0618d.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "popular",
+    "section": "new",
     "colors": [
       [
         "Стандарт",
@@ -11430,26 +9050,6 @@ products = [
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
     "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/996814_480x480wwm_b4b21f8e-4fdb-bd7a-3417-b9a79cff830d.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "new",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
-      "ua": "Паштет Ron Класичний",
-      "en": "Паштет Ron Класичний",
-      "ru": "Паштет Ron Класичний"
-    },
-    "price": 139,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/946615_480x480wwm_ec237272-0250-64b9-cace-2858b702dc30.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "popular",
@@ -11482,26 +9082,6 @@ products = [
   },
   {
     "names": {
-      "ua": "Паштет «Онисс» печінковий",
-      "en": "Паштет «Онисс» печінковий",
-      "ru": "Паштет «Онисс» печінковий"
-    },
-    "price": 41,
-    "desc": "Свіжий та якісний продукт з Сільпо.",
-    "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/38/480x480wwm/387835_480x480wwm_6999bb10-dba9-687b-3c8a-f89e26a14354.png",
-    "weight": "1 шт",
-    "unit": "pcs",
-    "section": "popular",
-    "colors": [
-      [
-        "Стандарт",
-        "#4F46E5"
-      ]
-    ]
-  },
-  {
-    "names": {
       "ua": "Паштет Podravka печінковий",
       "en": "Паштет Podravka печінковий",
       "ru": "Паштет Podravka печінковий"
@@ -11512,7 +9092,7 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/975872_480x480wwm_5f114880-c562-3cf6-373a-ab4b386fc382.png",
     "weight": "1 шт",
     "unit": "pcs",
-    "section": "new",
+    "section": "popular",
     "colors": [
       [
         "Стандарт",
@@ -11532,6 +9112,26 @@ products = [
     "image": "https://content.silpo.ua/sku/ecommerce/78/480x480wwm/786268_480x480wwm_ffb0e6fe-ade4-23c3-33d7-da4d7db04f79.png",
     "weight": "1 шт",
     "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сметана ПростоНаше 20% стакан",
+      "en": "Сметана ПростоНаше 20% стакан",
+      "ru": "Сметана ПростоНаше 20% стакан"
+    },
+    "price": 70,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/954289_480x480wwm_67fc0838-f08e-6684-5afd-335281e94844.png",
+    "weight": "1 шт",
+    "unit": "pcs",
     "section": "popular",
     "colors": [
       [
@@ -11542,14 +9142,1174 @@ products = [
   },
   {
     "names": {
-      "ua": "Паштет Ron З Журавлиною",
-      "en": "Паштет Ron З Журавлиною",
-      "ru": "Паштет Ron З Журавлиною"
+      "ua": "Сметана Простонаше 15%, стакан",
+      "en": "Сметана Простонаше 15%, стакан",
+      "ru": "Сметана Простонаше 15%, стакан"
+    },
+    "price": 36,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/954286_480x480wwm_35dfa255-8671-94c8-046a-9524b79b24ca.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сметана «Ферма» 15%, стакан",
+      "en": "Сметана «Ферма» 15%, стакан",
+      "ru": "Сметана «Ферма» 15%, стакан"
+    },
+    "price": 49,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/58/480x480wwm/584782_480x480wwm_862fc401-77c4-fd97-8afa-08914bed49d5.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сметана «Ферма» 20%, стакан",
+      "en": "Сметана «Ферма» 20%, стакан",
+      "ru": "Сметана «Ферма» 20%, стакан"
+    },
+    "price": 57,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/58/480x480wwm/584783_480x480wwm_ed886bb6-90e7-7cb1-7e27-6894b6ec7478.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сметана Ферма 20%, стакан",
+      "en": "Сметана Ферма 20%, стакан",
+      "ru": "Сметана Ферма 20%, стакан"
+    },
+    "price": 49,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/98/480x480wwm/981490_480x480wwm_a2bfe853-08db-a5e1-406f-0d8e83541122.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сметана Ферма Густа по-фермерськи 10%, стакан",
+      "en": "Сметана Ферма Густа по-фермерськи 10%, стакан",
+      "ru": "Сметана Ферма Густа по-фермерськи 10%, стакан"
+    },
+    "price": 59,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/945720_480x480wwm_df4d359f-3ca9-abe3-1bc1-63554376d149.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Чипси картопляні «Премія»® зі смаком сметани та зелені",
+      "en": "Чипси картопляні «Премія»® зі смаком сметани та зелені",
+      "ru": "Чипси картопляні «Премія»® зі смаком сметани та зелені"
+    },
+    "price": 87,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/89/480x480wwm/893052_480x480wwm_f43f1bf0-e478-67b1-b1d9-77128512c82f.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Масло солодковершкове Ферма Екстра 82%",
+      "en": "Масло солодковершкове Ферма Екстра 82%",
+      "ru": "Масло солодковершкове Ферма Екстра 82%"
+    },
+    "price": 159,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1023940_480x480wwm_85388a6f-ac7f-28cb-5a42-00868c8746fe.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Масло солодковершкове Ферма Селянське 72,6%",
+      "en": "Масло солодковершкове Ферма Селянське 72,6%",
+      "ru": "Масло солодковершкове Ферма Селянське 72,6%"
+    },
+    "price": 129,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1023939_480x480wwm_7adfd35b-c036-8ac7-8492-338416e26bff.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Масло солодковершкове «Молокія» 73%",
+      "en": "Масло солодковершкове «Молокія» 73%",
+      "ru": "Масло солодковершкове «Молокія» 73%"
     },
     "price": 119,
     "desc": "Свіжий та якісний продукт з Сільпо.",
     "category": "snacks",
-    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/946617_480x480wwm_f9ea9fdd-af47-2c78-56a5-67a4cbe78ac6.png",
+    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/908058_480x480wwm_aa28039e-cfb1-bcd0-280b-4afeaec01273.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Масло солодковершкове «Галичина» 82,5%",
+      "en": "Масло солодковершкове «Галичина» 82,5%",
+      "ru": "Масло солодковершкове «Галичина» 82,5%"
+    },
+    "price": 127,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/89/480x480wwm/892644_480x480wwm_b67efd43-6e44-cad6-2e8c-e78b49278edb.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Масло кисловершкове President 82%",
+      "en": "Масло кисловершкове President 82%",
+      "ru": "Масло кисловершкове President 82%"
+    },
+    "price": 199,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/8/480x480wwm/82983_480x480wwm_2f8d091b-67d3-3a55-755d-9a9a2c8567aa.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Салямі «Глобино» «Фуршетна» н/к",
+      "en": "Салямі «Глобино» «Фуршетна» н/к",
+      "ru": "Салямі «Глобино» «Фуршетна» н/к"
+    },
+    "price": 539,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/18/480x480wwm/183812_480x480wwm_753ef4d8-d7ec-2114-87c7-d4bb2c4ad327.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Салямі «Алан» «Європейська» в/к 1 ґ малий батон",
+      "en": "Салямі «Алан» «Європейська» в/к 1 ґ малий батон",
+      "ru": "Салямі «Алан» «Європейська» в/к 1 ґ малий батон"
+    },
+    "price": 679,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/46/480x480wwm/462482_480x480wwm_8105ed2f-2aa9-fcb0-2f57-dcf0741adc2d.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Балик «Дарницький» «Глобинський МК» с/к",
+      "en": "Балик «Дарницький» «Глобинський МК» с/к",
+      "ru": "Балик «Дарницький» «Глобинський МК» с/к"
+    },
+    "price": 79,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/26/480x480wwm/261839_480x480wwm_47e39a7a-21ee-b62b-e96b-1da097a27946.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Балик Алан Касло с/к в/ґ",
+      "en": "Балик Алан Касло с/к в/ґ",
+      "ru": "Балик Алан Касло с/к в/ґ"
+    },
+    "price": 129,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/33/480x480wwm/339183_480x480wwm_06c436f9-a107-56d4-2a67-336d27a69199.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Балик Алан Марочний в/к в/ґ",
+      "en": "Балик Алан Марочний в/к в/ґ",
+      "ru": "Балик Алан Марочний в/к в/ґ"
+    },
+    "price": 96,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/3/480x480wwm/37573_480x480wwm_3c069fcd-843b-fa7d-63f8-29401d99e366.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Балик Алан Дарницький с/к в/ґ, нарізка",
+      "en": "Балик Алан Дарницький с/к в/ґ, нарізка",
+      "ru": "Балик Алан Дарницький с/к в/ґ, нарізка"
+    },
+    "price": 144,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/942579_480x480wwm_2bbfdfd9-54ea-50ba-112a-0fcb778fc580.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Балик Лавка традицій М'ясні делікатеси Дарницький с/к",
+      "en": "Балик Лавка традицій М'ясні делікатеси Дарницький с/к",
+      "ru": "Балик Лавка традицій М'ясні делікатеси Дарницький с/к"
+    },
+    "price": 999,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/944930_480x480wwm_21a4fcfe-f06f-2e81-5f5d-169150efa0e0.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Біфштекс в беконі яловичина та свинина зі спеціями",
+      "en": "Біфштекс в беконі яловичина та свинина зі спеціями",
+      "ru": "Біфштекс в беконі яловичина та свинина зі спеціями"
+    },
+    "price": 273,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/56/480x480wwm/565442_480x480wwm_6d27ade1-aa2d-b30b-de0a-47f6c85eeb45.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Бекон Крафтяр с/к нарізка",
+      "en": "Бекон Крафтяр с/к нарізка",
+      "ru": "Бекон Крафтяр с/к нарізка"
+    },
+    "price": 1299,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/99/480x480wwm/993976_480x480wwm_6072d422-3402-3468-14d6-a42a32ea43a5.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Бекон «Козацький «Глобино» к/в",
+      "en": "Бекон «Козацький «Глобино» к/в",
+      "ru": "Бекон «Козацький «Глобино» к/в"
+    },
+    "price": 569,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/22/480x480wwm/222318_480x480wwm_6ede16ec-9023-d7ae-e5f1-4fcdea990d49.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Бекон «Укрпромпостач» запечений в/ґ",
+      "en": "Бекон «Укрпромпостач» запечений в/ґ",
+      "ru": "Бекон «Укрпромпостач» запечений в/ґ"
+    },
+    "price": 58,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/55/480x480wwm/553470_480x480wwm_4993c44b-61ba-e115-4dd8-6df85359cf96.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Бекон Алан с/к в/ґ, нарізка",
+      "en": "Бекон Алан с/к в/ґ, нарізка",
+      "ru": "Бекон Алан с/к в/ґ, нарізка"
+    },
+    "price": 159,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/942580_480x480wwm_1c2f6dcd-d720-d9c6-28f6-5c440f416fae.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Бекон Алан Любительський к/з 1 ґ",
+      "en": "Бекон Алан Любительський к/з 1 ґ",
+      "ru": "Бекон Алан Любительський к/з 1 ґ"
+    },
+    "price": 42,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/89/480x480wwm/894020_480x480wwm_67605742-cbf8-890c-17d2-e359d34c4184.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Бекон Ятрань Американський с/к в/ґ, нарізка",
+      "en": "Бекон Ятрань Американський с/к в/ґ, нарізка",
+      "ru": "Бекон Ятрань Американський с/к в/ґ, нарізка"
+    },
+    "price": 128,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/928893_480x480wwm_e6b74487-a7e7-0915-708e-53d1bd1cabbf.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Хамон 7Hermanos Серрано Резерва на кістці нарізка порційний",
+      "en": "Хамон 7Hermanos Серрано Резерва на кістці нарізка порційний",
+      "ru": "Хамон 7Hermanos Серрано Резерва на кістці нарізка порційний"
+    },
+    "price": 2899,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1015439_480x480wwm_3c04ea15-1ca0-9ede-0804-20360d951557.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Хамон Torre de Nunez Raza Duroc Резерв копчений нарізка, порційний",
+      "en": "Хамон Torre de Nunez Raza Duroc Резерв копчений нарізка, порційний",
+      "ru": "Хамон Torre de Nunez Raza Duroc Резерв копчений нарізка, порційний"
+    },
+    "price": 3599,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1015434_480x480wwm_8de4f256-48b0-00d6-cb49-e51ec2b78059.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Ферма Моцарелла чеддеризований 45%",
+      "en": "Сир Ферма Моцарелла чеддеризований 45%",
+      "ru": "Сир Ферма Моцарелла чеддеризований 45%"
+    },
+    "price": 97,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/923529_480x480wwm_3c6cb0af-2b68-fe55-46bb-fab73d5a3485.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Tre Stelle Моцарелла 52% з молока буйволиць DOP",
+      "en": "Сир Tre Stelle Моцарелла 52% з молока буйволиць DOP",
+      "ru": "Сир Tre Stelle Моцарелла 52% з молока буйволиць DOP"
+    },
+    "price": 179,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/54/480x480wwm/547843_480x480wwm_828549fb-6455-5879-62c7-139f57befb55.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Granarolo «Моцарела» міні 46% з коров'ячого молока",
+      "en": "Сир Granarolo «Моцарела» міні 46% з коров'ячого молока",
+      "ru": "Сир Granarolo «Моцарела» міні 46% з коров'ячого молока"
+    },
+    "price": 119,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/78/480x480wwm/787214_480x480wwm_7bef8ff4-356a-f531-f4fb-794c04c7aff3.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сосиски «М'ясна Гільдія» з сиром Mozzarella в/ґ п/а",
+      "en": "Сосиски «М'ясна Гільдія» з сиром Mozzarella в/ґ п/а",
+      "ru": "Сосиски «М'ясна Гільдія» з сиром Mozzarella в/ґ п/а"
+    },
+    "price": 43,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/66/480x480wwm/663399_480x480wwm_881396ac-cfc3-fb97-43a5-b9a0f4f9d482.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир De Lucia моцарела 45% з коров'ячого молока",
+      "en": "Сир De Lucia моцарела 45% з коров'ячого молока",
+      "ru": "Сир De Lucia моцарела 45% з коров'ячого молока"
+    },
+    "price": 75,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/71/480x480wwm/719959_480x480wwm_976dbd34-9b30-c664-e6b4-3b9d238a1241.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Galbani Моцарелла протеїновий 25%",
+      "en": "Сир Galbani Моцарелла протеїновий 25%",
+      "ru": "Сир Galbani Моцарелла протеїновий 25%"
+    },
+    "price": 99,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1019096_480x480wwm_3bd0b019-8977-a19f-c6c6-a5d23b995147.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Ферма Сулугуні чеддеризований 45%",
+      "en": "Сир Ферма Сулугуні чеддеризований 45%",
+      "ru": "Сир Ферма Сулугуні чеддеризований 45%"
+    },
+    "price": 89,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1023470_480x480wwm_e30b1576-b4dd-194e-9b6b-79780bf96dc4.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Bonfetto Сулугуні 45%",
+      "en": "Сир Bonfetto Сулугуні 45%",
+      "ru": "Сир Bonfetto Сулугуні 45%"
+    },
+    "price": 82,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/941429_480x480wwm_1dfd506b-c736-c1df-b86f-f305a4867468.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир «Яготинський» «Сулугуні» 45%",
+      "en": "Сир «Яготинський» «Сулугуні» 45%",
+      "ru": "Сир «Яготинський» «Сулугуні» 45%"
+    },
+    "price": 99,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/915300_480x480wwm_8d769339-c161-1a9f-2356-4546a81023e9.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Крафтяр Сулугуні плетінка",
+      "en": "Сир Крафтяр Сулугуні плетінка",
+      "ru": "Сир Крафтяр Сулугуні плетінка"
+    },
+    "price": 54,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/875989_480x480wwm_5504ec51-b9d5-cd90-e0f5-55eb5265b96b.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Крафтяр Сулугуні соломка",
+      "en": "Сир Крафтяр Сулугуні соломка",
+      "ru": "Сир Крафтяр Сулугуні соломка"
+    },
+    "price": 649,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/102/480x480wwm/1025534_480x480wwm_1e063b48-3f6c-c07c-dffc-0aa093bc766e.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир «Славія» «Сулугуні» 45%",
+      "en": "Сир «Славія» «Сулугуні» 45%",
+      "ru": "Сир «Славія» «Сулугуні» 45%"
+    },
+    "price": 59,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/6/480x480wwm/60383_480x480wwm_112a2b82-1408-0d1b-b96a-667e60468305.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Крафтяр Сулугуні копчений",
+      "en": "Сир Крафтяр Сулугуні копчений",
+      "ru": "Сир Крафтяр Сулугуні копчений"
+    },
+    "price": 599,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/97/480x480wwm/976714_480x480wwm_7e5140d9-8b4d-0657-bbcc-6d7cc7760087.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир «Премія»® Сулугуні 45%",
+      "en": "Сир «Премія»® Сулугуні 45%",
+      "ru": "Сир «Премія»® Сулугуні 45%"
+    },
+    "price": 97,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/101/480x480wwm/1015104_480x480wwm_0edacd7b-c1fa-d30f-26c9-53019b39cad8.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Крафтяр Сулугуні палички білі",
+      "en": "Сир Крафтяр Сулугуні палички білі",
+      "ru": "Сир Крафтяр Сулугуні палички білі"
+    },
+    "price": 49,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/86/480x480wwm/861133_480x480wwm_aaf0e751-729b-d4d6-6afe-72718ff0da38.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Салат Nefeli грецький з оливками та сиром фета",
+      "en": "Салат Nefeli грецький з оливками та сиром фета",
+      "ru": "Салат Nefeli грецький з оливками та сиром фета"
+    },
+    "price": 179,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1009054_480x480wwm_30d02422-4720-a66f-f649-01573559eef3.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Перець Nefeli червоний солодко-пікантний з сиром фета",
+      "en": "Перець Nefeli червоний солодко-пікантний з сиром фета",
+      "ru": "Перець Nefeli червоний солодко-пікантний з сиром фета"
+    },
+    "price": 219,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/100/480x480wwm/1009056_480x480wwm_d3ba8410-2a20-eee7-8560-ad4ca98cc08d.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Крекер Gullon з сиром чеддер",
+      "en": "Крекер Gullon з сиром чеддер",
+      "ru": "Крекер Gullon з сиром чеддер"
+    },
+    "price": 127,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/90/480x480wwm/909658_480x480wwm_d5f4a975-554e-5310-f0ff-2006193ab094.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир «Лавка Традицій» «Мукко» чеддер 37%",
+      "en": "Сир «Лавка Традицій» «Мукко» чеддер 37%",
+      "ru": "Сир «Лавка Традицій» «Мукко» чеддер 37%"
+    },
+    "price": 74,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/91/480x480wwm/911316_480x480wwm_7c2c41a3-e5bd-0c8c-4d43-4852e89d8490.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Green Vie Чеддер рослинний нарізний 24%",
+      "en": "Сир Green Vie Чеддер рослинний нарізний 24%",
+      "ru": "Сир Green Vie Чеддер рослинний нарізний 24%"
+    },
+    "price": 249,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/940039_480x480wwm_afb43c93-9654-2e66-24fa-c6e279ea362b.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Чипси Livity рисові чеддер і томатний соус",
+      "en": "Чипси Livity рисові чеддер і томатний соус",
+      "ru": "Чипси Livity рисові чеддер і томатний соус"
+    },
+    "price": 44,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/81/480x480wwm/811543_480x480wwm_f8bd5936-2194-c5cd-81d4-a7aa3bc69b82.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир плавлений «Премія»® Чеддер скибочками 36,2%",
+      "en": "Сир плавлений «Премія»® Чеддер скибочками 36,2%",
+      "ru": "Сир плавлений «Премія»® Чеддер скибочками 36,2%"
+    },
+    "price": 66,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/85/480x480wwm/859943_480x480wwm_9d82236e-6f23-9cc5-9bf7-fd1cac94fd4c.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир плавлений President «Чеддер» для сендвічів 40%",
+      "en": "Сир плавлений President «Чеддер» для сендвічів 40%",
+      "ru": "Сир плавлений President «Чеддер» для сендвічів 40%"
+    },
+    "price": 99,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/59/480x480wwm/598116_480x480wwm_e779c1e5-4576-431e-37ee-1835ac2ef592.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Сир Prego Чеддер Vikont 50% 7 місяців",
+      "en": "Сир Prego Чеддер Vikont 50% 7 місяців",
+      "ru": "Сир Prego Чеддер Vikont 50% 7 місяців"
+    },
+    "price": 649,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/83/480x480wwm/838978_480x480wwm_1f09603f-c11b-3a93-26ef-7f65a4674acc.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Снек пікантний Pringles зі смаком сиру чеддер",
+      "en": "Снек пікантний Pringles зі смаком сиру чеддер",
+      "ru": "Снек пікантний Pringles зі смаком сиру чеддер"
+    },
+    "price": 224,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/94/480x480wwm/949359_480x480wwm_e9032f38-a43e-120c-02ee-bea0b3fde969.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Цукерки Shokoladno Provance",
+      "en": "Цукерки Shokoladno Provance",
+      "ru": "Цукерки Shokoladno Provance"
+    },
+    "price": 41,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/92/480x480wwm/929916_480x480wwm_04715626-9390-52c5-6aaf-eb384996f69a.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Цукерки Стимул Гулівер",
+      "en": "Цукерки Стимул Гулівер",
+      "ru": "Цукерки Стимул Гулівер"
+    },
+    "price": 179,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/95/480x480wwm/950364_480x480wwm_daf22e8c-be11-460b-60ed-1bfbd115bb95.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Козинаки Золотий Вік арахісові",
+      "en": "Козинаки Золотий Вік арахісові",
+      "ru": "Козинаки Золотий Вік арахісові"
+    },
+    "price": 36,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/49/480x480wwm/493733_480x480wwm_72e19cf2-7a3e-2405-52c1-1c92d547746a.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Печиво з кунжутом",
+      "en": "Печиво з кунжутом",
+      "ru": "Печиво з кунжутом"
+    },
+    "price": 74,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/87/480x480wwm/872698_480x480wwm_47cf40a6-b5b3-7c3f-2c7d-04134ab94f84.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Печиво «Грона» «Гарібальді»",
+      "en": "Печиво «Грона» «Гарібальді»",
+      "ru": "Печиво «Грона» «Гарібальді»"
+    },
+    "price": 149,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/69/480x480wwm/699000_480x480wwm_011f9873-3b15-0c18-c18a-c6ac0e0ba6d6.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "new",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Печиво «Грона» «Марія»",
+      "en": "Печиво «Грона» «Марія»",
+      "ru": "Печиво «Грона» «Марія»"
+    },
+    "price": 60,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/61/480x480wwm/616763_480x480wwm_f0eb50fc-5d22-ed5a-06f0-a6b88001ddbe.png",
+    "weight": "1 шт",
+    "unit": "pcs",
+    "section": "popular",
+    "colors": [
+      [
+        "Стандарт",
+        "#4F46E5"
+      ]
+    ]
+  },
+  {
+    "names": {
+      "ua": "Печиво «Малятко» морквяне",
+      "en": "Печиво «Малятко» морквяне",
+      "ru": "Печиво «Малятко» морквяне"
+    },
+    "price": 53,
+    "desc": "Свіжий та якісний продукт з Сільпо.",
+    "category": "snacks",
+    "image": "https://content.silpo.ua/sku/ecommerce/68/480x480wwm/686364_480x480wwm_4d7c0356-5e55-b922-57a3-e103bd1a06d1.png",
     "weight": "1 шт",
     "unit": "pcs",
     "section": "new",
