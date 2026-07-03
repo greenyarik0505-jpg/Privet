@@ -25,7 +25,7 @@ def get_font(size, bold=False):
 CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
-# URL-адреси чистих предметних фото
+# Оновлені лінки на фото товарів без людей
 CATEGORY_URLS = {
     "tech": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=150",
     "fruits": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150",
@@ -56,16 +56,15 @@ def get_product_image(cat, size):
     img = Image.new("RGB", size, "#e2e2e2")
     return img
 
-# Малювання сайдбару CustomTkinter
+# Малювання сайдбару CustomTkinter (БЕЗ ЕМОДЗІ ДЛЯ ЗАПОБІГАННЯ ТОФУ)
 def draw_custom_sidebar(draw, active_nav, user="Yarik", balance="1500 грн"):
-    # Тло сайдбару
     draw.rectangle([0, 0, 180, 750], fill="#252538")
     
     # Логотип
-    draw.text((20, 30), "🏬 МЕГАМАРКЕТ", fill="#cdd6f4", font=get_font(12, True))
+    draw.text((20, 30), "МЕГАМАРКЕТ", fill="#cdd6f4", font=get_font(12, True))
     
     # Профіль
-    draw.text((20, 75), f"👤 {user}", fill="#cdd6f4", font=get_font(10, True))
+    draw.text((20, 75), f"Користувач: {user}", fill="#cdd6f4", font=get_font(10, True))
     draw.text((20, 95), balance, fill="#2ecc71", font=get_font(11, True))
     
     # Кнопка поповнення
@@ -73,17 +72,17 @@ def draw_custom_sidebar(draw, active_nav, user="Yarik", balance="1500 грн"):
     draw.text((90, 132), "+ Поповнити", fill="#ffffff", anchor="mm", font=get_font(9, True))
     
     # Навігаційні кнопки
-    navs = ["🏬 Каталог", "🛒 Кошик", "🎡 Колесо Фортуни", "📜 Історія", "⚙️ Налаштування"]
+    navs = ["Каталог", "Кошик", "Колесо Фортуни", "Історія", "Налаштування"]
     for i, nav in enumerate(navs):
         y = 180 + i * 40
-        is_active = (nav.split()[-1] == active_nav)
+        is_active = (nav == active_nav)
         bg = "#34495e" if is_active else "#252538"
         draw.rounded_rectangle([15, y, 165, y + 30], 4, fill=bg)
         draw.text((25, y + 15), nav, fill="#ffffff", anchor="lm", font=get_font(10))
         
     # Вихід
     draw.rounded_rectangle([15, 680, 165, 710], 4, fill="#e74c3c")
-    draw.text((90, 695), "🚪 Вийти", fill="#ffffff", anchor="mm", font=get_font(10, True))
+    draw.text((90, 695), "Вийти", fill="#ffffff", anchor="mm", font=get_font(10, True))
 
 def create_main_screenshot():
     w, h = 750, 550
@@ -105,16 +104,16 @@ def create_main_screenshot():
         draw.text((x + 22, 29), cat, fill="#ffffff", anchor="mm", font=get_font(8, True))
         
     draw.rounded_rectangle([660, 15, 735, 43], 4, fill="#252538")
-    draw.text((697, 29), "Дешевші ⇅", fill="#ffffff", anchor="mm", font=get_font(8))
+    draw.text((697, 29), "Дешевші", fill="#ffffff", anchor="mm", font=get_font(8))
     
-    # Товари в сітці
+    # Товари в сітці (БЕЗ ЕМОДЗІ В НАЗВАХ)
     products = [
-        ("ASUS ZenBook (M3 16GB) 💻", "15400 грн", "tech"),
-        ("Яблука Гала (відбірні) 🍎", "25 грн", "fruits"),
-        ("Лампа Loft настільна 💡", "380 грн", "home"),
-        ("М'яч Nike Flight (матчевий) ⚽", "420 грн", "sport"),
-        ("Поло Zara (бавовна) 👕", "280 грн", "clothing"),
-        ("Lenovo ThinkPad X1 💻", "16200 грн", "tech")
+        ("ASUS ZenBook (M3 16GB)", "15400 грн", "tech"),
+        ("Яблука Гала (відбірні)", "25 грн", "fruits"),
+        ("Лампа Loft настільна", "380 грн", "home"),
+        ("М'яч Nike Flight (матчевий)", "420 грн", "sport"),
+        ("Поло Zara (бавовна)", "280 грн", "clothing"),
+        ("Lenovo ThinkPad X1", "16200 грн", "tech")
     ]
     
     for i, (name, price, cat) in enumerate(products):
@@ -126,8 +125,8 @@ def create_main_screenshot():
         # Картка товару
         draw.rounded_rectangle([cx, cy, cx + 165, cy + 215], 8, fill="#252538", outline="#45475a")
         
-        # Сердечко обраного
-        draw.text((cx + 145, cy + 20), "❤️" if i == 0 else "🤍", fill="red" if i == 0 else "gray", anchor="mm", font=get_font(10))
+        # Без сердець-емодзі
+        draw.text((cx + 140, cy + 20), "Liked" if i == 0 else "Like", fill="red" if i == 0 else "gray", anchor="mm", font=get_font(9))
         
         # Картинка товару
         prod_img = get_product_image(cat, (65, 65))
@@ -141,8 +140,8 @@ def create_main_screenshot():
         draw.rounded_rectangle([cx + 25, cy + 165, cx + 140, cy + 195], 5, fill="#3498db")
         draw.text((cx + 82, cy + 180), "Детальніше", fill="#ffffff", anchor="mm", font=get_font(9, True))
         
-    img.save("screenshot_main_v5.png")
-    print("Created mockup: screenshot_main_v5.png")
+    img.save("screenshot_main_v6.png")
+    print("Created mockup: screenshot_main_v6.png")
 
 def create_details_screenshot():
     w, h = 750, 550
@@ -162,7 +161,7 @@ def create_details_screenshot():
     prod_img = get_product_image("tech", (120, 120))
     img.paste(prod_img, (270, 80))
     
-    draw.text((330, 220), "ASUS ZenBook (M3 16GB) 💻", fill="#cdd6f4", anchor="mm", font=get_font(12, True))
+    draw.text((330, 220), "ASUS ZenBook (M3 16GB)", fill="#cdd6f4", anchor="mm", font=get_font(12, True))
     draw.text((330, 250), "Сучасний ультрабук ASUS ZenBook.", fill="#a6adc8", anchor="mm", font=get_font(9, True))
     draw.text((330, 275), "Ціна: 15400 грн/шт", fill="#2ecc71", anchor="mm", font=get_font(12, True))
     
@@ -177,16 +176,16 @@ def create_details_screenshot():
     draw.rounded_rectangle([250, 430, 410, 470], 6, fill="#2ecc71")
     draw.text((330, 450), "Додати в кошик", fill="#ffffff", anchor="mm", font=get_font(11, True))
     
-    # Права панель (Відгуки)
+    # Права панель (Відгуки) - БЕЗ ЗІРОЧОК
     draw.rounded_rectangle([480, 60, 730, 520], 10, fill="#252538", outline="#45475a")
     draw.text((605, 80), "Відгуки та оцінки:", fill="#cdd6f4", anchor="mm", font=get_font(11, True))
-    draw.text((605, 110), "Рейтинг: ★★★★★ (5.0/5)", fill="#f1c40f", anchor="mm", font=get_font(10, True))
+    draw.text((605, 110), "Рейтинг: ***** (5.0/5)", fill="#f1c40f", anchor="mm", font=get_font(10, True))
     
     draw.rounded_rectangle([495, 140, 715, 190], 5, fill="#1e1e2e")
     draw.text((505, 155), "• Yarik: Супер швидкий!", fill="#cdd6f4", font=get_font(9))
     
-    img.save("screenshot_details_v5.png")
-    print("Created mockup: screenshot_details_v5.png")
+    img.save("screenshot_details_v6.png")
+    print("Created mockup: screenshot_details_v6.png")
 
 def create_cart_screenshot():
     w, h = 750, 550
@@ -205,14 +204,14 @@ def create_cart_screenshot():
     draw.text((225, 95), "ASUS ZenBook x1", fill="#ffffff", anchor="lm", font=get_font(9, True))
     draw.text((350, 95), "15400 грн", fill="#2ecc71", anchor="lm", font=get_font(9))
     draw.rounded_rectangle([415, 85, 435, 105], 3, fill="#e74c3c")
-    draw.text((425, 95), "❌", fill="#ffffff", anchor="mm", font=get_font(8))
+    draw.text((425, 95), "X", fill="#ffffff", anchor="mm", font=get_font(8))
     
     # Елемент кошика 2
     draw.rounded_rectangle([215, 130, 445, 180], 6, fill="#1e1e2e")
     draw.text((225, 155), "Лампа Loft настільна x2", fill="#ffffff", anchor="lm", font=get_font(9, True))
     draw.text((350, 155), "760 грн", fill="#2ecc71", anchor="lm", font=get_font(9))
     draw.rounded_rectangle([415, 145, 435, 165], 3, fill="#e74c3c")
-    draw.text((425, 155), "❌", fill="#ffffff", anchor="mm", font=get_font(8))
+    draw.text((425, 155), "X", fill="#ffffff", anchor="mm", font=get_font(8))
     
     # Підсумок
     draw.text((330, 440), "Сума: 16160 грн", fill="#a6adc8", anchor="mm", font=get_font(9))
@@ -224,18 +223,18 @@ def create_cart_screenshot():
     draw.rounded_rectangle([480, 20, 730, 520], 10, fill="#252538", outline="#45475a")
     draw.text((605, 40), "Дані для доставки", fill="#cdd6f4", anchor="mm", font=get_font(11, True))
     
-    # Поля
-    fields = ["Номер телефону (+380...)", "Електронна пошта (Email)", "Адреса доставки", "Кур'єр 🚚", "Особистий баланс 💳"]
+    # Поля без емодзі
+    fields = ["Номер телефону (+380...)", "Електронна пошта (Email)", "Адреса доставки", "Courier", "Balance"]
     for i, val in enumerate(fields):
         y = 80 + i * 50
         draw.rounded_rectangle([495, y, 715, y + 35], 5, fill="#1e1e2e", outline="#45475a")
         draw.text((505, y + 17), val, fill="#a6adc8", anchor="lm", font=get_font(9))
         
     draw.rounded_rectangle([510, 430, 700, 475], 6, fill="#2ecc71")
-    draw.text((605, 452), "Оформити 🚚", fill="#ffffff", anchor="mm", font=get_font(12, True))
+    draw.text((605, 452), "Оформити", fill="#ffffff", anchor="mm", font=get_font(12, True))
     
-    img.save("screenshot_cart_v5.png")
-    print("Created mockup: screenshot_cart_v5.png")
+    img.save("screenshot_cart_v6.png")
+    print("Created mockup: screenshot_cart_v6.png")
 
 if __name__ == "__main__":
     create_main_screenshot()
