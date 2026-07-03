@@ -6,44 +6,42 @@ import datetime
 
 # Глобальний список кошика
 cart = []
-# Активний промокод
-applied_discount = 0.0
 # Історія замовлень
 order_history = []
 
 # Дані про товари (ціна, опис, назва, файл картинки, доступні кольори)
 fruits_data = {
-    "Яблуко 🍎": {
+    "Яблуко": {
         "price": 20, 
         "desc": "Соковите червоне або зелене яблуко", 
         "img": "apple.png",
         "colors": [("Червоне 🔴", "#e74c3c"), ("Зелене 🟢", "#2ecc71"), ("Жовте 🟡", "#f1c40f")]
     },
-    "Банан 🍌": {
+    "Банан": {
         "price": 15, 
         "desc": "Стиглий солодкий банан імпортний", 
         "img": "banana.png",
         "colors": [("Жовтий 🟡", "#f1c40f"), ("Зелений 🟢", "#2ecc71")]
     },
-    "Апельсин 🍊": {
+    "Апельсин": {
         "price": 25, 
         "desc": "Свіжий соковитий цитрусовий апельсин", 
         "img": "orange.png",
         "colors": [("Оранжевий 🟠", "#e67e22"), ("Червоний 🔴", "#e74c3c")]
     },
-    "Полуниця 🍓": {
+    "Полуниця": {
         "price": 50, 
         "desc": "Солодка та ароматна лісова полуниця", 
         "img": "strawberry.png",
         "colors": [("Червона 🔴", "#e74c3c")]
     },
-    "Виноград 🍇": {
+    "Виноград": {
         "price": 40, 
         "desc": "Гроно свіжого синього або зеленого винограду", 
         "img": "grapes.png",
         "colors": [("Синій 🔵", "#3498db"), ("Зелений 🟢", "#2ecc71"), ("Фіолетовий 🟣", "#9b59b6")]
     },
-    "Кавун 🍉": {
+    "Кавун": {
         "price": 100, 
         "desc": "Великий, цукровий та дуже стиглий кавун", 
         "img": "watermelon.png",
@@ -70,19 +68,17 @@ for name, data in fruits_data.items():
     else:
         loaded_images[name] = {"detail": None, "btn": None}
 
-# Оновлення тексту кнопки кошика та відображення баджа
 def update_cart_button_text():
     total_items = sum(item['qty'] for item in cart)
     cart_btn.configure(text=f"🛒 Переглянути Кошик ({total_items} шт.)")
 
-# Функція додавання в кошик
 def add_to_cart(name, price, qty, color, dialog):
     try:
         qty = int(qty)
         if qty <= 0:
             raise ValueError
     except ValueError:
-        messagebox.showwarning("Помилка", "Будь ласка, введіть користувацьку кількість!")
+        messagebox.showwarning("Помилка", "Будь ласка, введіть коректну кількість!")
         return
 
     for item in cart:
@@ -96,7 +92,6 @@ def add_to_cart(name, price, qty, color, dialog):
     update_cart_button_text()
     dialog.destroy()
 
-# Вікно деталей товару
 def open_details(name):
     data = fruits_data[name]
     dialog = tk.Toplevel(root)
@@ -159,11 +154,10 @@ def open_details(name):
         cursor="hand2"
     ).pack(pady=15)
 
-# Вікно кошика
 def view_cart():
     cart_window = tk.Toplevel(root)
     cart_window.title("Ваш кошик")
-    cart_window.geometry("440x550")
+    cart_window.geometry("440x480")
     cart_window.configure(bg="#ffffff")
     cart_window.grab_set()
     
@@ -198,13 +192,7 @@ def view_cart():
             )
             del_btn.pack(side="right", padx=10)
 
-        discounted_price = total_price * (1 - applied_discount)
-        if applied_discount > 0:
-            price_label.config(
-                text=f"Сума: {total_price} грн\nЗнижка ({int(applied_discount*100)}%): -{int(total_price * applied_discount)} грн\nРазом до сплати: {int(discounted_price)} грн"
-            )
-        else:
-            price_label.config(text=f"Разом до сплати: {total_price} грн")
+        price_label.config(text=f"Разом до сплати: {total_price} грн")
 
     def remove_item(index):
         removed_item = cart.pop(index)
@@ -218,18 +206,6 @@ def view_cart():
             refresh_cart_view()
             update_cart_button_text()
             messagebox.showinfo("Кошик", "Кошик повністю очищено")
-
-    def apply_promo():
-        global applied_discount
-        code = promo_entry.get().strip().upper()
-        if code == "FRUIT20":
-            applied_discount = 0.20
-            messagebox.showinfo("Промокод", "Промокод FRUIT20 успішно активовано! Знижка 20%")
-            refresh_cart_view()
-        elif code == "":
-            messagebox.showwarning("Промокод", "Введіть промокод!")
-        else:
-            messagebox.showerror("Промокод", "Невірний промокод!")
 
     def checkout():
         if not cart:
@@ -263,9 +239,7 @@ def view_cart():
                 messagebox.showwarning("Помилка", "Введіть ім'я!")
                 return
             
-            # Генерація чеку у текстовий файл
             total_price = sum(item['price'] * item['qty'] for item in cart)
-            discounted_price = total_price * (1 - applied_discount)
             
             receipt_filename = f"receipt_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
             with open(receipt_filename, "w", encoding="utf-8") as f:
@@ -280,17 +254,13 @@ def view_cart():
                     f.write(f"{item['name']} ({item['color']})\n")
                     f.write(f"  Кількість: {item['qty']} шт. х {item['price']} грн = {subtotal} грн\n")
                 f.write("----------------------------------------\n")
-                f.write(f"Сума замовлення: {total_price} грн\n")
-                if applied_discount > 0:
-                    f.write(f"Знижка (20%): -{int(total_price * applied_discount)} грн\n")
-                f.write(f"РАЗОМ ДО СПЛАТИ: {int(discounted_price)} грн\n")
+                f.write(f"РАЗОМ ДО СПЛАТИ: {total_price} грн\n")
                 f.write("========================================\n")
                 f.write("Дякуємо за покупку! 🚚 Доставка вже в дорозі.\n")
             
-            # Збереження замовлення в історію
             order_history.append({
                 "date": datetime.datetime.now().strftime('%H:%M:%S'),
-                "total": int(discounted_price),
+                "total": total_price,
                 "items_count": sum(item['qty'] for item in cart)
             })
             
@@ -301,14 +271,6 @@ def view_cart():
             cart_window.destroy()
             
         tk.Button(checkout_dialog, text="Підтвердити замовлення", font=("Segoe UI", 10, "bold"), bg="#2ecc71", fg="white", relief="flat", padx=10, command=finish_order).pack(pady=15)
-
-    # Панель промокоду
-    promo_frame = tk.Frame(cart_window, bg="#ffffff")
-    promo_frame.pack(fill="x", padx=15, pady=5)
-    tk.Label(promo_frame, text="Промокод:", font=("Segoe UI", 9), bg="#ffffff").pack(side="left", padx=5)
-    promo_entry = tk.Entry(promo_frame, width=12, font=("Segoe UI", 9))
-    promo_entry.pack(side="left", padx=5)
-    tk.Button(promo_frame, text="Застосувати", font=("Segoe UI", 8, "bold"), bg="#34495e", fg="white", relief="flat", command=apply_promo).pack(side="left", padx=5)
 
     # Лейбл ціни
     price_label = tk.Label(cart_window, text="Разом до сплати: 0 грн", font=("Segoe UI", 11, "bold"), bg="#ffffff", fg="#2e7d32")
@@ -347,7 +309,6 @@ def open_history():
 def filter_fruits(event=None):
     search_query = search_entry.get().strip().lower()
     
-    # Видаляємо поточні картки з сітки
     for widget in grid_frame.winfo_children():
         widget.grid_forget()
         
@@ -356,7 +317,6 @@ def filter_fruits(event=None):
     
     for fruit_name in fruits_data.keys():
         if search_query in fruit_name.lower():
-            # Показуємо відповідну картку
             card_widgets[fruit_name].grid(row=current_row, column=current_col, padx=12, pady=12)
             current_col += 1
             if current_col > 2:
