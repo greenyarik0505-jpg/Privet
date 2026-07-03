@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
-
-import tkinter as tk
-from tkinter import messagebox
+from PIL import Image, ImageTk
+import os
 
 # Кольорові палітри для тем
 THEMES = {
@@ -32,6 +31,29 @@ root = tk.Tk()
 root.title("Фруктовий Маркет")
 root.geometry("500x480")
 root.configure(bg=THEMES[current_theme]["bg"])
+
+# Словник для збереження посилань на зображення (щоб Garbage Collector їх не видалив)
+fruit_images = {}
+
+# Список фруктових товарів
+fruits = [
+    {"label": "Яблуко", "name": "Яблуко", "img_file": "apple.png"},
+    {"label": "Банан", "name": "Банан", "img_file": "banana.png"},
+    {"label": "Апельсин", "name": "Апельсин", "img_file": "orange.png"},
+    {"label": "Полуниця", "name": "Полуниця", "img_file": "strawberry.png"},
+    {"label": "Виноград", "name": "Виноград", "img_file": "grapes.png"},
+    {"label": "Кавун", "name": "Кавун", "img_file": "watermelon.png"}
+]
+
+# Завантажуємо зображення
+for item in fruits:
+    img_path = os.path.join(os.path.dirname(__file__), item["img_file"])
+    if os.path.exists(img_path):
+        # Змінюємо розмір під іконку кнопки (32x32)
+        pil_img = Image.open(img_path).resize((32, 32), Image.Resampling.LANCZOS)
+        fruit_images[item["name"]] = ImageTk.PhotoImage(pil_img)
+    else:
+        fruit_images[item["name"]] = None
 
 # Функція перемикання теми
 def toggle_theme():
@@ -92,17 +114,11 @@ status_label = tk.Label(
 )
 status_label.pack(pady=25)
 
-fruits = [
-    ("Яблуко 🍎", "Яблуко"), ("Банан 🍌", "Банан"),
-    ("Апельсин 🍊", "Апельсин"), ("Полуниця 🍓", "Полуниця"),
-    ("Виноград 🍇", "Виноград"), ("Кавун 🍉", "Кавун")
-]
-
 def start_delivery(fruit_name):
     dialog = tk.Toplevel(root)
     dialog.title(f"Замовлення: {fruit_name}")
     dialog.geometry("350x320")
-    # Вікно налаштування замовлення адаптується під поточну тему
+    
     theme = THEMES[current_theme]
     dialog.configure(bg=theme["bg"])
     dialog.grab_set()
@@ -111,7 +127,6 @@ def start_delivery(fruit_name):
     
     # Вибір кольору
     color_var = tk.StringVar(value="Стандартний")
-    # Щоб OptionMenu виглядав охайно
     color_menu = tk.OptionMenu(dialog, color_var, "Червоний 🔴", "Зелений 🟢", "Жовтий 🟡")
     color_menu.configure(bg=theme["btn_bg"], fg=theme["btn_fg"], activebackground=theme["btn_hover"], activeforeground=theme["btn_fg"], relief="flat")
     color_menu.pack(pady=5)
@@ -138,20 +153,22 @@ def start_delivery(fruit_name):
 
 fruit_buttons = []
 
-# Створення красивих кнопок з підтримкою кольорових емодзі
-for index, (label_text, name) in enumerate(fruits):
+# Створення кнопок із кольоровими зображеннями
+for index, item in enumerate(fruits):
     btn = tk.Button(
-        buttons_frame, text=label_text, 
-        # Використовуємо шрифт "Segoe UI Emoji" для відображення кольорових емодзі на Windows
-        font=("Segoe UI Emoji", 10),
-        width=14, height=2, 
+        buttons_frame, 
+        text=f" {item['label']}", 
+        font=("Segoe UI", 10, "bold"),
+        image=fruit_images[item["name"]],
+        compound="left",  # Картинка ліворуч від тексту
+        width=130, height=50,  # Задаємо фіксовані піксельні розміри для кнопок із зображеннями
         bg=THEMES[current_theme]["btn_bg"], 
         fg=THEMES[current_theme]["btn_fg"],
         relief="flat",
         activebackground=THEMES[current_theme]["btn_hover"], 
         activeforeground=THEMES[current_theme]["btn_fg"],
         cursor="hand2",
-        command=lambda f=name: start_delivery(f)
+        command=lambda f=item["name"]: start_delivery(f)
     )
     btn.grid(row=index // 3, column=index % 3, padx=10, pady=10)
     fruit_buttons.append(btn)
