@@ -382,10 +382,10 @@ try:
     for idx, item in enumerate(silpo_products.products):
         key_name = item["names"]["en"]
         
-        # Перекладаємо назви товарів на льоту
+        # Робимо назви товарів строго українською мовою
         ua_name = item["names"]["ua"]
-        item["names"]["en"] = translate_product_name(ua_name, "en")
-        item["names"]["ru"] = translate_product_name(ua_name, "ru")
+        item["names"]["en"] = ua_name
+        item["names"]["ru"] = ua_name
         
         fruits_data[key_name] = item
 except Exception as e:
@@ -644,20 +644,20 @@ class MainScreen(ctk.CTkFrame):
         self.nav_buttons.clear()
         
         navs = [
-            ("DashBoard", self.show_catalog),
-            ("Checkout", self.show_cart),
-            ("Categories", self.show_analytics),
-            ("History", self.show_history),
-            ("Setting", self.show_settings)
+            ("DashBoard", "Каталог", self.show_catalog),
+            ("Checkout", "Кошик", self.show_cart),
+            ("Categories", "Аналітика", self.show_analytics),
+            ("History", "Історія", self.show_history),
+            ("Setting", "Налаштування", self.show_settings)
         ]
-        for name, cmd in navs:
+        for key, display_name, cmd in navs:
             btn = ctk.CTkButton(
-                self.sidebar, text=name, anchor="w", fg_color="transparent", 
+                self.sidebar, text=display_name, anchor="w", fg_color="transparent", 
                 text_color="black", hover_color=HOVER_COLOR, command=cmd, 
                 font=("Arial", 14), height=42, corner_radius=6
             )
             btn.pack(fill="x", padx=15, pady=4)
-            self.nav_buttons[name] = btn
+            self.nav_buttons[key] = btn
             
         self.btn_logout = ctk.CTkButton(self.sidebar, text=t("logout_btn"), anchor="w", fg_color="transparent", text_color="black", hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
         self.btn_logout.pack(side="bottom", fill="x", padx=15, pady=20)
@@ -669,7 +669,7 @@ class MainScreen(ctk.CTkFrame):
 
     def update_sidebar_state(self, active_name):
         cart_count = sum(item["qty"] for item in cart)
-        cart_text = f"Checkout ({cart_count})" if cart_count > 0 else "Checkout"
+        cart_text = f"Кошик ({cart_count})" if cart_count > 0 else "Кошик"
         
         for name, btn in self.nav_buttons.items():
             if name == "Checkout":
@@ -1428,13 +1428,9 @@ class SettingsPanel(ctk.CTkFrame):
         card = ctk.CTkFrame(self, width=400, height=350, fg_color=SIDEBAR_COLOR)
         card.pack(pady=15, padx=20)
         
-        ctk.CTkLabel(card, text=t("lang_lbl"), font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=30, pady=10)
-        lang_btn_frame = ctk.CTkFrame(card, fg_color="transparent")
-        lang_btn_frame.pack(fill="x", padx=30)
-        
-        ctk.CTkButton(lang_btn_frame, text="Українська", width=90, fg_color=PRIMARY_COLOR, hover_color="#4338CA", command=lambda: self.change_lang("ua")).pack(side="left", padx=5)
-        ctk.CTkButton(lang_btn_frame, text="English", width=90, fg_color=PRIMARY_COLOR, hover_color="#4338CA", command=lambda: self.change_lang("en")).pack(side="left", padx=5)
-        ctk.CTkButton(lang_btn_frame, text="Русский", width=90, fg_color=PRIMARY_COLOR, hover_color="#4338CA", command=lambda: self.change_lang("ru")).pack(side="left", padx=5)
+        ctk.CTkLabel(card, text="Мова інтерфейсу:", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=30, pady=10)
+        self.lang_lbl = ctk.CTkLabel(card, text="Українська (Фіксовано за побажанням користувача)", font=("Arial", 11, "italic"), text_color="gray")
+        self.lang_lbl.pack(padx=30, anchor="w")
         
         ctk.CTkLabel(card, text=t("theme_lbl"), font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=30, pady=15)
         self.theme_lbl = ctk.CTkLabel(card, text="Світла тема за замовчуванням (ConvenientShop Style)", font=("Arial", 11, "italic"), text_color="gray")
@@ -1445,12 +1441,7 @@ class SettingsPanel(ctk.CTkFrame):
         sound_chk.pack(anchor="w", padx=30, pady=25)
 
     def change_lang(self, lang):
-        global active_lang
-        active_lang = lang
-        play_sound("click")
-        self.main_screen.draw_navigation()
-        self.main_screen.update_profile_info()
-        self.main_screen.show_settings()
+        pass
 
     def toggle_theme(self, choice):
         pass
