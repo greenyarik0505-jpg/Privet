@@ -21,6 +21,7 @@
 [![Pillow](https://img.shields.io/badge/Images-Pillow-F5A623?style=for-the-badge&logo=python&logoColor=white)](https://pillow.readthedocs.io)
 [![Release](https://img.shields.io/badge/Release-v1.2.0-2ECC71?style=for-the-badge&logo=github)](https://github.com/greenyarik0505-jpg/Privet/releases/latest)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Requirements](https://img.shields.io/badge/requirements.txt-✓-green?style=for-the-badge&logo=python)](requirements.txt)
 [![Stars](https://img.shields.io/github/stars/greenyarik0505-jpg/Privet?style=for-the-badge&color=FFD700)](https://github.com/greenyarik0505-jpg/Privet/stargazers)
 
 <br/>
@@ -513,14 +514,22 @@ CREATE TABLE favorites (
 git clone https://github.com/greenyarik0505-jpg/Privet.git
 cd Privet
 
-# 2. Встанови залежності
-pip install customtkinter pillow
+# 2. Встанови всі залежності одною командою
+pip install -r requirements.txt
 
 # 3. Запусти
 python main.py
 ```
 
-> ✅ SQLite3 та threading вже вбудовані в Python — встановлювати не потрібно.
+#### 📦 Залежності (`requirements.txt`)
+
+| Пакет | Версія | Призначення |
+|:-----:|:------:|:-----------|
+| `customtkinter` | ≥ 5.2.0 | GUI фреймворк — сучасний вигляд, теми |
+| `Pillow` | ≥ 9.0.0 | Обробка зображень — фото товарів |
+| `numpy` | ≥ 1.21.0 | Flood Fill — прозорість логотипу |
+
+> ✅ `tkinter`, `sqlite3`, `threading`, `urllib`, `hashlib` — вже вбудовані в Python, встановлювати **не потрібно**.
 
 ### 📁 Структура файлів
 
@@ -530,6 +539,7 @@ Privet/
 ├── main.py                    # 🚀 Головний файл застосунку (2000+ рядків)
 ├── market_db.py               # 🗄️ Менеджер бази даних SQLite
 ├── silpo_products.py          # 📦 Каталог 504 товарів Сільпо
+├── requirements.txt           # 📋 Залежності (pip install -r requirements.txt)
 ├── market.db                  # 💾 SQLite база даних
 ├── session.txt                # 👤 Збережена сесія користувача
 │
