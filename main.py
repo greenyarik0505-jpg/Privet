@@ -354,6 +354,24 @@ def remove_white_bg(img, threshold=230):
         pass
     return img
 
+from PIL import ImageDraw
+def remove_white_bg_floodfill(img, threshold=240):
+    """Видаляє білий фон навколо об'єкта методом Flood Fill (заливка від кутів), не чіпаючи білий колір всередині."""
+    try:
+        img = img.convert("RGBA")
+        width, height = img.size
+        gray = img.convert("L")
+        
+        # Запускаємо floodfill з кожного кута
+        for start_point in [(0, 0), (width - 1, 0), (0, height - 1), (width - 1, height - 1)]:
+            x, y = start_point
+            val = gray.getpixel((x, y))
+            if val > threshold:
+                ImageDraw.floodfill(img, start_point, (0, 0, 0, 0), thresh=255-threshold)
+    except Exception:
+        pass
+    return img
+
 def get_product_image_local(img_src, size):
     cache_key = (img_src, size)
     if cache_key in _product_image_cache:
@@ -874,8 +892,8 @@ class MainScreen(ctk.CTkFrame):
         self.sidebar = ctk.CTkFrame(self, width=210, fg_color=SIDEBAR_COLOR, corner_radius=0)
         self.sidebar.pack(side="left", fill="y")
         
-        self.avatar_canvas = tk.Canvas(self.sidebar, width=100, height=100, bg=SIDEBAR_COLOR, bd=0, highlightthickness=0)
-        self.avatar_canvas.pack(pady=(30, 20))
+        self.avatar_canvas = tk.Canvas(self.sidebar, width=130, height=130, bg=SIDEBAR_COLOR, bd=0, highlightthickness=0)
+        self.avatar_canvas.pack(pady=(20, 10))
         self.draw_profile_avatar()
         
         self.balance_lbl = ctk.CTkLabel(self.sidebar, text="0 грн", font=("Arial", 11, "bold"), text_color="#2ecc71")
@@ -981,17 +999,17 @@ class MainScreen(ctk.CTkFrame):
         if os.path.exists(logo_path):
             try:
                 img = Image.open(logo_path)
-                img = remove_white_bg(img, threshold=240)
-                img = img.resize((80, 80), Image.Resampling.LANCZOS)
+                img = remove_white_bg_floodfill(img, threshold=240)
+                img = img.resize((115, 115), Image.Resampling.LANCZOS)
                 self.avatar_img = ImageTk.PhotoImage(img)
-                self.avatar_canvas.create_image(50, 50, image=self.avatar_img)
+                self.avatar_canvas.create_image(65, 65, image=self.avatar_img)
                 return
             except Exception as e:
                 print("Failed to load silpo_logo.png:", e)
         # Резервний малюнок
-        self.avatar_canvas.create_oval(10, 10, 90, 90, fill="#FF5E00", outline="")
-        self.avatar_canvas.create_text(50, 45, text="С", fill="white", font=("Arial", 46, "bold"))
-        self.avatar_canvas.create_text(50, 75, text="сільпо", fill="white", font=("Arial", 11, "bold"))
+        self.avatar_canvas.create_oval(15, 15, 115, 115, fill="#FF5E00", outline="")
+        self.avatar_canvas.create_text(65, 55, text="С", fill="white", font=("Arial", 56, "bold"))
+        self.avatar_canvas.create_text(65, 95, text="сільпо", fill="white", font=("Arial", 14, "bold"))
 
     def update_sidebar_state(self, active_name):
         cart_count = sum(item["qty"] for item in cart)
