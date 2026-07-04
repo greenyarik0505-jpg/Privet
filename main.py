@@ -588,8 +588,8 @@ class AuthScreen(ctk.CTkFrame):
         self.left_canvas.pack(fill="both", expand=True)
         self.draw_vector_graphics()
         
-        self.login_frame = ctk.CTkFrame(self.card, fg_color=SIDEBAR_COLOR, corner_radius=20, width=380, height=520)
-        self.login_frame.grid(row=0, column=1, sticky="nsew", padx=30, pady=50)
+        self.login_frame = ctk.CTkFrame(self.card, fg_color=SIDEBAR_COLOR, corner_radius=20, width=380, height=590)
+        self.login_frame.grid(row=0, column=1, sticky="nsew", padx=30, pady=35)
         self.login_frame.pack_propagate(False)
         
         self.is_register_mode = False
@@ -601,7 +601,7 @@ class AuthScreen(ctk.CTkFrame):
             
         title_key = "register_title" if self.is_register_mode else "login_title"
         self.lbl_title = ctk.CTkLabel(self.login_frame, text=t(title_key), font=("Arial", 36, "bold"), text_color=PRIMARY_COLOR)
-        self.lbl_title.pack(pady=(40, 30))
+        self.lbl_title.pack(pady=(20, 15))
         
         self.user_lbl = ctk.CTkLabel(self.login_frame, text="USERNAME", font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
         self.user_lbl.pack(fill="x", padx=45, pady=(5, 2))
