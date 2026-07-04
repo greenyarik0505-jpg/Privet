@@ -943,30 +943,13 @@ class MainScreen(ctk.CTkFrame):
             btn.destroy()
         self.nav_buttons.clear()
         
-        if active_lang == "ua":
-            navs = [
-                ("DashBoard", "🛒 Каталог", self.show_catalog),
-                ("Checkout", "🛍️ Кошик", self.show_cart),
-                ("Categories", "📊 Аналітика", self.show_analytics),
-                ("History", "📜 Історія", self.show_history),
-                ("Settings", "⚙️ Налаштування", self.show_settings)
-            ]
-        elif active_lang == "ru":
-            navs = [
-                ("DashBoard", "🛒 Каталог", self.show_catalog),
-                ("Checkout", "🛍️ Корзина", self.show_cart),
-                ("Categories", "📊 Аналитика", self.show_analytics),
-                ("History", "📜 История", self.show_history),
-                ("Settings", "⚙️ Настройки", self.show_settings)
-            ]
-        else:
-            navs = [
-                ("DashBoard", "🛒 Catalog", self.show_catalog),
-                ("Checkout", "🛍️ Cart", self.show_cart),
-                ("Categories", "📊 Analytics", self.show_analytics),
-                ("History", "📜 History", self.show_history),
-                ("Settings", "⚙️ Settings", self.show_settings)
-            ]
+        navs = [
+            ("DashBoard", "🛒 Каталог", self.show_catalog),
+            ("Checkout", "🛍️ Кошик", self.show_cart),
+            ("Categories", "📊 Аналітика", self.show_analytics),
+            ("History", "📜 Історія", self.show_history),
+            ("Settings", "⚙️ Налаштування", self.show_settings)
+        ]
         for key, display_name, cmd in navs:
             btn = ctk.CTkButton(
                 self.sidebar, text=display_name, anchor="w", fg_color="transparent", 
@@ -976,7 +959,7 @@ class MainScreen(ctk.CTkFrame):
             btn.pack(fill="x", padx=15, pady=4)
             self.nav_buttons[key] = btn
             
-        self.btn_logout = ctk.CTkButton(self.sidebar, text=t("logout_btn"), anchor="w", fg_color="transparent", text_color=THEMES[current_theme]["text"], hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
+        self.btn_logout = ctk.CTkButton(self.sidebar, text="🚪 Вийти", anchor="w", fg_color="transparent", text_color=THEMES[current_theme]["text"], hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
         self.btn_logout.pack(side="bottom", fill="x", padx=15, pady=(5, 20))
         
         self.btn_delete_acc = ctk.CTkButton(self.sidebar, text="Видалити акаунт", anchor="w", fg_color="transparent", text_color="#ff4d4d", hover_color="#ffe5e5", command=self.delete_account, font=("Arial", 14), height=42)
@@ -1859,55 +1842,21 @@ class SettingsPanel(ctk.CTkFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        if active_lang == "ua":
-            title_text = "⚙️ Налаштування застосунку"
-            lang_label = "🌐 Мова інтерфейсу / Language:"
-            theme_label = "🎨 Тема оформлення / Theme:"
-            theme_light = "Світла тема"
-            theme_dark = "Темна тема"
-        elif active_lang == "ru":
-            title_text = "⚙️ Настройки приложения"
-            lang_label = "🌐 Язык интерфейса / Language:"
-            theme_label = "🎨 Тема оформления / Theme:"
-            theme_light = "Светлая тема"
-            theme_dark = "Темная тема"
-        else:
-            title_text = "⚙️ Application Settings"
-            lang_label = "🌐 Interface Language / Language:"
-            theme_label = "🎨 Theme Style / Theme:"
-            theme_light = "Light Theme"
-            theme_dark = "Dark Theme"
-            
-        ctk.CTkLabel(self, text=title_text, font=("Arial", 20, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=(20, 10))
+        ctk.CTkLabel(self, text="Налаштування застосунку", font=("Arial", 20, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=(20, 10))
         
         card = ctk.CTkFrame(self, fg_color=THEMES[current_theme]["card_bg"], corner_radius=12, border_width=1, border_color=("#E5E7EB", "#374151"))
         card.pack(pady=15, padx=20, fill="both", expand=True)
         
-        # ── Мова ──
-        ctk.CTkLabel(card, text=lang_label, font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=30, pady=(25, 5))
-        
-        lang_options = ["UA", "EN", "RU"]
-        self.lang_switch = ctk.CTkSegmentedButton(card, values=lang_options, command=self.change_lang, font=("Arial", 12, "bold"))
-        self.lang_switch.pack(anchor="w", padx=30, pady=(5, 20))
-        self.lang_switch.set(active_lang.upper())
-        
         # ── Тема ──
-        ctk.CTkLabel(card, text=theme_label, font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=30, pady=(15, 5))
+        ctk.CTkLabel(card, text="Тема оформлення:", font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=30, pady=(25, 5))
         
-        theme_options = [theme_light, theme_dark]
+        theme_options = ["Світла тема", "Темна тема"]
         self.theme_switch = ctk.CTkSegmentedButton(card, values=theme_options, command=self.toggle_theme, font=("Arial", 12, "bold"))
         self.theme_switch.pack(anchor="w", padx=30, pady=(5, 25))
-        self.theme_switch.set(theme_light if current_theme == "light" else theme_dark)
-
-    def change_lang(self, choice):
-        global active_lang
-        active_lang = choice.lower()
-        self.main_screen.draw_navigation()
-        self.main_screen.update_profile_info()
-        self.main_screen.show_settings()
+        self.theme_switch.set("Світла тема" if current_theme == "light" else "Темна тема")
 
     def toggle_theme(self, choice):
-        new_theme = "light" if ("Світла" in choice or "Светлая" in choice or "Light" in choice) else "dark"
+        new_theme = "light" if "Світла" in choice else "dark"
         self.main_screen.toggle_theme_to(new_theme)
         self.main_screen.show_settings()
 
