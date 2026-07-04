@@ -817,9 +817,10 @@ class FakePaymentWindow(ctk.CTkToplevel):
         self.resizable(False, False)
         self.configure(fg_color=BG_COLOR)
         
-        self.transient(parent)
-        self.grab_set()
+        self.attributes("-topmost", True)
+        self.lift()
         self.focus_force()
+        self.grab_set()
         
         self.amount = amount
         self.on_success = on_success_callback
@@ -999,7 +1000,7 @@ class MainScreen(ctk.CTkFrame):
         if os.path.exists(logo_path):
             try:
                 img = Image.open(logo_path)
-                img = remove_white_bg_floodfill(img, threshold=240)
+                img = remove_white_bg_floodfill(img, threshold=200)
                 img = img.resize((115, 115), Image.Resampling.LANCZOS)
                 self.avatar_img = ImageTk.PhotoImage(img)
                 self.avatar_canvas.create_image(65, 65, image=self.avatar_img)
@@ -1880,8 +1881,17 @@ class SettingsPanel(ctk.CTkFrame):
         
         theme_options = ["Світла тема", "Темна тема"]
         self.theme_switch = ctk.CTkSegmentedButton(card, values=theme_options, command=self.toggle_theme, font=("Arial", 12, "bold"))
-        self.theme_switch.pack(anchor="w", padx=30, pady=(5, 25))
+        self.theme_switch.pack(anchor="w", padx=30, pady=(5, 15))
         self.theme_switch.set("Світла тема" if current_theme == "light" else "Темна тема")
+
+        # ── Поповнення гаманця ──
+        ctk.CTkLabel(card, text="Поповнення балансу гаманця:", font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=30, pady=(15, 5))
+        self.btn_topup_settings = ctk.CTkButton(
+            card, text="💳 Поповнити на 500 грн", font=("Arial", 12, "bold"),
+            fg_color="#10B981", hover_color="#059669", height=34, corner_radius=6,
+            command=self.main_screen.topup_balance
+        )
+        self.btn_topup_settings.pack(anchor="w", padx=30, pady=(5, 25))
 
     def toggle_theme(self, choice):
         new_theme = "light" if "Світла" in choice else "dark"
