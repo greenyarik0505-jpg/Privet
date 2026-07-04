@@ -735,17 +735,17 @@ class FakePaymentWindow(ctk.CTkToplevel):
         lbl_bank = ctk.CTkLabel(bank_frame, text="🛡️ MegaBank Secure Pay", font=("Arial", 16, "bold"), text_color="white")
         lbl_bank.pack(pady=15)
         
-        lbl_amount_title = ctk.CTkLabel(self, text="Сума до сплати:", font=("Arial", 11), text_color="black")
+        lbl_amount_title = ctk.CTkLabel(self, text="Сума до сплати:", font=("Arial", 11), text_color=("#333333", "#E0E0E0"))
         lbl_amount_title.pack(pady=(15, 0))
         
-        lbl_amount = ctk.CTkLabel(self, text=f"{amount} грн", font=("Arial", 22, "bold"), text_color="#2e7d32")
+        lbl_amount = ctk.CTkLabel(self, text=f"{amount} грн", font=("Arial", 22, "bold"), text_color=("#2e7d32", "#4ADE80"))
         lbl_amount.pack(pady=(0, 15))
         
-        card_frame = ctk.CTkFrame(self, fg_color="white", corner_radius=10)
+        card_frame = ctk.CTkFrame(self, fg_color=("white", "#2D2D44"), corner_radius=10)
         card_frame.pack(padx=20, pady=5, fill="both", expand=True)
         
-        ctk.CTkLabel(card_frame, text="Номер картки:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w", padx=15, pady=(10, 2))
-        self.card_entry = ctk.CTkEntry(card_frame, placeholder_text="4441  1111  2222  3333", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        ctk.CTkLabel(card_frame, text="Номер картки:", font=("Arial", 10, "bold"), text_color=("black", "white")).pack(anchor="w", padx=15, pady=(10, 2))
+        self.card_entry = ctk.CTkEntry(card_frame, placeholder_text="4441  1111  2222  3333", fg_color=("#F3F4F6", "#1E1E2E"), text_color=("black", "white"), placeholder_text_color=("gray50", "gray60"), border_width=0, height=32)
         self.card_entry.pack(fill="x", padx=15, pady=2)
         
         row_frame = ctk.CTkFrame(card_frame, fg_color="transparent")
@@ -753,18 +753,18 @@ class FakePaymentWindow(ctk.CTkToplevel):
         
         col1 = ctk.CTkFrame(row_frame, fg_color="transparent")
         col1.pack(side="left", fill="x", expand=True)
-        ctk.CTkLabel(col1, text="Термін дії:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w")
-        self.exp_entry = ctk.CTkEntry(col1, placeholder_text="MM/YY", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        ctk.CTkLabel(col1, text="Термін дії:", font=("Arial", 10, "bold"), text_color=("black", "white")).pack(anchor="w")
+        self.exp_entry = ctk.CTkEntry(col1, placeholder_text="MM/YY", fg_color=("#F3F4F6", "#1E1E2E"), text_color=("black", "white"), placeholder_text_color=("gray50", "gray60"), border_width=0, height=32)
         self.exp_entry.pack(fill="x", pady=2)
         
         col2 = ctk.CTkFrame(row_frame, fg_color="transparent")
         col2.pack(side="right", fill="x", expand=True, padx=(10, 0))
-        ctk.CTkLabel(col2, text="CVV:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w")
-        self.cvv_entry = ctk.CTkEntry(col2, placeholder_text="•••", show="•", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        ctk.CTkLabel(col2, text="CVV:", font=("Arial", 10, "bold"), text_color=("black", "white")).pack(anchor="w")
+        self.cvv_entry = ctk.CTkEntry(col2, placeholder_text="•••", show="•", fg_color=("#F3F4F6", "#1E1E2E"), text_color=("black", "white"), placeholder_text_color=("gray50", "gray60"), border_width=0, height=32)
         self.cvv_entry.pack(fill="x", pady=2)
         
-        ctk.CTkLabel(card_frame, text="Власник картки:", font=("Arial", 10, "bold"), text_color="black").pack(anchor="w", padx=15, pady=(10, 2))
-        self.name_entry = ctk.CTkEntry(card_frame, placeholder_text="IVAN IVANOV", fg_color="#F3F4F6", text_color="black", border_width=0, height=32)
+        ctk.CTkLabel(card_frame, text="Власник картки:", font=("Arial", 10, "bold"), text_color=("black", "white")).pack(anchor="w", padx=15, pady=(10, 2))
+        self.name_entry = ctk.CTkEntry(card_frame, placeholder_text="IVAN IVANOV", fg_color=("#F3F4F6", "#1E1E2E"), text_color=("black", "white"), placeholder_text_color=("gray50", "gray60"), border_width=0, height=32)
         self.name_entry.pack(fill="x", padx=15, pady=(2, 15))
         
         self.btn_pay = ctk.CTkButton(self, text="Підтвердити оплату", command=self.process_payment, font=("Arial", 13, "bold"), fg_color="#2ecc71", hover_color="#27ae60", height=38, corner_radius=19)
