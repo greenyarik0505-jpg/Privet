@@ -881,19 +881,6 @@ class MainScreen(ctk.CTkFrame):
         self.balance_lbl = ctk.CTkLabel(self.sidebar, text="0 грн", font=("Arial", 11, "bold"), text_color="#2ecc71")
         self.balance_lbl.pack(pady=2)
         
-        # ── Перемикач теми ──
-        self.theme_btn = ctk.CTkButton(
-            self.sidebar,
-            text="🌙 Темна тема",
-            command=self.toggle_theme,
-            width=140, height=28,
-            font=("Arial", 10, "bold"),
-            fg_color="#6C63FF",
-            hover_color="#5A52D5",
-            corner_radius=14
-        )
-        self.theme_btn.pack(pady=(4, 2))
-
         self.btn_topup = ctk.CTkButton(self.sidebar, text=t("topup_btn"), command=self.topup_balance, width=110, height=24, font=("Arial", 9, "bold"), fg_color=PRIMARY_COLOR, hover_color="#4338CA")
         self.btn_topup.pack(pady=5)
         
@@ -907,33 +894,21 @@ class MainScreen(ctk.CTkFrame):
         self.show_catalog()
         self.update_profile_info()
 
-    def toggle_theme(self):
+    def toggle_theme_to(self, new_theme):
         global current_theme, BG_COLOR, SIDEBAR_COLOR, HOVER_COLOR, SEARCH_BAR_COLOR
-        current_theme = "dark" if current_theme == "light" else "light"
+        current_theme = new_theme
         ctk.set_appearance_mode(current_theme)  # Синхронізуємо режим з CustomTkinter
         th = THEMES[current_theme]
-
-        # Оновлюємо глобальні кольори
         BG_COLOR         = th["bg"]
         SIDEBAR_COLOR    = th["sidebar"]
         HOVER_COLOR      = th["hover"]
         SEARCH_BAR_COLOR = th["search"]
 
-        # Оновлюємо кнопку
-        if current_theme == "dark":
-            self.theme_btn.configure(text="☀️ Світла тема", fg_color="#5A52D5")
-        else:
-            self.theme_btn.configure(text="🌙 Темна тема", fg_color="#6C63FF")
-
-        # Оновлюємо основні контейнери
         self.configure(fg_color=BG_COLOR)
         self.sidebar.configure(fg_color=SIDEBAR_COLOR)
-
-        # Оновлюємо аватар-канвас
         self.avatar_canvas.configure(bg=SIDEBAR_COLOR)
         self.draw_profile_avatar()
 
-        # Оновлюємо кнопки навігації та додаткові кнопки сайдбару
         for btn in self.nav_buttons.values():
             btn.configure(
                 fg_color="transparent",
@@ -944,17 +919,15 @@ class MainScreen(ctk.CTkFrame):
         self.btn_logout.configure(text_color=th["text"], hover_color=HOVER_COLOR)
         self.btn_delete_acc.configure(hover_color="#ffe5e5" if current_theme == "light" else "#3d2020")
 
-        # Оновлюємо активну кнопку навігації
         active_panel_name = "DashBoard"
         if isinstance(self.active_panel, CartPanel): active_panel_name = "Checkout"
         elif isinstance(self.active_panel, AnalyticsPanel): active_panel_name = "Categories"
         elif isinstance(self.active_panel, HistoryPanel): active_panel_name = "History"
+        elif isinstance(self.active_panel, SettingsPanel): active_panel_name = "Settings"
         self.update_sidebar_state(active_panel_name)
 
-        # Оновлюємо тексти балансу
         self.balance_lbl.configure(text_color="#2ecc71")
 
-        # Перемалювати поточну панель зі свіжими кольорами
         if isinstance(self.active_panel, CatalogPanel):
             self.show_catalog()
         elif isinstance(self.active_panel, CartPanel):
@@ -970,12 +943,30 @@ class MainScreen(ctk.CTkFrame):
             btn.destroy()
         self.nav_buttons.clear()
         
-        navs = [
-            ("DashBoard", "Каталог", self.show_catalog),
-            ("Checkout", "Кошик", self.show_cart),
-            ("Categories", "Аналітика", self.show_analytics),
-            ("History", "Історія", self.show_history)
-        ]
+        if active_lang == "ua":
+            navs = [
+                ("DashBoard", "🛒 Каталог", self.show_catalog),
+                ("Checkout", "🛍️ Кошик", self.show_cart),
+                ("Categories", "📊 Аналітика", self.show_analytics),
+                ("History", "📜 Історія", self.show_history),
+                ("Settings", "⚙️ Налаштування", self.show_settings)
+            ]
+        elif active_lang == "ru":
+            navs = [
+                ("DashBoard", "🛒 Каталог", self.show_catalog),
+                ("Checkout", "🛍️ Корзина", self.show_cart),
+                ("Categories", "📊 Аналитика", self.show_analytics),
+                ("History", "📜 История", self.show_history),
+                ("Settings", "⚙️ Настройки", self.show_settings)
+            ]
+        else:
+            navs = [
+                ("DashBoard", "🛒 Catalog", self.show_catalog),
+                ("Checkout", "🛍️ Cart", self.show_cart),
+                ("Categories", "📊 Analytics", self.show_analytics),
+                ("History", "📜 History", self.show_history),
+                ("Settings", "⚙️ Settings", self.show_settings)
+            ]
         for key, display_name, cmd in navs:
             btn = ctk.CTkButton(
                 self.sidebar, text=display_name, anchor="w", fg_color="transparent", 
@@ -1868,33 +1859,57 @@ class SettingsPanel(ctk.CTkFrame):
         super().__init__(parent, fg_color="transparent")
         self.main_screen = main_screen
         
-        ctk.CTkLabel(self, text=t("settings_title"), font=("Arial", 16, "bold"), text_color="black").pack(pady=10)
+        if active_lang == "ua":
+            title_text = "⚙️ Налаштування застосунку"
+            lang_label = "🌐 Мова інтерфейсу / Language:"
+            theme_label = "🎨 Тема оформлення / Theme:"
+            theme_light = "Світла тема"
+            theme_dark = "Темна тема"
+        elif active_lang == "ru":
+            title_text = "⚙️ Настройки приложения"
+            lang_label = "🌐 Язык интерфейса / Language:"
+            theme_label = "🎨 Тема оформления / Theme:"
+            theme_light = "Светлая тема"
+            theme_dark = "Темная тема"
+        else:
+            title_text = "⚙️ Application Settings"
+            lang_label = "🌐 Interface Language / Language:"
+            theme_label = "🎨 Theme Style / Theme:"
+            theme_light = "Light Theme"
+            theme_dark = "Dark Theme"
+            
+        ctk.CTkLabel(self, text=title_text, font=("Arial", 20, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=(20, 10))
         
-        card = ctk.CTkFrame(self, width=400, height=350, fg_color=SIDEBAR_COLOR)
-        card.pack(pady=15, padx=20)
+        card = ctk.CTkFrame(self, fg_color=THEMES[current_theme]["card_bg"], corner_radius=12, border_width=1, border_color=("#E5E7EB", "#374151"))
+        card.pack(pady=15, padx=20, fill="both", expand=True)
         
-        ctk.CTkLabel(card, text="Мова інтерфейсу:", font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=30, pady=10)
-        self.lang_lbl = ctk.CTkLabel(card, text="Українська (Фіксовано за побажанням користувача)", font=("Arial", 11, "italic"), text_color="gray")
-        self.lang_lbl.pack(padx=30, anchor="w")
+        # ── Мова ──
+        ctk.CTkLabel(card, text=lang_label, font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=30, pady=(25, 5))
         
-        ctk.CTkLabel(card, text=t("theme_lbl"), font=("Arial", 11, "bold"), text_color="black").pack(anchor="w", padx=30, pady=15)
-        self.theme_lbl = ctk.CTkLabel(card, text="Світла тема за замовчуванням (ConvenientShop Style)", font=("Arial", 11, "italic"), text_color="gray")
-        self.theme_lbl.pack(padx=30, anchor="w")
+        lang_options = ["UA", "EN", "RU"]
+        self.lang_switch = ctk.CTkSegmentedButton(card, values=lang_options, command=self.change_lang, font=("Arial", 12, "bold"))
+        self.lang_switch.pack(anchor="w", padx=30, pady=(5, 20))
+        self.lang_switch.set(active_lang.upper())
         
-        self.sound_var = tk.BooleanVar(value=sound_enabled)
-        sound_chk = ctk.CTkCheckBox(card, text=t("sound_lbl"), variable=self.sound_var, command=self.toggle_sound, text_color="black", border_color=PRIMARY_COLOR)
-        sound_chk.pack(anchor="w", padx=30, pady=25)
+        # ── Тема ──
+        ctk.CTkLabel(card, text=theme_label, font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=30, pady=(15, 5))
+        
+        theme_options = [theme_light, theme_dark]
+        self.theme_switch = ctk.CTkSegmentedButton(card, values=theme_options, command=self.toggle_theme, font=("Arial", 12, "bold"))
+        self.theme_switch.pack(anchor="w", padx=30, pady=(5, 25))
+        self.theme_switch.set(theme_light if current_theme == "light" else theme_dark)
 
-    def change_lang(self, lang):
-        pass
+    def change_lang(self, choice):
+        global active_lang
+        active_lang = choice.lower()
+        self.main_screen.draw_navigation()
+        self.main_screen.update_profile_info()
+        self.main_screen.show_settings()
 
     def toggle_theme(self, choice):
-        pass
-
-    def toggle_sound(self):
-        global sound_enabled
-        sound_enabled = self.sound_var.get()
-        play_sound("click")
+        new_theme = "light" if ("Світла" in choice or "Светлая" in choice or "Light" in choice) else "dark"
+        self.main_screen.toggle_theme_to(new_theme)
+        self.main_screen.show_settings()
 
 from tkinter import ttk
 if __name__ == "__main__":
