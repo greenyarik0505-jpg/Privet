@@ -19,7 +19,6 @@ ctk.set_default_color_theme("blue")
 sound_enabled = True
 active_lang = "ua"
 current_theme = "light"  # "light" або "dark"
-IS_TEST_VERSION = False  # Флаг для відображення...
 logged_in_user = None
 session_discount = 0.0
 cart = []
@@ -814,10 +813,7 @@ class FakePaymentWindow(ctk.CTkToplevel):
     def __init__(self, parent, amount, on_success_callback):
         super().__init__(parent)
         self.title("Банківський переказ - Безпечна оплата")
-        if IS_TEST_VERSION:
-            self.geometry("420x510")
-        else:
-            self.geometry("420x460")
+        self.geometry("420x460")
         self.resizable(False, False)
         self.configure(fg_color=BG_COLOR)
         
@@ -839,16 +835,17 @@ class FakePaymentWindow(ctk.CTkToplevel):
         lbl_amount_title.pack(pady=(15, 0))
         
         lbl_amount = ctk.CTkLabel(self, text=f"{amount} грн", font=("Arial", 22, "bold"), text_color=("#2e7d32", "#4ADE80"))
-        lbl_amount.pack(pady=(0, 8))
-        
-        if IS_TEST_VERSION:
-            btn_quick = ctk.CTkButton(
-                self, text="⚡ Заповнити тестові дані", font=("Arial", 10, "bold"),
-                fg_color="#3b82f6", hover_color="#2563eb", height=24, corner_radius=12,
-                command=self.fill_test_data
-            )
-            btn_quick.pack(pady=(0, 10))
-        
+        lbl_amount.pack(pady=(0, 5))
+
+        btn_autofill = ctk.CTkButton(
+            self, text="⚡ Заповнити автоматично",
+            font=("Arial", 11, "bold"),
+            fg_color="#6366F1", hover_color="#4F46E5",
+            height=28, corner_radius=14,
+            command=self.fill_test_data
+        )
+        btn_autofill.pack(pady=(0, 8), padx=40, fill="x")
+
         card_frame = ctk.CTkFrame(self, fg_color=("white", "#2D2D44"), corner_radius=10)
         card_frame.pack(padx=20, pady=5, fill="both", expand=True)
         
@@ -879,8 +876,9 @@ class FakePaymentWindow(ctk.CTkToplevel):
         self.btn_pay.pack(pady=15, padx=20, fill="x")
         
     def fill_test_data(self):
+        """Заповнює поля тестовими даними картки для швидкого тестування."""
         self.card_entry.delete(0, "end")
-        self.card_entry.insert(0, "4441 1111 2222 3333")
+        self.card_entry.insert(0, "4441111122223333")
         self.exp_entry.delete(0, "end")
         self.exp_entry.insert(0, "12/30")
         self.cvv_entry.delete(0, "end")
