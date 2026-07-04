@@ -19,6 +19,7 @@ ctk.set_default_color_theme("blue")
 sound_enabled = True
 active_lang = "ua"
 current_theme = "light"  # "light" або "dark"
+IS_TEST_VERSION = False  # Флаг для відображення тестових функцій
 logged_in_user = None
 session_discount = 0.0
 cart = []
@@ -813,7 +814,10 @@ class FakePaymentWindow(ctk.CTkToplevel):
     def __init__(self, parent, amount, on_success_callback):
         super().__init__(parent)
         self.title("Банківський переказ - Безпечна оплата")
-        self.geometry("420x450")
+        if IS_TEST_VERSION:
+            self.geometry("420x510")
+        else:
+            self.geometry("420x460")
         self.resizable(False, False)
         self.configure(fg_color=BG_COLOR)
         
@@ -837,12 +841,13 @@ class FakePaymentWindow(ctk.CTkToplevel):
         lbl_amount = ctk.CTkLabel(self, text=f"{amount} грн", font=("Arial", 22, "bold"), text_color=("#2e7d32", "#4ADE80"))
         lbl_amount.pack(pady=(0, 8))
         
-        btn_quick = ctk.CTkButton(
-            self, text="⚡ Заповнити тестові дані", font=("Arial", 10, "bold"),
-            fg_color="#3b82f6", hover_color="#2563eb", height=24, corner_radius=12,
-            command=self.fill_test_data
-        )
-        btn_quick.pack(pady=(0, 10))
+        if IS_TEST_VERSION:
+            btn_quick = ctk.CTkButton(
+                self, text="⚡ Заповнити тестові дані", font=("Arial", 10, "bold"),
+                fg_color="#3b82f6", hover_color="#2563eb", height=24, corner_radius=12,
+                command=self.fill_test_data
+            )
+            btn_quick.pack(pady=(0, 10))
         
         card_frame = ctk.CTkFrame(self, fg_color=("white", "#2D2D44"), corner_radius=10)
         card_frame.pack(padx=20, pady=5, fill="both", expand=True)
