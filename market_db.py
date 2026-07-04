@@ -2,7 +2,12 @@ import sqlite3
 import hashlib
 import os
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "market.db")
+import sys
+
+if getattr(sys, 'frozen', False):
+    DB_PATH = os.path.join(os.path.dirname(sys.executable), "market.db")
+else:
+    DB_PATH = os.path.join(os.path.dirname(__file__), "market.db")
 
 def init_db():
     conn = sqlite3.connect(DB_PATH)

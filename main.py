@@ -19,7 +19,7 @@ ctk.set_default_color_theme("blue")
 sound_enabled = True
 active_lang = "ua"
 current_theme = "light"  # "light" або "dark"
-IS_TEST_VERSION = False  # Флаг для відображення тестових функцій
+IS_TEST_VERSION = False  # Флаг для відображення...
 logged_in_user = None
 session_discount = 0.0
 cart = []
@@ -1083,9 +1083,12 @@ class MainScreen(ctk.CTkFrame):
             return
             
         def on_success():
-            market_db.add_balance(logged_in_user, amount)
-            self.update_profile_info()
-            messagebox.showinfo("Успіх", f"Баланс успішно поповнено на {amount} грн!")
+            try:
+                market_db.add_balance(logged_in_user, amount)
+                self.update_profile_info()
+                messagebox.showinfo("Успіх", f"Баланс успішно поповнено на {amount} грн!")
+            except Exception as e:
+                messagebox.showerror("Помилка бази даних", f"Не вдалося оновити баланс в БД: {e}")
             
         FakePaymentWindow(self, amount, on_success)
 
