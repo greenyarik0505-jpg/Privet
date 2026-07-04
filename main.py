@@ -813,7 +813,7 @@ class FakePaymentWindow(ctk.CTkToplevel):
     def __init__(self, parent, amount, on_success_callback):
         super().__init__(parent)
         self.title("Банківський переказ - Безпечна оплата")
-        self.geometry("420x460")
+        self.geometry("420x540")
         self.resizable(False, False)
         self.configure(fg_color=BG_COLOR)
         
