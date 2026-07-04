@@ -23,7 +23,17 @@ logged_in_user = None
 session_discount = 0.0
 cart = []
 SESSION_FILE = "session.txt"
-ASSETS_DIR = os.path.join(os.path.dirname(__file__), "assets")
+
+import sys
+def resource_path(relative_path):
+    """ Отримує абсолютний шлях до ресурсів, сумісний з PyInstaller """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(os.path.dirname(__file__))
+    return os.path.join(base_path, relative_path)
+
+ASSETS_DIR = resource_path("assets")
 os.makedirs(ASSETS_DIR, exist_ok=True)
 
 # ── Палітра тем ──
@@ -268,7 +278,7 @@ def download_assets_worker():
 
 threading.Thread(target=download_assets_worker, daemon=True).start()
 
-CACHE_DIR = os.path.join(os.path.dirname(__file__), "cache_images")
+CACHE_DIR = resource_path("cache_images")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 def translate_product_name(name_ua, target_lang):
@@ -695,19 +705,20 @@ class AuthScreen(ctk.CTkFrame):
             self.try_login()
 
     def try_login(self):
-        username = self.user_entry.get().strip()
+        username_or_email = self.user_entry.get().strip()
         password = self.pass_entry.get().strip()
-        if not username or not password:
+        if not username_or_email or not password:
             play_sound("error")
             messagebox.showwarning("Помилка", "Заповніть усі поля!")
             return
             
-        if market_db.login_user(username, password):
+        matched_user = market_db.login_user(username_or_email, password)
+        if matched_user:
             global logged_in_user
-            logged_in_user = username
+            logged_in_user = matched_user
             try:
                 with open(SESSION_FILE, "w", encoding="utf-8") as f:
-                    f.write(username)
+                    f.write(matched_user)
             except Exception:
                 pass
             play_sound("success")

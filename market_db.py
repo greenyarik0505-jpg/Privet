@@ -74,15 +74,19 @@ def register_user(username, password, email=''):
     conn.close()
     return success
 
-def login_user(username, password):
+def login_user(username_or_email, password):
     init_db()
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     hashed = hash_password(password)
-    cursor.execute("SELECT id FROM users WHERE username = ? AND password = ?", (username, hashed))
+    cursor.execute("""
+        SELECT username FROM users 
+        WHERE (LOWER(username) = LOWER(?) OR LOWER(email) = LOWER(?)) 
+        AND password = ?
+    """, (username_or_email, username_or_email, hashed))
     user = cursor.fetchone()
     conn.close()
-    return user is not None
+    return user[0] if user else None
 
 def get_balance(username):
     init_db()
