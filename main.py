@@ -1086,7 +1086,8 @@ class MainScreen(ctk.CTkFrame):
             try:
                 market_db.add_balance(logged_in_user, amount)
                 self.update_profile_info()
-                messagebox.showinfo("Успіх", f"Баланс успішно поповнено на {amount} грн!")
+                new_balance = market_db.get_balance(logged_in_user)
+                messagebox.showinfo("Успіх", f"Користувач: {logged_in_user}\nБаланс успішно поповнено на {amount} грн!\nНовий баланс: {new_balance} грн")
             except Exception as e:
                 messagebox.showerror("Помилка бази даних", f"Не вдалося оновити баланс в БД: {e}")
             
