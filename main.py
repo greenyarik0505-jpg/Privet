@@ -516,6 +516,59 @@ class App(ctk.CTk):
     def show_main_screen(self):
         self.show_screen(MainScreen)
 
+class ResetPasswordWindow(ctk.CTkToplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.title("Відновлення паролю")
+        self.geometry("380x380")
+        self.resizable(False, False)
+        self.configure(fg_color=BG_COLOR)
+        
+        self.transient(parent)
+        self.grab_set()
+        self.focus_force()
+        
+        lbl_title = ctk.CTkLabel(self, text="Відновлення паролю", font=("Arial", 18, "bold"), text_color=PRIMARY_COLOR)
+        lbl_title.pack(pady=15)
+        
+        ctk.CTkLabel(self, text="Введіть логін (Username):", font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=40, pady=(10, 2))
+        self.user_entry = ctk.CTkEntry(self, width=300, fg_color=THEMES[current_theme]["card_bg"], text_color=THEMES[current_theme]["text"])
+        self.user_entry.pack(padx=40, pady=2)
+        
+        ctk.CTkLabel(self, text="Введіть пошту (Email):", font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=40, pady=(10, 2))
+        self.email_entry = ctk.CTkEntry(self, width=300, fg_color=THEMES[current_theme]["card_bg"], text_color=THEMES[current_theme]["text"])
+        self.email_entry.pack(padx=40, pady=2)
+        
+        ctk.CTkLabel(self, text="Введіть новий пароль:", font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=40, pady=(10, 2))
+        self.pass_entry = ctk.CTkEntry(self, show="*", width=300, fg_color=THEMES[current_theme]["card_bg"], text_color=THEMES[current_theme]["text"])
+        self.pass_entry.pack(padx=40, pady=2)
+        
+        self.btn_reset = ctk.CTkButton(self, text="Змінити пароль", command=self.reset_password, font=("Arial", 13, "bold"), fg_color=PRIMARY_COLOR, hover_color="#4338CA")
+        self.btn_reset.pack(pady=25, padx=40, fill="x")
+        
+    def reset_password(self):
+        username = self.user_entry.get().strip()
+        email = self.email_entry.get().strip()
+        new_pass = self.pass_entry.get().strip()
+        
+        if not username or not email or not new_pass:
+            play_sound("error")
+            messagebox.showwarning("Помилка", "Заповніть усі поля!")
+            return
+            
+        if len(new_pass) < 4:
+            play_sound("error")
+            messagebox.showerror("Помилка", "Пароль має бути не менше 4 символів!")
+            return
+            
+        if market_db.verify_and_reset_password(username, email, new_pass):
+            play_sound("success")
+            messagebox.showinfo("Успіх", "Пароль успішно оновлено! Увійдіть з новим паролем.")
+            self.destroy()
+        else:
+            play_sound("error")
+            messagebox.showerror("Помилка", "Користувача з такою комбінацією логіну та пошти не знайдено!")
+
 # --- ЕКРАН АВТОРИЗАЦІЇ ---
 class AuthScreen(ctk.CTkFrame):
     def __init__(self, parent, app_controller):
@@ -550,7 +603,7 @@ class AuthScreen(ctk.CTkFrame):
         self.lbl_title = ctk.CTkLabel(self.login_frame, text=t(title_key), font=("Arial", 36, "bold"), text_color=PRIMARY_COLOR)
         self.lbl_title.pack(pady=(40, 30))
         
-        self.user_lbl = ctk.CTkLabel(self.login_frame, text="EMAIL / USERNAME", font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
+        self.user_lbl = ctk.CTkLabel(self.login_frame, text="USERNAME", font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
         self.user_lbl.pack(fill="x", padx=45, pady=(5, 2))
         
         self.user_entry = ctk.CTkEntry(
@@ -560,6 +613,17 @@ class AuthScreen(ctk.CTkFrame):
             corner_radius=10, border_width=2
         )
         self.user_entry.pack(padx=40, pady=(0, 10))
+        
+        if self.is_register_mode:
+            self.email_lbl = ctk.CTkLabel(self.login_frame, text="EMAIL", font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
+            self.email_lbl.pack(fill="x", padx=45, pady=(5, 2))
+            self.email_entry = ctk.CTkEntry(
+                self.login_frame, placeholder_text="Введіть пошту...", font=("Arial", 14), 
+                width=290, height=45, fg_color=PRIMARY_COLOR, text_color="white", 
+                placeholder_text_color=SIDEBAR_COLOR, border_color=PRIMARY_COLOR, 
+                corner_radius=10, border_width=2
+            )
+            self.email_entry.pack(padx=40, pady=(0, 10))
         
         self.pass_lbl = ctk.CTkLabel(self.login_frame, text="PASSWORD", font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
         self.pass_lbl.pack(fill="x", padx=45, pady=(5, 2))
@@ -654,12 +718,18 @@ class AuthScreen(ctk.CTkFrame):
 
     def try_register(self):
         username = self.user_entry.get().strip()
+        email = self.email_entry.get().strip()
         password = self.pass_entry.get().strip()
         c_password = self.confirm_pass_entry.get().strip()
         
-        if not username or not password or not c_password:
+        if not username or not email or not password or not c_password:
             play_sound("error")
             messagebox.showwarning("Помилка", "Заповніть усі поля!")
+            return
+            
+        if "@" not in email or "." not in email:
+            play_sound("error")
+            messagebox.showerror("Помилка", "Некоректний формат електронної пошти!")
             return
             
         if password != c_password:
@@ -667,7 +737,7 @@ class AuthScreen(ctk.CTkFrame):
             messagebox.showerror("Помилка", "Паролі не співпадають!")
             return
             
-        if market_db.register_user(username, password):
+        if market_db.register_user(username, password, email):
             play_sound("success")
             messagebox.showinfo("Успіх", "Користувач зареєстрований! Увійдіть.")
             self.toggle_mode()
@@ -682,22 +752,7 @@ class AuthScreen(ctk.CTkFrame):
             self.confirm_pass_entry.configure(show=show_char)
 
     def forgot_password(self):
-        username = self.user_entry.get().strip()
-        if not username:
-            messagebox.showwarning("Помилка", "Будь ласка, введіть спочатку свій логін (USERNAME) у поле вводу!")
-            return
-            
-        dialog = ctk.CTkInputDialog(text="Введіть новий пароль для акаунту:", title="Відновлення паролю")
-        new_pass = dialog.get_input()
-        if new_pass:
-            new_pass = new_pass.strip()
-            if len(new_pass) < 4:
-                messagebox.showerror("Помилка", "Пароль має бути не менше 4 символів!")
-                return
-            if market_db.reset_password(username, new_pass):
-                messagebox.showinfo("Успіх", "Пароль успішно змінено! Увійдіть з новим паролем.")
-            else:
-                messagebox.showerror("Помилка", "Користувача з таким логіном не знайдено!")
+        ResetPasswordWindow(self)
 
     def draw_vector_graphics(self):
         self.left_canvas.delete("all")
@@ -1366,12 +1421,26 @@ class DetailsPanel(ctk.CTkFrame):
         revs = market_db.get_reviews(self.name)
         if revs:
             avg = sum(r['rating'] for r in revs) / len(revs)
-            stars_text = "*" * int(round(avg)) + "." * (5 - int(round(avg)))
-            ctk.CTkLabel(self.reviews_frame, text=f"{t('rating_lbl')} {stars_text} ({avg:.1f}/5)", font=("Arial", 12, "bold"), text_color="#f1c40f").pack(anchor="w")
+            stars_text = "★" * int(round(avg)) + "☆" * (5 - int(round(avg)))
+            ctk.CTkLabel(self.reviews_frame, text=f"{t('rating_lbl')} {stars_text} ({avg:.1f}/5)", font=("Arial", 13, "bold"), text_color="#F1C40F").pack(anchor="w", pady=(0, 10))
             for r in revs[-5:]:
-                ctk.CTkLabel(self.reviews_frame, text=f"• {r['username']} ({r['rating']}/5): {r['text']}", font=("Arial", 11), anchor="w", justify="left", text_color="black").pack(fill="x", pady=2)
+                card = ctk.CTkFrame(self.reviews_frame, fg_color=THEMES[current_theme]["card_bg"], corner_radius=10, border_width=1, border_color=("#E5E7EB", "#374151"))
+                card.pack(fill="x", pady=4, padx=2)
+                
+                header_frame = ctk.CTkFrame(card, fg_color="transparent")
+                header_frame.pack(fill="x", padx=10, pady=(6, 2))
+                
+                user_lbl = ctk.CTkLabel(header_frame, text=r['username'], font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text"])
+                user_lbl.pack(side="left")
+                
+                r_stars = "★" * r['rating'] + "☆" * (5 - r['rating'])
+                stars_lbl = ctk.CTkLabel(header_frame, text=f"  {r_stars}", font=("Arial", 10), text_color="#F1C40F")
+                stars_lbl.pack(side="left")
+                
+                text_lbl = ctk.CTkLabel(card, text=r['text'], font=("Arial", 11), text_color=THEMES[current_theme]["text_sec"], anchor="w", justify="left", wraplength=200)
+                text_lbl.pack(fill="x", padx=10, pady=(2, 6))
         else:
-            ctk.CTkLabel(self.reviews_frame, text="Відгуків ще немає.", font=("Arial", 11, "italic"), text_color="black").pack(anchor="w")
+            ctk.CTkLabel(self.reviews_frame, text="Відгуків ще немає.", font=("Arial", 11, "italic"), text_color=THEMES[current_theme]["text_sec"]).pack(anchor="w", pady=10)
 
     def submit_review(self):
         text = self.rev_entry.get().strip()

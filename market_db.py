@@ -14,9 +14,16 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
+            email TEXT DEFAULT '',
             balance INTEGER DEFAULT 1000
         )
     """)
+    
+    # Додаткова міграція для існуючих баз даних
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN email TEXT DEFAULT ''")
+    except sqlite3.OperationalError:
+        pass
     
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS favorites (
@@ -53,13 +60,13 @@ def init_db():
 def hash_password(password):
     return hashlib.sha256(password.encode("utf-8")).hexdigest()
 
-def register_user(username, password):
+def register_user(username, password, email=''):
     init_db()
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     hashed = hash_password(password)
     try:
-        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, hashed))
+        cursor.execute("INSERT INTO users (username, password, email) VALUES (?, ?, ?)", (username, hashed, email))
         conn.commit()
         success = True
     except sqlite3.IntegrityError:
@@ -183,13 +190,18 @@ def delete_order(username, date_str):
     conn.commit()
     conn.close()
 
-def reset_password(username, new_password):
+def verify_and_reset_password(username, email, new_password):
     init_db()
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    hashed = hash_password(new_password)
-    cursor.execute("UPDATE users SET password = ? WHERE username = ?", (hashed, username))
-    conn.commit()
-    success = cursor.rowcount > 0
+    cursor.execute("SELECT id FROM users WHERE LOWER(username) = LOWER(?) AND LOWER(email) = LOWER(?)", (username, email))
+    user = cursor.fetchone()
+    if user:
+        hashed = hash_password(new_password)
+        cursor.execute("UPDATE users SET password = ? WHERE id = ?", (hashed, user[0]))
+        conn.commit()
+        success = True
+    else:
+        success = False
     conn.close()
     return success
