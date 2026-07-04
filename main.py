@@ -326,23 +326,29 @@ def translate_product_name(name_ua, target_lang):
         translated = translated[0].upper() + translated[1:]
     return translated
 
+import numpy as np
+
+# Кеш для CTkImage об'єктів, щоб не зчитувати й не обробляти зображення щоразу з диска
+_product_image_cache = {}
+
 def remove_white_bg(img, threshold=230):
-    """Replace near-white pixels with transparent — removes white background from product images."""
+    """Replace near-white pixels with transparent — removes white background from product images using numpy (fast)."""
     try:
         img = img.convert("RGBA")
-        data = img.getdata()
-        new_data = []
-        for r, g, b, a in data:
-            if r > threshold and g > threshold and b > threshold:
-                new_data.append((r, g, b, 0))  # transparent
-            else:
-                new_data.append((r, g, b, a))
-        img.putdata(new_data)
+        arr = np.array(img)
+        # Маска для пікселів, де R, G, B канали більше за поріг
+        mask = (arr[:, :, 0] > threshold) & (arr[:, :, 1] > threshold) & (arr[:, :, 2] > threshold)
+        arr[mask, 3] = 0  # робимо прозорими
+        img = Image.fromarray(arr)
     except Exception:
         pass
     return img
 
 def get_product_image_local(img_src, size):
+    cache_key = (img_src, size)
+    if cache_key in _product_image_cache:
+        return _product_image_cache[cache_key]
+
     # Якщо це віддалена URL-адреса з CDN Сільпо
     if img_src.startswith("http://") or img_src.startswith("https://"):
         filename = img_src.split("/")[-1].split("?")[0]
@@ -358,7 +364,9 @@ def get_product_image_local(img_src, size):
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.2)
-                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                _product_image_cache[cache_key] = ctk_img
+                return ctk_img
             except Exception:
                 pass
         
@@ -384,11 +392,15 @@ def get_product_image_local(img_src, size):
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
-                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                _product_image_cache[cache_key] = ctk_img
+                return ctk_img
             except Exception:
                 pass
         img = Image.new("RGBA", size, (149, 165, 166, 255))
-        return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+        ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=size)
+        _product_image_cache[cache_key] = ctk_img
+        return ctk_img
     else:
         # Локальні асети
         dest = os.path.join(ASSETS_DIR, img_src)
@@ -402,7 +414,9 @@ def get_product_image_local(img_src, size):
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
-                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                _product_image_cache[cache_key] = ctk_img
+                return ctk_img
             except Exception:
                 pass
         fallback_dest = os.path.join(ASSETS_DIR, "default.png")
@@ -416,11 +430,16 @@ def get_product_image_local(img_src, size):
                 img = img.filter(ImageFilter.SHARPEN)
                 enh = ImageEnhance.Sharpness(img)
                 img = enh.enhance(2.0)
-                return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=size)
+                _product_image_cache[cache_key] = ctk_img
+                return ctk_img
             except Exception:
                 pass
         img = Image.new("RGBA", size, (149, 165, 166, 255))
-        return ctk.CTkImage(light_image=img, dark_image=img, size=size)
+        ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=size)
+        _product_image_cache[cache_key] = ctk_img
+        return ctk_img
+
 
 # Продукти: Завантажуємо 250+ повністю унікальних товарів прямо з Сільпо
 fruits_data = {}
@@ -814,6 +833,7 @@ class MainScreen(ctk.CTkFrame):
     def toggle_theme(self):
         global current_theme, BG_COLOR, SIDEBAR_COLOR, HOVER_COLOR, SEARCH_BAR_COLOR
         current_theme = "dark" if current_theme == "light" else "light"
+        ctk.set_appearance_mode(current_theme)  # Синхронізуємо режим з CustomTkinter
         th = THEMES[current_theme]
 
         # Оновлюємо глобальні кольори
@@ -836,24 +856,36 @@ class MainScreen(ctk.CTkFrame):
         self.avatar_canvas.configure(bg=SIDEBAR_COLOR)
         self.draw_profile_avatar()
 
-        # Оновлюємо кнопки навігації
+        # Оновлюємо кнопки навігації та додаткові кнопки сайдбару
         for btn in self.nav_buttons.values():
             btn.configure(
                 fg_color="transparent",
                 text_color=th["text"],
                 hover_color=HOVER_COLOR,
             )
+        
+        self.btn_logout.configure(text_color=th["text"], hover_color=HOVER_COLOR)
+        self.btn_delete_acc.configure(hover_color="#ffe5e5" if current_theme == "light" else "#3d2020")
 
         # Оновлюємо активну кнопку навігації
-        self.update_sidebar_state(
-            next((k for k, v in self.nav_buttons.items()), None)
-        )
+        active_panel_name = "DashBoard"
+        if isinstance(self.active_panel, CartPanel): active_panel_name = "Checkout"
+        elif isinstance(self.active_panel, AnalyticsPanel): active_panel_name = "Categories"
+        elif isinstance(self.active_panel, HistoryPanel): active_panel_name = "History"
+        self.update_sidebar_state(active_panel_name)
 
         # Оновлюємо тексти балансу
         self.balance_lbl.configure(text_color="#2ecc71")
 
         # Перемалювати поточну панель зі свіжими кольорами
-        self.show_catalog()
+        if isinstance(self.active_panel, CatalogPanel):
+            self.show_catalog()
+        elif isinstance(self.active_panel, CartPanel):
+            self.show_cart()
+        elif isinstance(self.active_panel, AnalyticsPanel):
+            self.show_analytics()
+        elif isinstance(self.active_panel, HistoryPanel):
+            self.show_history()
 
 
     def draw_navigation(self):
@@ -1057,7 +1089,7 @@ class CatalogPanel(ctk.CTkFrame):
             img_lbl.pack(pady=(8, 2))
             img_lbl.bind("<Button-1>", select_cat)
             
-            lbl_cat_name = ctk.CTkLabel(cat_card, text=name, font=("Arial", 11, "bold"), text_color=THEMES[current_theme]["text"])
+            lbl_cat_name = ctk.CTkLabel(cat_card, text=name, font=("Arial", 11, "bold"), text_color="black")
             lbl_cat_name.pack()
             lbl_cat_name.bind("<Button-1>", select_cat)
 
@@ -1228,7 +1260,7 @@ class CatalogPanel(ctk.CTkFrame):
             btn_next.pack(side="right", padx=20)
             
         # Показати номер поточної сторінки посередині
-        lbl_page_num = ctk.CTkLabel(self.pagination_frame, text=f"Page {self.current_page + 1} of {max(1, max_pages)}", font=("Arial", 11, "bold"), text_color="black")
+        lbl_page_num = ctk.CTkLabel(self.pagination_frame, text=f"Page {self.current_page + 1} of {max(1, max_pages)}", font=("Arial", 11, "bold"), text_color=("black", "white"))
         lbl_page_num.pack(pady=5)
 
     def next_page(self):
@@ -1422,7 +1454,7 @@ class CartPanel(ctk.CTkFrame):
             w.destroy()
             
         if not cart:
-            ctk.CTkLabel(self.items_frame, text=t("cart_empty"), font=("Arial", 11), text_color="black").pack(pady=30)
+            ctk.CTkLabel(self.items_frame, text=t("cart_empty"), font=("Arial", 11), text_color=("black", "white")).pack(pady=30)
             self.total_lbl.configure(text=f"{t('total_lbl')} 0 грн")
             return
             
