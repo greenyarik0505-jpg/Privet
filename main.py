@@ -1055,7 +1055,7 @@ class MainScreen(ctk.CTkFrame):
 
     def update_profile_info(self):
         balance = market_db.get_balance(logged_in_user)
-        self.balance_lbl.configure(text=f"{t('balance_lbl')} {balance} грн")
+        self.balance_lbl.configure(text=f"Баланс: {balance} грн")
         if self.active_panel:
             panel_name = "DashBoard"
             if isinstance(self.active_panel, CartPanel): panel_name = "Checkout"
@@ -1064,12 +1064,30 @@ class MainScreen(ctk.CTkFrame):
             self.update_sidebar_state(panel_name)
 
     def topup_balance(self):
-        def on_success():
-            market_db.add_balance(logged_in_user, 500)
-            self.update_profile_info()
-            messagebox.showinfo("Успіх", "Баланс успішно поповнено на 500 грн!")
+        dialog = ctk.CTkInputDialog(
+            text="Введіть суму для поповнення балансу (грн):",
+            title="Поповнення балансу"
+        )
+        dialog.attributes("-topmost", True)
+        
+        sum_str = dialog.get_input()
+        if not sum_str:
+            return
             
-        FakePaymentWindow(self, 500, on_success)
+        try:
+            amount = int(sum_str)
+            if amount <= 0:
+                raise ValueError()
+        except ValueError:
+            messagebox.showerror("Помилка", "Будь ласка, введіть коректну додатну суму!")
+            return
+            
+        def on_success():
+            market_db.add_balance(logged_in_user, amount)
+            self.update_profile_info()
+            messagebox.showinfo("Успіх", f"Баланс успішно поповнено на {amount} грн!")
+            
+        FakePaymentWindow(self, amount, on_success)
 
     def delete_account(self):
         if messagebox.askyesno("Видалення акаунту", "Ви дійсно хочете видалити свій акаунт?"):
