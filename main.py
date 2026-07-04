@@ -943,23 +943,33 @@ class MainScreen(ctk.CTkFrame):
             btn.destroy()
         self.nav_buttons.clear()
         
+        def get_nav_icon(name):
+            path = resource_path(os.path.join("assets", name))
+            if os.path.exists(path):
+                try:
+                    img = Image.open(path)
+                    return ctk.CTkImage(light_image=img, dark_image=img, size=(20, 20))
+                except Exception:
+                    pass
+            return None
+            
         navs = [
-            ("DashBoard", "🛒 Каталог", self.show_catalog),
-            ("Checkout", "🛍️ Кошик", self.show_cart),
-            ("Categories", "📊 Аналітика", self.show_analytics),
-            ("History", "📜 Історія", self.show_history),
-            ("Settings", "⚙️ Налаштування", self.show_settings)
+            ("DashBoard", "Каталог", self.show_catalog, "cat_icon.png"),
+            ("Checkout", "Кошик", self.show_cart, "cart_icon.png"),
+            ("Categories", "Аналітика", self.show_analytics, "analytics_icon.png"),
+            ("History", "Історія", self.show_history, "history_icon.png"),
+            ("Settings", "Налаштування", self.show_settings, "settings_icon.png")
         ]
-        for key, display_name, cmd in navs:
+        for key, display_name, cmd, icon_file in navs:
             btn = ctk.CTkButton(
-                self.sidebar, text=display_name, anchor="w", fg_color="transparent", 
+                self.sidebar, text="  " + display_name, anchor="w", fg_color="transparent", 
                 text_color=THEMES[current_theme]["text"], hover_color=HOVER_COLOR, command=cmd, 
-                font=("Arial", 14), height=42, corner_radius=6
+                font=("Arial", 14), height=42, corner_radius=6, image=get_nav_icon(icon_file)
             )
             btn.pack(fill="x", padx=15, pady=4)
             self.nav_buttons[key] = btn
             
-        self.btn_logout = ctk.CTkButton(self.sidebar, text="🚪 Вийти", anchor="w", fg_color="transparent", text_color=THEMES[current_theme]["text"], hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42)
+        self.btn_logout = ctk.CTkButton(self.sidebar, text="  Вийти", anchor="w", fg_color="transparent", text_color=THEMES[current_theme]["text"], hover_color=HOVER_COLOR, command=self.logout, font=("Arial", 14), height=42, image=get_nav_icon("logout_icon.png"))
         self.btn_logout.pack(side="bottom", fill="x", padx=15, pady=(5, 20))
         
         self.btn_delete_acc = ctk.CTkButton(self.sidebar, text="Видалити акаунт", anchor="w", fg_color="transparent", text_color="#ff4d4d", hover_color="#ffe5e5", command=self.delete_account, font=("Arial", 14), height=42)
