@@ -613,11 +613,22 @@ class AuthScreen(ctk.CTkFrame):
         self.lbl_title = ctk.CTkLabel(self.login_frame, text=t(title_key), font=("Arial", 36, "bold"), text_color=PRIMARY_COLOR)
         self.lbl_title.pack(pady=(20, 15))
         
-        self.user_lbl = ctk.CTkLabel(self.login_frame, text="USERNAME", font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
+        user_lbl_text = "USERNAME" if self.is_register_mode else "USERNAME / EMAIL"
+        if self.is_register_mode:
+            placeholder = t("username_placeholder")
+        else:
+            if active_lang == "ua":
+                placeholder = "введіть логін або пошту"
+            elif active_lang == "ru":
+                placeholder = "введите логин или почту"
+            else:
+                placeholder = "enter username or email"
+                
+        self.user_lbl = ctk.CTkLabel(self.login_frame, text=user_lbl_text, font=("Arial", 12, "bold"), text_color=PRIMARY_COLOR, anchor="w")
         self.user_lbl.pack(fill="x", padx=45, pady=(5, 2))
         
         self.user_entry = ctk.CTkEntry(
-            self.login_frame, placeholder_text=t("username_placeholder"), font=("Arial", 14), 
+            self.login_frame, placeholder_text=placeholder, font=("Arial", 14), 
             width=290, height=45, fg_color=PRIMARY_COLOR, text_color="white", 
             placeholder_text_color=SIDEBAR_COLOR, border_color=PRIMARY_COLOR, 
             corner_radius=10, border_width=2
