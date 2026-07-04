@@ -1303,14 +1303,28 @@ class DetailsPanel(ctk.CTkFrame):
         lbl_price = ctk.CTkLabel(left_box, text=f"{t('price_lbl')} {self.data['price']} грн", font=("Arial", 15, "bold"), text_color=PRIMARY_COLOR)
         lbl_price.pack(pady=10)
         
-        ctk.CTkLabel(left_box, text=t("color_lbl"), font=("Arial", 12, "bold"), text_color=THEMES[current_theme]["text"]).pack()
-        self.selected_color = ctk.StringVar(value=self.data["colors"][0][0])
-        color_frame = ctk.CTkFrame(left_box, fg_color="transparent")
-        color_frame.pack(pady=5)
+        # Визначаємо варіанти вибору залежно від категорії
+        category = self.data.get("category", "")
+        options = []
+        selector_label = ""
         
-        for color_name, color_hex in self.data["colors"]:
-            btn_c = tk.Button(color_frame, bg=color_hex, width=4, height=1, relief="groove", command=lambda c=color_name: self.selected_color.set(c))
-            btn_c.pack(side="left", padx=5)
+        if category == "bakeries":
+            selector_label = "Виберіть нарізку:"
+            options = ["Цілий", "Нарізаний"]
+        elif category == "drinks":
+            selector_label = "Виберіть об'єм:"
+            options = ["0.5 л", "1.0 л", "1.5 л"]
+        elif category == "dairy":
+            selector_label = "Жирність / Вид:"
+            options = ["Класичний", "Знежирений"]
+            
+        self.selected_color = ctk.StringVar(value=options[0] if options else "Стандарт")
+        
+        if options:
+            ctk.CTkLabel(left_box, text=selector_label, font=("Arial", 12, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=(5, 2))
+            seg_button = ctk.CTkSegmentedButton(left_box, values=options, command=lambda v: self.selected_color.set(v), fg_color=BG_COLOR, selected_color=PRIMARY_COLOR, selected_hover_color="#4338CA")
+            seg_button.pack(pady=5, padx=10)
+            seg_button.set(options[0])
             
         qty_frame = ctk.CTkFrame(left_box, fg_color="transparent")
         qty_frame.pack(pady=10)
