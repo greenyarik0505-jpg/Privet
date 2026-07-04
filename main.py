@@ -1674,111 +1674,193 @@ class CartPanel(ctk.CTkFrame):
             play_sound("error")
             messagebox.showwarning("Помилка", t("cart_empty"))
             return
-            
+
         total_price = sum(item['price'] * item['qty'] for item in cart)
         discounted_price = int(total_price * (1 - session_discount))
-        
-        user_balance = market_db.get_balance(logged_in_user)
-        if user_balance < discounted_price:
-            play_sound("error")
-            messagebox.showerror("Помилка", "Недостатньо коштів на балансі!")
-            return
-            
+        pay_method = self.pay_combo.get()
+
+        # Перевірка балансу тільки при оплаті балансом
+        if pay_method == "Балансом акаунту":
+            user_balance = market_db.get_balance(logged_in_user)
+            if user_balance < discounted_price:
+                play_sound("error")
+                messagebox.showerror("Недостатньо коштів",
+                    f"На вашому балансі: {user_balance} грн\nПотрібно: {discounted_price} грн\n\nПоповніть баланс через кнопку '+ Поповнити' у боковому меню.")
+                return
+
         phone = self.phone_entry.get().strip()
         email = self.email_entry.get().strip()
         address = self.address_entry.get().strip()
-        
+
         if len(phone) < 9 or not email or not address:
             play_sound("error")
             messagebox.showwarning("Помилка", "Заповніть усі дані доставки!")
             return
-            
+
         date_str = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         safe_date = date_str.replace(" ", "_").replace(":", "-")
         receipt_filename = f"receipt_{logged_in_user}_{safe_date}.html"
         
+        pay_icon = {"Балансом акаунту": "💳", "Карткою при отриманні": "💳", "Готівкою при отриманні": "💵"}.get(pay_method, "💰")
+        deliv_icon = {"Кур'єр": "🚚", "Нова Пошта": "📦", "Самовивіз": "🏪"}.get(self.deliv_combo.get(), "📦")
+
         html_content = f"""<!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
     <meta charset="utf-8">
-    <title>Чек Сільпо</title>
+    <title>Чек Сільпо — {date_str}</title>
     <style>
-        body {{ font-family: 'Segoe UI', Arial, sans-serif; background-color: #f3f3f3; padding: 20px; }}
-        .receipt {{ background: white; max-width: 450px; margin: 0 auto; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border-top: 10px solid #4a90e2; }}
-        h2 {{ text-align: center; color: #2c3e50; margin-bottom: 5px; }}
-        .meta {{ font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }}
-        table {{ width: 100%; border-collapse: collapse; margin-bottom: 20px; }}
-        th {{ text-align: left; color: #7f8c8d; font-size: 13px; padding-bottom: 8px; border-bottom: 1px solid #eee; }}
-        td {{ padding: 10px 0; font-size: 14px; border-bottom: 1px dashed #eee; }}
-        .price {{ text-align: right; }}
-        .total-row {{ font-weight: bold; font-size: 17px; color: #2e7d32; }}
-        .footer {{ text-align: center; font-size: 13px; color: #95a5a6; margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px; }}
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+        body {{ font-family: 'Inter', 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 30px 15px; }}
+        .wrapper {{ max-width: 520px; margin: 0 auto; }}
+        .receipt {{ background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.3); }}
+        .header {{ background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%); padding: 30px 35px 25px; text-align: center; position: relative; }}
+        .header::after {{ content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 20px; background: white; border-radius: 20px 20px 0 0; }}
+        .logo {{ font-size: 32px; font-weight: 700; color: white; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }}
+        .logo span {{ color: #a5d6a7; }}
+        .subtitle {{ color: rgba(255,255,255,0.85); font-size: 13px; margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }}
+        .body {{ padding: 25px 35px; }}
+        .info-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }}
+        .info-card {{ background: #f8fafc; border-radius: 12px; padding: 12px 15px; border-left: 3px solid #4CAF50; }}
+        .info-card .label {{ font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }}
+        .info-card .value {{ font-size: 13px; color: #1e293b; font-weight: 600; }}
+        .info-card.full {{ grid-column: 1 / -1; }}
+        .divider {{ border: none; border-top: 2px dashed #e2e8f0; margin: 20px 0; }}
+        .section-title {{ font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 12px; }}
+        .items-table {{ width: 100%; border-collapse: collapse; }}
+        .items-table th {{ font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }}
+        .items-table th:last-child {{ text-align: right; }}
+        .items-table td {{ padding: 13px 0; border-bottom: 1px solid #f1f5f9; vertical-align: top; }}
+        .items-table td:last-child {{ text-align: right; }}
+        .item-name {{ font-size: 14px; font-weight: 600; color: #1e293b; }}
+        .item-sub {{ font-size: 12px; color: #94a3b8; margin-top: 3px; }}
+        .item-price {{ font-size: 14px; font-weight: 600; color: #1e293b; }}
+        .totals {{ margin-top: 15px; }}
+        .total-row {{ display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: #475569; }}
+        .total-row.discount {{ color: #ef4444; }}
+        .total-row.grand {{ background: linear-gradient(135deg, #4CAF50, #2e7d32); border-radius: 12px; padding: 15px 20px; margin-top: 12px; }}
+        .total-row.grand span {{ color: white; font-size: 16px; font-weight: 700; }}
+        .badge {{ display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }}
+        .badge-green {{ background: #dcfce7; color: #16a34a; }}
+        .footer {{ background: #f8fafc; padding: 20px 35px; text-align: center; border-top: 1px solid #e2e8f0; }}
+        .footer-text {{ font-size: 13px; color: #64748b; line-height: 1.6; }}
+        .footer-brand {{ font-size: 20px; margin-bottom: 6px; }}
+        .barcode {{ display: flex; justify-content: center; gap: 2px; margin: 12px 0; }}
+        .barcode div {{ width: 2px; background: #334155; border-radius: 1px; }}
     </style>
 </head>
 <body>
+<div class="wrapper">
     <div class="receipt">
-        <h2>СІЛЬПО ЧЕК</h2>
-        <div class="meta">
-            <b>Покупець:</b> {logged_in_user}<br>
-            <b>Телефон:</b> {phone}<br>
-            <b>Email:</b> {email}<br>
-            <b>Адреса доставки:</b> {address}<br>
-            <b>Спосіб доставки:</b> {self.deliv_combo.get()}<br>
-            <b>Метод оплати:</b> {self.pay_combo.get()}<br>
-            <b>Дата:</b> {date_str}
+        <div class="header">
+            <div class="logo">СІЛЬПО<span>.UA</span></div>
+            <div class="subtitle">Електронний чек · {date_str}</div>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Товар</th>
-                    <th class="price">Вартість</th>
-                </tr>
-            </thead>
-            <tbody>"""
+        <div class="body">
+            <div class="info-grid">
+                <div class="info-card full">
+                    <div class="label">👤 Покупець</div>
+                    <div class="value">{logged_in_user}</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">📞 Телефон</div>
+                    <div class="value">{phone}</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">✉️ Email</div>
+                    <div class="value">{email}</div>
+                </div>
+                <div class="info-card full">
+                    <div class="label">📍 Адреса доставки</div>
+                    <div class="value">{address}</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">{deliv_icon} Доставка</div>
+                    <div class="value">{self.deliv_combo.get()}</div>
+                </div>
+                <div class="info-card">
+                    <div class="label">{pay_icon} Оплата</div>
+                    <div class="value">{pay_method}</div>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="section-title">🛒 Товари</div>
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:left">Найменування</th>
+                        <th>Сума</th>
+                    </tr>
+                </thead>
+                <tbody>"""
         for item in cart:
             subtotal = item['price'] * item['qty']
             display_name = fruits_data[item["name"]]["names"][active_lang]
+            unit_label = f"{item['qty']} кг" if fruits_data[item['name']]['unit'] == 'kg' else f"{int(item['qty'])} шт."
             html_content += f"""
-            <tr>
-                <td>{display_name}<br><small>{item['qty']} шт. х {item['price']} грн</small></td>
-                <td class="price">{subtotal} грн</td>
-            </tr>"""
-        html_content += f"""
-        </tbody>
-    </table>"""
+                    <tr>
+                        <td>
+                            <div class="item-name">{display_name}</div>
+                            <div class="item-sub">{unit_label} × {item['price']} грн</div>
+                        </td>
+                        <td><span class="item-price">{int(subtotal)} грн</span></td>
+                    </tr>"""
+        html_content += """
+                </tbody>
+            </table>
+            <div class="totals">"""
         if session_discount > 0:
             html_content += f"""
-        <div style="text-align:right; font-size:14px; margin-bottom:5px;">Сума: {total_price} грн</div>
-        <div style="text-align:right; font-size:14px; color:#e74c3c; margin-bottom:5px;">Знижка ({int(session_discount*100)}%): -{int(total_price*session_discount)} грн</div>"""
+                <div class="total-row"><span>Сума без знижки:</span><span>{total_price} грн</span></div>
+                <div class="total-row discount"><span>🏷️ Знижка {int(session_discount*100)}%:</span><span>−{int(total_price*session_discount)} грн</span></div>"""
         html_content += f"""
-    <div class="total-row" style="text-align:right; padding-top:10px; border-top: 2px solid #4a90e2;">
-        РАЗОМ ДО СПЛАТИ: {discounted_price} грн
+                <div class="total-row grand"><span>💰 РАЗОМ ДО СПЛАТИ:</span><span>{discounted_price} грн</span></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-brand">🛒</div>
+            <div class="barcode">
+                {''.join(f'<div style="height:{h}px"></div>' for h in [30,20,30,15,25,30,18,30,22,30,15,30,25,18,30,20,30,15,25,30])}
+            </div>
+            <div class="footer-text">
+                Дякуємо за покупку! 💚<br>
+                <strong>Сільпо Маркет</strong> · silpo.ua
+            </div>
+        </div>
     </div>
-    <div class="footer">Дякуємо за покупку в нашому Сільпо! 🚚</div>
 </div>
 </body>
 </html>"""
-        
-        def on_pay_success():
-            market_db.deduct_balance(logged_in_user, discounted_price)
+
+        def finalize_order():
+            """Зберігає замовлення і відкриває чек."""
+            if pay_method == "Балансом акаунту":
+                market_db.deduct_balance(logged_in_user, discounted_price)
             market_db.add_order(logged_in_user, discounted_price, sum(item['qty'] for item in cart), date_str)
             with open(receipt_filename, "w", encoding="utf-8") as f:
                 f.write(html_content)
-                
             import webbrowser
             try:
                 webbrowser.open(os.path.abspath(receipt_filename))
             except Exception:
                 pass
-                
             play_sound("success")
-            messagebox.showinfo("Успіх", f"Замовлення успішно створено! Чек збережено: {receipt_filename}")
+            messagebox.showinfo("Замовлення оформлено! ✅",
+                f"Спосіб оплати: {pay_method}\nСума: {discounted_price} грн\n\nЧек відкрито у браузері.")
             cart.clear()
             session_discount = 0.0
             self.refresh_cart_list()
             self.main_screen.update_profile_info()
 
-        FakePaymentWindow(self.main_screen, discounted_price, on_pay_success)
+        if pay_method == "Карткою при отриманні":
+            # Відкриваємо вікно введення картки (оплата при доставці — баланс не знімається)
+            def on_card_success():
+                finalize_order()
+            FakePaymentWindow(self.main_screen, discounted_price, on_card_success)
+        else:
+            # «Балансом акаунту» або «Готівкою при отриманні» — одразу підтверджуємо
+            finalize_order()
 
 # --- ПАНЕЛЬ АНАЛІТИКИ ---
 class AnalyticsPanel(ctk.CTkFrame):
@@ -1926,14 +2008,12 @@ class SettingsPanel(ctk.CTkFrame):
         self.theme_switch.pack(anchor="w", padx=30, pady=(5, 15))
         self.theme_switch.set("Світла тема" if current_theme == "light" else "Темна тема")
 
-        # ── Поповнення гаманця ──
-        ctk.CTkLabel(card, text="Поповнення балансу гаманця:", font=("Arial", 13, "bold"), text_color=THEMES[current_theme]["text"]).pack(anchor="w", padx=30, pady=(15, 5))
-        self.btn_topup_settings = ctk.CTkButton(
-            card, text="💳 Поповнити на 500 грн", font=("Arial", 12, "bold"),
-            fg_color="#10B981", hover_color="#059669", height=34, corner_radius=6,
-            command=self.main_screen.topup_balance
-        )
-        self.btn_topup_settings.pack(anchor="w", padx=30, pady=(5, 25))
+        # Підказка про поповнення балансу
+        ctk.CTkLabel(
+            card,
+            text="💡 Для поповнення балансу натисніть кнопку\n'+ Поповнити' у лівому бічному меню.",
+            font=("Arial", 11), text_color=("#6B7280", "#9CA3AF"), justify="left"
+        ).pack(anchor="w", padx=30, pady=(10, 25))
 
     def toggle_theme(self, choice):
         new_theme = "light" if "Світла" in choice else "dark"
