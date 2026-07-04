@@ -1574,8 +1574,17 @@ class CartPanel(ctk.CTkFrame):
         self.right_box = ctk.CTkFrame(self, corner_radius=12, fg_color=SIDEBAR_COLOR)
         self.right_box.pack(side="right", fill="both", expand=True, padx=10, pady=10)
         
-        ctk.CTkLabel(self.right_box, text=t("delivery_title"), font=("Arial", 14, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=15)
-        
+        ctk.CTkLabel(self.right_box, text=t("delivery_title"), font=("Arial", 14, "bold"), text_color=THEMES[current_theme]["text"]).pack(pady=(15, 4))
+
+        btn_fill_delivery = ctk.CTkButton(
+            self.right_box, text="⚡ Заповнити автоматично",
+            font=("Arial", 11, "bold"),
+            fg_color="#6366F1", hover_color="#4F46E5",
+            height=28, corner_radius=14,
+            command=self.fill_delivery_test_data
+        )
+        btn_fill_delivery.pack(pady=(0, 6), padx=20, fill="x")
+
         entry_bg = THEMES[current_theme]["card_bg"]
         entry_fg = THEMES[current_theme]["text"]
         self.phone_entry = ctk.CTkEntry(self.right_box, placeholder_text=t("phone_lbl"), fg_color=entry_bg, text_color=entry_fg)
@@ -1598,6 +1607,17 @@ class CartPanel(ctk.CTkFrame):
         btn_order.pack(pady=20)
         
         self.refresh_cart_list()
+
+    def fill_delivery_test_data(self):
+        """Заповнює форму доставки тестовими даними одним кліком."""
+        self.phone_entry.delete(0, "end")
+        self.phone_entry.insert(0, "+380991234567")
+        self.email_entry.delete(0, "end")
+        self.email_entry.insert(0, "test@silpo.ua")
+        self.address_entry.delete(0, "end")
+        self.address_entry.insert(0, "м. Київ, вул. Хрещатик, 1, кв. 10")
+        self.deliv_combo.set("Нова Пошта")
+        self.pay_combo.set("Балансом акаунту")
 
     def refresh_cart_list(self):
         for w in self.items_frame.winfo_children():
