@@ -4,8 +4,14 @@ import os
 
 import sys
 
+import shutil
+
 if getattr(sys, 'frozen', False):
     DB_PATH = os.path.join(os.path.dirname(sys.executable), "market.db")
+    # Якщо поруч з exe немає БД або вона порожня — копіюємо з бандлу
+    _bundled_db = os.path.join(sys._MEIPASS, "market.db")
+    if not os.path.exists(DB_PATH) and os.path.exists(_bundled_db):
+        shutil.copy2(_bundled_db, DB_PATH)
 else:
     DB_PATH = os.path.join(os.path.dirname(__file__), "market.db")
 
