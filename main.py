@@ -835,7 +835,14 @@ class FakePaymentWindow(ctk.CTkToplevel):
         lbl_amount_title.pack(pady=(15, 0))
         
         lbl_amount = ctk.CTkLabel(self, text=f"{amount} грн", font=("Arial", 22, "bold"), text_color=("#2e7d32", "#4ADE80"))
-        lbl_amount.pack(pady=(0, 15))
+        lbl_amount.pack(pady=(0, 8))
+        
+        btn_quick = ctk.CTkButton(
+            self, text="⚡ Заповнити тестові дані", font=("Arial", 10, "bold"),
+            fg_color="#3b82f6", hover_color="#2563eb", height=24, corner_radius=12,
+            command=self.fill_test_data
+        )
+        btn_quick.pack(pady=(0, 10))
         
         card_frame = ctk.CTkFrame(self, fg_color=("white", "#2D2D44"), corner_radius=10)
         card_frame.pack(padx=20, pady=5, fill="both", expand=True)
@@ -866,6 +873,16 @@ class FakePaymentWindow(ctk.CTkToplevel):
         self.btn_pay = ctk.CTkButton(self, text="Підтвердити оплату", command=self.process_payment, font=("Arial", 13, "bold"), fg_color="#2ecc71", hover_color="#27ae60", height=38, corner_radius=19)
         self.btn_pay.pack(pady=15, padx=20, fill="x")
         
+    def fill_test_data(self):
+        self.card_entry.delete(0, "end")
+        self.card_entry.insert(0, "4441 1111 2222 3333")
+        self.exp_entry.delete(0, "end")
+        self.exp_entry.insert(0, "12/30")
+        self.cvv_entry.delete(0, "end")
+        self.cvv_entry.insert(0, "123")
+        self.name_entry.delete(0, "end")
+        self.name_entry.insert(0, "TEST USER")
+
     def process_payment(self):
         card = self.card_entry.get().replace(" ", "")
         exp = self.exp_entry.get().strip()
