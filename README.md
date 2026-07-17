@@ -1,6 +1,6 @@
-<div align="center">
 
 <br/>
+
 
 <img src="assets/silpo_logo.png" alt="Silpo Logo" width="150"/>
 
